@@ -1,77 +1,65 @@
-name: build addon
+name: favoriteLinks
 
 on:
   push:
-    tags: ["*"]
-    # To build on main/master branch, uncomment the following line:
-    branches: [main, master]
-
-  pull_request:
-    branches: [main, master]
-
-  workflow_dispatch:
+    tags:
+      - "**"
 
 jobs:
-  build:
-    runs-on: ubuntu-latest
+  Release_addon:
+    runs-on: "ubuntu-latest"
 
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout code
+        uses: actions/checkout@v4
 
-      - run: echo -e "pre-commit\nscons\nmarkdown" > requirements.txt
+      - name: make sure we have the correct tag information
+        run: git fetch --tags --force
 
-      - name: Set up Python
+      - name: Obtain tag message
+        uses: ericcornelissen/git-tag-annotation-action@v2
+        id: tag-data
+
+      - name: Check differences to master branch
+        id: differences-to-master
+        run: |
+          if git diff origin/master --exit-code; then
+            echo "changes_exist=false" >> $GITHUB_OUTPUT
+          else
+            echo "changes_exist=true" >> $GITHUB_OUTPUT
+          fi
+
+      - name: abort if tag is not applied on top of master
+        if: ${{ steps.differences-to-master.outputs.changes_exist == 'true' }}
+        uses: actions/github-script@v7
+        with:
+          script: |
+            core.setFailed('Releases can be generated only from commit on head of master branch')
+
+      - name: install system dependencies
+        run: sudo apt install gettext
+
+      - name: Install python
         uses: actions/setup-python@v5
         with:
-          python-version: 3.11
-          cache: "pip"
+          python-version: "3.11"
 
-      - name: Install dependencies
+      - name: install python dependencies
         run: |
-          python -m pip install --upgrade pip wheel
-          pip install -r requirements.txt
-          sudo apt-get update -y
-          sudo apt-get install -y gettext
+          pip install scons
+          pip install markdown
 
-      - name: Set up Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: "20.x"
-
-      - name: Code checks
+      - name: generate addon
         run: |
-          export SKIP=no-commit-to-branch
-          pre-commit run --all
-
-      - name: Building addon
-        run: scons
-
-      - name: Upload artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: packaged_addon
-          path: ./*.nvda-addon
-
-  upload_release:
-    runs-on: ubuntu-latest
-    if: ${{ startsWith(github.ref, 'refs/tags/') }}
-    needs: ["build"]
-    steps:
-      - uses: actions/checkout@v4
-
-      - name: Download releases files
-        uses: actions/download-artifact@v4
-        with:
-          name: packaged_addon
-
-      - name: Display structure of downloaded files
-        run: ls -R
+          rm -f *.nvda-addon || true
+          scons
 
       - name: Release
         uses: softprops/action-gh-release@v2
         with:
-          files: packaged_addon/*.nvda-addon
+          files: "*.nvda-addon"
+          body: "${{ steps.tag-data.outputs.git-tag-annotation }}"
           fail_on_unmatched_files: true
-          prerelease: ${{ contains(github.ref, '-') }}
+          generate_release_notes: false
         env:
-          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }} # Use o token do secret GH_TOKEN
+          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
