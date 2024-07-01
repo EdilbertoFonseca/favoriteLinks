@@ -14,7 +14,7 @@ Observação: O add-on FavoriteLinks foi desenvolvido com o auxílio do ChatGPT 
 
 Siga as instruções abaixo para instalar o add-on Favorite Links no NVDA:
 
-1. **Baixe o arquivo de instalação do add-on**: Obtenha o arquivo da Loja de Complementos ou da página oficial do [Favorite Links](http://github.com/EdilbertoFonseca/favoriteLinks/).
+1. **Baixe o arquivo de instalação do add-on**: Obtenha o arquivo da Loja de Complementos ou da página oficial do [Favorite Links](https://github.com/EdilbertoFonseca/favoriteLinks/releases/download/2024.2.1/favoriteLinks-2024.2.1.nvda-addon).
    **Nota**: Se o add-on for baixado da loja, a instalação ocorrerá automaticamente. Caso contrário, siga as instruções abaixo.
 2. **Instale o add-on**: Pressione Enter sobre o arquivo do add-on baixado.
 3. **Siga as instruções na tela**: Complete a instalação conforme as orientações fornecidas.
@@ -65,12 +65,28 @@ Estando posicionado na lista de links, as seguintes opções são exibidas:
 * **Importar links**: Permite a importação dos links e categorias salvos anteriormente para o arquivo json.
 * **Ordenar Links**: Permite ordenar os links em ordem alfabética.
 
-## Saindo do Sistema
+### Atalhos
 
-* **Sair (Alt+S)**: Encerra o diálogo. Você também pode usar a tecla "Escape" ou Alt+F4.
+São disponibilizadas algumas opções através de atalhos diretos na interface. São elas:
 
-## Observações Finais
+* **Abrir link, Alt+b**: Abre o link selecionado no navegador padrão do sistema.
+ **Observação**: Pressionando Enter sobre o link selecionado, o mesmo é aberto no navegador padrão do sistema.
+* **Adicionar link, Alt+a**: Permite adicionar um novo link informando sua URL e categoria.
+  **Observação**: O título é obtido automaticamente. Quando o título não puder ser obtido, será exibido um diálogo para que você adicione o título manualmente.
+* **Editar link, Alt+e**: Permite editar o título de um link existente e sua URL.
+* **Excluir link, Alt+l: Permite remover um link da lista.
+* **Adicionar categoria, Alt+d**: Permite a adição de uma categoria à lista.
+* **Sair, (Alt+S)**: Encerra o diálogo. Você também pode usar a tecla "Escape" ou Alt+F4.
 
-Este add-on oferece uma maneira prática e eficiente de gerenciar seus links favoritos diretamente no NVDA, melhorando sua experiência de navegação e produtividade. Certifique-se de verificar regularmente por atualizações e novas funcionalidades.
+## Diálogo Adicionar Novo Link
 
-Para mais informações, visite a [página oficial do projeto](https://github.com/EdilbertoFonseca/favoriteLinks).
+1. **Categoria**: Uma caixa de seleção onde você pode escolher a categoria desejada.
+2. **Campo para adição da URL do link**: Uma caixa de texto onde você pode colar a URL.
+   **Observação**: Caso já tenha copiado a URL, ela será colocada automaticamente na caixa de edição.
+3. **OK, Alt+O**: Adiciona o link na lista.
+   **Observação**: O título é obtido automaticamente. Quando o título não puder ser obtido, será exibido um diálogo para que você adicione o título manualmente.
+4. **Cancelar, Alt+C**: Encerra o diálogo. Você também pode usar a tecla "Escape" ou Alt+F4.
+
+## Agradecimentos
+
+Agradeço a Rue Fontes e Ângelo Abrantes pelos testes e dicas para melhoria deste projeto, e a Marlon Brandão de Sousa por compartilhar generosamente seu workflow, que foi crucial para a eficiência e qualidade do projeto.

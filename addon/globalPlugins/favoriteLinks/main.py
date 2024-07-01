@@ -253,6 +253,7 @@ class FavoriteLinks(wx.Dialog):
 		if selected_item != -1:
 			idx = selected_item
 			url = self.listLinks.GetItem(idx, 1).GetText()
+			self.Close()
 			webbrowser.open(url)
 		else:
 			self.show_message(_("No link selected to open!"))
