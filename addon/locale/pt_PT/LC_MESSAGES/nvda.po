@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 'favoriteLinks' '2024.2.1'\n"
 "Report-Msgid-Bugs-To: 'nvda-translations@groups.io'\n"
-"POT-Creation-Date: 2024-06-26 09:47-0300\n"
-"PO-Revision-Date: 2024-06-26 09:48-0300\n"
+"POT-Creation-Date: 2024-07-12 09:24-0300\n"
+"PO-Revision-Date: 2024-07-12 09:24-0300\n"
 "Last-Translator: \n"
 "Language-Team: Edilberto Fonseca <edilberto.fonseca@outlook.com>\n"
 "Language: pt_PT\n"
@@ -59,7 +59,7 @@ msgstr "Nenhuma categoria selecionada. Selecione ou adicione uma!"
 #: addon/globalPlugins/favoriteLinks/addLinks.py:86
 #: addon/globalPlugins/favoriteLinks/addLinks.py:90
 #: addon/globalPlugins/favoriteLinks/addLinks.py:108
-#: addon/globalPlugins/favoriteLinks/main.py:438
+#: addon/globalPlugins/favoriteLinks/main.py:439
 msgid "Attention"
 msgstr "Atenção"
 
@@ -76,7 +76,6 @@ msgid "An error occurred while adding the link."
 msgstr "Ocorreu um erro ao adicionar o link."
 
 #: addon/globalPlugins/favoriteLinks/configPanel.py:64
-#| msgid "Path of agenda files:"
 msgid "Path of json files:"
 msgstr "Caminho dos arquivos json:"
 
@@ -261,92 +260,93 @@ msgstr "Erro ao importar links: {e}"
 msgid "No active internet connection!"
 msgstr "Sem conexão ativa com a Internet!"
 
-#: addon/globalPlugins/favoriteLinks/main.py:258
+#: addon/globalPlugins/favoriteLinks/main.py:259
 msgid "No link selected to open!"
 msgstr "Nenhum link selecionado para abrir!"
 
-#: addon/globalPlugins/favoriteLinks/main.py:282
+#: addon/globalPlugins/favoriteLinks/main.py:283
 msgid "Enter new category name:"
 msgstr "Insira o novo nome da categoria:"
 
-#: addon/globalPlugins/favoriteLinks/main.py:282
+#: addon/globalPlugins/favoriteLinks/main.py:283
 msgid "Add Category"
 msgstr "Adicionar categoria"
 
-#: addon/globalPlugins/favoriteLinks/main.py:296
+#: addon/globalPlugins/favoriteLinks/main.py:297
 msgid "Category added successfully!"
 msgstr "Categoria adicionada com sucesso!"
 
-#: addon/globalPlugins/favoriteLinks/main.py:308
+#: addon/globalPlugins/favoriteLinks/main.py:309
 msgid "Add New Link"
 msgstr "Adicionar novo link"
 
-#: addon/globalPlugins/favoriteLinks/main.py:330
+#: addon/globalPlugins/favoriteLinks/main.py:331
 msgid "Edit link title:"
 msgstr "Editar título do link:"
 
-#: addon/globalPlugins/favoriteLinks/main.py:331
-#: addon/globalPlugins/favoriteLinks/main.py:338
+#: addon/globalPlugins/favoriteLinks/main.py:332
+#: addon/globalPlugins/favoriteLinks/main.py:339
 msgid "Edit Link"
 msgstr "Editar link"
 
-#: addon/globalPlugins/favoriteLinks/main.py:338
+#: addon/globalPlugins/favoriteLinks/main.py:339
 msgid "Edit link URL:"
 msgstr "Editar URL do link:"
 
-#: addon/globalPlugins/favoriteLinks/main.py:348
+#: addon/globalPlugins/favoriteLinks/main.py:349
 msgid "Link edited successfully!"
 msgstr "Link editado com sucesso!"
 
-#: addon/globalPlugins/favoriteLinks/main.py:350
+#: addon/globalPlugins/favoriteLinks/main.py:351
 msgid "No link selected to edit!"
 msgstr "Nenhum link selecionado para edição!"
 
-#: addon/globalPlugins/favoriteLinks/main.py:367
+#: addon/globalPlugins/favoriteLinks/main.py:368
 msgid "Link deleted successfully!"
 msgstr "Link excluído com sucesso!"
 
-#: addon/globalPlugins/favoriteLinks/main.py:370
+#: addon/globalPlugins/favoriteLinks/main.py:371
 msgid "No link selected to delete!"
 msgstr "Nenhum link selecionado para exclusão!"
 
-#: addon/globalPlugins/favoriteLinks/main.py:384
+#: addon/globalPlugins/favoriteLinks/main.py:385
 msgid "Edit category name:"
 msgstr "Editar nome da categoria:"
 
-#: addon/globalPlugins/favoriteLinks/main.py:385
+#: addon/globalPlugins/favoriteLinks/main.py:386
 msgid "Edit Category"
 msgstr "Editar categoria"
 
-#: addon/globalPlugins/favoriteLinks/main.py:392
+#: addon/globalPlugins/favoriteLinks/main.py:393
 msgid "Category name edited successfully!"
 msgstr "Nome da categoria editado com sucesso!"
 
-#: addon/globalPlugins/favoriteLinks/main.py:395
+#: addon/globalPlugins/favoriteLinks/main.py:396
 msgid "No category selected to edit!"
 msgstr "Nenhuma categoria selecionada para edição!"
 
-#: addon/globalPlugins/favoriteLinks/main.py:409
-msgid "Are you sure you want to delete the category '{}' and all its links?"
-msgstr "Tem certeza de que deseja excluir a categoria '{}' e todos os seus links?"
-
 #: addon/globalPlugins/favoriteLinks/main.py:410
+msgid "Are you sure you want to delete the category '{}' and all its links?"
+msgstr ""
+"Tem certeza de que deseja excluir a categoria '{}' e todos os seus links?"
+
+#: addon/globalPlugins/favoriteLinks/main.py:411
 msgid "Confirm Delete"
 msgstr "Confirmar exclusão"
 
-#: addon/globalPlugins/favoriteLinks/main.py:414
+#: addon/globalPlugins/favoriteLinks/main.py:415
 msgid "Category deleted successfully!"
 msgstr "Categoria excluída com sucesso!"
 
-#: addon/globalPlugins/favoriteLinks/main.py:417
+#: addon/globalPlugins/favoriteLinks/main.py:418
 msgid "No category selected to delete!"
 msgstr "Nenhuma categoria selecionada para exclusão!"
 
-#: addon/globalPlugins/favoriteLinks/main.py:489
+#: addon/globalPlugins/favoriteLinks/main.py:490
 msgid "Successfully ordered!"
 msgstr "Ordenado com sucesso!"
 
-#: addon/globalPlugins/favoriteLinks/main.py:493
+#: addon/globalPlugins/favoriteLinks/main.py:494
 msgid "Error when ordering!"
 msgstr "Erro ao fazer a ordernação!"
 
@@ -354,9 +354,14 @@ msgstr "Erro ao fazer a ordernação!"
 msgid "Favorite links"
 msgstr "Links favoritos"
 
-#: buildVars.py:29
-msgid "This add-on allows you to save links to frequently visited pages."
-msgstr "Este complemento permite salvar links para páginas visitadas com frequência."
+#: buildVars.py:30
+#| msgid "This add-on allows you to save links to frequently visited pages."
+msgid ""
+"This add-on allows you to save, edit and remove links to frequently visited "
+"pages."
+msgstr ""
+"Este complemento permite salvar, editar e remover links para páginas "
+"visitadas com frequência."
 
 #~ msgid "Error renaming or moving file: {}"
 #~ msgstr "Erro ao renomear ou mover arquivo: {}"

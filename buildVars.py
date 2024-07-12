@@ -26,15 +26,16 @@ addon_info = {
 	# Add-on description
 	# Translators: Long description to be shown for this add-on
 	# on add-on information from add-ons manager
-	"addon_description": _("""This add-on allows you to save links to frequently visited pages."""),
+	"addon_description": _(
+		"""This add-on allows you to save, edit and remove links to frequently visited pages."""),
 	# version
-	"addon_version": "2024.2.1",
+	"addon_version": "2024.2.2",
 	# Author(s)
 	"addon_author": u"Edilberto Fonseca <edilberto.fonseca@outlook.com>",
 	# URL for the add-on documentation support
-	"addon_url": "http://github.com/EdilbertoFonseca/favoriteLinks",
+	"addon_url": "https://github.com/EdilbertoFonseca/favoriteLinks",
 	# URL for the add-on repository where the source code can be found
-	"addon_sourceURL": None,
+	"addon_sourceURL": "https://github.com/EdilbertoFonseca/favoriteLinks",
 	# Documentation file name
 	"addon_docFileName": "readme.html",
 	# Minimum NVDA version supported (e.g. "2018.3")

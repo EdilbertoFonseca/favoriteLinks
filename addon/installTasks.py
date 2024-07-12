@@ -11,16 +11,20 @@
 import os
 
 import addonHandler
+import config
 import globalVars
 from gui import messageBox
 
 # For translation process
 addonHandler.initTranslation()
 
+# Get the name of the addon defined in the manifest.
+ADDON_name = addonHandler.getCodeAddon().manifest["name"]
+
 
 def onInstall():
 	"""
-	Move o arquivo json do add-on para um novo local durante a instalação.
+	Moves the add-on's json file to a new location during installation.
 	"""
 	relativeJsonPath = os.path.join("addons", "favoriteLinks", "globalPlugins", "favoriteLinks", "favorite_links.json")
 	absoluteJsonPath = os.path.abspath(os.path.join(globalVars.appArgs.configPath, relativeJsonPath))
@@ -35,3 +39,15 @@ def onInstall():
 			os.rename(absoluteJsonPath, os.path.abspath(newJsonPath))
 		except OSError as e:
 			messageBox(_(f"Error when renaming file: {e}"), _("Attention"))
+
+
+def onUninstall():
+	# Go through the configuration profiles and try to remove the 'contactBook' key
+	for key, value in list(config.conf._profileCache.items()):
+		try:
+			del config.conf._profileCache[key][ADDON_name]
+		except KeyError:
+			pass  # Ignore if key does not exist
+
+	# Save configuration changes
+	config.conf.save()
