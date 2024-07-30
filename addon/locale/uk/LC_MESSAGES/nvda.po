@@ -1,0 +1,366 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: favoriteLinks 2024.2.2\n"
+"Report-Msgid-Bugs-To: 'nvda-translations@groups.io'\n"
+"POT-Creation-Date: 2024-07-25 10:04+0300\n"
+"PO-Revision-Date: 2024-07-29 09:42+0300\n"
+"Last-Translator: Heorhii Halas <nvda.translation.uk@gmail.com>\n"
+"Language-Team: Heorhii Halas - nvdaukr.online\n"
+"Language: uk_UA\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 3.4.4\n"
+"X-Poedit-Basepath: .\n"
+
+#: addon\installTasks.py:41
+#, python-brace-format
+msgid "Error when renaming file: {e}"
+msgstr "Помилка під час перейменування файлу: {e}"
+
+#: addon\installTasks.py:41 addon\globalPlugins\favoriteLinks\addLinks.py:86
+#: addon\globalPlugins\favoriteLinks\addLinks.py:90
+#: addon\globalPlugins\favoriteLinks\addLinks.py:108
+#: addon\globalPlugins\favoriteLinks\main.py:439
+msgid "Attention"
+msgstr "Увага"
+
+#. Translators: Add-on title in the tools menu.
+#: addon\globalPlugins\favoriteLinks\__init__.py:53
+msgid "&Favorite links..."
+msgstr "&Обрані посилання..."
+
+#. Translators: Dialog title Favorite Links.
+#: addon\globalPlugins\favoriteLinks\__init__.py:67
+msgid "Favorite links."
+msgstr "Обрані посилання."
+
+#. Translators: Text displayed in NVDA help.
+#: addon\globalPlugins\favoriteLinks\__init__.py:78
+msgid "This addon allows you to save links to a specific page."
+msgstr "Цей додаток дозволяє зберігати посилання на ті чи інші сторінки."
+
+#: addon\globalPlugins\favoriteLinks\addLinks.py:47
+#: addon\globalPlugins\favoriteLinks\main.py:63
+msgid "Select a Category"
+msgstr "Виберіть категорію"
+
+#: addon\globalPlugins\favoriteLinks\addLinks.py:52
+msgid "Enter link URL:"
+msgstr "Введіть URL:"
+
+#: addon\globalPlugins\favoriteLinks\addLinks.py:57
+msgid "&Ok"
+msgstr "&Гаразд"
+
+#: addon\globalPlugins\favoriteLinks\addLinks.py:58
+msgid "&Cancel"
+msgstr "&Скасувати"
+
+#: addon\globalPlugins\favoriteLinks\addLinks.py:86
+msgid "No category selected. Please select or add one!"
+msgstr "Не вибрано жодної категорії. Будь ласка, виберіть або додайте нову!"
+
+#: addon\globalPlugins\favoriteLinks\addLinks.py:90
+msgid "URL is required!"
+msgstr "ULR обов’язковий!"
+
+#: addon\globalPlugins\favoriteLinks\addLinks.py:100
+msgid "Link added successfully!"
+msgstr "Посилання успішно додано!"
+
+#: addon\globalPlugins\favoriteLinks\addLinks.py:106
+msgid "An error occurred while adding the link."
+msgstr "Під час додавання посилання сталася помилка."
+
+#. Translators: Name of combobox with the json files path
+#: addon\globalPlugins\favoriteLinks\configPanel.py:64
+msgid "Path of json files:"
+msgstr "Шлях до файлів json:"
+
+#. Translators: This is the label for the button used to add or change a favorite_links.json location
+#: addon\globalPlugins\favoriteLinks\configPanel.py:75
+msgid "&Select or add a directory"
+msgstr "&Виберіть або додайте каталог"
+
+#: addon\globalPlugins\favoriteLinks\configPanel.py:94
+msgid "Choose where to save the json file"
+msgstr "Виберіть місце для збереження файлу json"
+
+#: addon\globalPlugins\favoriteLinks\configPanel.py:97
+msgid "Json files (*.json)"
+msgstr "Файли Json (*.json)"
+
+#: addon\globalPlugins\favoriteLinks\linkManager.py:89
+msgid "Error decoding JSON. Check the file contents."
+msgstr "Помилка декодування JSON. Перевірте вміст файлу."
+
+#: addon\globalPlugins\favoriteLinks\linkManager.py:103
+#, python-brace-format
+msgid "Error saving links: {e}"
+msgstr "Помилка збереження посилань: {e}"
+
+#: addon\globalPlugins\favoriteLinks\linkManager.py:116
+msgid "Category already exists!"
+msgstr "Категорія вже існує!"
+
+#: addon\globalPlugins\favoriteLinks\linkManager.py:157
+msgid "Enter a title for the URL:"
+msgstr "Введіть назву URL:"
+
+#: addon\globalPlugins\favoriteLinks\linkManager.py:158
+msgid "Unknown Title for URL"
+msgstr "Невідома назва для URL"
+
+#: addon\globalPlugins\favoriteLinks\linkManager.py:165
+#: addon\globalPlugins\favoriteLinks\linkManager.py:168
+msgid "Unknown Title"
+msgstr "Невідома назва"
+
+#: addon\globalPlugins\favoriteLinks\linkManager.py:186
+msgid "Link already exists in the category!"
+msgstr "Посилання вже є в категорії!"
+
+#: addon\globalPlugins\favoriteLinks\main.py:39
+msgid "An instance of {} is already open."
+msgstr "Екземпляр {} уже відкрито."
+
+#: addon\globalPlugins\favoriteLinks\main.py:69
+msgid "List of links..."
+msgstr "Список посилань..."
+
+#: addon\globalPlugins\favoriteLinks\main.py:77
+msgid "&Open link"
+msgstr "&Відкрити посилання"
+
+#: addon\globalPlugins\favoriteLinks\main.py:78
+#: addon\globalPlugins\favoriteLinks\main.py:145
+msgid "&Add link"
+msgstr "&Додати посилання"
+
+#: addon\globalPlugins\favoriteLinks\main.py:79
+#: addon\globalPlugins\favoriteLinks\main.py:147
+msgid "&Edit link"
+msgstr "&Редагувати посилання"
+
+#: addon\globalPlugins\favoriteLinks\main.py:80
+#: addon\globalPlugins\favoriteLinks\main.py:149
+msgid "&Delete link"
+msgstr "&Видалити посилання"
+
+#: addon\globalPlugins\favoriteLinks\main.py:81
+#: addon\globalPlugins\favoriteLinks\main.py:114
+msgid "&Add Category"
+msgstr "&Додати категорію"
+
+#: addon\globalPlugins\favoriteLinks\main.py:82
+msgid "&Exit"
+msgstr "&Вихід"
+
+#: addon\globalPlugins\favoriteLinks\main.py:114
+msgid "Add a new category to the list."
+msgstr "Додати нову категорію до списку."
+
+#: addon\globalPlugins\favoriteLinks\main.py:116
+msgid "&Edit category"
+msgstr "&Редагувати категорію"
+
+#: addon\globalPlugins\favoriteLinks\main.py:116
+msgid "Edit a category in the list."
+msgstr "Редагування категорії у списку."
+
+#: addon\globalPlugins\favoriteLinks\main.py:118
+msgid "&Delete category"
+msgstr "&Видалити категорію"
+
+#: addon\globalPlugins\favoriteLinks\main.py:118
+msgid "Delete a category from the list."
+msgstr "Видалити категорію зі списку."
+
+#: addon\globalPlugins\favoriteLinks\main.py:120
+#: addon\globalPlugins\favoriteLinks\main.py:151
+msgid "E&xport links"
+msgstr "&Експорт посилань"
+
+#: addon\globalPlugins\favoriteLinks\main.py:120
+#: addon\globalPlugins\favoriteLinks\main.py:151
+msgid "Export links"
+msgstr "Експорт посилань"
+
+#: addon\globalPlugins\favoriteLinks\main.py:122
+#: addon\globalPlugins\favoriteLinks\main.py:153
+msgid "&Import links"
+msgstr "&Імпорт посилань"
+
+#: addon\globalPlugins\favoriteLinks\main.py:122
+#: addon\globalPlugins\favoriteLinks\main.py:153
+msgid "Import links"
+msgstr "Імпорт посилань"
+
+#: addon\globalPlugins\favoriteLinks\main.py:145
+msgid "Add a new link to the list."
+msgstr "Додати нове посилання до списку."
+
+#: addon\globalPlugins\favoriteLinks\main.py:147
+msgid "Edit link."
+msgstr "Редагувати посилання."
+
+#: addon\globalPlugins\favoriteLinks\main.py:149
+msgid "Delete link"
+msgstr "Видалити посилання"
+
+#: addon\globalPlugins\favoriteLinks\main.py:155
+msgid "&Sort links"
+msgstr "&Сортувати посилання"
+
+#: addon\globalPlugins\favoriteLinks\main.py:155
+msgid "Sort the links alphabetically."
+msgstr "Відсортувати посилання за алфавітом."
+
+#: addon\globalPlugins\favoriteLinks\main.py:177
+msgid "Title"
+msgstr "Назва"
+
+#: addon\globalPlugins\favoriteLinks\main.py:178
+msgid "URL"
+msgstr "URL"
+
+#: addon\globalPlugins\favoriteLinks\main.py:202
+msgid "Save export file"
+msgstr "Зберегти файл експорту"
+
+#: addon\globalPlugins\favoriteLinks\main.py:210
+msgid "Links exported successfully!"
+msgstr "Посилання успішно експортовано!"
+
+#: addon\globalPlugins\favoriteLinks\main.py:214
+#, python-brace-format
+msgid "Error exporting links: {e}"
+msgstr "Помилка експорту посилань: {e}"
+
+#: addon\globalPlugins\favoriteLinks\main.py:214
+#: addon\globalPlugins\favoriteLinks\main.py:238
+msgid "Error"
+msgstr "Помилка"
+
+#: addon\globalPlugins\favoriteLinks\main.py:225
+msgid "Open import file"
+msgstr "Відкрити файл імпорту"
+
+#: addon\globalPlugins\favoriteLinks\main.py:234
+msgid "Links imported successfully!"
+msgstr "Посилання успішно імпортовано!"
+
+#: addon\globalPlugins\favoriteLinks\main.py:238
+#, python-brace-format
+msgid "Error importing links: {e}"
+msgstr "Помилка імпорту посилань: {e}"
+
+#: addon\globalPlugins\favoriteLinks\main.py:249
+msgid "No active internet connection!"
+msgstr "Немає активного з’єднання з інтернетом!"
+
+#: addon\globalPlugins\favoriteLinks\main.py:259
+msgid "No link selected to open!"
+msgstr "Не вибрано посилання для відкриття!"
+
+#: addon\globalPlugins\favoriteLinks\main.py:283
+msgid "Enter new category name:"
+msgstr "Введіть нову назву категорії:"
+
+#: addon\globalPlugins\favoriteLinks\main.py:283
+msgid "Add Category"
+msgstr "Додати категорію"
+
+#: addon\globalPlugins\favoriteLinks\main.py:297
+msgid "Category added successfully!"
+msgstr "Категорію успішно додано!"
+
+#: addon\globalPlugins\favoriteLinks\main.py:309
+msgid "Add New Link"
+msgstr "Додати нове посилання"
+
+#: addon\globalPlugins\favoriteLinks\main.py:331
+msgid "Edit link title:"
+msgstr "Редагувати назву посилання:"
+
+#: addon\globalPlugins\favoriteLinks\main.py:332
+#: addon\globalPlugins\favoriteLinks\main.py:339
+msgid "Edit Link"
+msgstr "Редагувати посилання"
+
+#. User cancelled the input dialog
+#: addon\globalPlugins\favoriteLinks\main.py:339
+msgid "Edit link URL:"
+msgstr "Редагувати URL посилання:"
+
+#: addon\globalPlugins\favoriteLinks\main.py:349
+msgid "Link edited successfully!"
+msgstr "Посилання успішно відредаговано!"
+
+#: addon\globalPlugins\favoriteLinks\main.py:351
+msgid "No link selected to edit!"
+msgstr "Не вибрано посилання для редагування!"
+
+#: addon\globalPlugins\favoriteLinks\main.py:368
+msgid "Link deleted successfully!"
+msgstr "Посилання успішно видалено!"
+
+#: addon\globalPlugins\favoriteLinks\main.py:371
+msgid "No link selected to delete!"
+msgstr "Не вибрано посилання для видалення!"
+
+#: addon\globalPlugins\favoriteLinks\main.py:385
+msgid "Edit category name:"
+msgstr "Редагувати назву категорії:"
+
+#: addon\globalPlugins\favoriteLinks\main.py:386
+msgid "Edit Category"
+msgstr "Редагувати категорію"
+
+#: addon\globalPlugins\favoriteLinks\main.py:393
+msgid "Category name edited successfully!"
+msgstr "Назву категорії успішно відредаговано!"
+
+#: addon\globalPlugins\favoriteLinks\main.py:396
+msgid "No category selected to edit!"
+msgstr "Не вибрано жодної категорії для редагування!"
+
+#: addon\globalPlugins\favoriteLinks\main.py:410
+msgid "Are you sure you want to delete the category '{}' and all its links?"
+msgstr "Ви впевнені, що бажаєте видалити категорію «{}» і всі її посилання?"
+
+#: addon\globalPlugins\favoriteLinks\main.py:411
+msgid "Confirm Delete"
+msgstr "Підтвердьте видалення"
+
+#: addon\globalPlugins\favoriteLinks\main.py:415
+msgid "Category deleted successfully!"
+msgstr "Категорію успішно видалено!"
+
+#: addon\globalPlugins\favoriteLinks\main.py:418
+msgid "No category selected to delete!"
+msgstr "Не вибрано жодної категорії для видалення!"
+
+#: addon\globalPlugins\favoriteLinks\main.py:490
+msgid "Successfully ordered!"
+msgstr "Успішно відсортовано!"
+
+#: addon\globalPlugins\favoriteLinks\main.py:494
+msgid "Error when ordering!"
+msgstr "Помилка під час сортування!"
+
+#. Add-on summary, usually the user visible name of the addon.
+#. Translators: Summary for this add-on to be shown
+#. on installation and add-on information.
+#: buildVars.py:25
+msgid "Favorite links"
+msgstr "Обрані посилання"
+
+#: buildVars.py:30
+msgid ""
+"This add-on allows you to save, edit and remove links to frequently visited "
+"pages."
+msgstr ""
+"Цей додаток дозволяє зберігати, редагувати та видаляти посилання на часто "
+"відвідувані сторінки."
