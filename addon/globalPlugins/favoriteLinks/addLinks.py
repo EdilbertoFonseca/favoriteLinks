@@ -82,10 +82,12 @@ class AddLinks(wx.Dialog):
 			url_from_clipboard = self.textURL.GetValue()
 			from_clipboard = url_from_clipboard if url_from_clipboard else ""
 			url = from_clipboard
+
 			if not category:
 				self.show_message(_("No category selected. Please select or add one!"), _("Attention"))
 				self.Destroy()
 				return
+
 			if not url:
 				self.show_message(_("URL is required!"), _("Attention"))
 				self.textURL.SetFocus()

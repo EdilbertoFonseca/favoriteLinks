@@ -27,6 +27,7 @@ sys.path.append(libs)
 try:
 	import requests
 	import validators
+
 	from bs4 import BeautifulSoup, UnicodeDammit
 except ImportError as e:
 	logging.error(f"Error when importing: {e}")
