@@ -16,6 +16,7 @@ import wx
 from gui import guiHelper, mainFrame, messageBox
 
 from .addLinks import AddLinks
+from .editLinks import EditLinks
 from .configPanel import dirJsonFile
 from .linkManager import LinkManager
 
@@ -48,14 +49,27 @@ class FavoriteLinks(wx.Dialog):
 		self.title = title
 		self.link_manager = LinkManager(json_file_path=dirJsonFile)
 
-		WIDTH = 800
+		WIDTH = 1500
 		HEIGHT = 500
 
-		super(FavoriteLinks, self).__init__(parent, title=title, size=(WIDTH, HEIGHT))
+		super(FavoriteLinks, self).__init__(parent, title=title, size=(WIDTH, HEIGHT),
+		style=wx.DEFAULT_DIALOG_STYLE | wx.RESIZE_BORDER)
 		panel = wx.Panel(self)
 		boxSizer = wx.BoxSizer(wx.VERTICAL)
 		sizerHelper = guiHelper.BoxSizerHelper(panel, wx.VERTICAL)
 		buttonSizer = guiHelper.BoxSizerHelper(panel, wx.HORIZONTAL)
+
+		self.labelOpenLinks = _("&Open link")
+		self.labelAddLinks = _("&Add link")
+		self.labelEditLink = _("&Edit link")
+		self.labelDeleteLink = _("De&lete link")
+		self.labelAddCategory = _("Add Cate&gory")
+		self.labelEditCategory = _("Edi&t category")
+		self.labelDeleteCategory = _("&Delete category")
+		self.labelExportLinks = _("E&xport links")
+		self.labelImportLinks = _("&Import links")
+		self.labelSortLinks = _("&Sort links")
+		self.labelCancel = _("&Exit")
 
 		self.Bind(wx.EVT_CHAR_HOOK, self.onKeyPress)
 
@@ -74,12 +88,12 @@ class FavoriteLinks(wx.Dialog):
 		self.link_manager.load_json(self)
 
 		buttons = [
-			(_("&Open link"), self.onOpenLink),
-			(_("&Add link"), self.onAddLink),
-			(_("&Edit link"), self.onEditLink),
-			(_("&Delete link"), self.onDeleteLink),
-			(_("&Add Category"), self.onAddCategory),
-			(_("&Exit"), self.onCancel)
+			(self.labelOpenLinks, self.onOpenLink),
+			(self.labelAddLinks, self.onAddLink),
+			(self.labelEditLink, self.onEditLink),
+			(self.labelDeleteLink, self.onDeleteLink),
+			(self.labelAddCategory, self.onAddCategory),
+			(self.labelCancel, self.onCancel)
 		]
 
 		for label, handler in buttons:
@@ -87,9 +101,10 @@ class FavoriteLinks(wx.Dialog):
 			buttonSizer.addItem(button)
 			self.Bind(wx.EVT_BUTTON, handler, button)
 
-		boxSizer.Add(sizerHelper.sizer, border=10, flag=wx.ALL)
+		boxSizer.Add(sizerHelper.sizer, border=10, flag=wx.ALL | wx.EXPAND)
 		boxSizer.Add(buttonSizer.sizer, border=5, flag=wx.CENTER)
 		panel.SetSizerAndFit(boxSizer)
+		self.Fit()
 
 	def onCategoryContextMenu(self, event):
 		"""
@@ -98,8 +113,9 @@ class FavoriteLinks(wx.Dialog):
 		Args:
 			event (wx.Event): The event triggered by the context menu.
 		"""
-
+		gui.mainFrame.prePopup()
 		self.category.PopupMenu(self.category_context_menu(), self.category.GetPosition())
+		gui.mainFrame.postPopup()
 
 	def category_context_menu(self):
 		"""
@@ -111,15 +127,15 @@ class FavoriteLinks(wx.Dialog):
 		"""
 
 		menu = wx.Menu()
-		addCategory = menu.Append(wx.ID_ANY, _("&Add Category"), _("Add a new category to the list."))
+		addCategory = menu.Append(wx.ID_ANY, self.labelAddCategory, _("Add a new category to the list."))
 		self.Bind(wx.EVT_MENU, self.onAddCategory, addCategory)
-		editCategory = menu.Append(wx.ID_ANY, _("&Edit category"), _("Edit a category in the list."))
+		editCategory = menu.Append(wx.ID_ANY, self.labelEditCategory, _("Edit a category in the list."))
 		self.Bind(wx.EVT_MENU, self.onEditCategory, editCategory)
-		deleteCategory = menu.Append(wx.ID_ANY, _("&Delete category"), _("Delete a category from the list."))
+		deleteCategory = menu.Append(wx.ID_ANY, self.labelDeleteCategory, _("Delete a category from the list."))
 		self.Bind(wx.EVT_MENU, self.onDeleteCategory, deleteCategory)
-		exportLinks = menu.Append(wx.ID_ANY, _("E&xport links"), _("Export links"))
+		exportLinks = menu.Append(wx.ID_ANY, self.labelExportLinks, _("Export links"))
 		self.Bind(wx.EVT_MENU, self.onExportLinks, exportLinks)
-		importLinks = menu.Append(wx.ID_ANY, _("&Import links"), _("Import links"))
+		importLinks = menu.Append(wx.ID_ANY, self.labelImportLinks, _("Import links"))
 		self.Bind(wx.EVT_MENU, self.onImportLinks, importLinks)
 		return menu
 
@@ -131,28 +147,30 @@ class FavoriteLinks(wx.Dialog):
 			event (wx.Event): The event triggered by the context menu.
 		"""
 
+		gui.mainFrame.prePopup()
 		self.listLinks.PopupMenu(self.link_list_context_menu(), self.listLinks.GetPosition())
+		gui.mainFrame.postPopup()
 
 	def link_list_context_menu(self):
 		"""
-		Itens do menu wx.ListCtrl.
+Itens do menu wx.ListCtrl.
 
 		Returns:
 			wx.Menu: A menu containing items for adding, editing, deleting, exporting, importing, and ordering links.
 		"""
 
 		menu = wx.Menu()
-		addLink = menu.Append(wx.ID_ANY, _("&Add link"), _("Add a new link to the list."))
+		addLink = menu.Append(wx.ID_ANY, self.labelAddLinks, _("Add a new link to the list."))
 		self.Bind(wx.EVT_MENU, self.onAddLink, addLink)
-		editLink = menu.Append(wx.ID_ANY, _("&Edit link"), _("Edit link."))
+		editLink = menu.Append(wx.ID_ANY, self.labelEditLink, _("Edit link."))
 		self.Bind(wx.EVT_MENU, self.onEditLink, editLink)
-		deleteLink = menu.Append(wx.ID_ANY, _("&Delete link"), _("Delete link"))
+		deleteLink = menu.Append(wx.ID_ANY, self.labelDeleteLink, _("Delete link"))
 		self.Bind(wx.EVT_MENU, self.onDeleteLink, deleteLink)
-		exportLinks = menu.Append(wx.ID_ANY, _("E&xport links"), _("Export links"))
+		exportLinks = menu.Append(wx.ID_ANY, self.labelExportLinks, _("Export links"))
 		self.Bind(wx.EVT_MENU, self.onExportLinks, exportLinks)
-		importLinks = menu.Append(wx.ID_ANY, _("&Import links"), _("Import links"))
+		importLinks = menu.Append(wx.ID_ANY, self.labelImportLinks, _("Import links"))
 		self.Bind(wx.EVT_MENU, self.onImportLinks, importLinks)
-		sortLinks = menu.Append(wx.ID_ANY, _("&Sort links"), _("Sort the links alphabetically."))
+		sortLinks = menu.Append(wx.ID_ANY, self.labelSortLinks, _("Sort the links alphabetically."))
 		self.Bind(wx.EVT_MENU, self.onOrdernar, sortLinks)
 		return menu
 
@@ -174,8 +192,8 @@ class FavoriteLinks(wx.Dialog):
 		Adds the columns with titles to wx.ListCtrl.
 		"""
 
-		self.listLinks.InsertColumn(0, _("Title"), width=250)
-		self.listLinks.InsertColumn(1, _("URL"), width=300)
+		self.listLinks.InsertColumn(0, _("Title"), width=350)
+		self.listLinks.InsertColumn(1, _("URL"), width=450)
 
 	def onKeyPress(self, event):
 		"""
@@ -306,15 +324,29 @@ class FavoriteLinks(wx.Dialog):
 			event (wx.Event): The event triggered by the add link button.
 		"""
 
-		dlg = AddLinks(mainFrame, _("Add New Link"))
+		# Armazena a seleção da categoria
+		self.selectedCategory = self.category.GetStringSelection()
+
+		# Abre o diálogo para adicionar um novo link
+		dlg = AddLinks(mainFrame, _("Add New Link"), self.selectedCategory)
+		gui.mainFrame.prePopup()
 		dlg.ShowModal()
+		dlg.CenterOnScreen()
 		dlg.Destroy()
+		gui.mainFrame.postPopup()
+
+		# Atualiza a lista de links
 		wx.CallAfter(self.link_manager.load_json, self)
-		self.listLinks.SetFocus()
+
+		# Restaura a seleção da categoria
+		wx.CallAfter(self.category.SetStringSelection(self.selectedCategory))
+
+		# Garante que o foco será restaurado na categoria após a atualização
+		wx.CallAfter(self.category.SetFocus)
 
 	def onEditLink(self, event):
 		"""
-		Edit a selected link.
+		Edit a selected link using the EditLinks dialog.
 
 		Args:
 			event (wx.Event): The event triggered by the edit link button.
@@ -325,28 +357,26 @@ class FavoriteLinks(wx.Dialog):
 
 		selected_item = self.listLinks.GetFirstSelected()
 		if selected_item != -1:
+			old_category = self.category.GetStringSelection()
 			old_title = self.listLinks.GetItem(selected_item, 0).GetText()
 			old_url = self.listLinks.GetItem(selected_item, 1).GetText()
-			new_title = self.get_user_input(
-				_("Edit link title:"),
-				_("Edit Link"),
-				old_title
+
+			# Create the EditLinks dialog
+			dlg = EditLinks(
+				mainFrame,
+				title=_("Edit Link"),
+				old_category=old_category,
+				old_title=old_title,
+				old_url=old_url
 			)
-
-			if new_title is None:
-				return  # User cancelled the input dialog
-
-			new_url = self.get_user_input(_("Edit link URL:"), _("Edit Link"), old_url)
-			if new_url is None:
-				return  # User cancelled the input dialog
-
-			if new_title and new_url:
-				category = self.category.GetStringSelection()
-				self.link_manager.edit_link_in_category(category, old_title, new_title, new_url)
-				self.link_manager.save_links()
-				# self.link_manager.load_json(self)
-				wx.CallAfter(self.link_manager.load_json, self)
-				self.show_message(_("Link edited successfully!"))
+			gui.mainFrame.prePopup()
+			dlg.ShowModal()
+			dlg.CenterOnScreen()
+			wx.CallAfter(self.link_manager.load_json, self)
+			dlg.Destroy()
+			gui.mainFrame.postPopup()
+			self.category.SetStringSelection(old_category)
+			self.listLinks.SetFocus()
 		else:
 			self.show_message(_("No link selected to edit!"))
 
@@ -358,6 +388,8 @@ class FavoriteLinks(wx.Dialog):
 			event (wx.Event): The event triggered by the remove link button.
 		"""
 
+		self.selectedCategory = self.category.GetStringSelection()
+
 		selected_item = self.listLinks.GetFirstSelected()
 		if selected_item != -1:
 			title = self.listLinks.GetItem(selected_item, 0).GetText()
@@ -366,6 +398,7 @@ class FavoriteLinks(wx.Dialog):
 			self.link_manager.save_links()
 			self.link_manager.load_json(self)
 			self.show_message(_("Link deleted successfully!"))
+			self.category.SetStringSelection(self.selectedCategory)
 			self.listLinks.SetFocus()
 		else:
 			self.show_message(_("No link selected to delete!"))

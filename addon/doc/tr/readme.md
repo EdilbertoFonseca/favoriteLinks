@@ -1,7 +1,7 @@
 # Favori Bağlantılar
 
 * **Yazar**: Edilberto Fonseca <edilberto.fonseca@outlook.com>
-* **Oluşturma Tarihi**: 04/11/2024
+* **Oluşturma Tarihi**: 11/04/2024
 * **Lisans**: [GPL 2.0](https://www.gnu.org/licenses/gpl-2.0.html)
 
 ## Giriş

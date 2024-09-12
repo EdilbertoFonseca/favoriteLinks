@@ -29,9 +29,10 @@ class AddLinks(wx.Dialog):
 		wx.Dialog: Displays a dialog for selecting the category and adding the URL.
 	"""
 
-	def __init__(self, parent, title):
+	def __init__(self, parent, title, selectedCategory=""):
 		try:
 			wx.Dialog.__init__(self, parent, title=title)
+			self.selectedCategory = selectedCategory
 			panel = wx.Panel(self)
 			boxSizer = wx.BoxSizer(wx.VERTICAL)
 			sizerHelper = guiHelper.BoxSizerHelper(panel, wx.VERTICAL)
@@ -47,6 +48,7 @@ class AddLinks(wx.Dialog):
 				_("Select a Category"), wx.Choice, choices=[]
 			)
 			self.link_manager.load_json(self)
+			self.category.SetStringSelection(self.selectedCategory)
 
 			self.textURL = sizerHelper.addLabeledControl(
 				_("Enter link URL:"), wx.TextCtrl
@@ -82,12 +84,10 @@ class AddLinks(wx.Dialog):
 			url_from_clipboard = self.textURL.GetValue()
 			from_clipboard = url_from_clipboard if url_from_clipboard else ""
 			url = from_clipboard
-
 			if not category:
 				self.show_message(_("No category selected. Please select or add one!"), _("Attention"))
 				self.Destroy()
 				return
-
 			if not url:
 				self.show_message(_("URL is required!"), _("Attention"))
 				self.textURL.SetFocus()
@@ -98,7 +98,7 @@ class AddLinks(wx.Dialog):
 						title = self.link_manager.get_title_from_url(url)
 						self.link_manager.add_link_to_category(category, title, url)
 						self.link_manager.save_links()
-						self.link_manager.load_json(self)
+						# self.link_manager.load_json(self)
 						self.show_message(_("Link added successfully!"))
 					except ValueError as e:
 						self.show_message(str(e))

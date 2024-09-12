@@ -30,8 +30,10 @@ def getOurAddon():
 		logger.error(f"Error getting the add-on: {e}")
 		raise RuntimeError(f"Error getting the add-on: {e}")
 
+
 # Retrieve the current add-on instance
 ourAddon = getOurAddon()
+
 
 def initConfiguration():
 	"""
@@ -47,6 +49,7 @@ def initConfiguration():
 	except Exception as e:
 		logger.error(f"Error initializing configuration: {e}")
 		raise RuntimeError(f"Error initializing configuration: {e}")
+
 
 # Initialize the configuration
 initConfiguration()

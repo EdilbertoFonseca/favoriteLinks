@@ -40,7 +40,6 @@ def onInstall():
 		except OSError as e:
 			messageBox(_(f"Error when renaming file: {e}"), _("Attention"))
 
-
 def onUninstall():
 	# Go through the configuration profiles and try to remove the 'contactBook' key
 	for key, value in list(config.conf._profileCache.items()):

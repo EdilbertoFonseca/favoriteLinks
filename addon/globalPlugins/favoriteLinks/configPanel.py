@@ -44,7 +44,7 @@ try:
 			dirJsonFile = config.conf[ourAddon.name]["altPath"]
 		firstJsonFile = config.conf[ourAddon.name]["path"]
 		altJsonsFile = config.conf[ourAddon.name]["altPath"]
-except:
+except KeyError:
 	# Not registered, so use the default path
 	pass
 
@@ -110,7 +110,12 @@ class FavoriteLinksSettingsPanel(SettingsPanel):
 						os.rename(altJsonsFile, fname)
 						altJsonsFile = fname
 			dirJsonFile = fname
+
+			# Update the combobox choices and selection
 			self.pathList = [firstJsonFile, altJsonsFile]
+			self.pathNameCB.Set(self.pathList)
+			self.pathNameCB.SetSelection(index)
+
 		dlg.Close()
 		self.onPanelActivated()
 		self._sendLayoutUpdatedEvent()
@@ -119,12 +124,16 @@ class FavoriteLinksSettingsPanel(SettingsPanel):
 
 	def onSave(self):
 		"""
-		Saves the options to the NVDA configuration file.
+Saves the options to the NVDA configuration file.
+
+		Raises:
+			ValueError: If the path to the first JSON file is invalid or does not exist.
+			ValueError: If the path to the alternate JSON file is invalid or does not exist.
 		"""
 
 		global dirJsonFile, firstJsonFile, altJsonsFile, indexJson
 
-		# Checking paths before saving
+		# Check paths before saving
 		if not firstJsonFile or not os.path.exists(os.path.dirname(firstJsonFile)):
 			logger.error(f"Invalid path: {firstJsonFile}")
 			raise ValueError("Invalid path for the first JSON file.")
@@ -137,24 +146,15 @@ class FavoriteLinksSettingsPanel(SettingsPanel):
 		config.conf[ourAddon.name]["altPath"] = altJsonsFile
 		config.conf[ourAddon.name]["xx"] = str(self.pathNameCB.GetSelection())
 		indexJson = self.pathNameCB.GetSelection()
-		dirJsonFile = self.pathList[indexJson]
+		dirJsonFile= self.pathList[indexJson]
 		# Reactivate profiles triggers
 		config.conf.enableProfileTriggers()
-		self.Hide()
 
 	def onPanelActivated(self):
-		"""
-		Deactivate all profile triggers and active profiles
-		"""
-
 		config.conf.disableProfileTriggers()
 		self.Show()
 
 	def onPanelDeactivated(self):
-		"""
-		Reactivate profiles triggers
-		"""
-
 		config.conf.enableProfileTriggers()
 		self.Hide()
 

@@ -9,6 +9,7 @@ import json
 import logging
 import os
 import sys
+from json.decoder import JSONDecodeError
 
 import addonHandler
 import api
@@ -27,7 +28,6 @@ sys.path.append(libs)
 try:
 	import requests
 	import validators
-
 	from bs4 import BeautifulSoup, UnicodeDammit
 except ImportError as e:
 	logging.error(f"Error when importing: {e}")
@@ -107,7 +107,7 @@ class LinkManager:
 		"""
 		Adds a new category to the system.
 
-		Args:
+		Arg	s:
 			category (str): The name of the new category to add.
 
 		Raises:
@@ -272,11 +272,21 @@ class LinkManager:
 		Merges the imported links with the existing links in the system.
 
 		Args:
-
 			imported_data (dict): Imported data containing links to merge.
+							  	The dictionary should have categories as keys
+							  	and lists of (title, url) pairs as values.
+
+		Raises:
+			ValueError: If the imported data format is invalid.
 		"""
 
+		if not isinstance(imported_data, dict):
+			raise ValueError("The imported_data must be a dictionary with categories as keys.")
+
 		for category, links in imported_data.items():
+			if not isinstance(links, list) or not all(isinstance(link, list) and len(link) == 2 for link in links):
+				raise ValueError(f"The links for category '{category}' must be a list of [title, url] pairs.")
+
 			if category in self.data:
 				existing_urls = {link[1] for link in self.data[category]}
 				for title, url in links:
@@ -310,7 +320,9 @@ class LinkManager:
 			import_path (str): The path of the JSON file to be imported.
 
 		Raises:
-			Exception:If an error occurs while importing the links.
+			FileNotFoundError: If the specified file does not exist.
+			JSONDecodeError: If there is an error decoding the JSON data.
+			Exception: For other exceptions that might occur.
 		"""
 
 		try:
@@ -318,8 +330,12 @@ class LinkManager:
 				imported_data = json.load(file)
 			self.merge_links(imported_data)
 			self.save_links()
+		except FileNotFoundError as e:
+			raise FileNotFoundError(f"The file at {import_path} was not found: {e}")
+		except JSONDecodeError as e:
+			raise JSONDecodeError(f"Error decoding JSON from the file at {import_path}: {e}")
 		except Exception as e:
-			raise Exception(f"Error importing links: {e}")
+			raise Exception(f"An unexpected error occurred while importing links: {e}")
 
 	def is_internet_connected(self, url="http://www.google.com", timeout=5):
 		"""
