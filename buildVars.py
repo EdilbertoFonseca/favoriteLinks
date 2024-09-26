@@ -29,7 +29,7 @@ addon_info = {
 	"addon_description": _(
 		"""This add-on allows you to save, edit and remove links to frequently visited pages."""),
 	# version
-	"addon_version": "2024.3.4",
+	"addon_version": "2024.4.5",
 	# Author(s)
 	"addon_author": "Edilberto Fonseca <edilberto.fonseca@outlook.com>",
 	# URL for the add-on documentation support

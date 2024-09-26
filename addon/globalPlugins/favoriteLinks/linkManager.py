@@ -7,30 +7,22 @@
 # import the necessary modules.
 import json
 import logging
-import os
-import sys
 from json.decoder import JSONDecodeError
+from urllib.error import URLError
+from urllib.request import urlopen
 
 import addonHandler
 import api
+import requests
 import ui
 import wx
 
 from .configPanel import dirJsonFile
+from .lib import validators
+from .lib.bs4 import BeautifulSoup, UnicodeDammit
 
 # Configure the logger instance for the current module, allowing logging of log messages.
 logger = logging.getLogger(__name__)
-
-# Add directories to sys.path before importing libraries
-baseDir = os.path.dirname(__file__)
-libs = os.path.join(baseDir, "lib")
-sys.path.append(libs)
-try:
-	import requests
-	import validators
-	from bs4 import BeautifulSoup, UnicodeDammit
-except ImportError as e:
-	logging.error(f"Error when importing: {e}")
 
 # To start the translation process
 addonHandler.initTranslation()
@@ -132,14 +124,11 @@ class LinkManager:
 			Exception:If an error occurs when accessing the URL or trying to extract the title.
 		"""
 		try:
-			response = requests.get(url)
-			if response.status_code == 200:
-				soup = BeautifulSoup(response.content, 'html.parser')
+			with urlopen(url) as response:
+				soup = BeautifulSoup(response, 'html.parser')
 				title = soup.find('title').get_text().strip()
 				return UnicodeDammit(title).unicode_markup
-			else:
-				return self.prompt_for_title(url)
-		except Exception as e:
+		except URLError as e:
 			ui.message(f"Error fetching title: {e}")
 			return self.prompt_for_title(url)
 
@@ -273,8 +262,8 @@ class LinkManager:
 
 		Args:
 			imported_data (dict): Imported data containing links to merge.
-							  	The dictionary should have categories as keys
-							  	and lists of (title, url) pairs as values.
+			The dictionary should have categories as keys
+			and lists of (title, url) pairs as values.
 
 		Raises:
 			ValueError: If the imported data format is invalid.

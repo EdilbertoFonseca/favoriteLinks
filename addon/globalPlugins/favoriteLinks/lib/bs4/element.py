@@ -9,8 +9,8 @@ import re
 import sys
 import warnings
 
-from bs4.css import CSS
-from bs4.formatter import (
+from ..bs4.css import CSS
+from ..bs4.formatter import (
     Formatter,
     HTMLFormatter,
     XMLFormatter,
@@ -911,7 +911,7 @@ class PageElement(object):
         :rtype: bool
         """
         return getattr(self, '_decomposed', False) or False
-   
+
     # Old non-property versions of the generators, for backwards
     # compatibility with BS3.
     def nextGenerator(self):
@@ -1367,7 +1367,7 @@ class Tag(PageElement):
         for attr in ('can_be_empty_element', 'hidden'):
             setattr(clone, attr, getattr(self, attr))
         return clone
-    
+
     @property
     def is_empty_element(self):
         """Is this tag an empty-element tag? (aka a self-closing tag)

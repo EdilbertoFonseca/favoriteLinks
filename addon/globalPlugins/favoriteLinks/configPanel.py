@@ -146,7 +146,7 @@ Saves the options to the NVDA configuration file.
 		config.conf[ourAddon.name]["altPath"] = altJsonsFile
 		config.conf[ourAddon.name]["xx"] = str(self.pathNameCB.GetSelection())
 		indexJson = self.pathNameCB.GetSelection()
-		dirJsonFile= self.pathList[indexJson]
+		dirJsonFile = self.pathList[indexJson]
 		# Reactivate profiles triggers
 		config.conf.enableProfileTriggers()
 

@@ -1,29 +1,29 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: favoriteLinks 2024.2.2\n"
+"Project-Id-Version: favoriteLinks 2024.4.4\n"
 "Report-Msgid-Bugs-To: 'nvda-translations@groups.io'\n"
-"POT-Creation-Date: 2024-07-25 10:04+0300\n"
-"PO-Revision-Date: 2024-08-06 23:57+0300\n"
-"Last-Translator: Heorhii Halas <nvda.translation.uk@gmail.com>\n"
+"POT-Creation-Date: 2024-09-25 14:59-0300\n"
+"PO-Revision-Date: 2024-09-26 08:38-0300\n"
+"Last-Translator: Edilberto Fonseca <edilberto.fonseca@outlook.com>\n"
 "Language-Team: tecwindow.net <AhmedBakr593@gmail.com>\n"
 "Language: ar\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.8.7\n"
-"X-Poedit-Basepath: .\n"
 "Plural-Forms: nplurals=6; plural=(n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 "
 "&& n%100<=10 ? 3 : n%100>=11 && n%100<=99 ? 4 : 5);\n"
+"X-Generator: Poedit 3.4.4\n"
+"X-Poedit-Basepath: .\n"
 
 #: addon\installTasks.py:41
-#, python-brace-format
 msgid "Error when renaming file: {e}"
 msgstr "خطأ عند إعادة تسمية الملف: {e}"
 
-#: addon\installTasks.py:41 addon\globalPlugins\favoriteLinks\addLinks.py:86
-#: addon\globalPlugins\favoriteLinks\addLinks.py:90
-#: addon\globalPlugins\favoriteLinks\addLinks.py:108
-#: addon\globalPlugins\favoriteLinks\main.py:439
+#: addon\installTasks.py:41 addon\globalPlugins\favoriteLinks\addLinks.py:130
+#: addon\globalPlugins\favoriteLinks\addLinks.py:136
+#: addon\globalPlugins\favoriteLinks\addLinks.py:160
+#: addon\globalPlugins\favoriteLinks\editLinks.py:172
+#: addon\globalPlugins\favoriteLinks\main.py:506
 msgid "Attention"
 msgstr "تحذير"
 
@@ -32,325 +32,361 @@ msgstr "تحذير"
 msgid "&Favorite links..."
 msgstr "&الروابط المفضلة..."
 
-#. Translators: Dialog title Favorite Links.
+#. Translators: Dialog title Favorite Links
 #: addon\globalPlugins\favoriteLinks\__init__.py:67
 msgid "Favorite links."
 msgstr "الروابط المفضلة."
 
-#. Translators: Text displayed in NVDA help.
+#. Translators: Text displayed in NVDA help
 #: addon\globalPlugins\favoriteLinks\__init__.py:78
 msgid "This addon allows you to save links to a specific page."
 msgstr ""
-"تتيح لك هذه الإضافة حفظ الروابط الخاصة بالصفحات التي تقوم بزيارتها بشكل متكرر "
-"وتعديلها وإزالتها."
+"تتيح لك هذه الإضافة حفظ الروابط الخاصة بالصفحات التي تقوم بزيارتها بشكل "
+"متكرر وتعديلها وإزالتها."
+
+#. Translators: Message displayed when no category is registered in the system
+#: addon\globalPlugins\favoriteLinks\addLinks.py:47
+msgid "No categories available. Please add some categories first."
+msgstr "لا توجد فئات متاحة. يرجى إضافة بعض الفئات أولاً."
 
 #: addon\globalPlugins\favoriteLinks\addLinks.py:47
-#: addon\globalPlugins\favoriteLinks\main.py:63
+#: addon\globalPlugins\favoriteLinks\addLinks.py:75
+#: addon\globalPlugins\favoriteLinks\editLinks.py:92
+#: addon\globalPlugins\favoriteLinks\editLinks.py:114
+#: addon\globalPlugins\favoriteLinks\editLinks.py:119
+#: addon\globalPlugins\favoriteLinks\main.py:245
+#: addon\globalPlugins\favoriteLinks\main.py:273
+msgid "Error"
+msgstr "خطأ"
+
+#. Translators: Message displayed when it is not possible to load the interface
+#. Translators: Message displayed when, for some reason, it is not possible to load the interface
+#: addon\globalPlugins\favoriteLinks\addLinks.py:75
+#: addon\globalPlugins\favoriteLinks\editLinks.py:92
+msgid "An error occurred while initializing the dialog."
+msgstr "حدث خطأ أثناء تهيئة مربع الحوار."
+
+#: addon\globalPlugins\favoriteLinks\addLinks.py:84
+#: addon\globalPlugins\favoriteLinks\editLinks.py:50
+#: addon\globalPlugins\favoriteLinks\main.py:80
 msgid "Select a Category"
 msgstr "اختر تصنيف"
 
-#: addon\globalPlugins\favoriteLinks\addLinks.py:52
+#: addon\globalPlugins\favoriteLinks\addLinks.py:95
+#: addon\globalPlugins\favoriteLinks\editLinks.py:66
 msgid "Enter link URL:"
 msgstr "أدخل رابط URL:"
 
-#: addon\globalPlugins\favoriteLinks\addLinks.py:57
+#: addon\globalPlugins\favoriteLinks\addLinks.py:104
+#: addon\globalPlugins\favoriteLinks\editLinks.py:71
 msgid "&Ok"
 msgstr "&موافق"
 
-#: addon\globalPlugins\favoriteLinks\addLinks.py:58
+#: addon\globalPlugins\favoriteLinks\addLinks.py:104
+#: addon\globalPlugins\favoriteLinks\editLinks.py:72
 msgid "&Cancel"
 msgstr "&إلغاء"
 
-#: addon\globalPlugins\favoriteLinks\addLinks.py:86
+#. Translators: Message displayed when there are no categories registered
+#: addon\globalPlugins\favoriteLinks\addLinks.py:130
 msgid "No category selected. Please select or add one!"
 msgstr "لم يتم اختيار أي تصنيف. يرجى اختيار أو إضافة واحد!"
 
-#: addon\globalPlugins\favoriteLinks\addLinks.py:90
+#. Translators: Message displayed informing the user that the URL field cannot be empty
+#: addon\globalPlugins\favoriteLinks\addLinks.py:136
 msgid "URL is required!"
 msgstr "الرابط مطلوب!"
 
-#: addon\globalPlugins\favoriteLinks\addLinks.py:100
+#. Translators: Message displayed informing that the link was added successfully
+#: addon\globalPlugins\favoriteLinks\addLinks.py:147
 msgid "Link added successfully!"
 msgstr "تمت إضافة الرابط بنجاح!"
 
-#: addon\globalPlugins\favoriteLinks\addLinks.py:106
+#. Translators: Message displayed to the user informing that there was an error adding the link
+#: addon\globalPlugins\favoriteLinks\addLinks.py:158
 msgid "An error occurred while adding the link."
 msgstr "حدث خطأ أثناء إضافة الرابط."
 
-#. Translators: Name of combobox with the json files path
-#: addon\globalPlugins\favoriteLinks\configPanel.py:64
+#. Translators: Name of combobox with the Favorite Links files path
+#: addon\globalPlugins\favoriteLinks\configPanel.py:57
+#: addon\globalPlugins\favoriteLinks\configPanel.py:62
 msgid "Path of json files:"
 msgstr "مسار ملفات json:"
 
-#. Translators: This is the label for the button used to add or change a favorite_links.json location
+#. Translators: This is the label for the button used to add or change a Favorite Links.db location
 #: addon\globalPlugins\favoriteLinks\configPanel.py:75
 msgid "&Select or add a directory"
 msgstr "&اختر أو أضف مجلد"
 
-#: addon\globalPlugins\favoriteLinks\configPanel.py:94
+#: addon\globalPlugins\favoriteLinks\configPanel.py:88
 msgid "Choose where to save the json file"
 msgstr "اختر مكان حفظ ملف json"
 
-#: addon\globalPlugins\favoriteLinks\configPanel.py:97
+#: addon\globalPlugins\favoriteLinks\configPanel.py:91
 msgid "Json files (*.json)"
 msgstr "ملفات Json (*.json)"
 
-#: addon\globalPlugins\favoriteLinks\linkManager.py:89
-msgid "Error decoding JSON. Check the file contents."
-msgstr "خطأ في فك ترميز JSON. تحقق من محتويات الملف."
-
-#: addon\globalPlugins\favoriteLinks\linkManager.py:103
-#, python-brace-format
-msgid "Error saving links: {e}"
-msgstr "خطأ في حفظ الروابط: {e}"
-
-#: addon\globalPlugins\favoriteLinks\linkManager.py:116
-msgid "Category already exists!"
-msgstr "التصنيف موجود بالفعل!"
-
-#: addon\globalPlugins\favoriteLinks\linkManager.py:157
+#: addon\globalPlugins\favoriteLinks\editLinks.py:60
+#: addon\globalPlugins\favoriteLinks\linkManager.py:147
 msgid "Enter a title for the URL:"
 msgstr "أدخل عنوان URL:"
 
-#: addon\globalPlugins\favoriteLinks\linkManager.py:158
-msgid "Unknown Title for URL"
-msgstr "لم يتم معرفة عنوان URL"
+#. Translators: Message displayed informing the user that all fields are required
+#: addon\globalPlugins\favoriteLinks\editLinks.py:114
+msgid "All fields are required"
+msgstr "جميع الحقول مطلوبة"
 
-#: addon\globalPlugins\favoriteLinks\linkManager.py:165
-#: addon\globalPlugins\favoriteLinks\linkManager.py:168
-msgid "Unknown Title"
-msgstr "عنوان غير معروف"
+#. Translators: Message displayed informing the user that the URL is not valid
+#: addon\globalPlugins\favoriteLinks\editLinks.py:119
+msgid "Invalid URL"
+msgstr "رابط غير صالح"
 
-#: addon\globalPlugins\favoriteLinks\linkManager.py:186
-msgid "Link already exists in the category!"
-msgstr "الرابط موجود بالفعل في التصنيف!"
-
-#: addon\globalPlugins\favoriteLinks\main.py:39
-msgid "An instance of {} is already open."
-msgstr "هناك نسخة من {} مفتوحة بالفعل."
-
-#: addon\globalPlugins\favoriteLinks\main.py:69
-msgid "List of links..."
-msgstr "قائمة الروابط..."
-
-#: addon\globalPlugins\favoriteLinks\main.py:77
-msgid "&Open link"
-msgstr "&فتح الرابط"
-
-#: addon\globalPlugins\favoriteLinks\main.py:78
-#: addon\globalPlugins\favoriteLinks\main.py:145
-msgid "&Add link"
-msgstr "&إضافة رابط"
-
-#: addon\globalPlugins\favoriteLinks\main.py:79
-#: addon\globalPlugins\favoriteLinks\main.py:147
-msgid "&Edit link"
-msgstr "&تعديل الرابط"
-
-#: addon\globalPlugins\favoriteLinks\main.py:80
-#: addon\globalPlugins\favoriteLinks\main.py:149
-msgid "&Delete link"
-msgstr "&حذف الرابط"
-
-#: addon\globalPlugins\favoriteLinks\main.py:81
-#: addon\globalPlugins\favoriteLinks\main.py:114
-msgid "&Add Category"
-msgstr "&إضافة تصنيف"
-
-#: addon\globalPlugins\favoriteLinks\main.py:82
-msgid "&Exit"
-msgstr "&خروج"
-
-#: addon\globalPlugins\favoriteLinks\main.py:114
-msgid "Add a new category to the list."
-msgstr "إضافة تصنيف جديد إلى القائمة."
-
-#: addon\globalPlugins\favoriteLinks\main.py:116
-msgid "&Edit category"
-msgstr "&تعديل التصنيف"
-
-#: addon\globalPlugins\favoriteLinks\main.py:116
-msgid "Edit a category in the list."
-msgstr "تعديل تصنيف في القائمة."
-
-#: addon\globalPlugins\favoriteLinks\main.py:118
-msgid "&Delete category"
-msgstr "&حذف التصنيف"
-
-#: addon\globalPlugins\favoriteLinks\main.py:118
-msgid "Delete a category from the list."
-msgstr "حذف تصنيف من القائمة."
-
-#: addon\globalPlugins\favoriteLinks\main.py:120
-#: addon\globalPlugins\favoriteLinks\main.py:151
-msgid "E&xport links"
-msgstr "&تصدير الروابط"
-
-#: addon\globalPlugins\favoriteLinks\main.py:120
-#: addon\globalPlugins\favoriteLinks\main.py:151
-msgid "Export links"
-msgstr "تصدير الروابط"
-
-#: addon\globalPlugins\favoriteLinks\main.py:122
-#: addon\globalPlugins\favoriteLinks\main.py:153
-msgid "&Import links"
-msgstr "&استيراد الروابط"
-
-#: addon\globalPlugins\favoriteLinks\main.py:122
-#: addon\globalPlugins\favoriteLinks\main.py:153
-msgid "Import links"
-msgstr "استيراد الروابط"
-
-#: addon\globalPlugins\favoriteLinks\main.py:145
-msgid "Add a new link to the list."
-msgstr "إضافة رابطًا جديدًا إلى القائمة."
-
-#: addon\globalPlugins\favoriteLinks\main.py:147
-msgid "Edit link."
-msgstr "تعديل الرابط."
-
-#: addon\globalPlugins\favoriteLinks\main.py:149
-msgid "Delete link"
-msgstr "حذف الرابط"
-
-#: addon\globalPlugins\favoriteLinks\main.py:155
-msgid "&Sort links"
-msgstr "&فرز الروابط"
-
-#: addon\globalPlugins\favoriteLinks\main.py:155
-msgid "Sort the links alphabetically."
-msgstr "فرز الروابط أبجديًا."
-
-#: addon\globalPlugins\favoriteLinks\main.py:177
-msgid "Title"
-msgstr "عنوان الرابط"
-
-#: addon\globalPlugins\favoriteLinks\main.py:178
-msgid "URL"
-msgstr "الرابط"
-
-#: addon\globalPlugins\favoriteLinks\main.py:202
-msgid "Save export file"
-msgstr "حفظ الملف المصدر"
-
-#: addon\globalPlugins\favoriteLinks\main.py:210
-msgid "Links exported successfully!"
-msgstr "تم تصدير الروابط بنجاح!"
-
-#: addon\globalPlugins\favoriteLinks\main.py:214
-#, python-brace-format
-msgid "Error exporting links: {e}"
-msgstr "خطأ في تصدير الروابط: {e}"
-
-#: addon\globalPlugins\favoriteLinks\main.py:214
-#: addon\globalPlugins\favoriteLinks\main.py:238
-msgid "Error"
-msgstr "خطأ"
-
-#: addon\globalPlugins\favoriteLinks\main.py:225
-msgid "Open import file"
-msgstr "فتح ملف لإستيراده"
-
-#: addon\globalPlugins\favoriteLinks\main.py:234
-msgid "Links imported successfully!"
-msgstr "تم استيراد الروابط بنجاح!"
-
-#: addon\globalPlugins\favoriteLinks\main.py:238
-#, python-brace-format
-msgid "Error importing links: {e}"
-msgstr "خطأ في استيراد الروابط: {e}"
-
-#: addon\globalPlugins\favoriteLinks\main.py:249
-msgid "No active internet connection!"
-msgstr "لا يوجد اتصال بالإنترنت!"
-
-#: addon\globalPlugins\favoriteLinks\main.py:259
-msgid "No link selected to open!"
-msgstr "لم يتم اختيار أي رابط لفتحه!"
-
-#: addon\globalPlugins\favoriteLinks\main.py:283
-msgid "Enter new category name:"
-msgstr "أدخل اسم التصنيف الجديد:"
-
-#: addon\globalPlugins\favoriteLinks\main.py:283
-msgid "Add Category"
-msgstr "إضافة تصنيف"
-
-#: addon\globalPlugins\favoriteLinks\main.py:297
-msgid "Category added successfully!"
-msgstr "تمت إضافة التصنيف بنجاح!"
-
-#: addon\globalPlugins\favoriteLinks\main.py:309
-msgid "Add New Link"
-msgstr "إضافة رابط جديد"
-
-#: addon\globalPlugins\favoriteLinks\main.py:331
-msgid "Edit link title:"
-msgstr "تعديل عنوان الرابط:"
-
-#: addon\globalPlugins\favoriteLinks\main.py:332
-#: addon\globalPlugins\favoriteLinks\main.py:339
-msgid "Edit Link"
-msgstr "تعديل الرابط"
-
-#. User cancelled the input dialog
-#: addon\globalPlugins\favoriteLinks\main.py:339
-msgid "Edit link URL:"
-msgstr "تعديل الرابط:"
-
-#: addon\globalPlugins\favoriteLinks\main.py:349
+#. Translators: Message displayed informing that the edit was successful.
+#: addon\globalPlugins\favoriteLinks\editLinks.py:138
 msgid "Link edited successfully!"
 msgstr "تم تعديل الرابط بنجاح!"
 
-#: addon\globalPlugins\favoriteLinks\main.py:351
+#: addon\globalPlugins\favoriteLinks\linkManager.py:82
+msgid "Error decoding JSON. Check the file contents."
+msgstr "خطأ في فك ترميز JSON. تحقق من محتويات الملف."
+
+#: addon\globalPlugins\favoriteLinks\linkManager.py:96
+msgid "Error saving links: {e}"
+msgstr "خطأ في حفظ الروابط: {e}"
+
+#: addon\globalPlugins\favoriteLinks\linkManager.py:109
+msgid "Category already exists!"
+msgstr "التصنيف موجود بالفعل!"
+
+#: addon\globalPlugins\favoriteLinks\linkManager.py:148
+msgid "Unknown Title for URL"
+msgstr "لم يتم معرفة عنوان URL"
+
+#: addon\globalPlugins\favoriteLinks\linkManager.py:155
+#: addon\globalPlugins\favoriteLinks\linkManager.py:158
+msgid "Unknown Title"
+msgstr "عنوان غير معروف"
+
+#: addon\globalPlugins\favoriteLinks\linkManager.py:176
+msgid "Link already exists in the category!"
+msgstr "الرابط موجود بالفعل في التصنيف!"
+
+#: addon\globalPlugins\favoriteLinks\main.py:40
+msgid "An instance of {} is already open."
+msgstr "هناك نسخة من {} مفتوحة بالفعل."
+
+#: addon\globalPlugins\favoriteLinks\main.py:65
+msgid "&Open link"
+msgstr "&فتح الرابط"
+
+#: addon\globalPlugins\favoriteLinks\main.py:66
+msgid "&Add link"
+msgstr "&إضافة رابط"
+
+#: addon\globalPlugins\favoriteLinks\main.py:67
+msgid "&Edit link"
+msgstr "&تعديل الرابط"
+
+#: addon\globalPlugins\favoriteLinks\main.py:68
+msgid "De&lete link"
+msgstr "حذف وحذف الرابط"
+
+#: addon\globalPlugins\favoriteLinks\main.py:69
+msgid "Add Cate&gory"
+msgstr "إضاف&ة فئة"
+
+#: addon\globalPlugins\favoriteLinks\main.py:70
+msgid "Edi&t category"
+msgstr "فئة Edi&t"
+
+#: addon\globalPlugins\favoriteLinks\main.py:71
+msgid "&Delete category"
+msgstr "&حذف التصنيف"
+
+#: addon\globalPlugins\favoriteLinks\main.py:72
+msgid "E&xport links"
+msgstr "&تصدير الروابط"
+
+#: addon\globalPlugins\favoriteLinks\main.py:73
+msgid "&Import links"
+msgstr "&استيراد الروابط"
+
+#: addon\globalPlugins\favoriteLinks\main.py:74
+msgid "&Sort links"
+msgstr "&فرز الروابط"
+
+#: addon\globalPlugins\favoriteLinks\main.py:75
+msgid "E&xit"
+msgstr "&الخروج"
+
+#: addon\globalPlugins\favoriteLinks\main.py:86
+msgid "List of links..."
+msgstr "قائمة الروابط..."
+
+#: addon\globalPlugins\favoriteLinks\main.py:133
+msgid "Add a new category to the list."
+msgstr "إضافة تصنيف جديد إلى القائمة."
+
+#: addon\globalPlugins\favoriteLinks\main.py:135
+msgid "Edit a category in the list."
+msgstr "تعديل تصنيف في القائمة."
+
+#: addon\globalPlugins\favoriteLinks\main.py:137
+msgid "Delete a category from the list."
+msgstr "حذف تصنيف من القائمة."
+
+#: addon\globalPlugins\favoriteLinks\main.py:139
+#: addon\globalPlugins\favoriteLinks\main.py:172
+msgid "Export links"
+msgstr "تصدير الروابط"
+
+#: addon\globalPlugins\favoriteLinks\main.py:141
+#: addon\globalPlugins\favoriteLinks\main.py:174
+msgid "Import links"
+msgstr "استيراد الروابط"
+
+#: addon\globalPlugins\favoriteLinks\main.py:166
+msgid "Add a new link to the list."
+msgstr "إضافة رابطًا جديدًا إلى القائمة."
+
+#: addon\globalPlugins\favoriteLinks\main.py:168
+msgid "Edit link."
+msgstr "تعديل الرابط."
+
+#: addon\globalPlugins\favoriteLinks\main.py:170
+msgid "Delete link"
+msgstr "حذف الرابط"
+
+#: addon\globalPlugins\favoriteLinks\main.py:176
+msgid "Sort the links alphabetically."
+msgstr "فرز الروابط أبجديًا."
+
+#: addon\globalPlugins\favoriteLinks\main.py:198
+msgid "Title"
+msgstr "عنوان الرابط"
+
+#: addon\globalPlugins\favoriteLinks\main.py:199
+msgid "URL"
+msgstr "الرابط"
+
+#: addon\globalPlugins\favoriteLinks\main.py:229
+msgid "Save export file"
+msgstr "حفظ الملف المصدر"
+
+#. Translators: Message displayed when completing a link export
+#: addon\globalPlugins\favoriteLinks\main.py:239
+msgid "Links exported successfully!"
+msgstr "تم تصدير الروابط بنجاح!"
+
+#. Translators: Message displayed when the export fails
+#: addon\globalPlugins\favoriteLinks\main.py:245
+msgid "Error exporting links: {e}"
+msgstr "خطأ في تصدير الروابط: {e}"
+
+#: addon\globalPlugins\favoriteLinks\main.py:256
+msgid "Open import file"
+msgstr "فتح ملف لإستيراده"
+
+#. Translators: Message displayed when completing a link import
+#: addon\globalPlugins\favoriteLinks\main.py:267
+msgid "Links imported successfully!"
+msgstr "تم استيراد الروابط بنجاح!"
+
+#. Translators: Message displayed when the import fails
+#: addon\globalPlugins\favoriteLinks\main.py:273
+msgid "Error importing links: {e}"
+msgstr "خطأ في استيراد الروابط: {e}"
+
+#. Translators: Message displayed informing the user that there is no connection to the internet
+#: addon\globalPlugins\favoriteLinks\main.py:285
+msgid "No active internet connection!"
+msgstr "لا يوجد اتصال بالإنترنت!"
+
+#. Translators: Message displayed when no item has been selected from the list
+#: addon\globalPlugins\favoriteLinks\main.py:297
+msgid "No link selected to open!"
+msgstr "لم يتم اختيار أي رابط لفتحه!"
+
+#: addon\globalPlugins\favoriteLinks\main.py:321
+msgid "Enter new category name:"
+msgstr "أدخل اسم التصنيف الجديد:"
+
+#: addon\globalPlugins\favoriteLinks\main.py:321
+msgid "Add Category"
+msgstr "إضافة تصنيف"
+
+#. Translators: Message displayed when a category is added
+#: addon\globalPlugins\favoriteLinks\main.py:337
+msgid "Category added successfully!"
+msgstr "تمت إضافة التصنيف بنجاح!"
+
+#. Open the dialog to add a new link
+#: addon\globalPlugins\favoriteLinks\main.py:353
+msgid "Add New Link"
+msgstr "إضافة رابط جديد"
+
+#: addon\globalPlugins\favoriteLinks\main.py:388
+msgid "Edit Link"
+msgstr "تعديل الرابط"
+
+#. Translators: Message displayed when no item has been selected from the list
+#: addon\globalPlugins\favoriteLinks\main.py:407
 msgid "No link selected to edit!"
 msgstr "لم يتم اختيار أي رابط لتعديله!"
 
-#: addon\globalPlugins\favoriteLinks\main.py:368
+#. Translators: Message displayed when removing a link from the list
+#: addon\globalPlugins\favoriteLinks\main.py:428
 msgid "Link deleted successfully!"
 msgstr "تم حذف الرابط بنجاح!"
 
-#: addon\globalPlugins\favoriteLinks\main.py:371
+#. Translators: Message displayed when no item has been selected from the list
+#: addon\globalPlugins\favoriteLinks\main.py:433
 msgid "No link selected to delete!"
 msgstr "لم يتم اختيار أي رابط لحذفه!"
 
-#: addon\globalPlugins\favoriteLinks\main.py:385
+#: addon\globalPlugins\favoriteLinks\main.py:447
 msgid "Edit category name:"
 msgstr "تعديل اسم التصنيف:"
 
-#: addon\globalPlugins\favoriteLinks\main.py:386
+#: addon\globalPlugins\favoriteLinks\main.py:448
 msgid "Edit Category"
 msgstr "تعديل التصنيف"
 
-#: addon\globalPlugins\favoriteLinks\main.py:393
+#. Translators: Message displayed when a category name is edited
+#: addon\globalPlugins\favoriteLinks\main.py:457
 msgid "Category name edited successfully!"
 msgstr "تم تعديل اسم التصنيف بنجاح!"
 
-#: addon\globalPlugins\favoriteLinks\main.py:396
+#. Translators: Message displayed when no item has been selected from the list
+#: addon\globalPlugins\favoriteLinks\main.py:461
 msgid "No category selected to edit!"
 msgstr "لم يتم اختيار أي تصنيف لتعديله!"
 
-#: addon\globalPlugins\favoriteLinks\main.py:410
+#: addon\globalPlugins\favoriteLinks\main.py:475
 msgid "Are you sure you want to delete the category '{}' and all its links?"
 msgstr "هل أنت متأكد أنك تريد حذف التصنيف «{}» وجميع روابطه؟"
 
-#: addon\globalPlugins\favoriteLinks\main.py:411
+#: addon\globalPlugins\favoriteLinks\main.py:476
 msgid "Confirm Delete"
 msgstr "تأكيد الحذف"
 
-#: addon\globalPlugins\favoriteLinks\main.py:415
+#. Translators: Message displayed when removing a category
+#: addon\globalPlugins\favoriteLinks\main.py:481
 msgid "Category deleted successfully!"
 msgstr "تم حذف التصنيف بنجاح!"
 
-#: addon\globalPlugins\favoriteLinks\main.py:418
+#. Translators: Message displayed when no item has been selected from the list
+#: addon\globalPlugins\favoriteLinks\main.py:485
 msgid "No category selected to delete!"
 msgstr "لم يتم اختيار أي تصنيف لحذفه!"
 
-#: addon\globalPlugins\favoriteLinks\main.py:490
+#. Translators: Message displayed when sorting of links is complete
+#: addon\globalPlugins\favoriteLinks\main.py:561
 msgid "Successfully ordered!"
 msgstr "تم الترتيب بنجاح!"
 
-#: addon\globalPlugins\favoriteLinks\main.py:494
+#. Translators: Message displayed indicating that there was an error in sorting
+#: addon\globalPlugins\favoriteLinks\main.py:569
 msgid "Error when ordering!"
 msgstr "خطأ عند الترتيب!"
 
@@ -366,5 +402,20 @@ msgid ""
 "This add-on allows you to save, edit and remove links to frequently visited "
 "pages."
 msgstr ""
-"تتيح لك هذه الإضافة حفظ الروابط الخاصة بالصفحات التي تقوم بزيارتها بشكل متكرر "
-"وتعديلها وإزالتها."
+"تتيح لك هذه الإضافة حفظ الروابط الخاصة بالصفحات التي تقوم بزيارتها بشكل "
+"متكرر وتعديلها وإزالتها."
+
+#~ msgid "&Exit"
+#~ msgstr "&خروج"
+
+#~ msgid "&Delete link"
+#~ msgstr "&حذف الرابط"
+
+#~ msgid "&Add Category"
+#~ msgstr "&إضافة تصنيف"
+
+#~ msgid "Edit link title:"
+#~ msgstr "تعديل عنوان الرابط:"
+
+#~ msgid "Edit link URL:"
+#~ msgstr "تعديل الرابط:"

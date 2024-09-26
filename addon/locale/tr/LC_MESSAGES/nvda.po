@@ -6,11 +6,11 @@
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: favori Bağlantılar\n"
+"Project-Id-Version: favori Bağlantılar 2024.4.4\n"
 "Report-Msgid-Bugs-To: 'nvda-translations@groups.io'\n"
-"POT-Creation-Date: 2024-09-09 16:40-0300\n"
-"PO-Revision-Date: 2024-09-10 10:55-0300\n"
-"Last-Translator: Umut KORKMAZ <umutkork@gmail.com>\n"
+"POT-Creation-Date: 2024-09-25 14:59-0300\n"
+"PO-Revision-Date: 2024-09-26 08:41-0300\n"
+"Last-Translator: Edilberto Fonseca <edilberto.fonseca@outlook.com>\n"
 "Language-Team: Umut KORKMAZ <umutkork@gmail.com>\n"
 "Language: tr_TR\n"
 "MIME-Version: 1.0\n"
@@ -18,20 +18,17 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Poedit 3.4.4\n"
 "X-Poedit-SourceCharset: UTF-8\n"
-"X-Poedit-Basepath: ../../../..\n"
-"X-Poedit-SearchPath-0: addon/globalPlugins/favoriteLinks\n"
-"X-Poedit-SearchPath-1: buildVars.py\n"
-"X-Poedit-SearchPathExcluded-0: addon/globalPlugins/favoriteLinks/lib\n"
+"X-Poedit-Basepath: .\n"
 
 #: addon\installTasks.py:41
 msgid "Error when renaming file: {e}"
 msgstr "Dosya yeniden adlandırılırken hata oluştu: {e}"
 
-#: addon\installTasks.py:41 addon\globalPlugins\favoriteLinks\addLinks.py:88
-#: addon\globalPlugins\favoriteLinks\addLinks.py:92
-#: addon\globalPlugins\favoriteLinks\addLinks.py:110
-#: addon\globalPlugins\favoriteLinks\editLinks.py:132
-#: addon\globalPlugins\favoriteLinks\main.py:472
+#: addon\installTasks.py:41 addon\globalPlugins\favoriteLinks\addLinks.py:130
+#: addon\globalPlugins\favoriteLinks\addLinks.py:136
+#: addon\globalPlugins\favoriteLinks\addLinks.py:160
+#: addon\globalPlugins\favoriteLinks\editLinks.py:172
+#: addon\globalPlugins\favoriteLinks\main.py:506
 msgid "Attention"
 msgstr "Uyarı"
 
@@ -40,52 +37,77 @@ msgstr "Uyarı"
 msgid "&Favorite links..."
 msgstr "&Favori bağlantılar..."
 
-#. Translators: Dialog title Favorite Links.
+#. Translators: Dialog title Favorite Links
 #: addon\globalPlugins\favoriteLinks\__init__.py:67
 msgid "Favorite links."
 msgstr "Favori bağlantılar."
 
-#. Translators: Text displayed in NVDA help.
+#. Translators: Text displayed in NVDA help
 #: addon\globalPlugins\favoriteLinks\__init__.py:78
 msgid "This addon allows you to save links to a specific page."
 msgstr ""
 "Bu eklenti, belirli bir sayfaya olan bağlantıları kaydetmenize olanak tanır."
 
-#: addon\globalPlugins\favoriteLinks\addLinks.py:48
-#: addon\globalPlugins\favoriteLinks\editLinks.py:52
-#: addon\globalPlugins\favoriteLinks\main.py:77
+#. Translators: Message displayed when no category is registered in the system
+#: addon\globalPlugins\favoriteLinks\addLinks.py:47
+msgid "No categories available. Please add some categories first."
+msgstr "Mevcut kategori yok. Lütfen önce bazı kategoriler ekleyin."
+
+#: addon\globalPlugins\favoriteLinks\addLinks.py:47
+#: addon\globalPlugins\favoriteLinks\addLinks.py:75
+#: addon\globalPlugins\favoriteLinks\editLinks.py:92
+#: addon\globalPlugins\favoriteLinks\editLinks.py:114
+#: addon\globalPlugins\favoriteLinks\editLinks.py:119
+#: addon\globalPlugins\favoriteLinks\main.py:245
+#: addon\globalPlugins\favoriteLinks\main.py:273
+msgid "Error"
+msgstr "Hata"
+
+#. Translators: Message displayed when it is not possible to load the interface
+#. Translators: Message displayed when, for some reason, it is not possible to load the interface
+#: addon\globalPlugins\favoriteLinks\addLinks.py:75
+#: addon\globalPlugins\favoriteLinks\editLinks.py:92
+msgid "An error occurred while initializing the dialog."
+msgstr "Diyalog kutusu başlatılırken bir hata oluştu."
+
+#: addon\globalPlugins\favoriteLinks\addLinks.py:84
+#: addon\globalPlugins\favoriteLinks\editLinks.py:50
+#: addon\globalPlugins\favoriteLinks\main.py:80
 msgid "Select a Category"
 msgstr "Bir kategori seçin"
 
-#: addon\globalPlugins\favoriteLinks\addLinks.py:54
-#: addon\globalPlugins\favoriteLinks\editLinks.py:67
+#: addon\globalPlugins\favoriteLinks\addLinks.py:95
+#: addon\globalPlugins\favoriteLinks\editLinks.py:66
 msgid "Enter link URL:"
 msgstr "Bağlantı adresini girin:"
 
-#: addon\globalPlugins\favoriteLinks\addLinks.py:59
-#: addon\globalPlugins\favoriteLinks\editLinks.py:72
+#: addon\globalPlugins\favoriteLinks\addLinks.py:104
+#: addon\globalPlugins\favoriteLinks\editLinks.py:71
 msgid "&Ok"
 msgstr "&Tamam"
 
-#: addon\globalPlugins\favoriteLinks\addLinks.py:60
-#: addon\globalPlugins\favoriteLinks\editLinks.py:73
+#: addon\globalPlugins\favoriteLinks\addLinks.py:104
+#: addon\globalPlugins\favoriteLinks\editLinks.py:72
 msgid "&Cancel"
 msgstr "İ&ptal"
 
-#: addon\globalPlugins\favoriteLinks\addLinks.py:88
+#. Translators: Message displayed when there are no categories registered
+#: addon\globalPlugins\favoriteLinks\addLinks.py:130
 msgid "No category selected. Please select or add one!"
 msgstr "Hiçbir kategori seçilmedi. Lütfen birini seçin veya ekleyin!"
 
-#: addon\globalPlugins\favoriteLinks\addLinks.py:92
+#. Translators: Message displayed informing the user that the URL field cannot be empty
+#: addon\globalPlugins\favoriteLinks\addLinks.py:136
 msgid "URL is required!"
 msgstr "Adres gerekli!"
 
-#. self.link_manager.load_json(self)
-#: addon\globalPlugins\favoriteLinks\addLinks.py:102
+#. Translators: Message displayed informing that the link was added successfully
+#: addon\globalPlugins\favoriteLinks\addLinks.py:147
 msgid "Link added successfully!"
 msgstr "Bağlantı başarıyla eklendi!"
 
-#: addon\globalPlugins\favoriteLinks\addLinks.py:108
+#. Translators: Message displayed to the user informing that there was an error adding the link
+#: addon\globalPlugins\favoriteLinks\addLinks.py:158
 msgid "An error occurred while adding the link."
 msgstr "Bağlantı eklenirken bir hata oluştu."
 
@@ -108,52 +130,48 @@ msgstr "Json dosyasının nereye kaydedileceğini seçin"
 msgid "Json files (*.json)"
 msgstr "Json dosyaları (*.json)"
 
-#: addon\globalPlugins\favoriteLinks\editLinks.py:61
-#: addon\globalPlugins\favoriteLinks\linkManager.py:158
+#: addon\globalPlugins\favoriteLinks\editLinks.py:60
+#: addon\globalPlugins\favoriteLinks\linkManager.py:147
 msgid "Enter a title for the URL:"
 msgstr "Adres için bir başlık girin:"
 
-#: addon\globalPlugins\favoriteLinks\editLinks.py:104
+#. Translators: Message displayed informing the user that all fields are required
+#: addon\globalPlugins\favoriteLinks\editLinks.py:114
 msgid "All fields are required"
 msgstr "Tüm alanların doldurulması zorunludur"
 
-#: addon\globalPlugins\favoriteLinks\editLinks.py:104
-#: addon\globalPlugins\favoriteLinks\editLinks.py:108
-#: addon\globalPlugins\favoriteLinks\main.py:232
-#: addon\globalPlugins\favoriteLinks\main.py:256
-msgid "Error"
-msgstr "Hata"
-
-#: addon\globalPlugins\favoriteLinks\editLinks.py:108
+#. Translators: Message displayed informing the user that the URL is not valid
+#: addon\globalPlugins\favoriteLinks\editLinks.py:119
 msgid "Invalid URL"
 msgstr "Geçersiz URL"
 
-#: addon\globalPlugins\favoriteLinks\editLinks.py:127
+#. Translators: Message displayed informing that the edit was successful.
+#: addon\globalPlugins\favoriteLinks\editLinks.py:138
 msgid "Link edited successfully!"
 msgstr "Bağlantı başarıyla düzenlendi!"
 
-#: addon\globalPlugins\favoriteLinks\linkManager.py:90
+#: addon\globalPlugins\favoriteLinks\linkManager.py:82
 msgid "Error decoding JSON. Check the file contents."
 msgstr "JSON'un kodu çözülürken hata oluştu. Dosya içeriğini kontrol edin."
 
-#: addon\globalPlugins\favoriteLinks\linkManager.py:104
+#: addon\globalPlugins\favoriteLinks\linkManager.py:96
 msgid "Error saving links: {e}"
 msgstr "Bağlantılar kaydedilirken hata oluştu: {e}"
 
-#: addon\globalPlugins\favoriteLinks\linkManager.py:117
+#: addon\globalPlugins\favoriteLinks\linkManager.py:109
 msgid "Category already exists!"
 msgstr "Kategori zaten mevcut!"
 
-#: addon\globalPlugins\favoriteLinks\linkManager.py:159
+#: addon\globalPlugins\favoriteLinks\linkManager.py:148
 msgid "Unknown Title for URL"
 msgstr "Adres için bir Başlık girin"
 
-#: addon\globalPlugins\favoriteLinks\linkManager.py:166
-#: addon\globalPlugins\favoriteLinks\linkManager.py:169
+#: addon\globalPlugins\favoriteLinks\linkManager.py:155
+#: addon\globalPlugins\favoriteLinks\linkManager.py:158
 msgid "Unknown Title"
 msgstr "Başlık Girin"
 
-#: addon\globalPlugins\favoriteLinks\linkManager.py:187
+#: addon\globalPlugins\favoriteLinks\linkManager.py:176
 msgid "Link already exists in the category!"
 msgstr "Bağlantı bu kategoride zaten mevcut!"
 
@@ -161,205 +179,221 @@ msgstr "Bağlantı bu kategoride zaten mevcut!"
 msgid "An instance of {} is already open."
 msgstr "{} örneği zaten açık."
 
-#: addon\globalPlugins\favoriteLinks\main.py:62
+#: addon\globalPlugins\favoriteLinks\main.py:65
 msgid "&Open link"
 msgstr "Bağlantıyı &Aç"
 
-#: addon\globalPlugins\favoriteLinks\main.py:63
+#: addon\globalPlugins\favoriteLinks\main.py:66
 msgid "&Add link"
 msgstr "&Bağlantı ekle"
 
-#: addon\globalPlugins\favoriteLinks\main.py:64
+#: addon\globalPlugins\favoriteLinks\main.py:67
 msgid "&Edit link"
 msgstr "Bağlantıyı düz&enle"
 
-#: addon\globalPlugins\favoriteLinks\main.py:65
-msgid "&Delete link"
-msgstr "Bağlantıyı &sil"
-
-#: addon\globalPlugins\favoriteLinks\main.py:66
-msgid "&Add Category"
-msgstr "&Kategori ekle"
-
-#: addon\globalPlugins\favoriteLinks\main.py:67
-msgid "&Edit category"
-msgstr "Kat&egoriyi düzenle"
-
 #: addon\globalPlugins\favoriteLinks\main.py:68
+msgid "De&lete link"
+msgstr "&Bağlantıyı sil"
+
+#: addon\globalPlugins\favoriteLinks\main.py:69
+msgid "Add Cate&gory"
+msgstr "Cate&gory Ekle"
+
+#: addon\globalPlugins\favoriteLinks\main.py:70
+msgid "Edi&t category"
+msgstr "Edi&t kategorisi"
+
+#: addon\globalPlugins\favoriteLinks\main.py:71
 msgid "&Delete category"
 msgstr "&Kategoriyi sil"
 
-#: addon\globalPlugins\favoriteLinks\main.py:69
+#: addon\globalPlugins\favoriteLinks\main.py:72
 msgid "E&xport links"
 msgstr "Bağlant&ıları dışa aktar"
 
-#: addon\globalPlugins\favoriteLinks\main.py:70
+#: addon\globalPlugins\favoriteLinks\main.py:73
 msgid "&Import links"
 msgstr "Bağlantıları &içe aktar"
 
-#: addon\globalPlugins\favoriteLinks\main.py:71
+#: addon\globalPlugins\favoriteLinks\main.py:74
 msgid "&Sort links"
 msgstr "Bağlantıları &sırala"
 
-#: addon\globalPlugins\favoriteLinks\main.py:72
-msgid "&Exit"
-msgstr "&Çık"
+#: addon\globalPlugins\favoriteLinks\main.py:75
+msgid "E&xit"
+msgstr "Ç&ıkış"
 
-#: addon\globalPlugins\favoriteLinks\main.py:83
+#: addon\globalPlugins\favoriteLinks\main.py:86
 msgid "List of links..."
 msgstr "Bağlantı listesi..."
 
-#: addon\globalPlugins\favoriteLinks\main.py:130
+#: addon\globalPlugins\favoriteLinks\main.py:133
 msgid "Add a new category to the list."
 msgstr "Listeye yeni bir kategori ekleyin."
 
-#: addon\globalPlugins\favoriteLinks\main.py:132
+#: addon\globalPlugins\favoriteLinks\main.py:135
 msgid "Edit a category in the list."
 msgstr "Listedeki bir kategoriyi düzenleyin."
 
-#: addon\globalPlugins\favoriteLinks\main.py:134
+#: addon\globalPlugins\favoriteLinks\main.py:137
 msgid "Delete a category from the list."
 msgstr "Listeden bir kategoriyi silin."
 
-#: addon\globalPlugins\favoriteLinks\main.py:136
-#: addon\globalPlugins\favoriteLinks\main.py:169
+#: addon\globalPlugins\favoriteLinks\main.py:139
+#: addon\globalPlugins\favoriteLinks\main.py:172
 msgid "Export links"
 msgstr "Bağlantıları dışa aktar"
 
-#: addon\globalPlugins\favoriteLinks\main.py:138
-#: addon\globalPlugins\favoriteLinks\main.py:171
+#: addon\globalPlugins\favoriteLinks\main.py:141
+#: addon\globalPlugins\favoriteLinks\main.py:174
 msgid "Import links"
 msgstr "Bağlantıları içe aktar"
 
-#: addon\globalPlugins\favoriteLinks\main.py:163
+#: addon\globalPlugins\favoriteLinks\main.py:166
 msgid "Add a new link to the list."
 msgstr "Listeye yeni bir bağlantı ekleyin."
 
-#: addon\globalPlugins\favoriteLinks\main.py:165
+#: addon\globalPlugins\favoriteLinks\main.py:168
 msgid "Edit link."
 msgstr "Bağlantıyı düzenleyin."
 
-#: addon\globalPlugins\favoriteLinks\main.py:167
+#: addon\globalPlugins\favoriteLinks\main.py:170
 msgid "Delete link"
 msgstr "Bağlantıyı sil"
 
-#: addon\globalPlugins\favoriteLinks\main.py:173
+#: addon\globalPlugins\favoriteLinks\main.py:176
 msgid "Sort the links alphabetically."
 msgstr "Bağlantıları alfabetik olarak sıralayın."
 
-#: addon\globalPlugins\favoriteLinks\main.py:195
+#: addon\globalPlugins\favoriteLinks\main.py:198
 msgid "Title"
 msgstr "Başlık"
 
-#: addon\globalPlugins\favoriteLinks\main.py:196
+#: addon\globalPlugins\favoriteLinks\main.py:199
 msgid "URL"
 msgstr "Adres"
 
-#: addon\globalPlugins\favoriteLinks\main.py:220
+#: addon\globalPlugins\favoriteLinks\main.py:229
 msgid "Save export file"
 msgstr "Dışa aktarılacak dosyayı kaydet"
 
-#: addon\globalPlugins\favoriteLinks\main.py:228
+#. Translators: Message displayed when completing a link export
+#: addon\globalPlugins\favoriteLinks\main.py:239
 msgid "Links exported successfully!"
 msgstr "Bağlantılar başarıyla dışa aktarıldı!"
 
-#: addon\globalPlugins\favoriteLinks\main.py:232
+#. Translators: Message displayed when the export fails
+#: addon\globalPlugins\favoriteLinks\main.py:245
 msgid "Error exporting links: {e}"
 msgstr "Bağlantılar dışa aktarılırken hata oluştu: {e}"
 
-#: addon\globalPlugins\favoriteLinks\main.py:243
+#: addon\globalPlugins\favoriteLinks\main.py:256
 msgid "Open import file"
 msgstr "İçe aktarılacak dosyayı aç"
 
-#: addon\globalPlugins\favoriteLinks\main.py:252
+#. Translators: Message displayed when completing a link import
+#: addon\globalPlugins\favoriteLinks\main.py:267
 msgid "Links imported successfully!"
 msgstr "Bağlantılar başarıyla içe aktarıldı!"
 
-#: addon\globalPlugins\favoriteLinks\main.py:256
+#. Translators: Message displayed when the import fails
+#: addon\globalPlugins\favoriteLinks\main.py:273
 msgid "Error importing links: {e}"
 msgstr "Bağlantılar içe aktarılırken hata oluştu: {e}"
 
-#: addon\globalPlugins\favoriteLinks\main.py:267
+#. Translators: Message displayed informing the user that there is no connection to the internet
+#: addon\globalPlugins\favoriteLinks\main.py:285
 msgid "No active internet connection!"
 msgstr "Aktif internet bağlantısı yok!"
 
-#: addon\globalPlugins\favoriteLinks\main.py:277
+#. Translators: Message displayed when no item has been selected from the list
+#: addon\globalPlugins\favoriteLinks\main.py:297
 msgid "No link selected to open!"
 msgstr "Açılacak bağlantı seçilmedi!"
 
-#: addon\globalPlugins\favoriteLinks\main.py:301
+#: addon\globalPlugins\favoriteLinks\main.py:321
 msgid "Enter new category name:"
 msgstr "Yeni kategori adını girin:"
 
-#: addon\globalPlugins\favoriteLinks\main.py:301
+#: addon\globalPlugins\favoriteLinks\main.py:321
 msgid "Add Category"
 msgstr "Kategori ekle"
 
-#: addon\globalPlugins\favoriteLinks\main.py:315
+#. Translators: Message displayed when a category is added
+#: addon\globalPlugins\favoriteLinks\main.py:337
 msgid "Category added successfully!"
 msgstr "Kategori başarıyla eklendi!"
 
-#. Abre o diálogo para adicionar um novo link
-#: addon\globalPlugins\favoriteLinks\main.py:331
+#. Open the dialog to add a new link
+#: addon\globalPlugins\favoriteLinks\main.py:353
 msgid "Add New Link"
 msgstr "Yeni Bağlantı Ekle"
 
-#: addon\globalPlugins\favoriteLinks\main.py:367
+#: addon\globalPlugins\favoriteLinks\main.py:388
 msgid "Edit Link"
 msgstr "Bağlantıyı Düzenle"
 
-#: addon\globalPlugins\favoriteLinks\main.py:381
+#. Translators: Message displayed when no item has been selected from the list
+#: addon\globalPlugins\favoriteLinks\main.py:407
 msgid "No link selected to edit!"
 msgstr "Düzenlenecek bağlantı seçilmedi!"
 
-#: addon\globalPlugins\favoriteLinks\main.py:400
+#. Translators: Message displayed when removing a link from the list
+#: addon\globalPlugins\favoriteLinks\main.py:428
 msgid "Link deleted successfully!"
 msgstr "Bağlantı başarıyla silindi!"
 
-#: addon\globalPlugins\favoriteLinks\main.py:404
+#. Translators: Message displayed when no item has been selected from the list
+#: addon\globalPlugins\favoriteLinks\main.py:433
 msgid "No link selected to delete!"
 msgstr "Silinecek bağlantı seçilmedi!"
 
-#: addon\globalPlugins\favoriteLinks\main.py:418
+#: addon\globalPlugins\favoriteLinks\main.py:447
 msgid "Edit category name:"
 msgstr "Kategori adını düzenleyin:"
 
-#: addon\globalPlugins\favoriteLinks\main.py:419
+#: addon\globalPlugins\favoriteLinks\main.py:448
 msgid "Edit Category"
 msgstr "Kategoriyi Düzenle"
 
-#: addon\globalPlugins\favoriteLinks\main.py:426
+#. Translators: Message displayed when a category name is edited
+#: addon\globalPlugins\favoriteLinks\main.py:457
 msgid "Category name edited successfully!"
 msgstr "Kategori adı başarıyla düzenlendi!"
 
-#: addon\globalPlugins\favoriteLinks\main.py:429
+#. Translators: Message displayed when no item has been selected from the list
+#: addon\globalPlugins\favoriteLinks\main.py:461
 msgid "No category selected to edit!"
 msgstr "Düzenlenecek kategori seçilmedi!"
 
-#: addon\globalPlugins\favoriteLinks\main.py:443
+#: addon\globalPlugins\favoriteLinks\main.py:475
 msgid "Are you sure you want to delete the category '{}' and all its links?"
 msgstr ""
 "'{}' kategorisini ve tüm bağlantılarını silmek istediğinizden emin misiniz?"
 
-#: addon\globalPlugins\favoriteLinks\main.py:444
+#: addon\globalPlugins\favoriteLinks\main.py:476
 msgid "Confirm Delete"
 msgstr "Silmeyi Onayla"
 
-#: addon\globalPlugins\favoriteLinks\main.py:448
+#. Translators: Message displayed when removing a category
+#: addon\globalPlugins\favoriteLinks\main.py:481
 msgid "Category deleted successfully!"
 msgstr "Kategori başarıyla silindi!"
 
-#: addon\globalPlugins\favoriteLinks\main.py:451
+#. Translators: Message displayed when no item has been selected from the list
+#: addon\globalPlugins\favoriteLinks\main.py:485
 msgid "No category selected to delete!"
 msgstr "Silinecek kategori seçilmedi!"
 
-#: addon\globalPlugins\favoriteLinks\main.py:523
+#. Translators: Message displayed when sorting of links is complete
+#: addon\globalPlugins\favoriteLinks\main.py:561
 msgid "Successfully ordered!"
 msgstr "Başarıyla sıralandı!"
 
-#: addon\globalPlugins\favoriteLinks\main.py:527
+#. Translators: Message displayed indicating that there was an error in sorting
+#: addon\globalPlugins\favoriteLinks\main.py:569
 msgid "Error when ordering!"
-msgstr "Sıralanırken bir hata oluştu"
+msgstr "Sıralanırken bir hata oluştu!"
 
 #. Add-on summary, usually the user visible name of the addon.
 #. Translators: Summary for this add-on to be shown
@@ -375,6 +409,15 @@ msgid ""
 msgstr ""
 "Bu eklenti, sık ziyaret edilen sayfalara olan bağlantıları kaydetmenize, "
 "düzenlemenize ve kaldırmanıza olanak tanır."
+
+#~ msgid "&Exit"
+#~ msgstr "&Çık"
+
+#~ msgid "&Delete link"
+#~ msgstr "Bağlantıyı &sil"
+
+#~ msgid "&Add Category"
+#~ msgstr "&Kategori ekle"
 
 #~ msgid "Edit link title:"
 #~ msgstr "Bağlantı başlığını düzenleyin:"

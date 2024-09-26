@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from validators.utils import validator
+from ...validators.utils import validator
 
 __all__ = ('es_cif', 'es_nif', 'es_nie', 'es_doi',)
 

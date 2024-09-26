@@ -63,7 +63,7 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 		"""
 
 		try:
-			# Translators: Dialog title Favorite Links.
+			# Translators: Dialog title Favorite Links
 			self.dlg = FavoriteLinks(gui.mainFrame, _("Favorite links."))
 			gui.mainFrame.prePopup()
 			self.dlg.Show()
@@ -74,7 +74,7 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 
 	@script(
 		gesture="kb:Windows+alt+K",
-		# Translators: Text displayed in NVDA help.
+		# Translators: Text displayed in NVDA help
 		description=_("This addon allows you to save links to a specific page."),
 		category=ADDON_SUMMARY
 	)

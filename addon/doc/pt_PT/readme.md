@@ -57,9 +57,9 @@ Estando posicionado na caixa de combinação das categorias, as seguintes opçõ
 Estando posicionado na lista de links, as seguintes opções são exibidas:
 
 * **Abrir Link**: Abre o link seleccionado no navegador padrão do sistema.
-  > Observação: Pressionando Enter sobre o link seleccionado, este é aberto no navegador padrão do sistema.
+   Observação: Pressionando Enter sobre o link seleccionado, este é aberto no navegador padrão do sistema.
 * **Adicionar Link**: Permite adicionar um novo link informando a sua URL e categoria.
-  > Observação: O título é obtido automaticamente. Quando o título não puder ser obtido, será exibido um diálogo para que adicione o título manualmente.
+   Observação: O título é obtido automaticamente. Quando o título não puder ser obtido, será exibido um diálogo para que adicione o título manualmente.
 * **Editar Link**: Permite editar o título de um link existente e a sua URL.
 * **Remover Link**: Permite remover um link da lista.
 * **Exportar links**: Permite exportar os links e categorias guardados no ficheiro json.
@@ -71,11 +71,13 @@ Estando posicionado na lista de links, as seguintes opções são exibidas:
 Algumas opções estão disponíveis através de atalhos directos na interface. São elas:
 
 * **Abrir link, `alt+B`**: Abre o link seleccionado no navegador padrão do sistema.
-  > Observação: Pressionando Enter sobre o link seleccionado, este é aberto no navegador padrão do sistema.
+   Observação: Pressionando Enter sobre o link seleccionado, este é aberto no navegador padrão do sistema.
 * **Adicionar link, `alt+A`**: Permite adicionar um novo link informando a sua URL e categoria.
-  > Observação: O título é obtido automaticamente. Quando o título não puder ser obtido, será exibido um diálogo para que adicione o título manualmente.
+   Observação: O título é obtido automaticamente. Quando o título não puder ser obtido, será exibido um diálogo para que adicione o título manualmente.
 * **Editar link, `alt+E`**: Permite editar o título de um link existente e a sua URL.
+  **Observação**: O `F2` pode ser utilizado como atalho.
 * **Eliminar link, `alt+L`**: Permite remover um link da lista.
+  **Observação**: O atalho `Del` pode ser utilizado como tecla de atalho.
 * **Adicionar categoria, `alt+D`**: Permite adicionar uma categoria à lista.
 * **Sair, `alt+S`**: Encerra o diálogo. Pode também usar a tecla "Escape" ou Alt+F4.
 
@@ -105,5 +107,6 @@ Agradeço a Rue Fontes e Ângelo Abrantes pelos testes e sugestões para melhori
 
 * **árabe** por Ahmed Bakr.
 * **português (Brasil)** por Edilberto Fonseca.
+* **Russo (Rússia)** por Valentin Kupriyanov.
 * **turco (Turquia)** por Umut KORKMAZ.
 * **ucraniano (Ucrânia)** por Heorhii Halas.

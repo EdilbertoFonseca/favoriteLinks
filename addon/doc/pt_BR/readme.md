@@ -19,7 +19,7 @@ Siga as instruções abaixo para instalar o add-on Favorite Links no NVDA:
 2. **Instale o add-on**: Pressione Enter sobre o arquivo do add-on baixado.
 3. **Siga as instruções na tela**: Complete a instalação conforme as orientações fornecidas.
 4. **Reinicie o NVDA**: É necessário reiniciar para ativar o add-on.
-5. **Verifique a instalação**: Pressione `NVDA+N` para abrir o menu do NVDA, vá até "Ferramentas" e verifique se o Favorite Links está listado.
+5. **Verifique a instalação**: Pressione `NVDA+N` para abrir o menu do NVDA, vá até "Ferramentas" e verifique se o Links favoritos está listado.
 
 ## Configuração
 
@@ -56,9 +56,10 @@ Estando posicionado na caixa de combinação das categorias, as seguintes opçõ
 
 Estando posicionado na lista de links, as seguintes opções são exibidas:
 
-* **Abrir Link**: Abre o link selecionado no navegador padrão do sistema. **Observação**: Pressionando Enter sobre o link selecionado, o mesmo é aberto no navegador padrão do sistema.
+* **Abrir Link**: Abre o link selecionado no navegador padrão do sistema.
+   **Observação**: Pressionando Enter sobre o link selecionado, o mesmo é aberto no navegador padrão do sistema.
 * **Adicionar Link**: Permite adicionar um novo link informando sua URL e categoria.
-  > **Observação**: O título é obtido automaticamente. Quando o título não puder ser obtido, será exibido um diálogo para que você adicione o título manualmente.
+  **Observação**: O título é obtido automaticamente. Quando o título não puder ser obtido, será exibido um diálogo para que você adicione o título manualmente.
 * **Editar Link**: Permite editar o título de um link existente e sua URL.
 * **Remover Link**: Permite remover um link da lista.
 * **Exportar links**: Permite a exportação dos links e categorias salvos no arquivo json.
@@ -70,11 +71,13 @@ Estando posicionado na lista de links, as seguintes opções são exibidas:
 Algumas opções estão disponíveis através de atalhos diretos na interface. São elas:
 
 * **Abrir link, `alt+B`**: Abre o link selecionado no navegador padrão do sistema.
-   > **Observação**: Pressionando Enter sobre o link selecionado, o mesmo é aberto no navegador padrão do sistema.
+   **Observação**: Pressionando Enter sobre o link selecionado, o mesmo é aberto no navegador padrão do sistema.
 * **Adicionar link, `alt+A`**: Permite adicionar um novo link informando sua URL e categoria.
-   > **Observação**: O título é obtido automaticamente. Quando o título não puder ser obtido, será exibido um diálogo para que você adicione o título manualmente.
+   **Observação**: O título é obtido automaticamente. Quando o título não puder ser obtido, será exibido um diálogo para que você adicione o título manualmente.
 * **Editar link, `alt+E`**: Permite editar o título de um link existente e sua URL.
+   **Observação**: O `F2` pode ser utilizado como tecla de atalho.
 * **Excluir link, `alt+L`**: Permite remover um link da lista.
+   **Observação**: O atalho `Del` pode ser utilizado como tecla de atalho.
 * **Adicionar categoria, `alt+D`**: Permite a adição de uma categoria à lista.
 * **Sair, `alt+S`**: Encerra o diálogo. Você também pode usar a tecla "Escape" ou Alt+F4.
 
@@ -82,19 +85,19 @@ Algumas opções estão disponíveis através de atalhos diretos na interface. S
 
 1. **Categoria**: Uma caixa de seleção onde você pode escolher a categoria desejada.
 2. **Campo para adição da URL do link**: Uma caixa de texto onde você pode colar a URL.
-   > **Observação**: Caso já tenha copiado a URL, ela será colocada automaticamente na caixa de edição.
+   **Observação**: Caso já tenha copiado a URL, ela será colocada automaticamente na caixa de edição.
 3. **OK, `alt+O`**: Adiciona o link na lista.
-   > **Observação**: O título é obtido automaticamente. Quando o título não puder ser obtido, será exibido um diálogo para que você adicione o título manualmente.
-4. **Cancelar, `alt+C`**: Encerra o diálogo. Você também pode usar a tecla "Escape" ou Alt+F4.
+   **Observação**: O título é obtido automaticamente. Quando o título não puder ser obtido, será exibido um diálogo para que você adicione o título manualmente.
+4. **Cancelar, `alt+C`**: Encerra o diálogo. Você também pode usar a tecla `Escape` ou `Alt+F4`.
 
 ## Diálogo Editar link
 
 1. **Categoria**: Uma caixa de seleção onde você pode escolher a categoria desejada.
-   > Ao selecionar outra categoria, o link será salvo na nova categoria selecionada.
+   Ao selecionar outra categoria, o link será salvo na nova categoria selecionada.
 2. **Campo para edição do título do URL**: Uma caixa de texto onde você pode editar o título associado ao URL.
 3. **Campo para edição da URL**: Uma caixa de texto onde você pode editar o URL.
 4. **OK, `Alt+O`**: Salva as modificações realizadas.
-5. **Cancelar, `Alt+C`**: Encerra o diálogo. Você também pode usar a tecla "Escape" ou "Alt+F4".
+5. **Cancelar, `Alt+C`**: Encerra o diálogo. Você também pode usar a tecla `Escape` ou `Alt+F4`.
 
 ## Agradecimentos
 
@@ -104,5 +107,6 @@ Agradeço a Rue Fontes e Ângelo Abrantes pelos testes e dicas para melhoria des
 
 * **árabe** por Ahmed Bakr.
 * **português (Brasil)** por Edilberto Fonseca.
+* **Russo (Rússia)** por Valentin Kupriyanov.
 * **turco (Turquia)** por Umut KORKMAZ.
 * **ucraniano (Ucrânia)** por Heorhii Halas.
