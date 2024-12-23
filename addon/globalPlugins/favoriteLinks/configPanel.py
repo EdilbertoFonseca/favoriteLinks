@@ -1,8 +1,14 @@
 # -*- coding: UTF-8 -*-
 
-# Description: Module for add-on settings panel
+# Description:
+# Module for add-on settings panel
+
 # Author: Edilberto Fonseca
-# Email: edilberto.fonseca@outlook.com
+# Email: <edilberto.fonseca@outlook.com>
+# Copyright (C) 2024-2025 Edilberto Fonseca
+# This file is covered by the GNU General Public License.
+# See the file COPYING for more details or visit https://www.gnu.org/licenses/gpl-2.0.html.
+
 # Date of creation: 24/05/2024
 
 import logging
@@ -20,7 +26,8 @@ from .varsConfig import initConfiguration, ourAddon
 # Logger configuration
 logger = logging.getLogger(__name__)
 
-# Start addon translation
+
+# Initializes the translation
 addonHandler.initTranslation()
 
 # Initialize settings
@@ -34,42 +41,59 @@ dirJsonFile = os.path.join(os.path.dirname(__file__), "favorite_links.json")
 firstJsonFile = ""
 altJsonsFile = ""
 indexJson = 0
-try:
-	if config.conf[ourAddon.name]["xx"]:
-		# index of Favorite Links.db file to use
-		indexJson = int(config.conf[ourAddon.name]["xx"])
-		if indexJson == 0:
-			dirJsonFile = config.conf[ourAddon.name]["path"]
-		else:
-			dirJsonFile = config.conf[ourAddon.name]["altPath"]
-		firstJsonFile = config.conf[ourAddon.name]["path"]
-		altJsonsFile = config.conf[ourAddon.name]["altPath"]
-except KeyError:
-	# Not registered, so use the default path
-	pass
+pathList = []
 
 
 class FavoriteLinksSettingsPanel(SettingsPanel):
 	title = ADDON_SUMMARY
 
 	def makeSettings(self, settingsSizer):
+		# Initializing variables with default values
+		self.dirJsonFile = dirJsonFile
+
+		# Initializing JSON file paths
+		self.firstJsonFile = firstJsonFile
+		self.altJsonsFile = altJsonsFile
+		self.indexJson = indexJson
+		self.pathList = pathList
+
+		# Load settings from files or use default values
+		try:
+			if config.conf[ourAddon.name]["xx"]:
+				self.indexJson = int(config.conf[ourAddon.name]["xx"])
+				if self.indexJson == 0:
+					self.firstJsonFile = config.conf[ourAddon.name]["path"]
+				else:
+					self.firstJsonFile = config.conf[ourAddon.name]["altPath"]
+				self.altJsonsFile = config.conf[ourAddon.name]["altPath"]
+		except KeyError:
+			# In case of error, use default values
+			self.firstJsonFile = os.path.join(os.path.dirname(__file__), "favorite_links.json")
+			self.altJsonsFile = ""
+
 		settingsSizerHelper = gui.guiHelper.BoxSizerHelper(self, sizer=settingsSizer)
 		pathBoxSizer = wx.StaticBoxSizer(wx.HORIZONTAL, self, label=_("Path of json files:"))
 		pathGroup = guiHelper.BoxSizerHelper(self, sizer=pathBoxSizer)
 		settingsSizerHelper.addItem(pathGroup)
+		settingsSizerHelper = gui.guiHelper.BoxSizerHelper(self, sizer=settingsSizer)
+		pathBoxSizer = wx.StaticBoxSizer(wx.HORIZONTAL, self, label=_("Path of json files:"))
+		pathGroup = guiHelper.BoxSizerHelper(self, sizer=pathBoxSizer)
+		settingsSizerHelper.addItem(pathGroup)
+
+		# Now initializing pathList correctly
+		self.pathList = [self.firstJsonFile, self.altJsonsFile]
+
+		# If pathList is still empty or contains invalid values, initialize with default paths
+		if not self.pathList or not os.path.exists(self.firstJsonFile):
+			self.pathList = [self.firstJsonFile, self.altJsonsFile]
 
 		# Translators: Name of combobox with the Favorite Links files path
 		pathBoxSizer = wx.StaticBoxSizer(wx.HORIZONTAL, self, label=_("Path of json files:"))
 		pathBox = pathBoxSizer.GetStaticBox()
 		pathGroup = guiHelper.BoxSizerHelper(self, sizer=pathBoxSizer)
 		settingsSizerHelper.addItem(pathGroup)
-
-		global firstJsonFile
-		if firstJsonFile == "":
-			firstJsonFile = dirJsonFile
-		self.pathList = [firstJsonFile, altJsonsFile]
 		self.pathNameCB = pathGroup.addLabeledControl("", wx.Choice, choices=self.pathList)
-		self.pathNameCB.SetSelection(indexJson)
+		self.pathNameCB.SetSelection(self.indexJson)
 
 		# Translators: This is the label for the button used to add or change a Favorite Links.db location
 		changePathBtn = wx.Button(pathBox, label=_("&Select or add a directory"))
@@ -77,7 +101,6 @@ class FavoriteLinksSettingsPanel(SettingsPanel):
 
 	def OnDirectory(self, event):
 		self.Freeze()
-		global dirJsonFile, firstJsonFile, altJsonsFile, indexJson
 		lastDir = os.path.dirname(__file__)
 		dDir = lastDir
 		dFile = "favorite_links.json"
@@ -96,23 +119,23 @@ class FavoriteLinksSettingsPanel(SettingsPanel):
 			index = self.pathNameCB.GetSelection()
 			if index == 0:
 				if os.path.exists(fname):
-					firstJsonFile = fname
+					self.firstJsonFile = fname
 				else:
-					os.rename(firstJsonFile, fname)
-					firstJsonFile = fname
+					os.rename(self.firstJsonFile, fname)
+					self.firstJsonFile = fname
 			else:
 				if os.path.exists(fname):
-					altJsonsFile = fname
+					self.altJsonsFile = fname
 				else:
-					if altJsonsFile == "":
-						altJsonsFile = fname
+					if self.altJsonsFile == "":
+						self.altJsonsFile = fname
 					else:
-						os.rename(altJsonsFile, fname)
-						altJsonsFile = fname
-			dirJsonFile = fname
+						os.rename(self.altJsonsFile, fname)
+						self.altJsonsFile = fname
+			self.dirJsonFile = fname
 
 			# Update the combobox choices and selection
-			self.pathList = [firstJsonFile, altJsonsFile]
+			self.pathList = [self.firstJsonFile, self.altJsonsFile]
 			self.pathNameCB.Set(self.pathList)
 			self.pathNameCB.SetSelection(index)
 
@@ -134,19 +157,19 @@ Saves the options to the NVDA configuration file.
 		global dirJsonFile, firstJsonFile, altJsonsFile, indexJson
 
 		# Check paths before saving
-		if not firstJsonFile or not os.path.exists(os.path.dirname(firstJsonFile)):
-			logger.error(f"Invalid path: {firstJsonFile}")
-			raise ValueError("Invalid path for the first JSON file.")
+		#if not firstJsonFile or not os.path.exists(os.path.dirname(firstJsonFile)):
+			#logger.error(f"Invalid path: {firstJsonFile}")
+			#raise ValueError("Invalid path for the first JSON file.")
 
 		if altJsonsFile and not os.path.exists(os.path.dirname(altJsonsFile)):
 			logger.error(f"Invalid path: {altJsonsFile}")
 			raise ValueError("Invalid path for the alternative JSON file.")
 
-		config.conf[ourAddon.name]["path"] = firstJsonFile
-		config.conf[ourAddon.name]["altPath"] = altJsonsFile
+		config.conf[ourAddon.name]["path"] = self.firstJsonFile
+		config.conf[ourAddon.name]["altPath"] = self.altJsonsFile
 		config.conf[ourAddon.name]["xx"] = str(self.pathNameCB.GetSelection())
 		indexJson = self.pathNameCB.GetSelection()
-		dirJsonFile = self.pathList[indexJson]
+		dirJsonFile = self.pathList[	indexJson]
 		# Reactivate profiles triggers
 		config.conf.enableProfileTriggers()
 

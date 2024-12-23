@@ -1,8 +1,14 @@
 # -*- coding: UTF-8 -*-
 
-# Description: Variables for the Favorite links add-on
+# Description:
+# Variables for the Favorite links add-on
+
 # Author: Edilberto Fonseca
-# Email: edilberto.fonseca@outlook.com
+# Email: <edilberto.fonseca@outlook.com>
+# Copyright (C) 2022-2025 Edilberto Fonseca
+# This file is covered by the GNU General Public License.
+# See the file COPYING for more details or visit https://www.gnu.org/licenses/gpl-2.0.html.
+
 # Date of creation: 24/05/2024
 
 # Import the necessary modules
@@ -14,7 +20,8 @@ import config
 # Configure the logger instance for the current module, allowing logging of log messages.
 logger = logging.getLogger(__name__)
 
-# To start the translation process
+
+# Initializes the translation
 addonHandler.initTranslation()
 
 

@@ -1,7 +1,14 @@
 # -*- coding: UTF-8 -*-
 
-# Description: This add-on aims to: Save, edit and remove links from a list.
-# Author: Edilberto Fonseca.
+# Description:
+# This add-on aims to: Save, edit and remove links from a list.
+
+# Author: Edilberto Fonseca
+# Email: <edilberto.fonseca@outlook.com>
+# Copyright (C) 2022-2025 Edilberto Fonseca
+# This file is covered by the GNU General Public License.
+# See the file COPYING for more details or visit https://www.gnu.org/licenses/gpl-2.0.html.
+
 # Date of creation: 11/04/2024.
 
 # import the necessary modules.
@@ -20,7 +27,8 @@ from .main import FavoriteLinks
 # Configure the logger instance for the current module, allowing logging of log messages.
 logger = logging.getLogger(__name__)
 
-# For translation process
+
+# Initializes the translation
 addonHandler.initTranslation()
 
 # Initialize configuration settings

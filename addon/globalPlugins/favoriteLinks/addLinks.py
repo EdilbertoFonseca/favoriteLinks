@@ -1,8 +1,14 @@
 # -*- coding: UTF-8 -*-
 
-# Description: Dialog for link additions
+# Description:
+# Dialog for link additions
+
 # Author: Edilberto Fonseca
-# Email: edilberto.fonseca@outlook.com
+# Email: <edilberto.fonseca@outlook.com>
+# Copyright (C) 2022-2025 Edilberto Fonseca
+# This file is covered by the GNU General Public License.
+# See the file COPYING for more details or visit https://www.gnu.org/licenses/gpl-2.0.html.
+
 # Date of creation: 28/05/2024
 
 # import the necessary modules.
@@ -17,7 +23,7 @@ from .linkManager import LinkManager
 # Configure the logger instance for the current module, allowing logging of log messages.
 logger = logging.getLogger(__name__)
 
-# For translation process
+# Initializes the translation
 addonHandler.initTranslation()
 
 

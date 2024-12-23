@@ -1,19 +1,26 @@
 # -*- coding: UTF-8 -*-
 
-# Description: Module for Business Logic
-# Author: Edilberto Fonseca.
+# Description:
+# Module for Business Logic
+
+# Author: Edilberto Fonseca
+# Email: <edilberto.fonseca@outlook.com>
+# Copyright (C) 2024-2025 Edilberto Fonseca
+# This file is covered by the GNU General Public License.
+# See the file COPYING for more details or visit https://www.gnu.org/licenses/gpl-2.0.html.
+
 # Date of creation: 11/04/2024.
 
 # import the necessary modules.
 import json
 import logging
+import socket
 from json.decoder import JSONDecodeError
 from urllib.error import URLError
 from urllib.request import urlopen
 
 import addonHandler
 import api
-import requests
 import ui
 import wx
 
@@ -24,7 +31,8 @@ from .lib.bs4 import BeautifulSoup, UnicodeDammit
 # Configure the logger instance for the current module, allowing logging of log messages.
 logger = logging.getLogger(__name__)
 
-# To start the translation process
+
+# Initializes the translation
 addonHandler.initTranslation()
 
 
@@ -326,7 +334,7 @@ class LinkManager:
 		except Exception as e:
 			raise Exception(f"An unexpected error occurred while importing links: {e}")
 
-	def is_internet_connected(self, url="http://www.google.com", timeout=5):
+	def is_internet_connected(self, host='8.8.8.8', porta=53, timeout=3):
 		"""
 		Checks if there is an active internet connection.
 		This function tries to send a GET request to a specified URL to determine if there is an active internet
@@ -339,12 +347,22 @@ class LinkManager:
 		Returns:
 		- bool: True if the internet connection is active, False otherwise.
 		"""
-
 		try:
-			response = requests.get(url, timeout=timeout)
-			return response.status_code == 200
-		except (requests.ConnectionError, requests.Timeout):
-			return False
+			# Try to establish a connection to the server using socket
+			socket.create_connection((host, porta), timeout=timeout)
+			return True  # Active connection.
+		except socket.timeout:
+			return False  # No active connection. The server is taking a long time to respond.
+		except socket.gaierror:
+			return False  # Error: Problem with hostname resolution.
+		except OSError as e:
+			# Catch OSError errors, including WinError
+			if e.errno == 10065:
+				return False  # Error: Network cable disconnected or network inaccessible (WinError 10065).
+			else:
+				return False  # Unexpected error.
+		except ConnectionRefusedError:
+			return False  # Error: Connection refused. The host may not be accepting connections.
 
 	def sort_json(self):
 		"""
