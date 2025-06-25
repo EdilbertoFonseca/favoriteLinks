@@ -27,9 +27,9 @@ addon_info = {
 	# Translators: Long description to be shown for this add-on
 	# on add-on information from add-ons manager
 	"addon_description": _(
-		"""This add-on allows you to save, edit and remove links to frequently visited pages."""),
+		"""This add-on allows you to save, edit and remove links to frequently visited pages. Shortcut Windows+Alt+K."""),
 	# version
-	"addon_version": "2024.5.5",
+	"addon_version": "2025.5.5",
 	# Author(s)
 	"addon_author": "Edilberto Fonseca <edilberto.fonseca@outlook.com>",
 	# URL for the add-on documentation support
@@ -42,7 +42,7 @@ addon_info = {
 	"addon_minimumNVDAVersion": "2023.3.4",
 	# Last NVDA version supported/tested
 	# (e.g. "2018.4", ideally more recent than minimum version)
-	"addon_lastTestedNVDAVersion": "2024.2.0",
+	"addon_lastTestedNVDAVersion": "2025.1.0",
 	# Add-on update channel (default is stable or None)
 	"addon_updateChannel": None,
 	# Add-on license such as GPL 2
@@ -80,4 +80,4 @@ baseLanguage = "en"
 # If you need to add support for markup such as tables, fill out the below list.
 # Extensions string must be of the form "markdown.extensions.extensionName"
 # e.g. "markdown.extensions.tables" to add tables.
-markdownExtensions = []
+markdownExtensions = ["markdown.extensions.tables"]

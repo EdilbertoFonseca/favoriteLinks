@@ -1,41 +1,34 @@
 # -*- coding: UTF-8 -*-
 
-# Description:
-# This add-on aims to: Save, edit and remove links from a list.
+# Description: This add-on aims to: Save, edit and remove links from a list.
 
 # Author: Edilberto Fonseca
 # Email: <edilberto.fonseca@outlook.com>
 # Copyright (C) 2022-2025 Edilberto Fonseca
+
 # This file is covered by the GNU General Public License.
 # See the file COPYING for more details or visit https://www.gnu.org/licenses/gpl-2.0.html.
 
 # Date of creation: 11/04/2024.
 
 # import the necessary modules.
-import logging
-
 import addonHandler
 import globalPluginHandler
 import globalVars
 import gui
 import wx
+from logHandler import log
 from scriptHandler import script
 
-from .configPanel import FavoriteLinksSettingsPanel, initConfiguration
+from .configPanel import FavoriteLinksSettingsPanel
 from .main import FavoriteLinks
-
-# Configure the logger instance for the current module, allowing logging of log messages.
-logger = logging.getLogger(__name__)
-
+from .varsConfig import ADDON_SUMMARY, initConfiguration
 
 # Initializes the translation
 addonHandler.initTranslation()
 
 # Initialize configuration settings
 initConfiguration()
-
-# Get the title of the addon defined in the summary
-ADDON_SUMMARY = addonHandler.getCodeAddon().manifest["summary"]
 
 
 def disableInSecureMode(decoratedCls):
@@ -78,7 +71,7 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 			self.dlg.CentreOnScreen()
 			gui.mainFrame.postPopup()
 		except Exception as e:
-			logger.error("Error displaying Favorite Links dialog: %s", e)
+			log.error("Error displaying Favorite Links dialog: %s", e)
 
 	@script(
 		gesture="kb:Windows+alt+K",
@@ -105,4 +98,4 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 			try:
 				self.toolsMenu.Remove(self.favoriteLinks)
 			except Exception as e:
-				logger.warning("Error removing Favorite Links menu item: %s", e)
+				log.warning("Error removing Favorite Links menu item: %s", e)

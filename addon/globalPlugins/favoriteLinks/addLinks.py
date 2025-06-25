@@ -1,27 +1,22 @@
 # -*- coding: UTF-8 -*-
 
-# Description:
-# Dialog for link additions
+# Description: Dialog for link additions
 
 # Author: Edilberto Fonseca
 # Email: <edilberto.fonseca@outlook.com>
 # Copyright (C) 2022-2025 Edilberto Fonseca
+
 # This file is covered by the GNU General Public License.
 # See the file COPYING for more details or visit https://www.gnu.org/licenses/gpl-2.0.html.
 
 # Date of creation: 28/05/2024
 
 # import the necessary modules.
-import logging
-
 import addonHandler
 import wx
 from gui import guiHelper, messageBox
-
+from logHandler import log
 from .linkManager import LinkManager
-
-# Configure the logger instance for the current module, allowing logging of log messages.
-logger = logging.getLogger(__name__)
 
 # Initializes the translation
 addonHandler.initTranslation()
@@ -48,7 +43,7 @@ class AddLinks(wx.Dialog):
 
 			# Verify if categories are loaded
 			if not self.link_manager.data:
-				logger.error("No categories available in LinkManager.")
+				log.error("No categories available in LinkManager.")
 				# Translators: Message displayed when no category is registered in the system
 				self.show_message(_("No categories available. Please add some categories first."), _("Error"))
 				self.Destroy()
@@ -76,7 +71,7 @@ class AddLinks(wx.Dialog):
 			# Bind escape key to cancel event
 			self.Bind(wx.EVT_CHAR_HOOK, self.onKeyPress)
 		except Exception as e:
-			logger.error(f"Error initializing AddLinks dialog: {e}")
+			log.error(f"Error initializing AddLinks dialog: {e}")
 			# Translators: Message displayed when it is not possible to load the interface
 			self.show_message(_("An error occurred while initializing the dialog."), _("Error"), wx.ICON_ERROR)
 			self.onCancel()
@@ -159,7 +154,7 @@ class AddLinks(wx.Dialog):
 			self.EndModal(wx.ID_OK)
 			self.Destroy()
 		except Exception as e:
-			logger.error(f"Error adding link: {e}")
+			log.error(f"Error adding link: {e}")
 			# Translators: Message displayed to the user informing that there was an error adding the link
 			self.show_message(_("An error occurred while adding the link."))
 

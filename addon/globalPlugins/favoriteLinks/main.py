@@ -1,41 +1,35 @@
 # -*- coding: UTF-8 -*-
 
-# Description:
-# This add-on aims to: Save, edit and remove links from a list.
+# Description: This add-on aims to: Save, edit and remove links from a list.
 
 # Author: Edilberto Fonseca
 # Email: <edilberto.fonseca@outlook.com>
 # Copyright (C) 2022-2025 Edilberto Fonseca
+
 # This file is covered by the GNU General Public License.
 # See the file COPYING for more details or visit https://www.gnu.org/licenses/gpl-2.0.html.
 
 # Date of creation: 11/04/2024.
 
 # import the necessary modules.
-import logging
-
 import webbrowser
+
 import addonHandler
 import gui
 import queueHandler
 import ui
 import wx
 from gui import guiHelper, mainFrame, messageBox
+from logHandler import log
 
 from .addLinks import AddLinks
-from .editLinks import EditLinks
 from .configPanel import dirJsonFile
+from .editLinks import EditLinks
 from .linkManager import LinkManager
-
-# Configure the logger instance for the current module, allowing logging of log messages.
-logger = logging.getLogger(__name__)
-
+from .varsConfig import ADDON_SUMMARY
 
 # Initializes the translation
 addonHandler.initTranslation()
-
-# Get the title of the addon defined in the summary.
-ADDON_SUMMARY = addonHandler.getCodeAddon().manifest["summary"]
 
 
 class FavoriteLinks(wx.Dialog):
@@ -247,7 +241,7 @@ Itens do menu wx.ListCtrl.
 				self.show_message(_("Links exported successfully!"))
 				self.listLinks.SetFocus()
 			except Exception as e:
-				logger.error(f"Error exporting links: {e}")
+				log.error(f"Error exporting links: {e}")
 
 				# Translators: Message displayed when the export fails
 				self.show_message(_(f"Error exporting links: {e}"), _("Error"), wx.OK | wx.ICON_ERROR)
@@ -275,7 +269,7 @@ Itens do menu wx.ListCtrl.
 				self.show_message(_("Links imported successfully!"))
 				self.listLinks.SetFocus()
 			except Exception as e:
-				logger.error("Error importing links: %s", e)
+				log.error("Error importing links: %s", e)
 
 				# Translators: Message displayed when the import fails
 				self.show_message(_(f"Error importing links: {e}"), _("Error"), wx.OK | wx.ICON_ERROR)

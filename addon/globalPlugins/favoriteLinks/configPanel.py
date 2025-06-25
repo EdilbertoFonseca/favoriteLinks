@@ -1,17 +1,17 @@
 # -*- coding: UTF-8 -*-
 
-# Description:
-# Module for add-on settings panel
+# Description: Module for add-on settings panel
 
 # Author: Edilberto Fonseca
 # Email: <edilberto.fonseca@outlook.com>
 # Copyright (C) 2024-2025 Edilberto Fonseca
+
 # This file is covered by the GNU General Public License.
 # See the file COPYING for more details or visit https://www.gnu.org/licenses/gpl-2.0.html.
 
 # Date of creation: 24/05/2024
 
-import logging
+# Import the necessary modules
 import os
 
 import addonHandler
@@ -20,21 +20,15 @@ import gui
 import wx
 from gui import guiHelper
 from gui.settingsDialogs import SettingsPanel
+from logHandler import log
 
-from .varsConfig import initConfiguration, ourAddon
-
-# Logger configuration
-logger = logging.getLogger(__name__)
-
+from .varsConfig import ADDON_SUMMARY, ourAddon, initConfiguration
 
 # Initializes the translation
 addonHandler.initTranslation()
 
 # Initialize settings
 initConfiguration()
-
-# Get the addon summary
-ADDON_SUMMARY = addonHandler.getCodeAddon().manifest["summary"]
 
 # Initializing path and index variables
 dirJsonFile = os.path.join(os.path.dirname(__file__), "favorite_links.json")
@@ -162,7 +156,7 @@ Saves the options to the NVDA configuration file.
 			#raise ValueError("Invalid path for the first JSON file.")
 
 		if altJsonsFile and not os.path.exists(os.path.dirname(altJsonsFile)):
-			logger.error(f"Invalid path: {altJsonsFile}")
+			log.error(f"Invalid path: {altJsonsFile}")
 			raise ValueError("Invalid path for the alternative JSON file.")
 
 		config.conf[ourAddon.name]["path"] = self.firstJsonFile

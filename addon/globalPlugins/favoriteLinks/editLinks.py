@@ -1,28 +1,23 @@
 # -*- coding: UTF-8 -*-
 
-# Description:
-# Dialog box for link edits
+# Description: Dialog box for link edits
 
 # Author: Edilberto Fonseca
 # Email: <edilberto.fonseca@outlook.com>
 # Copyright (C) 2022-2025 Edilberto Fonseca
+
 # This file is covered by the GNU General Public License.
 # See the file COPYING for more details or visit https://www.gnu.org/licenses/gpl-2.0.html.
 
 # Date of creation: 28/05/2024
 
 # import the necessary modules.
-import logging
-
 import addonHandler
 import wx
 from gui import guiHelper, messageBox
+from logHandler import log
 
 from .linkManager import LinkManager
-
-# Configure the logger instance for the current module, allowing logging of log messages.
-logger = logging.getLogger(__name__)
-
 
 # Initializes the translation
 addonHandler.initTranslation()
@@ -94,7 +89,7 @@ class EditLinks(wx.Dialog):
 			# Bind escape key to cancel event
 			self.Bind(wx.EVT_CHAR_HOOK, self.onKeyPress)
 		except Exception as e:
-			logger.error(f"Error initializing EditLinks dialog: {e}")
+			log.error(f"Error initializing EditLinks dialog: {e}")
 			# Translators: Message displayed when, for some reason, it is not possible to load the interface
 			self.show_message(_("An error occurred while initializing the dialog."), _("Error"), wx.ICON_ERROR)
 			self.onCancel()

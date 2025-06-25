@@ -1,112 +1,132 @@
 # Links Favoritos
 
-* **Autor**: Edilberto Fonseca <edilberto.fonseca@outlook.com>
+* **Autor**: Edilberto Fonseca ([edilberto.fonseca@outlook.com](mailto:edilberto.fonseca@outlook.com))
 * **Data de Criação**: 11/04/2024
 * **Licença**: [GPL 2.0](https://www.gnu.org/licenses/gpl-2.0.html)
 
-## Introdução
+## 📌 Introdução
 
-O add-on **FavoriteLinks** é uma ferramenta que permite gerenciar links favoritos de forma organizada e eficiente. Com ele, você pode salvar, editar e remover links em uma lista categorizada. Sua interface intuitiva oferece funcionalidades abrangentes, como adicionar novos links, editar títulos, remover links indesejados e gerenciar categorias. Ao abrir o add-on, você tem acesso rápido aos seus links favoritos e pode abrir um link selecionado diretamente no navegador.
+O add-on **FavoriteLinks** é uma ferramenta que permite gerenciar links favoritos de forma organizada e eficiente. Com ele, você pode salvar, editar e remover links em uma lista categorizada. Sua interface intuitiva oferece funcionalidades completas, como adicionar novos links, editar títulos, remover entradas indesejadas e gerenciar categorias.
 
-> Observação: O add-on FavoriteLinks foi desenvolvido com o auxílio do ChatGPT para criação de algumas funções e otimização, ele também foi usado para a organização do código.
+Ao abrir o add-on, você tem acesso rápido aos seus links favoritos e pode abrir qualquer link selecionado diretamente no navegador padrão.
 
-## Instalação
+> **Observação**: O add-on FavoriteLinks foi desenvolvido com o auxílio do ChatGPT, usado tanto para a criação de algumas funções quanto para a organização e otimização do código.
 
-Siga as instruções abaixo para instalar o add-on Favorite Links no NVDA:
+## 💾 Instalação
 
-1. **Baixe o arquivo de instalação do add-on**: Obtenha o arquivo da Loja de Complementos do NVDA.
-   **Nota**: Se o add-on for baixado da loja, a instalação ocorrerá automaticamente. Caso contrário, siga as instruções abaixo.
-2. **Instale o add-on**: Pressione Enter sobre o arquivo do add-on baixado.
-3. **Siga as instruções na tela**: Complete a instalação conforme as orientações fornecidas.
-4. **Reinicie o NVDA**: É necessário reiniciar para ativar o add-on.
-5. **Verifique a instalação**: Pressione `NVDA+N` para abrir o menu do NVDA, vá até "Ferramentas" e verifique se o Links favoritos está listado.
+Siga os passos abaixo para instalar o add-on **FavoriteLinks** no NVDA:
 
-## Configuração
+1. **Baixe o arquivo de instalação**: Você pode obtê-lo na Loja de Complementos do NVDA.
 
-Você pode selecionar um local diferente do padrão para salvar seu arquivo de links. Para isso, basta acessar o menu do NVDA, ir a Preferências, Configurações e, em Configurações, selecionar a categoria Links Favoritos. Em seguida, escolha uma pasta diferente usando o botão “Selecione ou adicione um diretório”.
+   > **Nota**: Se o add-on for baixado da loja, a instalação será automática. Caso contrário, siga os próximos passos.
 
-## Uso
+2. **Instale o add-on**: Pressione `Enter` sobre o arquivo `.nvda-addon` baixado.
+
+3. **Siga as instruções na tela**: Conclua a instalação conforme indicado.
+
+4. **Reinicie o NVDA**: É necessário reiniciar para ativar o complemento.
+
+5. **Verifique a instalação**: Pressione `NVDA+N`, vá até *Ferramentas* e verifique se **Links Favoritos** está listado.
+
+## ⚙️ Configuração
+
+Você pode escolher um local personalizado para salvar o arquivo de links. Para isso:
+
+1. Acesse o menu do NVDA: `NVDA+N` > *Preferências* > *Configurações*.
+2. Na lista de categorias, selecione **Links Favoritos**.
+3. Use o botão **"Selecionar ou adicionar um diretório"** para definir a nova pasta de salvamento.
+
+## 🚀 Uso
 
 ### Acessando o Add-on
 
-Pressione `Alt+Windows+K` ou use o menu do NVDA `NVDA+N` > Ferramentas > Links Favoritos para abrir o complemento.
+* Pressione `Alt+Windows+K`, ou
+* Acesse via `NVDA+N` > *Ferramentas* > *Links Favoritos*.
 
 ### Interface Principal
 
-O diálogo exibido terá dois campos principais:
+A interface principal possui dois campos principais:
 
-1. **Categoria**: Uma caixa de seleção onde você pode escolher a categoria desejada.
-2. **Lista de Links**: Aqui, os links correspondentes à categoria selecionada serão exibidos.
+1. **Categoria**: Caixa de seleção com as categorias existentes.
+2. **Lista de Links**: Mostra os links associados à categoria selecionada.
 
 ### Ações Disponíveis
 
-Para ter acesso às opções para trabalhar com os links e categorias, você pode usar o menu de Contexto (tecla de aplicação) do NVDA.
+Use o **menu de contexto** (tecla de aplicação) enquanto estiver focado em uma das listas para acessar opções adicionais.
 
-### Categoria
+#### Categoria
 
-Estando posicionado na caixa de combinação das categorias, as seguintes opções são exibidas:
+Na caixa de combinação de categorias, estão disponíveis:
 
-* **Adicionar categoria**: Permite a adição de uma categoria à lista.
-* **Editar Categoria**: Permite renomear uma categoria existente.
-* **Remover Categoria**: Permite excluir uma categoria e todos os links associados a ela.
-* **Exportar links**: Permite a exportação dos links e categorias salvos no arquivo json.
-* **Importar links**: Permite a importação dos links e categorias salvos anteriormente para o arquivo json.
+* **Adicionar Categoria**: Cria uma nova categoria.
+* **Editar Categoria**: Renomeia a categoria selecionada.
+* **Remover Categoria**: Exclui a categoria e seus links.
+* **Exportar Links**: Salva os links e categorias em um arquivo `.json`.
+* **Importar Links**: Carrega links e categorias de um arquivo `.json`.
 
-### Lista de Links
+#### Lista de Links
 
-Estando posicionado na lista de links, as seguintes opções são exibidas:
+Na lista de links, estão disponíveis:
 
-* **Abrir Link**: Abre o link selecionado no navegador padrão do sistema.
-   **Observação**: Pressionando Enter sobre o link selecionado, o mesmo é aberto no navegador padrão do sistema.
-* **Adicionar Link**: Permite adicionar um novo link informando sua URL e categoria.
-  **Observação**: O título é obtido automaticamente. Quando o título não puder ser obtido, será exibido um diálogo para que você adicione o título manualmente.
-* **Editar Link**: Permite editar o título de um link existente e sua URL.
-* **Remover Link**: Permite remover um link da lista.
-* **Exportar links**: Permite a exportação dos links e categorias salvos no arquivo json.
-* **Importar links**: Permite a importação dos links e categorias salvos anteriormente para o arquivo json.
-* **Ordenar Links**: Permite ordenar os links em ordem alfabética.
+* **Abrir Link**: Abre o link no navegador padrão.
 
-### Atalhos
+  > Pressionar `Enter` também abre o link.
 
-Algumas opções estão disponíveis através de atalhos diretos na interface. São elas:
+* **Adicionar Link**: Permite inserir uma nova URL e sua categoria.
 
-* **Abrir link, `alt+B`**: Abre o link selecionado no navegador padrão do sistema.
-   **Observação**: Pressionando Enter sobre o link selecionado, o mesmo é aberto no navegador padrão do sistema.
-* **Adicionar link, `alt+A`**: Permite adicionar um novo link informando sua URL e categoria.
-   **Observação**: O título é obtido automaticamente. Quando o título não puder ser obtido, será exibido um diálogo para que você adicione o título manualmente.
-* **Editar link, `alt+E`**: Permite editar o título de um link existente e sua URL.
-   **Observação**: O `F2` pode ser utilizado como tecla de atalho.
-* **Excluir link, `alt+L`**: Permite remover um link da lista.
-   **Observação**: O atalho `Del` pode ser utilizado como tecla de atalho.
-* **Adicionar categoria, `alt+D`**: Permite a adição de uma categoria à lista.
-* **Sair, `alt+S`**: Encerra o diálogo. Você também pode usar a tecla "Escape" ou Alt+F4.
+  > O título será obtido automaticamente. Se não for possível, você poderá informá-lo manualmente.
 
-## Diálogo Adicionar Novo Link
+* **Editar Link**: Modifica título e URL de um link existente.
 
-1. **Categoria**: Uma caixa de seleção onde você pode escolher a categoria desejada.
-2. **Campo para adição da URL do link**: Uma caixa de texto onde você pode colar a URL.
-   **Observação**: Caso já tenha copiado a URL, ela será colocada automaticamente na caixa de edição.
-3. **OK, `alt+O`**: Adiciona o link na lista.
-   **Observação**: O título é obtido automaticamente. Quando o título não puder ser obtido, será exibido um diálogo para que você adicione o título manualmente.
-4. **Cancelar, `alt+C`**: Encerra o diálogo. Você também pode usar a tecla `Escape` ou `Alt+F4`.
+* **Remover Link**: Exclui o link selecionado.
 
-## Diálogo Editar link
+* **Exportar Links** / **Importar Links**: Igual às opções da categoria.
 
-1. **Categoria**: Uma caixa de seleção onde você pode escolher a categoria desejada.
-   Ao selecionar outra categoria, o link será salvo na nova categoria selecionada.
-2. **Campo para edição do título do URL**: Uma caixa de texto onde você pode editar o título associado ao URL.
-3. **Campo para edição da URL**: Uma caixa de texto onde você pode editar o URL.
-4. **OK, `Alt+O`**: Salva as modificações realizadas.
-5. **Cancelar, `Alt+C`**: Encerra o diálogo. Você também pode usar a tecla `Escape` ou `Alt+F4`.
+* **Ordenar Links**: Organiza os links em ordem alfabética.
 
-## Agradecimentos
+### ⌨️ Atalhos
 
-Agradeço a Rue Fontes e Ângelo Abrantes pelos testes e dicas para melhoria deste projeto, e a Marlon Brandão de Sousa por compartilhar generosamente seu workflow, que foi crucial para a eficiência e qualidade do projeto.
+Os seguintes atalhos estão disponíveis:
 
-### Tradutores
+| Função              | Atalho                     |
+| ------------------- | -------------------------- |
+| Abrir Link          | `Alt+B`                    |
+| Adicionar Link      | `Alt+A`                    |
+| Editar Link         | `Alt+E` ou `F2`            |
+| Excluir Link        | `Alt+L` ou `Del`           |
+| Adicionar Categoria | `Alt+D`                    |
+| Sair                | `Alt+S`, `Esc` ou `Alt+F4` |
 
-* **árabe** por Ahmed Bakr.
-* **português (Brasil)** por Edilberto Fonseca.
-* **Russo (Rússia)** por Valentin Kupriyanov.
-* **turco (Turquia)** por Umut KORKMAZ.
-* **ucraniano (Ucrânia)** por Heorhii Halas.
+## ➕ Diálogo "Adicionar Novo Link"
+
+1. **Categoria**: Selecione a categoria desejada.
+2. **URL**: Cole ou digite o endereço do link.
+
+   > Se você já tiver copiado uma URL, ela será colada automaticamente.
+3. **OK (`Alt+O`)**: Adiciona o link.
+
+   > O título será buscado automaticamente. Caso não seja possível, você poderá inseri-lo manualmente.
+4. **Cancelar (`Alt+C`)**: Fecha o diálogo (`Esc` ou `Alt+F4` também funcionam).
+
+## 📝 Diálogo "Editar Link"
+
+1. **Categoria**: Ao alterar, o link será movido para a nova categoria.
+2. **Título**: Edite o título do link.
+3. **URL**: Altere o endereço do link.
+4. **OK (`Alt+O`)**: Salva as alterações.
+5. **Cancelar (`Alt+C`)**: Fecha sem salvar (`Esc` ou `Alt+F4` também funcionam).
+
+## 🙏 Agradecimentos
+
+Um agradecimento especial à **Rue Fontes** e ao **Ângelo Abrantes** pelos testes realizados e pelas sugestões valiosas que contribuíram significativamente para a melhoria deste projeto.
+
+Agradeço também ao **Marlon Brandão de Sousa**, por compartilhar generosamente seu workflow, o que foi crucial para garantir a eficiência e qualidade do desenvolvimento.
+
+## 🌍 Tradutores
+
+* 🇸🇦 **Árabe** — Ahmed Bakr
+* 🇧🇷 **Português (Brasil)** — Edilberto Fonseca
+* 🇵🇹 **Português (Portugal)** — Edilberto Fonseca
+* 🇷🇺 **Russo (Rússia)** — Valentin Kupriyanov
+* 🇹🇷 **Turco (Turquia)** — Umut KORKMAZ
+* 🇺🇦 **Ucraniano (Ucrânia)** — Heorhii Halas
