@@ -2,7 +2,7 @@ import inspect
 import itertools
 from collections import OrderedDict
 
-from ..decorator import decorator
+from decorator import decorator
 
 
 class ValidationFailure(Exception):
@@ -47,7 +47,8 @@ def func_args_as_dict(func, args, kwargs):
         )
     )
     return OrderedDict(
-        list(zip(arg_names, args)) + list(kwargs.items())
+        list(zip(arg_names, args)) +
+        list(kwargs.items())
     )
 
 
