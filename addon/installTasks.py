@@ -1,18 +1,15 @@
 # -*- coding: UTF-8 -*-
 
-# Description: This script is part of a Favorite Links add-on for NVDA (NonVisual Desktop Access).
-#              It handles the installation process by moving the existing json file to a new location.
-#              The script checks if the json file exists in the current configuration path and renames
-#              it to ensure compatibility with pending installations.
+"""
+Author: Edilberto Fonseca <edilberto.fonseca@outlook.com>
+Copyright: (C) 2025 Edilberto Fonseca
 
-# Author: Edilberto Fonseca
-# Email: <edilberto.fonseca@outlook.com>
+This file is covered by the GNU General Public License.
+See the file COPYING for more details or visit:
+https://www.gnu.org/licenses/gpl-2.0.html
 
-# Copyright (C) 2022-2025 Edilberto Fonseca
-# This file is covered by the GNU General Public License.
-# See the file COPYING for more details or visit https://www.gnu.org/licenses/gpl-2.0.html.
-
-# Date of creation: 03/03/2023.
+Created on: 03/03/2023.
+"""
 
 import os
 
@@ -21,7 +18,7 @@ import config
 import globalVars
 from gui import messageBox
 
-# Initializes the translation
+# Initialize translation support
 addonHandler.initTranslation()
 
 # Get the name of the addon defined in the manifest.

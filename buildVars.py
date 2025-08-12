@@ -29,7 +29,7 @@ addon_info = {
 	"addon_description": _(
 		"""This add-on allows you to save, edit and remove links to frequently visited pages. Shortcut Windows+Alt+K."""),
 	# version
-	"addon_version": "2025.5.5",
+	"addon_version": "2025.6.5",
 	# Author(s)
 	"addon_author": "Edilberto Fonseca <edilberto.fonseca@outlook.com>",
 	# URL for the add-on documentation support
