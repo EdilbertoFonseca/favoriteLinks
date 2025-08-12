@@ -1,17 +1,16 @@
 # -*- coding: UTF-8 -*-
 
-# Description: Module for add-on settings panel
+"""
+Author: Edilberto Fonseca <edilberto.fonseca@outlook.com>
+Copyright: (C) 2025 Edilberto Fonseca
 
-# Author: Edilberto Fonseca
-# Email: <edilberto.fonseca@outlook.com>
-# Copyright (C) 2024-2025 Edilberto Fonseca
+This file is covered by the GNU General Public License.
+See the file COPYING for more details or visit:
+https://www.gnu.org/licenses/gpl-2.0.html
 
-# This file is covered by the GNU General Public License.
-# See the file COPYING for more details or visit https://www.gnu.org/licenses/gpl-2.0.html.
+Created on: 24/01/2023.
+"""
 
-# Date of creation: 24/05/2024
-
-# Import the necessary modules
 import os
 
 import addonHandler
@@ -20,151 +19,161 @@ import gui
 import wx
 from gui import guiHelper
 from gui.settingsDialogs import SettingsPanel
-from logHandler import log
+from logHandler import log  # Use logHandler.log for consistent logging
 
-from .varsConfig import ADDON_SUMMARY, ourAddon, initConfiguration
+from .jsonConfig import json_config  # Import the new json_config instance
+from .varsConfig import ADDON_SUMMARY, ourAddon
 
-# Initializes the translation
+# Initialize translation support
 addonHandler.initTranslation()
-
-# Initialize settings
-initConfiguration()
-
-# Initializing path and index variables
-dirJsonFile = os.path.join(os.path.dirname(__file__), "favorite_links.json")
-firstJsonFile = ""
-altJsonsFile = ""
-indexJson = 0
-pathList = []
 
 
 class FavoriteLinksSettingsPanel(SettingsPanel):
 	title = ADDON_SUMMARY
 
 	def makeSettings(self, settingsSizer):
-		# Initializing variables with default values
-		self.dirJsonFile = dirJsonFile
-
-		# Initializing JSON file paths
-		self.firstJsonFile = firstJsonFile
-		self.altJsonsFile = altJsonsFile
-		self.indexJson = indexJson
-		self.pathList = pathList
-
-		# Load settings from files or use default values
-		try:
-			if config.conf[ourAddon.name]["xx"]:
-				self.indexJson = int(config.conf[ourAddon.name]["xx"])
-				if self.indexJson == 0:
-					self.firstJsonFile = config.conf[ourAddon.name]["path"]
-				else:
-					self.firstJsonFile = config.conf[ourAddon.name]["altPath"]
-				self.altJsonsFile = config.conf[ourAddon.name]["altPath"]
-		except KeyError:
-			# In case of error, use default values
-			self.firstJsonFile = os.path.join(os.path.dirname(__file__), "favorite_links.json")
-			self.altJsonsFile = ""
-
-		settingsSizerHelper = gui.guiHelper.BoxSizerHelper(self, sizer=settingsSizer)
-		pathBoxSizer = wx.StaticBoxSizer(wx.HORIZONTAL, self, label=_("Path of json files:"))
-		pathGroup = guiHelper.BoxSizerHelper(self, sizer=pathBoxSizer)
-		settingsSizerHelper.addItem(pathGroup)
-		settingsSizerHelper = gui.guiHelper.BoxSizerHelper(self, sizer=settingsSizer)
-		pathBoxSizer = wx.StaticBoxSizer(wx.HORIZONTAL, self, label=_("Path of json files:"))
-		pathGroup = guiHelper.BoxSizerHelper(self, sizer=pathBoxSizer)
-		settingsSizerHelper.addItem(pathGroup)
-
-		# Now initializing pathList correctly
-		self.pathList = [self.firstJsonFile, self.altJsonsFile]
-
-		# If pathList is still empty or contains invalid values, initialize with default paths
-		if not self.pathList or not os.path.exists(self.firstJsonFile):
-			self.pathList = [self.firstJsonFile, self.altJsonsFile]
-
-		# Translators: Name of combobox with the Favorite Links files path
-		pathBoxSizer = wx.StaticBoxSizer(wx.HORIZONTAL, self, label=_("Path of json files:"))
+		settingsSizerHelper = guiHelper.BoxSizerHelper(self, sizer=settingsSizer)
+				# JSON File Path Settings (MODIFIED)
+		pathBoxSizer = wx.StaticBoxSizer(
+			wx.HORIZONTAL, self, label=_("Path of file json:")
+		)
 		pathBox = pathBoxSizer.GetStaticBox()
 		pathGroup = guiHelper.BoxSizerHelper(self, sizer=pathBoxSizer)
 		settingsSizerHelper.addItem(pathGroup)
+
+		# Populate pathList from json_config
+		self.pathList = [json_config.first_json_file]
+		if json_config.alt_json_file:
+			self.pathList.append(json_config.alt_json_file)
+
+		# Ensure pathList is not empty if both paths are empty (shouldn't happen with json_config)
+		if not self.pathList:
+			self.pathList.append(json_config.default_path)
+
 		self.pathNameCB = pathGroup.addLabeledControl("", wx.Choice, choices=self.pathList)
-		self.pathNameCB.SetSelection(self.indexJson)
+		# Set selection, ensuring it's within bounds of current pathList
+		self.pathNameCB.SetSelection(min(json_config.index_json, len(self.pathList) - 1))
 
-		# Translators: This is the label for the button used to add or change a Favorite Links.db location
 		changePathBtn = wx.Button(pathBox, label=_("&Select or add a directory"))
-		changePathBtn.Bind(wx.EVT_BUTTON, self.OnDirectory)
+		pathGroup.sizer.Add(changePathBtn, 0, wx.ALL, 5) # Add button to sizer
+		changePathBtn.Bind(wx.EVT_BUTTON, self.onDirectory)
 
-	def OnDirectory(self, event):
-		self.Freeze()
-		lastDir = os.path.dirname(__file__)
-		dDir = lastDir
-		dFile = "favorite_links.json"
-		frame = wx.Frame(None, -1, 'teste')
-		frame.SetSize(0, 0, 200, 50)
-		dlg = wx.FileDialog(
-			frame,
-			_("Choose where to save the json file"),
-			dDir,
-			dFile,
-			wildcard=_("Json files (*.json)"),
-			style=wx.FD_SAVE
+		# Browser Path Settings (NEW)
+		browserPathBoxSizer = wx.StaticBoxSizer(
+			wx.HORIZONTAL, self, label=_("Secondary browser path:")
 		)
-		if dlg.ShowModal() == wx.ID_OK:
-			fname = dlg.GetPath()
-			index = self.pathNameCB.GetSelection()
-			if index == 0:
-				if os.path.exists(fname):
-					self.firstJsonFile = fname
-				else:
-					os.rename(self.firstJsonFile, fname)
-					self.firstJsonFile = fname
-			else:
-				if os.path.exists(fname):
-					self.altJsonsFile = fname
-				else:
-					if self.altJsonsFile == "":
-						self.altJsonsFile = fname
-					else:
-						os.rename(self.altJsonsFile, fname)
-						self.altJsonsFile = fname
-			self.dirJsonFile = fname
+		browserPathBox = browserPathBoxSizer.GetStaticBox()
+		browserPathGroup = guiHelper.BoxSizerHelper(self, sizer=browserPathBoxSizer)
+		settingsSizerHelper.addItem(browserPathGroup)
 
-			# Update the combobox choices and selection
-			self.pathList = [self.firstJsonFile, self.altJsonsFile]
-			self.pathNameCB.Set(self.pathList)
-			self.pathNameCB.SetSelection(index)
+		# Assume we store the browser path in json_config
+		self.browserPath = json_config.browser_path or ''  # Fallback to empty string if not set
+		self.browserPathCB = browserPathGroup.addLabeledControl("", wx.TextCtrl, value=self.browserPath)
 
-		dlg.Close()
-		self.onPanelActivated()
-		self._sendLayoutUpdatedEvent()
-		self.Thaw()
-		event.Skip()
+		# Button to select the browser path
+		changeBrowserPathBtn = wx.Button(browserPathBox, label=_("Select &browser path"))
+		browserPathGroup.sizer.Add(changeBrowserPathBtn, 0, wx.ALL, 5)  # Add button to sizer
+		changeBrowserPathBtn.Bind(wx.EVT_BUTTON, self.onSelectBrowserPath)
+
+	def onDirectory(self, event):
+		"""
+		Selects a directory to save the Favorite Links JSON file.
+		"""
+		self.Freeze() # Freeze UI updates for performance
+
+		try:
+			# Use gui.mainFrame as the parent for the FileDialog
+			frame = gui.mainFrame
+			
+			# Get initial directory and filename for the dialog
+			current_path = json_config.get_current_json_path()
+			initial_dir = os.path.dirname(current_path) if current_path else os.path.dirname(__file__)
+			initial_file = os.path.basename(current_path) if current_path else "favorite_links.json"
+
+			dlg = wx.FileDialog(
+				frame,
+				_("Choose where to save the file json"),
+				initial_dir,
+				initial_file,
+				wildcard=_("JSON files (*.json)|*.json"),
+				style=wx.FD_SAVE | wx.FD_OVERWRITE_PROMPT # Add overwrite prompt
+			)
+
+			if dlg.ShowModal() == wx.ID_OK:
+				fname = dlg.GetPath()
+				current_selection_index = self.pathNameCB.GetSelection()
+
+				# Update json_config internal state
+				json_config.index_json = current_selection_index
+				json_config.update_json_file_path(fname) # Let json_config handle file renaming/path updates
+
+				# Refresh the wx.Choice control with updated paths from json_config
+				self.pathList = [json_config.first_json_file]
+				if json_config.alt_json_file:
+					self.pathList.append(json_config.alt_json_file)
+				
+				# Ensure pathList is not empty
+				if not self.pathList:
+					self.pathList.append(json_config.default_path)
+
+				self.pathNameCB.Set(self.pathList)
+				self.pathNameCB.SetSelection(current_selection_index) # Keep current selection
+
+				# Re-activate panel and update layout (might not be strictly necessary, but good practice)
+				self.onPanelActivated()
+				self._sendLayoutUpdatedEvent()
+
+		finally:
+			dlg.Destroy() # Destroy the dialog
+			self.Thaw() # Unfreeze UI updates
+			event.Skip() # Allow default event processing
+
+	def onSelectBrowserPath(self, event):
+		"""
+Select the browser path.
+		"""
+		self.Freeze()  # Freeze UI updates for performance
+
+		try:
+			# Use gui.mainFrame as the parent for the FileDialog
+			frame = gui.mainFrame
+			
+			# Use wx.FileDialog to let the user select the browser's executable
+			dlg = wx.FileDialog(
+				frame,
+				_("Choose browser path"),
+				style=wx.FD_OPEN | wx.FD_FILE_MUST_EXIST,
+				wildcard=_("Executable files (*.exe)|*.exe"),
+			)
+
+			if dlg.ShowModal() == wx.ID_OK:
+				selectedPath = dlg.GetPath()
+				self.browserPath = selectedPath  # Update the browser path
+
+				# Update the text field with the selected path
+				self.browserPathCB.SetValue(selectedPath)
+
+				# Update the configuration
+				json_config.browser_path = selectedPath  # Assume json_config has browser_path
+
+		finally:
+			dlg.Destroy()  # Destroy the dialog
+			self.Thaw()  # Unfreeze UI updates
+			event.Skip()  # Allow default event processing
 
 	def onSave(self):
 		"""
-Saves the options to the NVDA configuration file.
-
-		Raises:
-			ValueError: If the path to the first JSON file is invalid or does not exist.
-			ValueError: If the path to the alternate JSON file is invalid or does not exist.
+		Saves the options to the NVDA configuration file.
 		"""
+		# Update selected index and save paths using json_config
+		json_config.index_json = self.pathNameCB.GetSelection()
+		json_config.save_config() # This call saves the path and altPath to config.conf
 
-		global dirJsonFile, firstJsonFile, altJsonsFile, indexJson
+		# Save browser path
+		json_config.browser_path = self.browserPath  # Save browser path
+		json_config.save_config()  # Save again to update browser_path
 
-		# Check paths before saving
-		#if not firstJsonFile or not os.path.exists(os.path.dirname(firstJsonFile)):
-			#logger.error(f"Invalid path: {firstJsonFile}")
-			#raise ValueError("Invalid path for the first JSON file.")
-
-		if altJsonsFile and not os.path.exists(os.path.dirname(altJsonsFile)):
-			log.error(f"Invalid path: {altJsonsFile}")
-			raise ValueError("Invalid path for the alternative JSON file.")
-
-		config.conf[ourAddon.name]["path"] = self.firstJsonFile
-		config.conf[ourAddon.name]["altPath"] = self.altJsonsFile
-		config.conf[ourAddon.name]["xx"] = str(self.pathNameCB.GetSelection())
-		indexJson = self.pathNameCB.GetSelection()
-		dirJsonFile = self.pathList[	indexJson]
-		# Reactivate profiles triggers
+		# Reactivate profiles triggers (important for NVDA config system)
 		config.conf.enableProfileTriggers()
 
 	def onPanelActivated(self):
