@@ -1,283 +1,216 @@
 # -*- coding: UTF-8 -*-
 
-# Description: Module for Business Logic
+"""
+Author: Edilberto Fonseca <edilberto.fonseca@outlook.com>
+Copyright: (C) 2025 Edilberto Fonseca
 
-# Author: Edilberto Fonseca
-# Email: <edilberto.fonseca@outlook.com>
-# Copyright (C) 2024-2025 Edilberto Fonseca
+This file is covered by the GNU General Public License.
+See the file COPYING for more details or visit:
+https://www.gnu.org/licenses/gpl-2.0.html
 
-# This file is covered by the GNU General Public License.
-# See the file COPYING for more details or visit https://www.gnu.org/licenses/gpl-2.0.html.
+Created on: 11/04/2024.
+"""
 
-# Date of creation: 11/04/2024.
-
-# import the necessary modules.
 import json
+import os
 import socket
+import sys
 from json.decoder import JSONDecodeError
 from urllib.error import URLError
 from urllib.request import urlopen
 
 import addonHandler
-import api
 import ui
 import wx
+from api import getClipData
+from logHandler import log
 
-from .configPanel import dirJsonFile
-from .lib import validators
-from .lib.bs4 import BeautifulSoup, UnicodeDammit
+from .jsonConfig import json_config
+from .varsConfig import ourAddon, addonPath
 
-# Initializes the translation
+# Initialize translation support
 addonHandler.initTranslation()
+
+# Add the lib/ folder to sys.path (only once)
+libPath = os.path.join(addonPath, "lib")
+if libPath not in sys.path:
+	sys.path.insert(0, libPath)
+
+try:
+	import validators
+	from bs4 import BeautifulSoup
+	from bs4.dammit import UnicodeDammit
+except ImportError as e:
+	log.error(f"[{ourAddon}] Erro ao importar bibliotecas: {e}")
+	raise ImportError(_("Missing required libraries: validators, BeautifulSoup e UnicodeDammit"))
 
 
 class LinkManager:
 
-	def __init__(self, json_file_path=dirJsonFile):
-		self.json_file_path = json_file_path
+	def __init__(self):
+		self.json_file_path = json_config.get_current_json_path()
 		self.data = {}
+		log.debug(f"[{ourAddon.name}] LinkManager inicializado. Caminho do JSON: '{self.json_file_path}'")
+		self.load_json()
 
-	def load_json(self, ui_instance=None):
+	def load_json(self):
 		"""
-		Loads JSON data from a file and updates the UI (if provided).
-		This function attempts to load JSON data from the file specified by
-		`self.json_file_path`. If successful, the data is stored in the
-		`self.data` attribute and the categories are populated into the
-		`ui_instance.category` combobox (if provided).
-
-		Args:
-		ui_instance (object, optional): A reference to a UI object that has
-			attributes `category` (a combobox) and potentially `onCategorySelected`
-			(a callback function). Defaults to None.
-
-		Returns:
-		None
-
-		Raises:
-		FileNotFoundError: If the JSON file is not found.
-		json.JSONDecodeError: If the JSON data is invalid.
-
-		Excepetion Handling:
-		- In case of `FileNotFoundError`, an empty dictionary is assigned to
-		`self.data` and the links are saved using `self.save_links()`.
-		- In case of `json.JSONDecodeError`, if `ui_instance` is provided, a message
-		is displayed indicating an error decoding the JSON data. The links are
-		also saved using `self.save_links()`.
+		Carrega os dados do arquivo JSON para a memória e garante que a estrutura está limpa.
 		"""
-
 		try:
-			with open(self.json_file_path, 'r') as file:
-				self.data = json.load(file)
+			with open(self.json_file_path, 'r', encoding='utf-8') as file:
+				raw_data = json.load(file)
+
+			clean_data = {}
+			for category, links in raw_data.items():
+				valid_links = []
+				if isinstance(links, list):
+					for link in links:
+						if isinstance(link, list) and len(link) == 2:
+							title, url = link
+							if title and url:
+								valid_links.append([title, url])
+				clean_data[category] = valid_links
+
+			self.data = clean_data
 			self.sort_categories()
-			if ui_instance:
-				ui_instance.category.Clear()
-				categories = list(self.data.keys())
-				ui_instance.category.AppendItems(categories)
-				if categories:
-					ui_instance.category.SetSelection(0)
-					if hasattr(ui_instance, 'onCategorySelected') and callable(getattr(ui_instance, 'onCategorySelected')):
-						ui_instance.onCategorySelected(None)
+
 		except FileNotFoundError:
 			self.data = {}
 			self.save_links()
-		except json.JSONDecodeError:
-			if ui_instance:
-				ui_instance.show_message(_("Error decoding JSON. Check the file contents."))
+		except JSONDecodeError:
+			self.data = {}
 			self.save_links()
+			raise JSONDecodeError(_("Error decoding the JSON. Check the file content."), doc='', pos=0)
 
 	def save_links(self):
 		"""
-		Saves the links and categories in a json file.
-
-		Raises:
-			Exception: Returns an error message with the code.
+		Salva os dados da memória para o arquivo JSON.
 		"""
 		try:
-			with open(self.json_file_path, 'w') as file:
-				json.dump(self.data, file, indent=4)
+			with open(self.json_file_path, 'w', encoding='utf-8') as file:
+				json.dump(self.data, file, indent=4, ensure_ascii=False)
 		except Exception as e:
-			raise Exception(_(f"Error saving links: {e}"))
+			raise Exception(_("Error saving the links: {}").format(e))
 
-	def add_category(self, category):
+	def add_category(self, category: str):
 		"""
-		Adds a new category to the system.
-
-		Arg	s:
-			category (str): The name of the new category to add.
-
-		Raises:
-			ValueError: If the category already exists in the system.
+		Adiciona uma nova categoria.
 		"""
+		if not category.strip():
+			raise ValueError(_("The category name cannot be empty!"))
 		if category in self.data:
-			raise ValueError(_("Category already exists!"))
-		self.data[category] = []  # Initialize the category as an empty list
-		self.save_links()  # Save the data after adding the new category
+			raise ValueError(_("The category already exists!"))
+		self.data[category] = []
+		self.sort_categories()
+		self.save_links()
 
-	def get_title_from_url(self, url):
+	def get_title_from_url(self, url: str) -> str:
 		"""
-		Gets the title of a web page from the URL.
-
-		Args:
-			url (str):The URL of the web page from which the title will be taken.
-
-		Returns:
-			str:The page title.
-
-		Raises:
-			Exception:If an error occurs when accessing the URL or trying to extract the title.
+		Obtém o título de uma página web a partir de sua URL.
 		"""
 		try:
-			with urlopen(url) as response:
+			with urlopen(url, timeout=5) as response:
 				soup = BeautifulSoup(response, 'html.parser')
-				title = soup.find('title').get_text().strip()
-				return UnicodeDammit(title).unicode_markup
-		except URLError as e:
-			ui.message(f"Error fetching title: {e}")
-			return self.prompt_for_title(url)
+				title_tag = soup.find('title')
+				if title_tag:
+					title = title_tag.get_text().strip()
+					return UnicodeDammit(title).unicode_markup
+				return _("Unknown title")
+		except (URLError, socket.timeout) as e:
+			log.error(f"Error retrieving the page title for '{url}': {e}")
+			raise URLError(_("Failed to get title. Please enter one manually."))
 
-	def prompt_for_title(self, url):
+	def add_link_to_category(self, category: str, title: str, url: str):
 		"""
-			Prompts the user to enter a title for the given URL.
-			Opens a dialog box for the user to enter the title manually.
+		Adiciona um link a uma categoria existente.
+		"""
+		if category not in self.data:
+			self.data[category] = []
+		
+		if any(link[1] == url for link in self.data[category]):
+			raise ValueError(_("The link already exists in the category!"))
+		
+		self.data[category].append([title, url])
+		self.data[category].sort(key=lambda x: x[0].lower())
+		self.save_links()
 
-					Parameters:
-			- url (str): OURL for which the title is requested.
-
-			Returns:
-			- str:The title entered by the user or 'Unknown Title' if the user cancels.
-			"""
-
-		title = _("Enter a title for the URL:")
-		caption = _("Unknown Title for URL")
-
-		# Creates a dialog box to request the title
-		dlg = wx.TextEntryDialog(None, title, caption, value="")
-		if dlg.ShowModal() == wx.ID_OK:
-			user_input = dlg.GetValue()
-			dlg.Destroy()
-			return user_input.strip() if user_input else _("Unknown Title")
+	def edit_link_in_category(self, category: str, old_title: str, new_title: str, new_url: str):
+		"""
+		Edita um link existente em uma categoria.
+		"""
+		if category not in self.data:
+			raise KeyError(_("Category does not exist."))
+		
+		for link in self.data[category]:
+			if link[0] == old_title:
+				link[0] = new_title
+				link[1] = new_url
+				break
 		else:
-			dlg.Destroy()
-			return _("Unknown Title")
+			raise ValueError(_("Link not found to edit."))
 
-	def add_link_to_category(self, category, title, url):
+		self.data[category].sort(key=lambda x: x[0].lower())
+		self.save_links()
+
+	def remove_link_from_category(self, category: str, title: str):
 		"""
-		Adds a link to a specific category.
-
-		Args:
-			category (str):The name of the category where the link will be added.
-			title (str): The title of the link.
-			url (str):The URL of the link.
-
-		Raises:
-			ValueError: If the link already exists in the category.
+		Remove um link de uma categoria.
 		"""
-		if category in self.data:
-			if not any(link[1] == url for link in self.data[category]):
-				self.data[category].append([title, url])
-			else:
-				raise ValueError(_("Link already exists in the category!"))
-		else:
-			self.data[category] = [[title, url]]
+		if category not in self.data:
+			return
 
-	def edit_link_in_category(self, category, old_title, new_title, new_url):
+		self.data[category] = [link for link in self.data[category] if link[0] != title]
+		self.save_links()
+
+	def edit_category_name(self, old_name: str, new_name: str):
 		"""
-		Edit a specific link within a category.
-
-		Args:
-			category (str):The name of the category where the link will be edited.
-			old_title (str):The current title of the link to be edited.
-			new_title (str):The new link title.
-			new_url (str): The new link URL.
+		Renomeia uma categoria.
 		"""
-		if category in self.data:
-			for link in self.data[category]:
-				if link[0] == old_title:
-					link[0] = new_title
-					link[1] = new_url
-					break
+		if not new_name.strip():
+			raise ValueError(_("The category name cannot be empty!"))
+		if new_name in self.data:
+			raise ValueError(_("A category with this name already exists!"))
+		if old_name not in self.data:
+			raise KeyError(_("Old category name not found."))
 
-	def remove_link_from_category(self, category, title):
+		self.data[new_name] = self.data.pop(old_name)
+		self.sort_categories()
+		self.save_links()
+
+	def delete_category(self, category: str):
 		"""
-		Removes a specific link from a category.
-
-		Args:
-			category (str): The name of the category from which the link will be removed.
-			title (str): The title of the link to be removed.
+		Deleta uma categoria e todos os seus links.
 		"""
-		if category in self.data:
-			self.data[category] = [link for link in self.data[category] if link[0] != title]
-
-	def edit_category_name(self, old_name, new_name):
-		"""
-		Edit the name of an existing category.
-
-		Args:
-			old_name (str): The current name of the category.
-			new_name (str): The new name for the category.
-		"""
-		if old_name in self.data:
-			self.data[new_name] = self.data.pop(old_name)
-
-	def delete_category(self, category):
-		"""
-		Removes a specific category from the system.
-
-		Args:
-			category (str): The name of the category to remove.
-		"""
-
 		if category in self.data:
 			del self.data[category]
+			self.save_links()
 
-	def get_url_from_clipboard(self):
+	def get_url_from_clipboard(self) -> str:
 		"""
-		Gets a valid URL from the clipboard.
-
-		Returns:
-			str: Valid clipboard URL if available, otherwise an empty string.
+		Obtém uma URL válida da área de transferência.
 		"""
-
 		try:
-			clipboard_data = api.getClipData()
+			clipboard_data = getClipData()
 			if clipboard_data and self.is_valid_url(clipboard_data):
 				return clipboard_data
 		except OSError as e:
-			print(f"Error accessing clipboard: {e}")
+			log.error("Error accessing the clipboard: {}".format(e))
 		return ""
 
-	def is_valid_url(self, url):
-		"""
-		Checks whether the provided URL is valid.
-
-		Args:
-			url (str): The URL to check.
-
-		Returns:
-			bool: True if the URL is valid, otherwise False.
-		"""
-
+	def is_valid_url(self, url: str) -> bool:
 		return validators.url(url)
 
-	def merge_links(self, imported_data):
+	def merge_links(self, imported_data: dict):
 		"""
-		Merges the imported links with the existing links in the system.
-
-		Args:
-			imported_data (dict): Imported data containing links to merge.
-			The dictionary should have categories as keys
-			and lists of (title, url) pairs as values.
-
-		Raises:
-			ValueError: If the imported data format is invalid.
+		Mescla dados importados com os links existentes.
 		"""
-
 		if not isinstance(imported_data, dict):
-			raise ValueError("The imported_data must be a dictionary with categories as keys.")
+			raise ValueError(_("The imported data must be a dictionary with categories as keys."))
 
 		for category, links in imported_data.items():
 			if not isinstance(links, list) or not all(isinstance(link, list) and len(link) == 2 for link in links):
-				raise ValueError(f"The links for category '{category}' must be a list of [title, url] pairs.")
+				raise ValueError(_("The links in the category '{}' must be lists containing [title, url].".format(category)))
 
 			if category in self.data:
 				existing_urls = {link[1] for link in self.data[category]}
@@ -287,99 +220,54 @@ class LinkManager:
 			else:
 				self.data[category] = links
 
-	def export_links(self, export_path):
+		self.sort_categories()
+		self.save_links()
+
+	def export_links(self, export_path: str):
 		"""
-		Exports saved links to a specified JSON file.
-
-		Args:
-			export_path (str):The path of the JSON file where the links will be exported.
-
-		Raises:
-			Exception:If an error occurs while exporting the links.
+		Exporta todos os links para um arquivo JSON.
 		"""
-
 		try:
-			with open(export_path, 'w') as file:
-				json.dump(self.data, file, indent=4)
+			with open(export_path, 'w', encoding='utf-8') as file:
+				json.dump(self.data, file, indent=4, ensure_ascii=False)
 		except Exception as e:
-			raise Exception(f"Error exporting links: {e}")
+			raise Exception(_("Error exporting the links: {}".format(e)))
 
-	def import_links(self, import_path):
+	def import_links(self, import_path: str):
 		"""
-		Imports links from a specified JSON file and merges with existing links.
-
-		Args:
-			import_path (str): The path of the JSON file to be imported.
-
-		Raises:
-			FileNotFoundError: If the specified file does not exist.
-			JSONDecodeError: If there is an error decoding the JSON data.
-			Exception: For other exceptions that might occur.
+		Importa links de um arquivo JSON.
 		"""
-
 		try:
-			with open(import_path, 'r') as file:
+			with open(import_path, 'r', encoding='utf-8') as file:
 				imported_data = json.load(file)
 			self.merge_links(imported_data)
-			self.save_links()
-		except FileNotFoundError as e:
-			raise FileNotFoundError(f"The file at {import_path} was not found: {e}")
-		except JSONDecodeError as e:
-			raise JSONDecodeError(f"Error decoding JSON from the file at {import_path}: {e}")
+		except FileNotFoundError:
+			raise FileNotFoundError(_("File not found: {}".format(import_path)))
+		except JSONDecodeError:
+			raise ValueError(_("Error decoding JSON from file: {}".format(import_path)))
 		except Exception as e:
-			raise Exception(f"An unexpected error occurred while importing links: {e}")
+			raise Exception(_("Unexpected error importing the links: {}".format(e)))
 
-	def is_internet_connected(self, host='8.8.8.8', porta=53, timeout=3):
+	def is_internet_connected(self, host='8.8.8.8', port=53, timeout=3) -> bool:
 		"""
-		Checks if there is an active internet connection.
-		This function tries to send a GET request to a specified URL to determine if there is an active internet
-		connection. By default, it checks the connection to http://www.google.com with a timeout of 5 seconds.
-
-		Parameters:
-		- url (str): The URL to test the internet connection (default is "http://www.google.com").
-		- timeout (int): The maximum time in seconds to wait for a response (default is 5 seconds).
-
-		Returns:
-		- bool: True if the internet connection is active, False otherwise.
+		Verifica se há conexão com a internet.
 		"""
 		try:
-			# Try to establish a connection to the server using socket
-			socket.create_connection((host, porta), timeout=timeout)
-			return True  # Active connection.
-		except socket.timeout:
-			return False  # No active connection. The server is taking a long time to respond.
-		except socket.gaierror:
-			return False  # Error: Problem with hostname resolution.
-		except OSError as e:
-			# Catch OSError errors, including WinError
-			if e.errno == 10065:
-				return False  # Error: Network cable disconnected or network inaccessible (WinError 10065).
-			else:
-				return False  # Unexpected error.
-		except ConnectionRefusedError:
-			return False  # Error: Connection refused. The host may not be accepting connections.
+			socket.create_connection((host, port), timeout=timeout)
+			return True
+		except (socket.timeout, socket.gaierror, ConnectionRefusedError, OSError):
+			return False
 
-	def sort_json(self):
+	def sort_all_links_and_save(self):
 		"""
-		Loads and sorts the contents of the JSON file.
-
-		The function loads data from the JSON file, sorts the links in each category in order
-		alphabetically based on the title (first element of each link), and saves the data
-		sorted back into the JSON file.
-				"""
-
-		with open(self.json_file_path, 'r') as file:
-			data = json.load(file)
-		# Iterate over the categories and order the links within each category
-		for category, links in data.items():
-			# Sort links alphabetically based on title (first element of each link)
-			data[category] = sorted(links, key=lambda x: x[0].lower())
-		# Save sorted data back to JSON file
-		with open(self.json_file_path, "w") as file:
-			json.dump(data, file, indent=4)
+		Ordena todos os links em todas as categorias.
+		"""
+		for category, links in self.data.items():
+			self.data[category] = sorted(links, key=lambda x: x[0].lower())
+		self.save_links()
 
 	def sort_categories(self):
 		"""
-		Sorts the categories in alphabetical order.
+		Ordena as categorias em ordem alfabética.
 		"""
 		self.data = {key: self.data[key] for key in sorted(self.data.keys(), key=str.lower)}

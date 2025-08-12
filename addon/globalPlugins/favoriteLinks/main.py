@@ -1,20 +1,24 @@
 # -*- coding: UTF-8 -*-
 
-# Description: This add-on aims to: Save, edit and remove links from a list.
+"""
+Author: Edilberto Fonseca <edilberto.fonseca@outlook.com>
+Copyright: (C) 2025 Edilberto Fonseca
 
-# Author: Edilberto Fonseca
-# Email: <edilberto.fonseca@outlook.com>
-# Copyright (C) 2022-2025 Edilberto Fonseca
+This file is covered by the GNU General Public License.
+See the file COPYING for more details or visit:
+https://www.gnu.org/licenses/gpl-2.0.html
 
-# This file is covered by the GNU General Public License.
-# See the file COPYING for more details or visit https://www.gnu.org/licenses/gpl-2.0.html.
+Created on: 11/04/2024
+"""
 
-# Date of creation: 11/04/2024.
-
-# import the necessary modules.
+import os
+import urllib.error
 import webbrowser
+from urllib.error import URLError
+from webbrowser import BackgroundBrowser
 
 import addonHandler
+import config
 import gui
 import queueHandler
 import ui
@@ -23,12 +27,13 @@ from gui import guiHelper, mainFrame, messageBox
 from logHandler import log
 
 from .addLinks import AddLinks
-from .configPanel import dirJsonFile
+from .configPanel import FavoriteLinksSettingsPanel
 from .editLinks import EditLinks
+from .jsonConfig import json_config
 from .linkManager import LinkManager
-from .varsConfig import ADDON_SUMMARY
+from .varsConfig import ADDON_SUMMARY, ourAddon
 
-# Initializes the translation
+# Initialize translation support
 addonHandler.initTranslation()
 
 
@@ -49,7 +54,9 @@ class FavoriteLinks(wx.Dialog):
 		self.initialized = True
 
 		self.title = title
-		self.link_manager = LinkManager(json_file_path=dirJsonFile)
+
+		# LinkManager no longer needs json_file_path explicitly, it gets it from json_config
+		self.link_manager = LinkManager()
 
 		# Initializes the selected category as an empty string
 		self.selected_category = ""
@@ -79,7 +86,7 @@ class FavoriteLinks(wx.Dialog):
 		self.Bind(wx.EVT_CHAR_HOOK, self.onKeyPress)
 
 		self.category = sizerHelper.addLabeledControl(
-			_("Select a Category"), wx.Choice, choices=[]
+			_("Select a category"), wx.Choice, choices=[]
 		)
 		self.category.Bind(wx.EVT_CHOICE, self.onCategorySelected)
 		self.category.Bind(wx.EVT_CONTEXT_MENU, self.onCategoryContextMenu)
@@ -90,7 +97,6 @@ class FavoriteLinks(wx.Dialog):
 		self.listLinks.Bind(wx.EVT_CONTEXT_MENU, self.onListContextMenu)
 		self.listLinks.Bind(wx.EVT_KEY_DOWN, self.onListKeyPress)
 		self.set_columns()
-		self.link_manager.load_json(self)
 
 		buttons = [
 			(self.labelOpenLinks, self.onOpenLink),
@@ -106,10 +112,12 @@ class FavoriteLinks(wx.Dialog):
 			buttonSizer.addItem(button)
 			self.Bind(wx.EVT_BUTTON, handler, button)
 
-		boxSizer.Add(sizerHelper.sizer, border=10, flag=wx.ALL | wx.EXPAND)
+		boxSizer.Add(sizerHelper.sizer, 1, wx.ALL | wx.EXPAND, 10)  #, border=10, flag=wx.ALL | wx.EXPAND)
 		boxSizer.Add(buttonSizer.sizer, border=5, flag=wx.CENTER)
 		panel.SetSizerAndFit(boxSizer)
 		self.Fit()
+
+		self.update_all_ui()
 
 	def onCategoryContextMenu(self, event):
 		"""
@@ -118,9 +126,9 @@ class FavoriteLinks(wx.Dialog):
 		Args:
 			event (wx.Event): The event triggered by the context menu.
 		"""
-		gui.mainFrame.prePopup()
+		mainFrame.prePopup()
 		self.category.PopupMenu(self.category_context_menu(), self.category.GetPosition())
-		gui.mainFrame.postPopup()
+		mainFrame.postPopup()
 
 	def category_context_menu(self):
 		"""
@@ -152,32 +160,32 @@ class FavoriteLinks(wx.Dialog):
 			event (wx.Event): The event triggered by the context menu.
 		"""
 
-		gui.mainFrame.prePopup()
-		self.listLinks.PopupMenu(self.link_list_context_menu(), self.listLinks.GetPosition())
-		gui.mainFrame.postPopup()
-
-	def link_list_context_menu(self):
-		"""
-Itens do menu wx.ListCtrl.
-
-		Returns:
-			wx.Menu: A menu containing items for adding, editing, deleting, exporting, importing, and ordering links.
-		"""
-
+		mainFrame.prePopup()
 		menu = wx.Menu()
+
 		addLink = menu.Append(wx.ID_ANY, self.labelAddLinks, _("Add a new link to the list."))
 		self.Bind(wx.EVT_MENU, self.onAddLink, addLink)
+
 		editLink = menu.Append(wx.ID_ANY, self.labelEditLink, _("Edit link."))
 		self.Bind(wx.EVT_MENU, self.onEditLink, editLink)
+
 		deleteLink = menu.Append(wx.ID_ANY, self.labelDeleteLink, _("Delete link"))
 		self.Bind(wx.EVT_MENU, self.onDeleteLink, deleteLink)
+
 		exportLinks = menu.Append(wx.ID_ANY, self.labelExportLinks, _("Export links"))
 		self.Bind(wx.EVT_MENU, self.onExportLinks, exportLinks)
+
 		importLinks = menu.Append(wx.ID_ANY, self.labelImportLinks, _("Import links"))
 		self.Bind(wx.EVT_MENU, self.onImportLinks, importLinks)
+
 		sortLinks = menu.Append(wx.ID_ANY, self.labelSortLinks, _("Sort the links alphabetically."))
 		self.Bind(wx.EVT_MENU, self.onSortTheLinksAlphabetically, sortLinks)
-		return menu
+
+		openLink = menu.Append(wx.ID_ANY, _("Open link..."), _("Open links in secondary browser."))
+		self.Bind(wx.EVT_MENU, self.onOpenLinksSecondaryBrowser, openLink)
+
+		self.listLinks.PopupMenu(menu, self.listLinks.GetPosition())
+		mainFrame.postPopup()
 
 	def onListKeyPress(self, event):
 		"""
@@ -202,8 +210,7 @@ Itens do menu wx.ListCtrl.
 
 	def onKeyPress(self, event):
 		"""
-			Handles key press events in the dialog, closing it when Esc is pressed,
-			deleting a link when Delete is pressed, and allowing editing of a link when F2 is pressed.
+			Handles key presses: closes dialog with Esc, deletes with Delete, edits with F2.
 
 		Args:
 			event (wx.Event): The event triggered when pressing a key. If Esc is pressed, the dialog is closed;
@@ -213,10 +220,13 @@ Itens do menu wx.ListCtrl.
 		keyCode = event.GetKeyCode()
 		if keyCode == wx.WXK_ESCAPE:
 			self.onExit(event)
+			return
 		elif keyCode == wx.WXK_DELETE:
 			self.onDeleteLink(event)
+			return
 		elif keyCode == wx.WXK_F2:
 			self.onEditLink(event)
+			return
 		event.Skip()
 
 	def onExportLinks(self, event):
@@ -226,6 +236,8 @@ Itens do menu wx.ListCtrl.
 		Args:
 			event (wx.Event): The event triggered by the export links button.
 		"""
+
+		category = self.category.GetStringSelection()
 
 		with wx.FileDialog(
 			self, message=_("Save export file"), wildcard="JSON files (*.json)|*.json",
@@ -239,12 +251,11 @@ Itens do menu wx.ListCtrl.
 
 				# Translators: Message displayed when completing a link export
 				self.show_message(_("Links exported successfully!"))
-				self.listLinks.SetFocus()
 			except Exception as e:
-				log.error(f"Error exporting links: {e}")
+				log.error("Error exporting links: {}".format(e))
 
 				# Translators: Message displayed when the export fails
-				self.show_message(_(f"Error exporting links: {e}"), _("Error"), wx.OK | wx.ICON_ERROR)
+				self.show_message(_("Error exporting links: {}").format(e), _("Error"), wx.OK | wx.ICON_ERROR)
 
 	def onImportLinks(self, event):
 		"""
@@ -253,6 +264,8 @@ Itens do menu wx.ListCtrl.
 		Args:
 			event (wx.Event): The event triggered by the import links button.
 		"""
+
+		category = self.category.GetStringSelection()
 
 		with wx.FileDialog(
 			self, message=_("Open import file"), wildcard="JSON files (*.json)|*.json",
@@ -263,16 +276,17 @@ Itens do menu wx.ListCtrl.
 			import_path = fileDialog.GetPath()
 			try:
 				self.link_manager.import_links(import_path)
-				self.link_manager.load_json(self)
+				self.link_manager.load_json()
 
 				# Translators: Message displayed when completing a link import
 				self.show_message(_("Links imported successfully!"))
-				self.listLinks.SetFocus()
+				# Updates the interface
+				self.update_all_ui()
 			except Exception as e:
 				log.error("Error importing links: %s", e)
 
 				# Translators: Message displayed when the import fails
-				self.show_message(_(f"Error importing links: {e}"), _("Error"), wx.OK | wx.ICON_ERROR)
+				self.show_message(_("Error importing links: {}").format(e), _("Error"), wx.OK | wx.ICON_ERROR)
 
 	def onOpenLink(self, event):
 		"""
@@ -283,7 +297,6 @@ Itens do menu wx.ListCtrl.
 		"""
 
 		if not self.link_manager.is_internet_connected():
-			# Translators: Message displayed informing the user that there is no connection to the internet
 			self.show_message(_("No active internet connection!"))
 			return
 		self.listLinks.SetFocus()
@@ -292,10 +305,12 @@ Itens do menu wx.ListCtrl.
 			idx = selected_item
 			url = self.listLinks.GetItem(idx, 1).GetText()
 			self.Close()
-			webbrowser.open(url)
+			try:
+				webbrowser.open(url)
+			except Exception as e:
+				log.error(f"Error opening URL: {e}")
+				self.show_message(_("Failed to open link: {}").format(e), _("Error"), wx.OK | wx.ICON_ERROR)
 		else:
-
-			# Translators: Message displayed when no item has been selected from the list
 			self.show_message(_("No link selected to open!"))
 			self.listLinks.SetFocus()
 
@@ -320,7 +335,28 @@ Itens do menu wx.ListCtrl.
 		Args:
 			event (wx.Event): The event triggered by the add category button.
 		"""
-		self.handle_user_input(_("Enter new category name:"), _("Add Category"), handler=self.add_category)
+
+		# Get the name of the new category of the user
+		new_category = self.get_user_input(_("Enter new category name:"), _("Add Category"))
+
+		# Checks if the user has not canceled or left the field empty
+		if new_category:
+			try:
+				# Try to add the category
+				self.link_manager.add_category(new_category)
+				self.link_manager.save_links()
+
+				# Updates the interface, passing the name of the new category
+				# so that it is selected.
+				self.selected_category = new_category
+				self.update_all_ui()
+
+				# Displays a success message
+				self.show_message(_("Category added successfully!"))
+
+			except ValueError as e:
+				# Treat the error if the category already exists or the name is invalid
+				self.show_message(str(e))
 
 	def add_category(self, category):
 		"""
@@ -333,7 +369,7 @@ Itens do menu wx.ListCtrl.
 		try:
 			self.link_manager.add_category(category)
 			self.link_manager.save_links()
-			self.link_manager.load_json(self)
+			self.link_manager.load_json()
 
 			# Translators: Message displayed when a category is added
 			self.show_message(_("Category added successfully!"))
@@ -341,72 +377,103 @@ Itens do menu wx.ListCtrl.
 			self.show_message(str(e))
 
 	def onAddLink(self, event):
-		"""
-		Calls the dialog for adding a new link.
+		selected_category = self.category.GetStringSelection()
 
-		Args:
-			event (wx.Event): The event triggered by the add link button.
-		"""
+		dlg = AddLinks(
+			mainFrame,
+			self.link_manager,
+			title=_("Add New Link"),
+			selectedCategory=selected_category
+		)
+		mainFrame.prePopup()
 
-		# Stores category selection
-		selectedCategory = self.category.GetStringSelection()
-
-		# Open the dialog to add a new link
-		dlg = AddLinks(mainFrame, _("Add New Link"), selectedCategory)
-		gui.mainFrame.prePopup()
 		if dlg.ShowModal() == wx.ID_OK:
-			# Saves the selected category when closing the dialog
-			self.selected_category = AddLinks.save_selected_category(self)
-		dlg.CenterOnScreen()
-		dlg.Destroy()
-		gui.mainFrame.postPopup()
+			result = dlg.result
+			category = result['category']
+			url = result['url']
+			title = None
 
-		# Update the list of links
-		self.link_manager.load_json(self)
-		self.listLinks.SetFocus()
+			try:
+				# Try to get the title of the URL.
+				# If the internet is not connected, Get Title from URL will already launch an exception.
+				title = self.link_manager.get_title_from_url(url)
+			except URLError as e:
+				# If the attempt to obtain the title fails, it displays the error message
+				self.show_message(str(e), _("Error"), wx.OK | wx.ICON_ERROR)
+				# And then opens a new dialogue for the user to insert the title manually
+				title = self.get_user_input(
+					_("The title could not be obtained automatically. Please enter one manually:"),
+					_("Enter Title")
+				)
+
+			if title:
+				try:
+					# Now that we have the title, add the link.
+					self.link_manager.add_link_to_category(category, title, url)
+					self.show_message(_("Link added successfully!"))
+					self.selected_category = category
+				except ValueError as e:
+					self.show_message(str(e), _("Error"), wx.OK | wx.ICON_ERROR)
+			else:
+				self.show_message(_("Link addition cancelled due to lack of a title."))
+
+			self.update_all_ui()
+
+		dlg.Destroy()
+		mainFrame.postPopup()
 
 	def onEditLink(self, event):
 		"""
-		Edit a selected link using the EditLinks dialog.
-
-		Args:
-			event (wx.Event): The event triggered by the edit link button.
-
-		Returns:
-			bool: True if the link was edited successfully, False otherwise.
+			Edit a selected link using the EditLinks dialog.
 		"""
-
-		selected_category = self.selected_category  # Categoria persistida
-
+		# Get selection at the beginning of the method
 		selected_item = self.listLinks.GetFirstSelected()
-		if selected_item != -1:
-			old_category = self.category.GetStringSelection()
-			old_title = self.listLinks.GetItem(selected_item, 0).GetText()
-			old_url = self.listLinks.GetItem(selected_item, 1).GetText()
-
-			# Create the EditLinks dialog
-			dlg = EditLinks(
-				mainFrame,
-				title=_("Edit Link"),
-				old_category=old_category,
-				old_title=old_title,
-				old_url=old_url,
-				selected_category=selected_category
-			)
-			gui.mainFrame.prePopup()
-			if dlg.ShowModal() == wx.ID_OK:
-				# Saves the selected category when closing the dialog
-				self.selected_category = EditLinks.save_selected_category(self)
-			dlg.CenterOnScreen()
-			dlg.Destroy()
-			gui.mainFrame.postPopup()
-
-			# Update the list of links
-			self.link_manager.load_json(self)
-			self.listLinks.SetFocus()
-		else:
-			# Translators: Message displayed when no item has been selected from the list
+    
+		# Make sure there is a valid selection
+		if selected_item == -1:
 			self.show_message(_("No link selected to edit!"))
+			self.listLinks.SetFocus()
+			return
+
+		# Get the current data from the link
+		old_category = self.category.GetStringSelection()
+		old_title = self.listLinks.GetItem(selected_item, 0).GetText()
+		old_url = self.listLinks.GetItem(selected_item, 1).GetText()
+
+		# Creates the dialogue passing the instance of Link Manager and the old data
+		dlg = EditLinks(
+			mainFrame,
+			self.link_manager,
+			title=_("Edit Link"),
+			old_category=old_category,
+			old_title=old_title,
+			old_url=old_url
+		)
+		mainFrame.prePopup()
+
+		if dlg.ShowModal() == wx.ID_OK:
+			new_category = dlg.categoryChoice.GetStringSelection()
+			new_title = dlg.txtTitle.GetValue()
+			new_url = dlg.txtUrl.GetValue()
+
+			try:
+				if new_category != old_category:
+					self.link_manager.remove_link_from_category(old_category, old_title)
+					self.link_manager.add_link_to_category(new_category, new_title, new_url)
+				else:
+					self.link_manager.edit_link_in_category(old_category, old_title, new_title, new_url)
+
+				self.show_message(_("Link edited successfully!"))
+				self.selected_category = new_category  # Define a categoria para ser restaurada
+
+			except (ValueError, KeyError) as e:
+				self.show_message(str(e), _("Error"), wx.OK | wx.ICON_ERROR)
+
+			# Updates the interface
+			self.update_all_ui()
+
+		dlg.Destroy()
+		mainFrame.postPopup()
 
 	def onDeleteLink(self, event):
 		"""
@@ -424,11 +491,14 @@ Itens do menu wx.ListCtrl.
 			category = self.category.GetStringSelection()
 			self.link_manager.remove_link_from_category(category, title)
 			self.link_manager.save_links()
-			self.link_manager.load_json(self)
+			self.link_manager.load_json()
 
 			# Translators: Message displayed when removing a link from the list
 			self.show_message(_("Link deleted successfully!"))
 			self.category.SetStringSelection(category)
+
+			# Call the function that updates the list of links
+			self.onCategorySelected(None)
 			self.listLinks.SetFocus()
 		else:
 			# Translators: Message displayed when no item has been selected from the list
@@ -437,31 +507,44 @@ Itens do menu wx.ListCtrl.
 
 	def onEditCategory(self, event):
 		"""
-		Edit a selected category.
+		Edits a selected category.
 
 		Args:
 			event (wx.Event): The event triggered by the edit category button.
 		"""
-
 		old_category = self.category.GetStringSelection()
-		if old_category:
-			new_category = self.get_user_input(
-				_("Edit category name:"),
-				_("Edit Category"),
-				old_category
-			)
-			if new_category:
-				self.link_manager.edit_category_name(old_category, new_category)
-				self.link_manager.save_links()
-				self.link_manager.load_json(self)
-
-				# Translators: Message displayed when a category name is edited
-				self.show_message(_("Category name edited successfully!"))
-				self.category.SetFocus()
-		else:
-			# Translators: Message displayed when no item has been selected from the list
+		if not old_category:
 			self.show_message(_("No category selected to edit!"))
 			self.category.SetFocus()
+			return
+
+		# Get the new name of the User category
+		new_category = self.get_user_input(
+			_("Edit category name:"),
+			_("Edit Category"),
+			old_category
+		)
+
+		if new_category and new_category != old_category:
+			try:
+				# Performs the editing operation
+				self.link_manager.edit_category_name(old_category, new_category)
+				self.link_manager.save_links()
+
+				# Defines the new selected category
+				self.selected_category = new_category
+
+				# Calls the auxiliary function to update the interface
+				self.update_all_ui()
+
+				# Displays a success message
+				self.show_message(_("Category name edited successfully!"))
+
+			except ValueError as e:
+				# Treat errors as an existing category name
+				self.show_message(str(e), _("Error"), wx.OK | wx.ICON_ERROR)
+
+		self.category.SetFocus()
 
 	def onDeleteCategory(self, event):
 		"""
@@ -470,26 +553,36 @@ Itens do menu wx.ListCtrl.
 		Args:
 			event (wx.Event): The event triggered by the remove category button.
 		"""
-
 		selected_category = self.category.GetStringSelection()
-		if selected_category:
-			if messageBox(
-				_("Are you sure you want to delete the category '{}' and all its links?").format(selected_category),
-				_("Confirm Delete"), style=wx.ICON_QUESTION | wx.YES_NO) == wx.YES:
-				self.link_manager.delete_category(selected_category)
-				self.link_manager.save_links()
-				self.link_manager.load_json(self)
-				# Translators: Message displayed when removing a category
-				self.show_message(_("Category deleted successfully!"))
-				self.category.SetFocus()
-		else:
-			# Translators: Message displayed when no item has been selected from the list
+		if not selected_category:
 			self.show_message(_("No category selected to delete!"))
 			self.category.SetFocus()
+			return
+
+		# Confirm with the user if they really want to delete
+		confirm_message = _("Are you sure you want to delete the category '{}' and all its links?").format(selected_category)
+		if messageBox(confirm_message, _("Confirm Delete"), style=wx.ICON_QUESTION | wx.YES_NO) == wx.YES:
+			try:
+				# Call the Linkmanager method to delete the category
+				self.link_manager.delete_category(selected_category)
+
+				# Defines the selected category as NONE so that the UI adjusts
+				self.selected_category = None
+
+				# Calls the auxiliary function to update the interface
+				self.update_all_ui()
+
+				# Displays a success message
+				self.show_message(_("Category deleted successfully!"))
+
+			except Exception as e:
+				# Treats possible errors that linkmanager may have
+				log.error(f"Error deleting category: {e}")
+				self.show_message(_("Error deleting category: {}").format(e), _("Error"), wx.OK | wx.ICON_ERROR)
 
 	def get_user_input(self, message, caption, default_value=""):
 		"""
-		Displays a dialog box for the user to enter text.
+		Displays an input dialog to get text from the user.
 
 		Args:
 			message (str): The message to display in the dialog box.
@@ -517,11 +610,11 @@ Itens do menu wx.ListCtrl.
 			wx.CANCEL, wx.ICON INFORMATION, etc. The default is wx.OK | wx.ICON INFORMATION.
 		"""
 
-		gui.messageBox(message, caption, style)
+		messageBox(message, caption, style)
 
 	def onExit(self, event):
 		"""
-		Cancels the dialogue and destroys the window.
+		Closes the dialog and destroys the window.
 
 		Args:
 			event (wx.Event): The event triggered by the cancel button.
@@ -549,23 +642,84 @@ Itens do menu wx.ListCtrl.
 	def onSortTheLinksAlphabetically(self, event):
 		"""
 		Sort the links alphabetically.
-
-		Args:
-			event (wx.Event): The event triggered by the sort button.
 		"""
-
 		category = self.category.GetStringSelection()
 
 		try:
-			self.link_manager.sort_json()
+			# Call the new method to order the links
+			self.link_manager.sort_all_links_and_save()
 
-			# Translators: Message displayed when sorting of links is complete
 			self.show_message(_("Successfully ordered!"))
-			self.link_manager.load_json(self)
 
-			self.category.SetStringSelection(category)
+			# Updates the interface
+			self.update_all_ui()
+
+		except Exception as e:
+			log.error(f"Error when sorting links: {e}")
+			self.show_message(_(f"Error when ordering! Details: {e}"), _("Error"), wx.OK | wx.ICON_ERROR)
+
+	def update_all_ui(self):
+		"""
+		Auxiliary function to update the user interface after any data operation.
+		"""
+		# Recharge the data from the JSON file to the memory.
+		self.link_manager.load_json()
+
+		# Updates the list of categories in the selection box.
+		self.category.Clear()
+		categories = list(self.link_manager.data.keys())
+		self.category.AppendItems(categories)
+
+		# Restores the selected category.
+		if self.selected_category and self.selected_category in categories:
+			self.category.SetStringSelection(self.selected_category)
+		elif categories:
+			# If the selected category no longer exists, select the first.
+			self.category.SetSelection(0)
+			self.selected_category = self.category.GetStringSelection()
+		else:
+			# If there are no categories, define selected category as an empty string.
+			self.selected_category = ""
+
+		# Update the list of links.
+		self.onCategorySelected(None)
+
+		# Defines the focus back to the link list.
+		self.listLinks.SetFocus()
+
+	def open_link_in_specific_browser(self, link):
+		browser_path = config.conf[ourAddon.name].get("browserPath")
+
+		if not browser_path:
+			self.show_message(_("No browser path configured."))
+			return
+
+		# Checks if the browser executable exists
+		if not os.path.exists(browser_path):
+			self.show_message(_("Browser not found at path: {}".format(browser_path)))
+			return
+
+		# Register the custom browser
+		browser_name = "customPortable"
+		webbrowser.register(browser_name, None, BackgroundBrowser(browser_path))
+
+		# Open the link using the specified browser
+		try:
+			webbrowser.get(browser_name).open(link)
+		except webbrowser.Error:
+			self.show_message(_("Error opening the link with the browser: {}".format(browser_path)))
+
+	def onOpenLinksSecondaryBrowser(self, event):
+		if not self.link_manager.is_internet_connected():
+			self.show_message(_("No active internet connection!"))
+			return
+		self.listLinks.SetFocus()
+		selected_item = self.listLinks.GetFirstSelected()
+		if selected_item != -1:
+			idx = selected_item
+			url = self.listLinks.GetItem(idx, 1).GetText()
+			self.Close()
+			self.open_link_in_specific_browser(url)
+		else:
+			self.show_message(_("No link selected to open!"))
 			self.listLinks.SetFocus()
-
-		except OSError:
-			# Translators: Message displayed indicating that there was an error in sorting
-			self.show_message(_("Error when ordering!"))
