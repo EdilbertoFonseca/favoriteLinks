@@ -20,8 +20,6 @@ from urllib.error import URLError
 from urllib.request import urlopen
 
 import addonHandler
-import ui
-import wx
 from api import getClipData
 from logHandler import log
 

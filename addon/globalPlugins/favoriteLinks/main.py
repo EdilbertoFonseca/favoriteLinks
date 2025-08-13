@@ -12,14 +12,12 @@ Created on: 11/04/2024
 """
 
 import os
-import urllib.error
 import webbrowser
 from urllib.error import URLError
 from webbrowser import BackgroundBrowser
 
 import addonHandler
 import config
-import gui
 import queueHandler
 import ui
 import wx
@@ -27,9 +25,7 @@ from gui import guiHelper, mainFrame, messageBox
 from logHandler import log
 
 from .addLinks import AddLinks
-from .configPanel import FavoriteLinksSettingsPanel
 from .editLinks import EditLinks
-from .jsonConfig import json_config
 from .linkManager import LinkManager
 from .varsConfig import ADDON_SUMMARY, ourAddon
 
@@ -237,7 +233,7 @@ class FavoriteLinks(wx.Dialog):
 			event (wx.Event): The event triggered by the export links button.
 		"""
 
-		category = self.category.GetStringSelection()
+		self.category.GetStringSelection()
 
 		with wx.FileDialog(
 			self, message=_("Save export file"), wildcard="JSON files (*.json)|*.json",
@@ -265,7 +261,7 @@ class FavoriteLinks(wx.Dialog):
 			event (wx.Event): The event triggered by the import links button.
 		"""
 
-		category = self.category.GetStringSelection()
+		self.category.GetStringSelection()
 
 		with wx.FileDialog(
 			self, message=_("Open import file"), wildcard="JSON files (*.json)|*.json",
@@ -643,7 +639,7 @@ class FavoriteLinks(wx.Dialog):
 		"""
 		Sort the links alphabetically.
 		"""
-		category = self.category.GetStringSelection()
+		self.category.GetStringSelection()
 
 		try:
 			# Call the new method to order the links
