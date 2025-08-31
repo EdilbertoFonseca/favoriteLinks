@@ -23,7 +23,6 @@ from gui import mainFrame
 from logHandler import log
 from scriptHandler import script
 
-from .addLinks import AddLinks
 from .configPanel import FavoriteLinksSettingsPanel
 from .main import FavoriteLinks 
 from .varsConfig import ADDON_SUMMARY, initConfiguration
@@ -60,7 +59,7 @@ def getCurrentDocumentURL():
 	obj = api.getFocusObject()
 	try:
 		URL = obj.treeInterceptor.documentConstantIdentifier
-	except:
+	except AttributeError:
 		return None
 	return URL
 

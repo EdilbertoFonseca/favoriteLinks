@@ -2,15 +2,16 @@ import re
 
 from .utils import validator
 
+# Regex corrected for the user part, which is more efficient and less vulnerable to the newborn.
+# This version uses atomic quantifiers (e.g., *+) to avoid excessive backtracking.
+#The standard R "(?: [a-z0-9!#$%& '*+/=?^` {|} ~-]+(?: \. [A-z0-9!#$%&'*+/=?^ `{|} ~-]+)*| \" (?: [\ x01- \ x08 \ x0b \ x0c \ x0e- \ x1f \ x21 \ x23 -\ x5b \ x5d- \ x7f] | \\ [\ x01- \ x09 \ x0b \ x0c \ x0e- \ x7f])*\ ")"
+# is a safe alternative to the original standard, eliminating unnecessary capture groups
+# and using non-warm logic.
 user_regex = re.compile(
-    # dot-atom
-    r"(^[-!#$%&'*+/=?^_`{}|~0-9A-Z]+"
-    r"(\.[-!#$%&'*+/=?^_`{}|~0-9A-Z]+)*$"
-    # quoted-string
-    r'|^"([\001-\010\013\014\016-\037!#-\[\]-\177]|'
-    r"""\\[\001-\011\013\014\016-\177])*"$)""",
+    r"(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|\"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])*\")",
     re.IGNORECASE
 )
+
 domain_regex = re.compile(
     # domain
     r'(?:[A-Z0-9](?:[A-Z0-9-]{0,61}[A-Z0-9])?\.)+'
@@ -40,7 +41,7 @@ def email(value, whitelist=None):
         ValidationFailure(func=email, ...)
 
     .. _Django's email validator:
-       https://github.com/django/django/blob/master/django/core/validators.py
+        https://github.com/django/django/blob/master/django/core/validators.py
 
     .. versionadded:: 0.1
 

@@ -29,7 +29,7 @@ addon_info = {
 	"addon_description": _(
 		"""This add-on allows you to save, edit and remove links to frequently visited pages. Shortcut Windows+Alt+K."""),
 	# version
-	"addon_version": "2025.6.5",
+	"addon_version": "2025.7.6",
 	# Author(s)
 	"addon_author": "Edilberto Fonseca <edilberto.fonseca@outlook.com>",
 	# URL for the add-on documentation support
@@ -39,10 +39,10 @@ addon_info = {
 	# Documentation file name
 	"addon_docFileName": "readme.html",
 	# Minimum NVDA version supported (e.g. "2018.3")
-	"addon_minimumNVDAVersion": "2023.3.4",
+	"addon_minimumNVDAVersion": "2024.1",
 	# Last NVDA version supported/tested
 	# (e.g. "2018.4", ideally more recent than minimum version)
-	"addon_lastTestedNVDAVersion": "2025.1.0",
+	"addon_lastTestedNVDAVersion": "2025.2",
 	# Add-on update channel (default is stable or None)
 	"addon_updateChannel": None,
 	# Add-on license such as GPL 2

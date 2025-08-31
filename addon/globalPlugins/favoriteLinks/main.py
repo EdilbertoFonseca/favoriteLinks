@@ -233,8 +233,6 @@ class FavoriteLinks(wx.Dialog):
 			event (wx.Event): The event triggered by the export links button.
 		"""
 
-		self.category.GetStringSelection()
-
 		with wx.FileDialog(
 			self, message=_("Save export file"), wildcard="JSON files (*.json)|*.json",
 			style=wx.FD_SAVE | wx.FD_OVERWRITE_PROMPT
@@ -260,8 +258,6 @@ class FavoriteLinks(wx.Dialog):
 		Args:
 			event (wx.Event): The event triggered by the import links button.
 		"""
-
-		self.category.GetStringSelection()
 
 		with wx.FileDialog(
 			self, message=_("Open import file"), wildcard="JSON files (*.json)|*.json",
@@ -639,7 +635,6 @@ class FavoriteLinks(wx.Dialog):
 		"""
 		Sort the links alphabetically.
 		"""
-		self.category.GetStringSelection()
 
 		try:
 			# Call the new method to order the links

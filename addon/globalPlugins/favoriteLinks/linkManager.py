@@ -39,7 +39,7 @@ try:
 	from bs4 import BeautifulSoup
 	from bs4.dammit import UnicodeDammit
 except ImportError as e:
-	log.error(f"[{ourAddon}] Erro ao importar bibliotecas: {e}")
+	log.error(f"[{ourAddon}] Error when importing libraries: {e}")
 	raise ImportError(_("Missing required libraries: validators, BeautifulSoup e UnicodeDammit"))
 
 
@@ -53,7 +53,7 @@ class LinkManager:
 
 	def load_json(self):
 		"""
-		Carrega os dados do arquivo JSON para a memória e garante que a estrutura está limpa.
+		It loads the JSON file data to the memory and ensures that the structure is clean.
 		"""
 		try:
 			with open(self.json_file_path, 'r', encoding='utf-8') as file:
@@ -83,7 +83,7 @@ class LinkManager:
 
 	def save_links(self):
 		"""
-		Salva os dados da memória para o arquivo JSON.
+		Saves memory data to the JSON file.
 		"""
 		try:
 			with open(self.json_file_path, 'w', encoding='utf-8') as file:
@@ -93,7 +93,7 @@ class LinkManager:
 
 	def add_category(self, category: str):
 		"""
-		Adiciona uma nova categoria.
+		Adds a new category.
 		"""
 		if not category.strip():
 			raise ValueError(_("The category name cannot be empty!"))
@@ -105,7 +105,7 @@ class LinkManager:
 
 	def get_title_from_url(self, url: str) -> str:
 		"""
-		Obtém o título de uma página web a partir de sua URL.
+		Get the title of a web page from your URL.
 		"""
 		try:
 			with urlopen(url, timeout=5) as response:
@@ -121,7 +121,7 @@ class LinkManager:
 
 	def add_link_to_category(self, category: str, title: str, url: str):
 		"""
-		Adiciona um link a uma categoria existente.
+		Adds a link to an existing category.
 		"""
 		if category not in self.data:
 			self.data[category] = []
@@ -135,7 +135,7 @@ class LinkManager:
 
 	def edit_link_in_category(self, category: str, old_title: str, new_title: str, new_url: str):
 		"""
-		Edita um link existente em uma categoria.
+		Edit an existing link in a category.
 		"""
 		if category not in self.data:
 			raise KeyError(_("Category does not exist."))
@@ -153,7 +153,7 @@ class LinkManager:
 
 	def remove_link_from_category(self, category: str, title: str):
 		"""
-		Remove um link de uma categoria.
+		Removes a link from a category.
 		"""
 		if category not in self.data:
 			return
@@ -163,7 +163,7 @@ class LinkManager:
 
 	def edit_category_name(self, old_name: str, new_name: str):
 		"""
-		Renomeia uma categoria.
+		Rename a category.
 		"""
 		if not new_name.strip():
 			raise ValueError(_("The category name cannot be empty!"))
@@ -178,7 +178,7 @@ class LinkManager:
 
 	def delete_category(self, category: str):
 		"""
-		Deleta uma categoria e todos os seus links.
+		Delete a category and all your links.
 		"""
 		if category in self.data:
 			del self.data[category]
@@ -186,7 +186,7 @@ class LinkManager:
 
 	def get_url_from_clipboard(self) -> str:
 		"""
-		Obtém uma URL válida da área de transferência.
+		Obtains a valid URL of the transfer area.
 		"""
 		try:
 			clipboard_data = getClipData()
@@ -201,7 +201,7 @@ class LinkManager:
 
 	def merge_links(self, imported_data: dict):
 		"""
-		Mescla dados importados com os links existentes.
+		It mixes imported data with existing links.
 		"""
 		if not isinstance(imported_data, dict):
 			raise ValueError(_("The imported data must be a dictionary with categories as keys."))
@@ -223,7 +223,7 @@ class LinkManager:
 
 	def export_links(self, export_path: str):
 		"""
-		Exporta todos os links para um arquivo JSON.
+		Export all links to a JSON file.
 		"""
 		try:
 			with open(export_path, 'w', encoding='utf-8') as file:
@@ -233,7 +233,7 @@ class LinkManager:
 
 	def import_links(self, import_path: str):
 		"""
-		Importa links de um arquivo JSON.
+		Import links from a JSON file.
 		"""
 		try:
 			with open(import_path, 'r', encoding='utf-8') as file:
@@ -248,7 +248,7 @@ class LinkManager:
 
 	def is_internet_connected(self, host='8.8.8.8', port=53, timeout=3) -> bool:
 		"""
-		Verifica se há conexão com a internet.
+		Check if there is connection to the internet.
 		"""
 		try:
 			socket.create_connection((host, port), timeout=timeout)
@@ -258,7 +258,7 @@ class LinkManager:
 
 	def sort_all_links_and_save(self):
 		"""
-		Ordena todos os links em todas as categorias.
+		Order all links in all categories.
 		"""
 		for category, links in self.data.items():
 			self.data[category] = sorted(links, key=lambda x: x[0].lower())
@@ -266,6 +266,6 @@ class LinkManager:
 
 	def sort_categories(self):
 		"""
-		Ordena as categorias em ordem alfabética.
+		Order the categories in alphabetical order.
 		"""
 		self.data = {key: self.data[key] for key in sorted(self.data.keys(), key=str.lower)}

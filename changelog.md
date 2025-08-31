@@ -1,5 +1,43 @@
 # Changelog
 
+## v2025.7.6 — 2025-08-31
+
+### New Features
+
+* feat(bs4,validators): add BeautifulSoup test suite and validators — `Edilberto Fonseca` on 2025-08-31
+
+### Others
+
+* Merge branch 'development' of <https://github.com/EdilbertoFonseca/favoriteLinks> into development — `Edilberto Fonseca` on 2025-08-31
+
+### Other Tasks
+
+* chore(deps): update internal libraries and remove unnecessary files — `Edilberto Fonseca` on 2025-08-31
+
+## v2025.6.5 — 2025-08-13
+
+### Refactoring
+
+* refactor: remove unused imports and variables — `Edilberto Fonseca` on 2025-08-13
+
+### New Features
+
+* feat(validation): Add email validation support with validator email — `Edilberto Fonseca` on 2025-08-12
+
+### I18n
+
+* i18n(po): Update Portuguese translations for favoriteLinks addon — `Edilberto Fonseca` on 2025-08-12
+
+### Others
+
+* Update license header and bump version to 2025.6.5 — `Edilberto Fonseca` on 2025-08-12
+* Refactor and modularize Favorite Links add-on — `Edilberto Fonseca` on 2025-08-12
+* Update and improve FavoriteLinks documentation — `Edilberto Fonseca` on 2025-08-12
+
+### Build Changes
+
+* build(scripts): add changelog generator and update SConstruct — `Edilberto Fonseca` on 2025-07-22
+
 ## v2025.5.5 — 2025-06-25
 
 ### Documentation
@@ -63,4 +101,3 @@
 * Updated readme files. — `EdilbertoFonseca` on 2024-07-01
 * Release of version 2024.2.1. — `EdilbertoFonseca` on 2024-06-26
 * Initial commit — `Edilberto Fonseca` on 2024-06-26
-
