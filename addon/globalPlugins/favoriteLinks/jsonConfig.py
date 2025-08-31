@@ -13,7 +13,6 @@ Created on: 26/05/2025
 
 import os
 
-import addonHandler
 import config
 from logHandler import log
 

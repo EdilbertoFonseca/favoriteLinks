@@ -19,10 +19,9 @@ import gui
 import wx
 from gui import guiHelper
 from gui.settingsDialogs import SettingsPanel
-from logHandler import log  # Use logHandler.log for consistent logging
 
 from .jsonConfig import json_config  # Import the new json_config instance
-from .varsConfig import ADDON_SUMMARY, ourAddon
+from .varsConfig import ADDON_SUMMARY 
 
 # Initialize translation support
 addonHandler.initTranslation()
