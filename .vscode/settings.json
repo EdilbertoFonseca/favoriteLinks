@@ -12,7 +12,5 @@
         "../nvda/source",
         "../nvda/miscDeps/python"
     ],
-    "python.defaultInterpreterPath": "${workspaceFolder}/../nvda/.venv/scripts/python.exe",
-    "python.linting.enabled": true,
-    "python.linting.linter": "ruff"
+    "python.defaultInterpreterPath": "${workspaceFolder}/../nvda/.venv/scripts/python.exe"
 }
