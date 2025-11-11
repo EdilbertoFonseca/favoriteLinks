@@ -21,7 +21,7 @@ from gui import guiHelper
 from gui.settingsDialogs import SettingsPanel
 
 from .jsonConfig import json_config  # Import the new json_config instance
-from .varsConfig import ADDON_SUMMARY 
+from .varsConfig import ADDON_SUMMARY
 
 # Initialize translation support
 addonHandler.initTranslation()

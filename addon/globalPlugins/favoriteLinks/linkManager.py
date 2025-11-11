@@ -24,7 +24,7 @@ from api import getClipData
 from logHandler import log
 
 from .jsonConfig import json_config
-from .varsConfig import ourAddon, addonPath
+from .varsConfig import addonPath, ourAddon
 
 # Initialize translation support
 addonHandler.initTranslation()

@@ -24,7 +24,7 @@ from logHandler import log
 from scriptHandler import script
 
 from .configPanel import FavoriteLinksSettingsPanel
-from .main import FavoriteLinks 
+from .main import FavoriteLinks
 from .varsConfig import ADDON_SUMMARY, initConfiguration
 
 # Initialize translation support
