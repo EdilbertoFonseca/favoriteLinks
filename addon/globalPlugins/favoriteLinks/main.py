@@ -388,33 +388,39 @@ class FavoriteLinks(wx.Dialog):
 			result = dlg.result
 			category = result['category']
 			url = result['url']
-			title = None
 
+		# Ensure the variable exists
+		title = ""
+
+		try:
+			# Try to get the title automatically
+			title = self.link_manager.get_title_from_url(url)
+		except URLError as e:
+			# It only logs the error, but does not interrupt the flow
+			log.warning(f"Could not get title from URL: {e}")
+
+		# Preserves captured (or empty) value
+		title_temp = title
+
+		# Always asks the user, using the title as the default value
+		title = self.get_user_input(
+			_("Enter the name of the link:"),
+			_("Link name"),
+			default_value=title_temp
+		)
+
+		if title:
 			try:
-				# Try to get the title of the URL.
-				# If the internet is not connected, Get Title from URL will already launch an exception.
-				title = self.link_manager.get_title_from_url(url)
-			except URLError as e:
-				# If the attempt to obtain the title fails, it displays the error message
+				self.link_manager.add_link_to_category(category, title, url)
+				self.show_message(_("Link added successfully!"))
+				self.selected_category = category
+			except ValueError as e:
 				self.show_message(str(e), _("Error"), wx.OK | wx.ICON_ERROR)
-				# And then opens a new dialogue for the user to insert the title manually
-				title = self.get_user_input(
-					_("The title could not be obtained automatically. Please enter one manually:"),
-					_("Enter Title")
-				)
+		else:
+			self.show_message(_("Link addition cancelled."))
 
-			if title:
-				try:
-					# Now that we have the title, add the link.
-					self.link_manager.add_link_to_category(category, title, url)
-					self.show_message(_("Link added successfully!"))
-					self.selected_category = category
-				except ValueError as e:
-					self.show_message(str(e), _("Error"), wx.OK | wx.ICON_ERROR)
-			else:
-				self.show_message(_("Link addition cancelled due to lack of a title."))
-
-			self.update_all_ui()
+		# Always updates the UI
+		self.update_all_ui()
 
 		dlg.Destroy()
 		mainFrame.postPopup()
