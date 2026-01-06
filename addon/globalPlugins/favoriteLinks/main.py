@@ -24,6 +24,7 @@ import wx
 from gui import guiHelper, mainFrame, messageBox
 from logHandler import log
 
+from .importBookmarks.gui import ImportBookmarksDialog
 from .addLinks import AddLinks
 from .editLinks import EditLinks
 from .linkManager import LinkManager
@@ -76,6 +77,7 @@ class FavoriteLinks(wx.Dialog):
 		self.labelDeleteCategory = _("&Delete category")
 		self.labelExportLinks = _("E&xport links")
 		self.labelImportLinks = _("&Import links")
+		self.labelImportWorker = _("Import &favorites from your browsers")
 		self.labelSortLinks = _("&Sort links")
 		self.labelExit = _("E&xit")
 
@@ -174,10 +176,13 @@ class FavoriteLinks(wx.Dialog):
 		importLinks = menu.Append(wx.ID_ANY, self.labelImportLinks, _("Import links"))
 		self.Bind(wx.EVT_MENU, self.onImportLinks, importLinks)
 
+		importWorker = menu.Append(wx.ID_ANY, self.labelImportWorker, _("Import Worker"))
+		self.Bind(wx.EVT_MENU, self.onImportWorker, importWorker)
+
 		sortLinks = menu.Append(wx.ID_ANY, self.labelSortLinks, _("Sort the links alphabetically."))
 		self.Bind(wx.EVT_MENU, self.onSortTheLinksAlphabetically, sortLinks)
 
-		openLink = menu.Append(wx.ID_ANY, _("Open link..."), _("Open links in secondary browser."))
+		openLink = menu.Append(wx.ID_ANY, self.labelOpenLinks, _("Open links in secondary browser."))
 		self.Bind(wx.EVT_MENU, self.onOpenLinksSecondaryBrowser, openLink)
 
 		self.listLinks.PopupMenu(menu, self.listLinks.GetPosition())
@@ -714,3 +719,13 @@ class FavoriteLinks(wx.Dialog):
 		else:
 			self.show_message(_("No link selected to open!"))
 			self.listLinks.SetFocus()
+
+	def onImportWorker(self, event):
+		dlg = ImportBookmarksDialog(
+			mainFrame,
+			title=_("Import bookmarks from HTML"),
+			onFinish=self.update_all_ui
+		)
+		mainFrame.prePopup()
+		dlg.Show()
+		mainFrame.postPopup()
