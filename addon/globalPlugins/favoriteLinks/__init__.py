@@ -24,7 +24,7 @@ from logHandler import log
 from scriptHandler import script
 
 from .configPanel import FavoriteLinksSettingsPanel
-from .main import FavoriteLinks
+from .main import FavoriteLinks 
 from .varsConfig import ADDON_SUMMARY, initConfiguration
 
 # Initialize translation support
@@ -103,8 +103,8 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 			# Translators: Dialog title Favorite Links
 			self.dlg = FavoriteLinks(mainFrame, _("Favorite links."))
 			gui.mainFrame.prePopup()
-			self.dlg.Show()
 			self.dlg.CentreOnScreen()
+			self.dlg.Show()
 			gui.mainFrame.postPopup()
 		except Exception as e:
 			log.error("Error displaying Favorite Links dialog: %s", e)

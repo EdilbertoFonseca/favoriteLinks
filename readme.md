@@ -104,8 +104,6 @@ Use the **context menu** (applications key) in either of these fields to access 
 
 A special thanks to **Rue Fontes** and **Ângelo Abrantes** for the testing and valuable suggestions that contributed significantly to the improvement of this project.
 
-I also thank **Marlon Brandão de Sousa** for generously sharing his workflow, which was crucial to ensuring the efficiency and quality of the development.
-
 The FavoriteLinks add-on was developed with the help of ChatGPT and Google Gemini, which were used for creating functions, optimizing and refactoring the code, and improving the documentation.
 
 ## 🌍 Translators

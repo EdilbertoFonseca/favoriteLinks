@@ -6,7 +6,7 @@
 
 ## Introdução
 
-O add-on **FavoriteLinks** é uma ferramenta para gerenciar seus links favoritos de forma organizada e eficiente. Ele permite que você salve, edite e remova links em uma lista categorizada, oferecendo uma interface intuitiva com funcionalidades como adicionar novos links, renomear títulos, remover entradas indesejadas e gerenciar categorias.
+O add-on **FavoriteLinks** é uma ferramenta para gerenciar seus links favoritos de forma organizada e eficiente. Ele permite que você salve, edite e remova links em uma lista categorizada, oferecendo uma interface intuitiva com funcionalidades como adicionar novos links, renomear títulos, remover entradas indesejadas e gerenciar categorias. Além disso, o add-on permite importar favoritos diretamente de arquivos HTML exportados por navegadores.
 
 Ao abrir o add-on, você tem acesso rápido aos seus links e pode abri-los diretamente no navegador padrão. Agora, também há suporte para a abertura de links em um navegador secundário, caso você precise de mais flexibilidade.
 
@@ -67,7 +67,36 @@ Use o **menu de contexto** (tecla de aplicação) em qualquer um desses campos p
 * **Editar Link**: Modifica o título e a URL de um link existente.
 * **Remover Link**: Exclui o link selecionado.
 * **Exportar Links** / **Importar Links**: Igual às opções da categoria.
+* **Importar Favoritos de HTML**: Importa links de um arquivo `.html` exportado por navegadores.
 * **Ordenar Links**: Organiza os links da categoria atual em ordem alfabética.
+
+### Importar Favoritos de HTML
+
+O FavoriteLinks também permite importar favoritos diretamente de arquivos HTML, como aqueles exportados por navegadores (Chrome, Firefox, Edge, entre outros).
+
+Esse recurso é útil para migrar seus favoritos existentes para o add-on de forma rápida e organizada.
+
+#### Como importar favoritos de um arquivo HTML
+
+1. Abra o add-on **Links Favoritos**.
+2. Acesse o menu de contexto na **Caixa de Categorias** ou utilize a opção disponível no menu principal.
+3. Selecione **Importar favoritos de HTML**.
+4. Escolha o arquivo `.html` exportado do seu navegador.
+5. Aguarde o processamento dos links.
+
+Durante a importação:
+
+* O progresso é exibido em uma barra de progresso.
+* Você pode **cancelar a operação a qualquer momento**.
+* O NVDA permanece responsivo durante todo o processo.
+
+#### Organização dos links importados
+
+* Os links importados são adicionados automaticamente ao arquivo JSON configurado nas preferências do add-on.
+* Por padrão, os favoritos são inseridos na categoria **“Imported Bookmarks”**.
+* Links duplicados (com a mesma URL) não são adicionados novamente.
+
+Ao final da importação, uma mensagem de confirmação é exibida e a interface do add-on é atualizada automaticamente.
 
 ### Atalhos
 
@@ -103,7 +132,7 @@ Use o **menu de contexto** (tecla de aplicação) em qualquer um desses campos p
 
 Um agradecimento especial à **Rue Fontes** e ao **Ângelo Abrantes** pelos testes realizados e pelas sugestões valiosas que contribuíram significativamente para a melhoria deste projeto.
 
-Agradeço também ao **Marlon Brandão de Sousa**, por compartilhar generosamente seu workflow, o que foi crucial para garantir a eficiência e qualidade do desenvolvimento.
+Agradeço também ao **Abel Passos**, pela contribuição com a funcionalidade de importação de favoritos a partir de arquivos HTML.
 
 O add-on FavoriteLinks foi desenvolvido com o auxílio do **ChatGPT** e do **Google Gemini**, usados para a criação de funções, otimização e refatoração do código, e para aprimorar a documentação.
 

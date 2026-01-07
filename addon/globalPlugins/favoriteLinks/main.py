@@ -24,6 +24,7 @@ import wx
 from gui import guiHelper, mainFrame, messageBox
 from logHandler import log
 
+from .importBookmarks.gui import ImportBookmarksDialog
 from .addLinks import AddLinks
 from .editLinks import EditLinks
 from .linkManager import LinkManager
@@ -76,6 +77,7 @@ class FavoriteLinks(wx.Dialog):
 		self.labelDeleteCategory = _("&Delete category")
 		self.labelExportLinks = _("E&xport links")
 		self.labelImportLinks = _("&Import links")
+		self.labelImportWorker = _("Import &favorites from your browsers")
 		self.labelSortLinks = _("&Sort links")
 		self.labelExit = _("E&xit")
 
@@ -174,10 +176,13 @@ class FavoriteLinks(wx.Dialog):
 		importLinks = menu.Append(wx.ID_ANY, self.labelImportLinks, _("Import links"))
 		self.Bind(wx.EVT_MENU, self.onImportLinks, importLinks)
 
+		importWorker = menu.Append(wx.ID_ANY, self.labelImportWorker, _("Import Worker"))
+		self.Bind(wx.EVT_MENU, self.onImportWorker, importWorker)
+
 		sortLinks = menu.Append(wx.ID_ANY, self.labelSortLinks, _("Sort the links alphabetically."))
 		self.Bind(wx.EVT_MENU, self.onSortTheLinksAlphabetically, sortLinks)
 
-		openLink = menu.Append(wx.ID_ANY, _("Open link..."), _("Open links in secondary browser."))
+		openLink = menu.Append(wx.ID_ANY, self.labelOpenLinks, _("Open links in secondary browser."))
 		self.Bind(wx.EVT_MENU, self.onOpenLinksSecondaryBrowser, openLink)
 
 		self.listLinks.PopupMenu(menu, self.listLinks.GetPosition())
@@ -383,33 +388,39 @@ class FavoriteLinks(wx.Dialog):
 			result = dlg.result
 			category = result['category']
 			url = result['url']
-			title = None
 
+		# Ensure the variable exists
+		title = ""
+
+		try:
+			# Try to get the title automatically
+			title = self.link_manager.get_title_from_url(url)
+		except URLError as e:
+			# It only logs the error, but does not interrupt the flow
+			log.warning(f"Could not get title from URL: {e}")
+
+		# Preserves captured (or empty) value
+		title_temp = title
+
+		# Always asks the user, using the title as the default value
+		title = self.get_user_input(
+			_("Enter the name of the link:"),
+			_("Link name"),
+			default_value=title_temp
+		)
+
+		if title:
 			try:
-				# Try to get the title of the URL.
-				# If the internet is not connected, Get Title from URL will already launch an exception.
-				title = self.link_manager.get_title_from_url(url)
-			except URLError as e:
-				# If the attempt to obtain the title fails, it displays the error message
+				self.link_manager.add_link_to_category(category, title, url)
+				self.show_message(_("Link added successfully!"))
+				self.selected_category = category
+			except ValueError as e:
 				self.show_message(str(e), _("Error"), wx.OK | wx.ICON_ERROR)
-				# And then opens a new dialogue for the user to insert the title manually
-				title = self.get_user_input(
-					_("The title could not be obtained automatically. Please enter one manually:"),
-					_("Enter Title")
-				)
+		else:
+			self.show_message(_("Link addition cancelled."))
 
-			if title:
-				try:
-					# Now that we have the title, add the link.
-					self.link_manager.add_link_to_category(category, title, url)
-					self.show_message(_("Link added successfully!"))
-					self.selected_category = category
-				except ValueError as e:
-					self.show_message(str(e), _("Error"), wx.OK | wx.ICON_ERROR)
-			else:
-				self.show_message(_("Link addition cancelled due to lack of a title."))
-
-			self.update_all_ui()
+		# Always updates the UI
+		self.update_all_ui()
 
 		dlg.Destroy()
 		mainFrame.postPopup()
@@ -714,3 +725,13 @@ class FavoriteLinks(wx.Dialog):
 		else:
 			self.show_message(_("No link selected to open!"))
 			self.listLinks.SetFocus()
+
+	def onImportWorker(self, event):
+		dlg = ImportBookmarksDialog(
+			mainFrame,
+			title=_("Import bookmarks from HTML"),
+			onFinish=self.update_all_ui
+		)
+		mainFrame.prePopup()
+		dlg.Show()
+		mainFrame.postPopup()
