@@ -25,7 +25,7 @@ addon_info = AddonInfo(
 
 Shortcut Windows+Alt+K."""),
 	# version
-	addon_version="2025.8.6",
+	addon_version="2025.9.6",
 	# Brief changelog for this version
 	# Translators: what's new content for the add-on version to be shown in the add-on store
 	addon_changelog=_("""Adds new functionality to import saved links in HTML from your browsers."""),
@@ -40,7 +40,7 @@ Shortcut Windows+Alt+K."""),
 	# Minimum NVDA version supported (e.g. "2019.3.0", minor version is optional)
 	addon_minimumNVDAVersion="2024.1",
 	# Last NVDA version supported/tested (e.g. "2024.4.0", ideally more recent than minimum version)
-	addon_lastTestedNVDAVersion="2025.2",
+	addon_lastTestedNVDAVersion="2025.3.2",
 	# Add-on update channel (default is None, denoting stable releases,
 	# and for development releases, use "dev".)
 	# Do not change unless you know what you are doing!
@@ -85,7 +85,7 @@ baseLanguage: str = "en"
 # If you need to add support for markup such as tables, fill out the below list.
 # Extensions string must be of the form "markdown.extensions.extensionName"
 # e.g. "markdown.extensions.tables" to add tables.
-markdownExtensions: list[str] = []
+markdownExtensions: list[str] = ["markdown.extensions.tables" ]
 
 # Custom braille translation tables
 # If your add-on includes custom braille tables (most will not), fill out this dictionary.
