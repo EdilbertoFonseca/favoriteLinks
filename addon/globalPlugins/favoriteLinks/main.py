@@ -17,6 +17,7 @@ from urllib.error import URLError
 from webbrowser import BackgroundBrowser
 
 import addonHandler
+import api
 import config
 import queueHandler
 import ui
@@ -79,6 +80,7 @@ class FavoriteLinks(wx.Dialog):
 		self.labelImportLinks = _("&Import links")
 		self.labelImportWorker = _("Import &favorites from your browsers")
 		self.labelSortLinks = _("&Sort links")
+		self.labelCopyUrl = _("C&opy URL")
 		self.labelExit = _("E&xit")
 
 		self.Bind(wx.EVT_CHAR_HOOK, self.onKeyPress)
@@ -170,6 +172,9 @@ class FavoriteLinks(wx.Dialog):
 		deleteLink = menu.Append(wx.ID_ANY, self.labelDeleteLink, _("Delete link"))
 		self.Bind(wx.EVT_MENU, self.onDeleteLink, deleteLink)
 
+		copyUrl = menu.Append(wx.ID_ANY, self.labelCopyUrl, _("Copy URL to clipboard."))
+		self.Bind(wx.EVT_MENU, self.onCopyUrl, copyUrl)
+
 		exportLinks = menu.Append(wx.ID_ANY, self.labelExportLinks, _("Export links"))
 		self.Bind(wx.EVT_MENU, self.onExportLinks, exportLinks)
 
@@ -227,6 +232,9 @@ class FavoriteLinks(wx.Dialog):
 			return
 		elif keyCode == wx.WXK_F2:
 			self.onEditLink(event)
+			return
+		elif keyCode == ord('C') and event.ControlDown():
+			self.onCopyUrl(event)
 			return
 		event.Skip()
 
@@ -506,6 +514,26 @@ class FavoriteLinks(wx.Dialog):
 		else:
 			# Translators: Message displayed when no item has been selected from the list
 			self.show_message(_("No link selected to delete!"))
+			self.listLinks.SetFocus()
+
+	def onCopyUrl(self, event):
+		"""
+		Copies the URL of the selected link to the clipboard.
+
+		Args:
+			event (wx.Event): The event triggered by the copy URL option.
+		"""
+
+		selected_item = self.listLinks.GetFirstSelected()
+		if selected_item != -1:
+			url = self.listLinks.GetItem(selected_item, 1).GetText()
+			api.copyToClip(url)
+
+			# Translators: Message displayed when the URL is copied to the clipboard
+			ui.message(_("URL copied to clipboard."))
+		else:
+			# Translators: Message displayed when no link is selected to copy
+			self.show_message(_("No link selected to copy!"))
 			self.listLinks.SetFocus()
 
 	def onEditCategory(self, event):
