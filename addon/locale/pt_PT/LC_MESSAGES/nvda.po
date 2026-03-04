@@ -255,7 +255,11 @@ msgstr "Importar &favoritos dos seus navegadores"
 msgid "&Sort links"
 msgstr "&Ordenar ligações"
 
-#: addon\globalPlugins\favoriteLinks\main.py:82
+#: addon\globalPlugins\favoriteLinks\main.py:83
+msgid "C&opy URL"
+msgstr "C&opiar URL"
+
+#: addon\globalPlugins\favoriteLinks\main.py:84
 msgid "E&xit"
 msgstr "&Sair"
 
@@ -300,6 +304,10 @@ msgstr "Editar ligação."
 #: addon\globalPlugins\favoriteLinks\main.py:170
 msgid "Delete link"
 msgstr "Eliminar ligação"
+
+#: addon\globalPlugins\favoriteLinks\main.py:175
+msgid "Copy URL to clipboard."
+msgstr "Copiar URL para a área de transferência."
 
 #: addon\globalPlugins\favoriteLinks\main.py:179
 msgid "Import Worker"
@@ -420,6 +428,16 @@ msgstr "Ligação excluída com sucesso!"
 #: addon\globalPlugins\favoriteLinks\main.py:508
 msgid "No link selected to delete!"
 msgstr "Nenhuma ligação seleccionada para eliminação!"
+
+#. Translators: Message displayed when the URL is copied to the clipboard
+#: addon\globalPlugins\favoriteLinks\main.py:533
+msgid "URL copied to clipboard."
+msgstr "URL copiado para a área de transferência."
+
+#. Translators: Message displayed when no link is selected to copy
+#: addon\globalPlugins\favoriteLinks\main.py:536
+msgid "No link selected to copy!"
+msgstr "Nenhuma ligação seleccionada para copiar!"
 
 #: addon\globalPlugins\favoriteLinks\main.py:520
 msgid "No category selected to edit!"

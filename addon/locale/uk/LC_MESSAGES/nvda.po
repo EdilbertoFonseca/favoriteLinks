@@ -212,7 +212,11 @@ msgstr "&Імпорт посилань"
 msgid "&Sort links"
 msgstr "&Сортувати посилання"
 
-#: addon\globalPlugins\favoriteLinks\main.py:75
+#: addon\globalPlugins\favoriteLinks\main.py:83
+msgid "C&opy URL"
+msgstr ""
+
+#: addon\globalPlugins\favoriteLinks\main.py:84
 msgid "E&xit"
 msgstr "&Вихід"
 
@@ -253,6 +257,10 @@ msgstr "Редагувати посилання."
 #: addon\globalPlugins\favoriteLinks\main.py:170
 msgid "Delete link"
 msgstr "Видалити посилання"
+
+#: addon\globalPlugins\favoriteLinks\main.py:175
+msgid "Copy URL to clipboard."
+msgstr ""
 
 #: addon\globalPlugins\favoriteLinks\main.py:176
 msgid "Sort the links alphabetically."
@@ -340,6 +348,16 @@ msgstr "Посилання успішно видалено!"
 #: addon\globalPlugins\favoriteLinks\main.py:433
 msgid "No link selected to delete!"
 msgstr "Не вибрано посилання для видалення!"
+
+#. Translators: Message displayed when the URL is copied to the clipboard
+#: addon\globalPlugins\favoriteLinks\main.py:533
+msgid "URL copied to clipboard."
+msgstr ""
+
+#. Translators: Message displayed when no link is selected to copy
+#: addon\globalPlugins\favoriteLinks\main.py:536
+msgid "No link selected to copy!"
+msgstr ""
 
 #: addon\globalPlugins\favoriteLinks\main.py:447
 msgid "Edit category name:"
