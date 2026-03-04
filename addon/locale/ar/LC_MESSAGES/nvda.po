@@ -215,7 +215,11 @@ msgstr "&استيراد الروابط"
 msgid "&Sort links"
 msgstr "&فرز الروابط"
 
-#: addon\globalPlugins\favoriteLinks\main.py:75
+#: addon\globalPlugins\favoriteLinks\main.py:83
+msgid "C&opy URL"
+msgstr ""
+
+#: addon\globalPlugins\favoriteLinks\main.py:84
 msgid "E&xit"
 msgstr "&الخروج"
 
@@ -256,6 +260,10 @@ msgstr "تعديل الرابط."
 #: addon\globalPlugins\favoriteLinks\main.py:170
 msgid "Delete link"
 msgstr "حذف الرابط"
+
+#: addon\globalPlugins\favoriteLinks\main.py:175
+msgid "Copy URL to clipboard."
+msgstr ""
 
 #: addon\globalPlugins\favoriteLinks\main.py:176
 msgid "Sort the links alphabetically."
@@ -343,6 +351,16 @@ msgstr "تم حذف الرابط بنجاح!"
 #: addon\globalPlugins\favoriteLinks\main.py:433
 msgid "No link selected to delete!"
 msgstr "لم يتم اختيار أي رابط لحذفه!"
+
+#. Translators: Message displayed when the URL is copied to the clipboard
+#: addon\globalPlugins\favoriteLinks\main.py:533
+msgid "URL copied to clipboard."
+msgstr ""
+
+#. Translators: Message displayed when no link is selected to copy
+#: addon\globalPlugins\favoriteLinks\main.py:536
+msgid "No link selected to copy!"
+msgstr ""
 
 #: addon\globalPlugins\favoriteLinks\main.py:447
 msgid "Edit category name:"
