@@ -24,6 +24,7 @@ from logHandler import log
 from scriptHandler import script
 
 from .configPanel import FavoriteLinksSettingsPanel
+from .fromClipboard import FromClipboard
 from .main import FavoriteLinks 
 from .varsConfig import ADDON_SUMMARY, initConfiguration
 
@@ -166,6 +167,39 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 		else:
 			# Translators: The user is not in a browser.
 			ui.message(_("No browser window found."))
+
+	@script(
+		gesture="kb:NVDA+z",
+		# Translators: Description shown in NVDA input gestures for opening a URL from the clipboard.
+		description=_("Extract links from the clipboard and open or copy the chosen one."),
+		category=ADDON_SUMMARY
+	)
+	def script_openFromClipboard(self, gesture):
+		"""
+		Reads the system clipboard, extracts any URLs found in it and either
+		opens the URL immediately (when only one is found) or presents a
+		picker dialog (when multiple URLs are found). If the clipboard holds
+		no recognisable URL, a spoken message is given.
+
+		Inspired by the Link Manager add-on by Abdallah Hader:
+		https://github.com/abdallah-hader/linkManager
+
+		Args:
+			gesture (kb): Triggered by NVDA+Z.
+		"""
+		wx.CallAfter(FromClipboard, mainFrame, self._get_link_manager())
+
+	def _get_link_manager(self):
+		"""
+		Returns a fresh LinkManager instance for use in clipboard and search
+		operations that need up-to-date link data.
+
+		Returns:
+			LinkManager: A newly loaded LinkManager instance.
+		"""
+		from .linkManager import LinkManager as _LM
+		lm = _LM()
+		return lm
 
 	def terminate(self):
 		"""
