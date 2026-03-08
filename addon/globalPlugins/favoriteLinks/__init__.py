@@ -25,6 +25,7 @@ from scriptHandler import script
 
 from .configPanel import FavoriteLinksSettingsPanel
 from .main import FavoriteLinks 
+from .searchLinks import SearchLinks
 from .varsConfig import ADDON_SUMMARY, initConfiguration
 
 # Initialize translation support
@@ -166,6 +167,26 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 		else:
 			# Translators: The user is not in a browser.
 			ui.message(_("No browser window found."))
+
+	@script(
+		gesture="kb:NVDA+shift+g",
+		# Translators: Description shown in NVDA input gestures for opening the search links dialog.
+		description=_("Search saved links by name or URL."),
+		category=ADDON_SUMMARY
+	)
+	def script_searchLinks(self, gesture):
+		"""
+		Opens the Search Links dialog, which lets the user search for saved
+		links by their display name or URL within a selected category.
+
+		Inspired by the Link Manager add-on by Abdallah Hader:
+		https://github.com/abdallah-hader/linkManager
+
+		Args:
+			gesture (kb): Triggered by NVDA+Shift+G.
+		"""
+		from .linkManager import LinkManager as _LM
+		wx.CallAfter(SearchLinks, mainFrame, _LM())
 
 	def terminate(self):
 		"""
