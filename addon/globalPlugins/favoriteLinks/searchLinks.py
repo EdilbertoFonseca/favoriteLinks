@@ -20,9 +20,10 @@ import addonHandler
 import api
 import ui
 import wx
-from gui import guiHelper, mainFrame, messageBox
+from gui import guiHelper, messageBox
 from logHandler import log
 
+# Initialize translation support
 addonHandler.initTranslation()
 
 
@@ -42,15 +43,12 @@ class SearchLinks(wx.Dialog):
 	"""
 
 	def __init__(self, parent, link_manager):
-		self._link_manager = link_manager
+		self.link_manager = link_manager
 
 		# Translators: Title of the search links dialog.
-		super(SearchLinks, self).__init__(
-			parent,
-			title=_("Search links")
-		)
+		wx.Dialog.__init__(self, parent, title=_("Search links"))
 
-		if not self._link_manager.data:
+		if not self.link_manager.data:
 			# Translators: Spoken / shown when there are no saved categories to search.
 			ui.message(_("No categories found. Please add some links first."))
 			self.Destroy()
@@ -62,41 +60,43 @@ class SearchLinks(wx.Dialog):
 		buttonSizer = guiHelper.BoxSizerHelper(panel, wx.HORIZONTAL)
 
 		# Category selector
-		categories = list(self._link_manager.data.keys())
-		self._categoryChoice = sizerHelper.addLabeledControl(
+		categories = list(self.link_manager.data.keys())
+		self.categoryChoice = sizerHelper.addLabeledControl(
 			_("Select a category:"), wx.Choice, choices=categories
 		)
-		self._categoryChoice.SetSelection(0)
+		self.categoryChoice.SetSelection(0)
 
 		# Search term field
-		self._txtSearch = sizerHelper.addLabeledControl(
+		self.txtSearch = sizerHelper.addLabeledControl(
 			_("Search word:"), wx.TextCtrl, style=wx.TE_PROCESS_ENTER
 		)
-		self._txtSearch.Bind(wx.EVT_TEXT_ENTER, self.onSearch)
+		self.txtSearch.Bind(wx.EVT_TEXT_ENTER, self.onSearch)
 
 		# Search-by radio box
+		# Translators: Radio option to search links by their display name.
+		choice_name = _("Name")
+		# Translators: Radio option to search links by their URL.
+		choice_url = _("URL")
 		# Translators: Label for the radio group that selects what field to search.
-		self._searchBy = wx.RadioBox(
+		self.searchBy = wx.RadioBox(
 			panel,
 			label=_("Search by"),
-			# Translators: Radio option to search links by their display name.
-			# Translators: Radio option to search links by their URL.
-			choices=[_("Name"), _("URL")]
+			choices=[choice_name, choice_url]
 		)
-		sizerHelper.addItem(self._searchBy)
+		sizerHelper.addItem(self.searchBy)
 
 		# Results list (hidden until a search is performed)
 		# Translators: Label for the list that shows search results.
-		self._resultsLabel = wx.StaticText(panel, label="")
-		sizerHelper.addItem(self._resultsLabel)
-		self._listResults = wx.ListBox(panel, choices=[])
-		self._listResults.Bind(wx.EVT_LISTBOX_DCLICK, self.onOpenResult)
-		self._listResults.Bind(wx.EVT_KEY_DOWN, self.onResultsKeyPress)
-		sizerHelper.addItem(self._listResults)
+		self.resultsLabel = wx.StaticText(panel, label="")
+		sizerHelper.addItem(self.resultsLabel)
+		self.listResults = wx.ListBox(panel, choices=[])
+		self.listResults.Bind(wx.EVT_LISTBOX_DCLICK, self.onOpenResult)
+		self.listResults.Bind(wx.EVT_KEY_DOWN, self.onResultsKeyPress)
+		sizerHelper.addItem(self.listResults)
 
 		# Hide results section until a search has been run
-		self._resultsLabel.Hide()
-		self._listResults.Hide()
+		self.resultsLabel.Hide()
+		self.listResults.Hide()
 
 		# Buttons
 		search_button = wx.Button(panel, label=_("&Search"))
@@ -121,26 +121,16 @@ class SearchLinks(wx.Dialog):
 		panel.SetSizerAndFit(boxSizer)
 		self.Fit()
 
-	# ------------------------------------------------------------------
-	# Private helpers
-	# ------------------------------------------------------------------
 
 	def _get_selected_result(self):
 		"""
-		Returns the ``(title, url)`` pair for the currently selected result,
-		or ``None`` if nothing is selected.
-
-		Returns:
-			tuple or None: ``(title, url)`` of the selected result, or None.
+		Returns the (title, url) pair for the currently selected result,
+		or None if nothing is selected.
 		"""
-		index = self._listResults.GetSelection()
+		index = self.listResults.GetSelection()
 		if index == wx.NOT_FOUND:
 			return None
-		return self._results[index]
-
-	# ------------------------------------------------------------------
-	# Event handlers
-	# ------------------------------------------------------------------
+		return self.results[index]
 
 	def onSearch(self, event):
 		"""
@@ -150,48 +140,48 @@ class SearchLinks(wx.Dialog):
 			event (wx.Event): The event triggered by the Search button or
 				pressing Enter in the search field.
 		"""
-		search_word = self._txtSearch.GetValue().strip()
+		search_word = self.txtSearch.GetValue().strip()
 		if not search_word:
 			# Translators: Spoken when the user activates Search with an empty field.
 			self.show_message(_("Please enter a search word."))
-			self._txtSearch.SetFocus()
+			self.txtSearch.SetFocus()
 			return
 
-		category = self._categoryChoice.GetStringSelection()
-		links = self._link_manager.data.get(category, [])
-		search_by_url = self._searchBy.GetSelection() == 1
+		category = self.categoryChoice.GetStringSelection()
+		links = self.link_manager.data.get(category, [])
+		search_by_url = self.searchBy.GetSelection() == 1
 
-		self._results = []
+		self.results = []
 		for title, url in links:
 			haystack = url if search_by_url else title
 			if search_word.lower() in haystack.lower():
-				self._results.append((title, url))
+				self.results.append((title, url))
 
-		self._listResults.Clear()
+		self.listResults.Clear()
 
-		if not self._results:
-			self._resultsLabel.Hide()
-			self._listResults.Hide()
+		if not self.results:
+			self.resultsLabel.Hide()
+			self.listResults.Hide()
 			self.Layout()
 			self.Fit()
 			# Translators: Shown when the search produces no matches.
 			self.show_message(_("No results found."), _("Search"))
 			return
 
-		for title, url in self._results:
-			self._listResults.Append("{title}  —  {url}".format(title=title, url=url))
+		for title, url in self.results:
+			self.listResults.Append("{title}  —  {url}".format(title=title, url=url))
 
-		count = len(self._results)
+		count = len(self.results)
 		# Translators: Label shown above the results list; {count} is the number of matches.
-		self._resultsLabel.SetLabel(
+		self.resultsLabel.SetLabel(
 			_("Results: {count} found.").format(count=count)
 		)
-		self._resultsLabel.Show()
-		self._listResults.Show()
+		self.resultsLabel.Show()
+		self.listResults.Show()
 		self.Layout()
 		self.Fit()
-		self._listResults.SetSelection(0)
-		self._listResults.SetFocus()
+		self.listResults.SetSelection(0)
+		self.listResults.SetFocus()
 		# Translators: Announced when results appear; {count} is the number of matches.
 		ui.message(_("{count} results found.").format(count=count))
 
@@ -207,7 +197,7 @@ class SearchLinks(wx.Dialog):
 		if result is None:
 			# Translators: Spoken when the user tries to open a result without selecting one.
 			self.show_message(_("No result selected to open!"))
-			self._listResults.SetFocus()
+			self.listResults.SetFocus()
 			return
 		title, url = result
 		try:
@@ -235,7 +225,7 @@ class SearchLinks(wx.Dialog):
 		if result is None:
 			# Translators: Spoken when the user tries to copy a URL without selecting a result.
 			self.show_message(_("No result selected to copy!"))
-			self._listResults.SetFocus()
+			self.listResults.SetFocus()
 			return
 		_title, url = result
 		if api.copyToClip(url):
@@ -281,12 +271,6 @@ class SearchLinks(wx.Dialog):
 
 	def show_message(self, message, caption=_("Attention"), style=wx.OK | wx.ICON_INFORMATION):
 		"""
-		Displays a message to the user in a dialog box.
-
-		Args:
-			message (str): The message to be displayed.
-			caption (str, optional): The dialog title. Defaults to "Attention".
-			style (int, optional): The dialog style flags. Defaults to
-				wx.OK | wx.ICON_INFORMATION.
+		Displays a message to the user.
 		"""
 		messageBox(message, caption, style)
