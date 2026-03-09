@@ -51,6 +51,21 @@ class LinkManager:
 		log.debug(f"[{ourAddon.name}] LinkManager inicializado. Caminho do JSON: '{self.json_file_path}'")
 		self.load_json()
 
+	@classmethod
+	def empty(cls):
+		"""
+		Creates a fully initialised but empty LinkManager without loading the
+		JSON file. Use this as a safe fallback when the normal constructor fails.
+
+		Returns:
+			LinkManager: An instance with an empty data dict and a valid
+				json_file_path.
+		"""
+		instance = cls.__new__(cls)
+		instance.json_file_path = json_config.get_current_json_path()
+		instance.data = {}
+		return instance
+
 	def load_json(self):
 		"""
 		It loads the JSON file data to the memory and ensures that the structure is clean.
@@ -78,7 +93,7 @@ class LinkManager:
 			self.save_links()
 		except JSONDecodeError:
 			self.data = {}
-			self.save_links()
+			log.warning("JSON file is corrupt, loading empty data: %s", self.json_file_path)
 			raise JSONDecodeError(_("Error decoding the JSON. Check the file content."), doc='', pos=0)
 
 	def save_links(self):
