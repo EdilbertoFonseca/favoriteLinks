@@ -126,10 +126,10 @@ class LinkManager:
 		"""
 		if category not in self.data:
 			self.data[category] = []
-		
+
 		if any(link[1] == url for link in self.data[category]):
 			raise ValueError(_("The link already exists in the category!"))
-		
+
 		self.data[category].append([title, url])
 		self.data[category].sort(key=lambda x: x[0].lower())
 		self.save_links()
@@ -140,7 +140,7 @@ class LinkManager:
 		"""
 		if category not in self.data:
 			raise KeyError(_("Category does not exist."))
-		
+
 		for link in self.data[category]:
 			if link[0] == old_title:
 				link[0] = new_title

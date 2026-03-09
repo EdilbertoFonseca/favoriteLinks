@@ -25,7 +25,7 @@ from scriptHandler import script
 
 from .configPanel import FavoriteLinksSettingsPanel
 from .fromClipboard import FromClipboard
-from .main import FavoriteLinks 
+from .main import FavoriteLinks
 from .varsConfig import ADDON_SUMMARY, initConfiguration
 
 # Initialize translation support
@@ -195,20 +195,15 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 				log.error("Error loading link manager for clipboard extraction: %s", e)
 				lm = LinkManager.__new__(LinkManager)
 				lm.data = {}
-			FromClipboard(mainFrame, lm)
+			dlg = FromClipboard(mainFrame, lm)
+			if not dlg.GetHandle():
+				return
+			gui.mainFrame.prePopup()
+			dlg.CentreOnScreen()
+			dlg.ShowModal()
+			gui.mainFrame.postPopup()
+			dlg.Destroy()
 		wx.CallAfter(open_dialog)
-
-	def _get_link_manager(self):
-		"""
-		Returns a fresh LinkManager instance for use in clipboard and search
-		operations that need up-to-date link data.
-
-		Returns:
-			LinkManager: A newly loaded LinkManager instance.
-		"""
-		from .linkManager import LinkManager as _LM
-		lm = _LM()
-		return lm
 
 	def terminate(self):
 		"""

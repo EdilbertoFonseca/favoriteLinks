@@ -20,10 +20,8 @@ import addonHandler
 import api
 import ui
 import wx
-from gui import guiHelper, mainFrame, messageBox
+from gui import guiHelper, messageBox
 from logHandler import log
-
-from .linkManager import LinkManager
 
 # Initialize translation support
 addonHandler.initTranslation()
@@ -46,13 +44,10 @@ class FromClipboard(wx.Dialog):
 	"""
 
 	def __init__(self, parent, link_manager):
-		self._link_manager = link_manager
+		self.link_manager = link_manager
 
 		# Translators: Title of the dialog shown when multiple URLs are found in the clipboard.
-		super(FromClipboard, self).__init__(
-			parent,
-			title=_("Choose a link to open")
-		)
+		wx.Dialog.__init__(self, parent, title=_("Choose a link to open"))
 
 		try:
 			clipboard_text = api.getClipData()
@@ -63,7 +58,7 @@ class FromClipboard(wx.Dialog):
 			self.Destroy()
 			return
 
-		urls = self._link_manager.extract_urls_from_text(clipboard_text)
+		urls = self.link_manager.extract_urls_from_text(clipboard_text)
 		# Normalize bare "www." URLs to https.
 		urls = [("https://" + u if u.lower().startswith("www.") else u) for u in urls]
 
@@ -84,7 +79,7 @@ class FromClipboard(wx.Dialog):
 			self.Destroy()
 			return
 
-		self._urls = urls
+		self.urls = urls
 
 		panel = wx.Panel(self)
 		boxSizer = wx.BoxSizer(wx.VERTICAL)
@@ -96,12 +91,12 @@ class FromClipboard(wx.Dialog):
 		sizerHelper.addItem(wx.StaticText(panel, label=count_label))
 
 		# Translators: Label for the list of URLs extracted from the clipboard.
-		self._listUrls = sizerHelper.addLabeledControl(
+		self.listUrls = sizerHelper.addLabeledControl(
 			_("Select a link:"), wx.ListBox, choices=urls
 		)
-		self._listUrls.SetSelection(0)
-		self._listUrls.Bind(wx.EVT_LISTBOX_DCLICK, self.onOpen)
-		self._listUrls.Bind(wx.EVT_KEY_DOWN, self.onListKeyPress)
+		self.listUrls.SetSelection(0)
+		self.listUrls.Bind(wx.EVT_LISTBOX_DCLICK, self.onOpen)
+		self.listUrls.Bind(wx.EVT_KEY_DOWN, self.onListKeyPress)
 
 		# Buttons
 		open_button = wx.Button(panel, label=_("&Open"))
@@ -123,24 +118,15 @@ class FromClipboard(wx.Dialog):
 		panel.SetSizerAndFit(boxSizer)
 		self.Fit()
 
-		mainFrame.prePopup()
-		self.CentreOnScreen()
-		self.ShowModal()
-		mainFrame.postPopup()
-		self.Destroy()
-
 	def _get_selected_url(self):
 		"""
 		Returns the URL currently selected in the list, or an empty string if
 		nothing is selected.
-
-		Returns:
-			str: The selected URL string.
 		"""
-		index = self._listUrls.GetSelection()
+		index = self.listUrls.GetSelection()
 		if index == wx.NOT_FOUND:
 			return ""
-		return self._urls[index]
+		return self.urls[index]
 
 	def onOpen(self, event):
 		"""
@@ -154,7 +140,7 @@ class FromClipboard(wx.Dialog):
 		if not url:
 			# Translators: Spoken when no link is selected in the picker dialog.
 			self.show_message(_("No link selected to open!"))
-			self._listUrls.SetFocus()
+			self.listUrls.SetFocus()
 			return
 		try:
 			if url.lower().startswith("www."):
@@ -177,7 +163,7 @@ class FromClipboard(wx.Dialog):
 		if not url:
 			# Translators: Spoken when no link is selected in the picker dialog.
 			self.show_message(_("No link selected to copy!"))
-			self._listUrls.SetFocus()
+			self.listUrls.SetFocus()
 			return
 		if api.copyToClip(url):
 			# Translators: Spoken when the URL has been copied to the clipboard.
@@ -218,12 +204,6 @@ class FromClipboard(wx.Dialog):
 
 	def show_message(self, message, caption=_("Attention"), style=wx.OK | wx.ICON_INFORMATION):
 		"""
-		Displays a message to the user in a dialog box.
-
-		Args:
-			message (str): The message to be displayed.
-			caption (str, optional): The dialog title. Defaults to "Attention".
-			style (int, optional): The dialog style flags. Defaults to
-				wx.OK | wx.ICON_INFORMATION.
+		Displays a message to the user.
 		"""
 		messageBox(message, caption, style)
