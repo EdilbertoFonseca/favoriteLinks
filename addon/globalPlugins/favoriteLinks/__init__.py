@@ -28,7 +28,6 @@ from scriptHandler import script
 from tones import beep
 
 from .configPanel import FavoriteLinksSettingsPanel
-from .jsonConfig import json_config
 from .linkManager import LinkManager
 from .main import FavoriteLinks
 from .varsConfig import ADDON_SUMMARY, initConfiguration, ourAddon
@@ -100,11 +99,11 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 		# Navigation state for keyboard browsing without opening the dialog.
 		self._nav_category_index = 0
 		self._nav_link_index = 0
+		self._nav_link_manager = LinkManager.empty()
 		try:
-			self._nav_link_manager = LinkManager()
+			self._nav_link_manager.load_json()
 		except Exception as e:
 			log.error("Error loading navigation data at startup: %s", e)
-			self._nav_link_manager = LinkManager.empty()
 
 	def _reload_nav_data(self):
 		"""
