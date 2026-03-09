@@ -18,6 +18,7 @@ import globalVars
 import gui
 import scriptHandler
 import ui
+import webbrowser
 import wx
 from gui import mainFrame
 from logHandler import log
@@ -187,23 +188,46 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 		Args:
 			gesture (kb): Triggered by NVDA+Z.
 		"""
-		def open_dialog():
+		def _open():
 			from .linkManager import LinkManager
 			try:
 				lm = LinkManager()
 			except Exception as e:
 				log.error("Error loading link manager for clipboard extraction: %s", e)
-				lm = LinkManager.__new__(LinkManager)
-				lm.data = {}
-			dlg = FromClipboard(mainFrame, lm)
-			if not dlg.GetHandle():
+				lm = LinkManager.empty()
+			try:
+				clipboard_text = api.getClipData()
+			except OSError as e:
+				log.error("Error reading clipboard: %s", e)
+				# Translators: Spoken when the clipboard cannot be read.
+				ui.message(_("Unable to read the clipboard."))
 				return
+			urls = lm.extract_urls_from_text(clipboard_text)
+			# Normalize bare "www." URLs to https.
+			urls = [("https://" + u if u.lower().startswith("www.") else u) for u in urls]
+			if not urls:
+				# Translators: Spoken when the clipboard holds no recognisable URL.
+				ui.message(_("The clipboard does not contain any links."))
+				return
+			if len(urls) == 1:
+				try:
+					webbrowser.open(urls[0])
+					# Translators: Spoken when a single clipboard URL is opened.
+					ui.message(_("Opening {url}.").format(url=urls[0]))
+				except Exception as e:
+					log.error("Error opening clipboard URL: %s", e)
+					# Translators: Spoken when a clipboard URL cannot be opened in the browser.
+					ui.message(_("Unable to open the link. Please check your browser settings."))
+				return
+			dlg = FromClipboard(mainFrame, urls)
 			gui.mainFrame.prePopup()
-			dlg.CentreOnScreen()
-			dlg.ShowModal()
-			gui.mainFrame.postPopup()
-			dlg.Destroy()
-		wx.CallAfter(open_dialog)
+			try:
+				dlg.CentreOnScreen()
+				dlg.ShowModal()
+			finally:
+				gui.mainFrame.postPopup()
+				dlg.Destroy()
+		wx.CallAfter(_open)
 
 	def terminate(self):
 		"""

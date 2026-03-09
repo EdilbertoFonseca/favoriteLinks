@@ -29,57 +29,22 @@ addonHandler.initTranslation()
 
 class FromClipboard(wx.Dialog):
 	"""
-	Dialog that extracts URLs from the clipboard and lets the user open or
-	copy one of them.
+	Dialog that presents a list of pre-extracted URLs and lets the user open
+	or copy one of them.
 
-	If only one URL is found it is opened immediately without showing the
-	dialog. If multiple URLs are found the dialog lists them all so the user
-	can choose. If the clipboard contains no recognisable URL a spoken
-	message is given and the dialog is not shown.
+	Clipboard reading, URL extraction, and single/empty URL handling are
+	performed by the caller before instantiating this dialog.
 
 	Args:
 		parent (wx.Window): The parent window for this dialog.
-		link_manager (LinkManager): The shared LinkManager instance used
-			for URL extraction.
+		urls (list): The list of URLs to display (must contain at least two items).
 	"""
 
-	def __init__(self, parent, link_manager):
-		self.link_manager = link_manager
-
+	def __init__(self, parent, urls):
 		# Translators: Title of the dialog shown when multiple URLs are found in the clipboard.
 		wx.Dialog.__init__(self, parent, title=_("Choose a link to open"))
 
-		try:
-			clipboard_text = api.getClipData()
-		except OSError as e:
-			log.error("Error reading clipboard: %s", e)
-			# Translators: Spoken when the clipboard cannot be read.
-			ui.message(_("Unable to read the clipboard."))
-			self.Destroy()
-			return
-
-		urls = self.link_manager.extract_urls_from_text(clipboard_text)
-		# Normalize bare "www." URLs to https.
-		urls = [("https://" + u if u.lower().startswith("www.") else u) for u in urls]
-
-		if not urls:
-			# Translators: Spoken when the clipboard holds no recognisable URL.
-			ui.message(_("The clipboard does not contain any links."))
-			self.Destroy()
-			return
-
-		if len(urls) == 1:
-			# Open the single URL straight away without a dialog.
-			try:
-				webbrowser.open(urls[0])
-				# Translators: Spoken when a single clipboard URL is opened.
-				ui.message(_("Opening {url}.").format(url=urls[0]))
-			except Exception as e:
-				log.error("Error opening clipboard URL: %s", e)
-			self.Destroy()
-			return
-
-		self.urls = urls
+		self._urls = urls
 
 		panel = wx.Panel(self)
 		boxSizer = wx.BoxSizer(wx.VERTICAL)
@@ -87,12 +52,12 @@ class FromClipboard(wx.Dialog):
 		buttonSizer = guiHelper.BoxSizerHelper(panel, wx.HORIZONTAL)
 
 		# Translators: Label showing how many links were extracted from the clipboard.
-		count_label = _("{count} links found in the clipboard.").format(count=len(urls))
+		count_label = _("{count} links found in the clipboard.").format(count=len(self._urls))
 		sizerHelper.addItem(wx.StaticText(panel, label=count_label))
 
 		# Translators: Label for the list of URLs extracted from the clipboard.
 		self.listUrls = sizerHelper.addLabeledControl(
-			_("Select a link:"), wx.ListBox, choices=urls
+			_("Select a link:"), wx.ListBox, choices=self._urls
 		)
 		self.listUrls.SetSelection(0)
 		self.listUrls.Bind(wx.EVT_LISTBOX_DCLICK, self.onOpen)
@@ -126,7 +91,7 @@ class FromClipboard(wx.Dialog):
 		index = self.listUrls.GetSelection()
 		if index == wx.NOT_FOUND:
 			return ""
-		return self.urls[index]
+		return self._urls[index]
 
 	def onOpen(self, event):
 		"""
@@ -143,14 +108,15 @@ class FromClipboard(wx.Dialog):
 			self.listUrls.SetFocus()
 			return
 		try:
-			if url.lower().startswith("www."):
-				url = "https://" + url
 			webbrowser.open(url)
 			# Translators: Spoken when a link is opened from the picker dialog.
 			ui.message(_("Opening {url}.").format(url=url))
+			self.EndModal(wx.ID_OK)
 		except Exception as e:
 			log.error("Error opening URL from clipboard dialog: %s", e)
-		self.EndModal(wx.ID_OK)
+			# Translators: Spoken when a link cannot be opened from the picker dialog.
+			ui.message(_("Unable to open the link. Please check your browser settings."))
+			self.listUrls.SetFocus()
 
 	def onCopyToClipboard(self, event):
 		"""
