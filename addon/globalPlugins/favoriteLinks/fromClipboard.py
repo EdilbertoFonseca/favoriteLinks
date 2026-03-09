@@ -9,7 +9,10 @@ See the file COPYING for more details or visit:
 https://www.gnu.org/licenses/gpl-2.0.html
 """
 
+import webbrowser
+
 import addonHandler
+import api
 import ui
 import wx
 from gui import guiHelper
@@ -89,10 +92,14 @@ class FromClipboard(wx.Dialog):
 		url = self._get_selected_url()
 		if not url:
 			return
-		import api
-		api.copyToClip(url)
-		# Translators: Spoken when a URL is copied to the clipboard from the picker dialog.
-		ui.message(_("Copied to clipboard: {url}").format(url=url))
+		try:
+			api.copyToClip(url)
+			# Translators: Spoken when a URL is copied to the clipboard from the picker dialog.
+			ui.message(_("Copied to clipboard: {url}").format(url=url))
+		except Exception as e:
+			log.error("Error copying URL to clipboard: %s", e)
+			# Translators: Spoken when copying a URL to the clipboard fails.
+			ui.message(_("Failed to copy URL to clipboard."))
 
 	def onCancel(self, event):
 		self.EndModal(wx.ID_CANCEL)
