@@ -99,7 +99,12 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 		# Navigation state for keyboard browsing without opening the dialog.
 		self._nav_category_index = 0
 		self._nav_link_index = 0
-		self._nav_link_manager = LinkManager()
+		try:
+			self._nav_link_manager = LinkManager()
+		except Exception as e:
+			log.error("Error loading navigation data at startup: %s", e)
+			self._nav_link_manager = LinkManager.__new__(LinkManager)
+			self._nav_link_manager.data = {}
 
 	def _reload_nav_data(self):
 		"""
@@ -341,12 +346,12 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 		category = categories[self._nav_category_index]
 		links = self._nav_link_manager.data.get(category, [])
 		count = len(links)
-		# Translators: Announced when switching to a category; shows its name and link count.
-		lnk_word = _("link") if count == 1 else _("links")
 		ui.message(
-			_("{category}: Contains {count} {lnk_word}").format(
-				category=category, count=count, lnk_word=lnk_word
-			)
+			ngettext(
+				"{category}: Contains {count} link",
+				"{category}: Contains {count} links",
+				count,
+			).format(category=category, count=count)
 		)
 
 	@script(
@@ -377,12 +382,12 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 		category = categories[self._nav_category_index]
 		links = self._nav_link_manager.data.get(category, [])
 		count = len(links)
-		# Translators: Announced when switching to a category; shows its name and link count.
-		lnk_word = _("link") if count == 1 else _("links")
 		ui.message(
-			_("{category}: Contains {count} {lnk_word}").format(
-				category=category, count=count, lnk_word=lnk_word
-			)
+			ngettext(
+				"{category}: Contains {count} link",
+				"{category}: Contains {count} links",
+				count,
+			).format(category=category, count=count)
 		)
 
 	@script(
@@ -464,12 +469,19 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 			beep(200, 100)
 			return
 		title, url = links[self._nav_link_index]
+		if not self._nav_link_manager.is_internet_connected():
+			beep(200, 100)
+			# Translators: Announced when attempting to open a link without internet connectivity.
+			ui.message(_("No internet connection. Cannot open the selected link."))
+			return
 		try:
 			webbrowser.open(url)
-			# Translators: Announced when a link is opened via keyboard navigation.
-			ui.message(_("Opening {title}.").format(title=title))
+			# Translators: Announced when a link is opened via keyboard navigation, includes title and URL.
+			ui.message(_("Opening {title}, URL {url}.").format(title=title, url=url))
 		except Exception as e:
 			log.error("Error opening URL via keyboard navigation: %s", e)
+			# Translators: Announced when opening a link via keyboard navigation fails.
+			ui.message(_("Unable to open {title}.").format(title=title))
 
 	@script(
 		gesture="kb:control+shift+l",

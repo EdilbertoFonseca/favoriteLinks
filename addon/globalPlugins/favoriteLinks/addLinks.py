@@ -110,7 +110,11 @@ class AddLinks(wx.Dialog):
 				clipboard_text = getClipData()
 				extracted = self.link_manager.extract_urls_from_text(clipboard_text)
 				if extracted:
-					url = extracted[0]
+					candidate = extracted[0]
+					# Normalize bare "www." URLs to https so they become valid.
+					if candidate.lower().startswith("www."):
+						candidate = "https://" + candidate
+					url = candidate
 			except Exception as e:
 				log.error("Error extracting URL from clipboard text: %s", e)
 		url_field.SetValue(url)
