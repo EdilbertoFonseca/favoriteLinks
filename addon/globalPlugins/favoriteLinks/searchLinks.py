@@ -224,10 +224,12 @@ class SearchLinks(wx.Dialog):
 			self.listResults.SetFocus()
 			return
 		_title, url = result
-		if api.copyToClip(url):
+		try:
+			api.copyToClip(url)
 			# Translators: Announced when a URL from the search results is copied to the clipboard.
 			ui.message(_("URL copied to clipboard."))
-		else:
+		except Exception as e:
+			log.error("Error copying URL to clipboard: %s", e)
 			# Translators: Announced/shown when copying a URL to the clipboard fails.
 			ui.message(_("Failed to copy URL to clipboard."))
 
