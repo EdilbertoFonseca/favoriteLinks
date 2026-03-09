@@ -252,11 +252,9 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 			# Translators: The user is not in a browser.
 			ui.message(_("No browser window found."))
 
-	# -----------------------------------------------------------------------
 	# Keyboard navigation scripts (no dialog required)
 	# Inspired by the Link Manager add-on by Abdallah Hader:
 	# https://github.com/abdallah-hader/linkManager
-	# -----------------------------------------------------------------------
 
 	@script(
 		gesture="kb:control+shift+f12",
