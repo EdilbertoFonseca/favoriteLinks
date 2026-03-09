@@ -13,6 +13,7 @@ Created on: 11/04/2024.
 
 import json
 import os
+import re
 import socket
 import sys
 from json.decoder import JSONDecodeError
@@ -51,6 +52,21 @@ class LinkManager:
 		log.debug(f"[{ourAddon.name}] LinkManager inicializado. Caminho do JSON: '{self.json_file_path}'")
 		self.load_json()
 
+	@classmethod
+	def empty(cls):
+		"""
+		Creates a fully initialised but empty LinkManager without loading the
+		JSON file. Use this as a safe fallback when the normal constructor fails.
+
+		Returns:
+			LinkManager: An instance with an empty data dict and a valid
+				json_file_path.
+		"""
+		instance = cls.__new__(cls)
+		instance.json_file_path = json_config.get_current_json_path()
+		instance.data = {}
+		return instance
+
 	def load_json(self):
 		"""
 		It loads the JSON file data to the memory and ensures that the structure is clean.
@@ -78,7 +94,7 @@ class LinkManager:
 			self.save_links()
 		except JSONDecodeError:
 			self.data = {}
-			self.save_links()
+			log.warning("JSON file is corrupt, loading empty data: %s", self.json_file_path)
 			raise JSONDecodeError(_("Error decoding the JSON. Check the file content."), doc='', pos=0)
 
 	def save_links(self):
@@ -269,3 +285,27 @@ class LinkManager:
 		Order the categories in alphabetical order.
 		"""
 		self.data = {key: self.data[key] for key in sorted(self.data.keys(), key=str.lower)}
+
+	# Regular expression that matches http/https/ftp URLs and bare www. addresses.
+	# Inspired by the URL pattern used in Link Manager by Abdallah Hader:
+	# https://github.com/abdallah-hader/linkManager
+	_URL_RE = re.compile(r"(?:(?:https?|ftp)://\S+|www\.\S+)")
+	_URL_STRIP_CHARS = '\'\\.,[](){}:;"'
+
+	@staticmethod
+	def extract_urls_from_text(text):
+		"""
+		Extracts all URLs found in an arbitrary text string using a regular
+		expression. Useful for parsing clipboard content that may contain
+		URLs embedded inside sentences.
+
+		Inspired by the URL extraction pattern used in Link Manager by
+		Abdallah Hader: https://github.com/abdallah-hader/linkManager
+
+		Args:
+			text (str): The text to search for URLs.
+
+		Returns:
+			list: A list of URL strings found in the text. May be empty.
+		"""
+		return [s.strip(LinkManager._URL_STRIP_CHARS) for s in LinkManager._URL_RE.findall(text)]
