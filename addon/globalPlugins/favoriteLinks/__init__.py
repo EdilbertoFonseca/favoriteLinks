@@ -187,14 +187,19 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 		"""
 		def open_dialog():
 			from .linkManager import LinkManager as _LM
-			dlg = SearchLinks(mainFrame, _LM())
-			if not dlg.GetHandle():
+			lm = _LM()
+			if not lm.data:
+				# Translators: Spoken when there are no saved links to search.
+				ui.message(_("No categories found. Please add some links first."))
 				return
+			dlg = SearchLinks(mainFrame, lm)
 			gui.mainFrame.prePopup()
-			dlg.CentreOnScreen()
-			dlg.ShowModal()
-			gui.mainFrame.postPopup()
-			dlg.Destroy()
+			try:
+				dlg.CentreOnScreen()
+				dlg.ShowModal()
+			finally:
+				gui.mainFrame.postPopup()
+				dlg.Destroy()
 		wx.CallAfter(open_dialog)
 
 	def terminate(self):

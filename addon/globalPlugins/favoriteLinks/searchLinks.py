@@ -38,7 +38,7 @@ class SearchLinks(wx.Dialog):
 
 	Args:
 		parent (wx.Window): The parent window for this dialog.
-		link_manager (LinkManager): The shared LinkManager instance
+		link_manager (LinkManager): A `LinkManager` instance
 			containing all saved categories and links.
 	"""
 
@@ -47,12 +47,6 @@ class SearchLinks(wx.Dialog):
 
 		# Translators: Title of the search links dialog.
 		wx.Dialog.__init__(self, parent, title=_("Search links"))
-
-		if not self.link_manager.data:
-			# Translators: Spoken / shown when there are no saved categories to search.
-			ui.message(_("No categories found. Please add some links first."))
-			self.Destroy()
-			return
 
 		panel = wx.Panel(self)
 		boxSizer = wx.BoxSizer(wx.VERTICAL)
@@ -201,7 +195,8 @@ class SearchLinks(wx.Dialog):
 			return
 		title, url = result
 		try:
-			webbrowser.open(url)
+			if not webbrowser.open(url):
+				raise RuntimeError("webbrowser.open returned False")
 			# Translators: Announced when a found link is being opened.
 			ui.message(_("Opening {title}.").format(title=title))
 			self.EndModal(wx.ID_OK)
@@ -213,6 +208,7 @@ class SearchLinks(wx.Dialog):
 				caption=_("Error"),
 				style=wx.OK | wx.ICON_ERROR,
 			)
+			self.listResults.SetFocus()
 
 	def onCopyUrl(self, event):
 		"""
