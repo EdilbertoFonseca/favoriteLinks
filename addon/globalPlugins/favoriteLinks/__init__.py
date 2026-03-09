@@ -189,7 +189,13 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 		"""
 		def open_dialog():
 			from .linkManager import LinkManager as _LM
-			lm = _LM()
+			try:
+				lm = _LM()
+			except Exception as e:
+				log.error("Error loading link manager for search: %s", e)
+				# Translators: Spoken when the link data file cannot be loaded.
+				ui.message(_("Failed to load links. Please check the file."))
+				return
 			if not lm.data:
 				# Translators: Spoken when there are no saved links to search.
 				ui.message(_("No categories found. Please add some links first."))
@@ -227,6 +233,7 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 				# Translators: Spoken when the clipboard cannot be read.
 				ui.message(_("Unable to read the clipboard."))
 				return
+			clipboard_text = clipboard_text or ""
 			urls = LinkManager.extract_urls_from_text(clipboard_text)
 			urls = [("https://" + u if u.lower().startswith("www.") else u) for u in urls]
 			if not urls:
@@ -235,7 +242,9 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 				return
 			if len(urls) == 1:
 				try:
-					webbrowser.open(urls[0])
+					opened = webbrowser.open(urls[0])
+					if not opened:
+						raise OSError("Browser failed to open URL")
 					# Translators: Spoken when a single clipboard URL is opened.
 					ui.message(_("Opening {url}.").format(url=urls[0]))
 				except Exception as e:

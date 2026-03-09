@@ -94,8 +94,8 @@ class LinkManager:
 			self.save_links()
 		except JSONDecodeError:
 			self.data = {}
-			log.warning("JSON file is corrupt, loading empty data: %s", self.json_file_path)
-			raise JSONDecodeError(_("Error decoding the JSON. Check the file content."), doc='', pos=0)
+			log.error("JSON file is corrupt, resetting to empty: %s", self.json_file_path)
+			self.save_links()
 
 	def save_links(self):
 		"""

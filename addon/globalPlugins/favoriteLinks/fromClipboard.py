@@ -73,7 +73,9 @@ class FromClipboard(wx.Dialog):
 		if not url:
 			return
 		try:
-			webbrowser.open(url)
+			opened = webbrowser.open(url)
+			if not opened:
+				raise OSError("Browser failed to open URL")
 			# Translators: Spoken when a link is opened from the picker dialog.
 			ui.message(_("Opening {url}.").format(url=url))
 			self.EndModal(wx.ID_OK)
