@@ -104,9 +104,7 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 			self._nav_link_manager = LinkManager()
 		except Exception as e:
 			log.error("Error loading navigation data at startup: %s", e)
-			self._nav_link_manager = LinkManager.__new__(LinkManager)
-			self._nav_link_manager.json_file_path = json_config.get_current_json_path()
-			self._nav_link_manager.data = {}
+			self._nav_link_manager = LinkManager.empty()
 
 	def _reload_nav_data(self):
 		"""
@@ -348,14 +346,11 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 		category = categories[self._nav_category_index]
 		links = self._nav_link_manager.data.get(category, [])
 		count = len(links)
-		# Translators: Announced when switching to the next category; shows its name and link count (singular/plural).
-		ui.message(
-			ngettext(
-				"{category}: Contains {count} link",
-				"{category}: Contains {count} links",
-				count,
-			).format(category=category, count=count)
-		)
+		# Translators: Announced when switching to the next category; includes category name and link count.
+		if count == 1:
+			ui.message(_("{category}: Contains {count} link").format(category=category, count=count))
+		else:
+			ui.message(_("{category}: Contains {count} links").format(category=category, count=count))
 
 	@script(
 		gesture="kb:control+shift+f9",
@@ -385,14 +380,11 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 		category = categories[self._nav_category_index]
 		links = self._nav_link_manager.data.get(category, [])
 		count = len(links)
-		# Translators: Announced when switching to the previous category; shows its name and link count (singular/plural).
-		ui.message(
-			ngettext(
-				"{category}: Contains {count} link",
-				"{category}: Contains {count} links",
-				count,
-			).format(category=category, count=count)
-		)
+		# Translators: Announced when switching to the previous category; includes category name and link count.
+		if count == 1:
+			ui.message(_("{category}: Contains {count} link").format(category=category, count=count))
+		else:
+			ui.message(_("{category}: Contains {count} links").format(category=category, count=count))
 
 	@script(
 		gesture="kb:nvda+shift+control+f11",
