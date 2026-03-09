@@ -470,8 +470,11 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 		title, url = links[self._nav_link_index]
 		try:
 			webbrowser.open(url)
-			# Translators: Announced when a link is opened via keyboard navigation, includes title and URL.
-			ui.message(_("Opening {title}, URL {url}.").format(title=title, url=url))
+			# Translators: Announced when a link is opened via keyboard navigation; {title} is the link name.
+			msg = _("Opening {title}.").format(title=title)
+			if config.conf[ourAddon.name]["readUrlAfterName"]:
+				msg = msg + "  " + url
+			ui.message(msg)
 		except Exception as e:
 			log.error("Error opening URL via keyboard navigation: %s", e)
 			# Translators: Announced when opening a link via keyboard navigation fails.
