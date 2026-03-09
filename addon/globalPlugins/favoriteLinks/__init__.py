@@ -187,7 +187,11 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 		"""
 		def open_dialog():
 			from .linkManager import LinkManager as _LM
-			lm = _LM()
+			try:
+				lm = _LM()
+			except Exception as e:
+				log.error("Error loading link manager for search: %s", e)
+				lm = _LM.empty()
 			if not lm.data:
 				# Translators: Spoken when there are no saved links to search.
 				ui.message(_("No categories found. Please add some links first."))
