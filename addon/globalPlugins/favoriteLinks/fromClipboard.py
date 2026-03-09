@@ -9,8 +9,6 @@ See the file COPYING for more details or visit:
 https://www.gnu.org/licenses/gpl-2.0.html
 """
 
-import webbrowser
-
 import addonHandler
 import ui
 import wx
