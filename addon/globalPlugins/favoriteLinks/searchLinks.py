@@ -23,9 +23,6 @@ import wx
 from gui import guiHelper, mainFrame, messageBox
 from logHandler import log
 
-from .linkManager import LinkManager
-
-# Initialize translation support
 addonHandler.initTranslation()
 
 
@@ -47,16 +44,17 @@ class SearchLinks(wx.Dialog):
 	def __init__(self, parent, link_manager):
 		self._link_manager = link_manager
 
-		if not self._link_manager.data:
-			# Translators: Spoken / shown when there are no saved categories to search.
-			ui.message(_("No categories found. Please add some links first."))
-			return
-
 		# Translators: Title of the search links dialog.
 		super(SearchLinks, self).__init__(
 			parent,
 			title=_("Search links")
 		)
+
+		if not self._link_manager.data:
+			# Translators: Spoken / shown when there are no saved categories to search.
+			ui.message(_("No categories found. Please add some links first."))
+			self.Destroy()
+			return
 
 		panel = wx.Panel(self)
 		boxSizer = wx.BoxSizer(wx.VERTICAL)
@@ -72,7 +70,7 @@ class SearchLinks(wx.Dialog):
 
 		# Search term field
 		self._txtSearch = sizerHelper.addLabeledControl(
-			_("Search word:"), wx.TextCtrl
+			_("Search word:"), wx.TextCtrl, style=wx.TE_PROCESS_ENTER
 		)
 		self._txtSearch.Bind(wx.EVT_TEXT_ENTER, self.onSearch)
 
@@ -122,12 +120,6 @@ class SearchLinks(wx.Dialog):
 		boxSizer.Add(buttonSizer.sizer, border=5, flag=wx.CENTER)
 		panel.SetSizerAndFit(boxSizer)
 		self.Fit()
-
-		mainFrame.prePopup()
-		self.CentreOnScreen()
-		self.ShowModal()
-		mainFrame.postPopup()
-		self.Destroy()
 
 	# ------------------------------------------------------------------
 	# Private helpers
@@ -222,9 +214,15 @@ class SearchLinks(wx.Dialog):
 			webbrowser.open(url)
 			# Translators: Announced when a found link is being opened.
 			ui.message(_("Opening {title}.").format(title=title))
+			self.EndModal(wx.ID_OK)
 		except Exception as e:
 			log.error("Error opening search result URL: %s", e)
-		self.EndModal(wx.ID_OK)
+			# Translators: Shown when a link cannot be opened in the browser.
+			self.show_message(
+				_("Unable to open the selected link. Please check your browser or the URL and try again."),
+				caption=_("Error"),
+				style=wx.OK | wx.ICON_ERROR,
+			)
 
 	def onCopyUrl(self, event):
 		"""
@@ -243,6 +241,9 @@ class SearchLinks(wx.Dialog):
 		if api.copyToClip(url):
 			# Translators: Announced when a URL from the search results is copied to the clipboard.
 			ui.message(_("URL copied to clipboard."))
+		else:
+			# Translators: Announced/shown when copying a URL to the clipboard fails.
+			ui.message(_("Failed to copy URL to clipboard."))
 
 	def onCancel(self, event):
 		"""

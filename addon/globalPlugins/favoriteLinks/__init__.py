@@ -185,8 +185,17 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 		Args:
 			gesture (kb): Triggered by NVDA+Shift+G.
 		"""
-		from .linkManager import LinkManager as _LM
-		wx.CallAfter(SearchLinks, mainFrame, _LM())
+		def open_dialog():
+			from .linkManager import LinkManager as _LM
+			dlg = SearchLinks(mainFrame, _LM())
+			if not dlg.GetHandle():
+				return
+			gui.mainFrame.prePopup()
+			dlg.CentreOnScreen()
+			dlg.ShowModal()
+			gui.mainFrame.postPopup()
+			dlg.Destroy()
+		wx.CallAfter(open_dialog)
 
 	def terminate(self):
 		"""
