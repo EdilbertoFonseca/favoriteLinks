@@ -48,19 +48,29 @@ class FromClipboard(wx.Dialog):
 	def __init__(self, parent, link_manager):
 		self._link_manager = link_manager
 
+		# Translators: Title of the dialog shown when multiple URLs are found in the clipboard.
+		super(FromClipboard, self).__init__(
+			parent,
+			title=_("Choose a link to open")
+		)
+
 		try:
 			clipboard_text = api.getClipData()
 		except OSError as e:
 			log.error("Error reading clipboard: %s", e)
 			# Translators: Spoken when the clipboard cannot be read.
 			ui.message(_("Unable to read the clipboard."))
+			self.Destroy()
 			return
 
 		urls = self._link_manager.extract_urls_from_text(clipboard_text)
+		# Normalize bare "www." URLs to https.
+		urls = [("https://" + u if u.lower().startswith("www.") else u) for u in urls]
 
 		if not urls:
 			# Translators: Spoken when the clipboard holds no recognisable URL.
 			ui.message(_("The clipboard does not contain any links."))
+			self.Destroy()
 			return
 
 		if len(urls) == 1:
@@ -71,14 +81,8 @@ class FromClipboard(wx.Dialog):
 				ui.message(_("Opening {url}.").format(url=urls[0]))
 			except Exception as e:
 				log.error("Error opening clipboard URL: %s", e)
+			self.Destroy()
 			return
-
-		# Multiple URLs — show the picker dialog.
-		# Translators: Title of the dialog shown when multiple URLs are found in the clipboard.
-		super(FromClipboard, self).__init__(
-			parent,
-			title=_("Choose a link to open")
-		)
 
 		self._urls = urls
 
@@ -153,6 +157,8 @@ class FromClipboard(wx.Dialog):
 			self._listUrls.SetFocus()
 			return
 		try:
+			if url.lower().startswith("www."):
+				url = "https://" + url
 			webbrowser.open(url)
 			# Translators: Spoken when a link is opened from the picker dialog.
 			ui.message(_("Opening {url}.").format(url=url))

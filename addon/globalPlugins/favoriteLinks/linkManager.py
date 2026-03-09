@@ -250,7 +250,7 @@ class LinkManager:
 	# Regular expression that matches http/https/ftp URLs and bare www. addresses.
 	# Inspired by the URL pattern used in Link Manager by Abdallah Hader:
 	# https://github.com/abdallah-hader/linkManager
-	_URL_RE = re.compile(r"(?:\w+://|www\.)[^ ,.?!#%=+][^ ][^ \r]*")
+	_URL_RE = re.compile(r"(?:(?:https?|ftp)://\S+|www\.\S+)")
 	_URL_STRIP_CHARS = '\'\\.,[](){}:;"'
 
 	def extract_urls_from_text(self, text: str) -> list:

@@ -187,7 +187,16 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 		Args:
 			gesture (kb): Triggered by NVDA+Z.
 		"""
-		wx.CallAfter(FromClipboard, mainFrame, self._get_link_manager())
+		def open_dialog():
+			from .linkManager import LinkManager
+			try:
+				lm = LinkManager()
+			except Exception as e:
+				log.error("Error loading link manager for clipboard extraction: %s", e)
+				lm = LinkManager.__new__(LinkManager)
+				lm.data = {}
+			FromClipboard(mainFrame, lm)
+		wx.CallAfter(open_dialog)
 
 	def _get_link_manager(self):
 		"""
