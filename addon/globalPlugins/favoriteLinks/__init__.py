@@ -187,16 +187,28 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 		"""
 		def open_dialog():
 			from .linkManager import LinkManager as _LM
+			load_failed = False
 			try:
 				lm = _LM()
 			except Exception as e:
 				log.error("Error loading link manager for search: %s", e)
+				load_failed = True
 				lm = _LM.empty()
+			if load_failed:
+				# Translators: Spoken when the link data file cannot be loaded for search.
+				ui.message(_("Failed to load links. Please check the file."))
+				return
 			if not lm.data:
 				# Translators: Spoken when there are no saved links to search.
 				ui.message(_("No categories found. Please add some links first."))
 				return
-			dlg = SearchLinks(mainFrame, lm)
+			try:
+				dlg = SearchLinks(mainFrame, lm)
+			except Exception as e:
+				log.error("Error creating search dialog: %s", e)
+				# Translators: Spoken when the search dialog cannot be opened.
+				ui.message(_("Unable to open the search dialog."))
+				return
 			gui.mainFrame.prePopup()
 			try:
 				dlg.CentreOnScreen()
