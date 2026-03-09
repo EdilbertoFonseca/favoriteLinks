@@ -28,6 +28,7 @@ from scriptHandler import script
 from tones import beep
 
 from .configPanel import FavoriteLinksSettingsPanel
+from .jsonConfig import json_config
 from .linkManager import LinkManager
 from .main import FavoriteLinks
 from .varsConfig import ADDON_SUMMARY, initConfiguration, ourAddon
@@ -104,6 +105,7 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 		except Exception as e:
 			log.error("Error loading navigation data at startup: %s", e)
 			self._nav_link_manager = LinkManager.__new__(LinkManager)
+			self._nav_link_manager.json_file_path = json_config.get_current_json_path()
 			self._nav_link_manager.data = {}
 
 	def _reload_nav_data(self):
@@ -346,6 +348,7 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 		category = categories[self._nav_category_index]
 		links = self._nav_link_manager.data.get(category, [])
 		count = len(links)
+		# Translators: Announced when switching to the next category; shows its name and link count (singular/plural).
 		ui.message(
 			ngettext(
 				"{category}: Contains {count} link",
@@ -382,6 +385,7 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 		category = categories[self._nav_category_index]
 		links = self._nav_link_manager.data.get(category, [])
 		count = len(links)
+		# Translators: Announced when switching to the previous category; shows its name and link count (singular/plural).
 		ui.message(
 			ngettext(
 				"{category}: Contains {count} link",
@@ -469,11 +473,6 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 			beep(200, 100)
 			return
 		title, url = links[self._nav_link_index]
-		if not self._nav_link_manager.is_internet_connected():
-			beep(200, 100)
-			# Translators: Announced when attempting to open a link without internet connectivity.
-			ui.message(_("No internet connection. Cannot open the selected link."))
-			return
 		try:
 			webbrowser.open(url)
 			# Translators: Announced when a link is opened via keyboard navigation, includes title and URL.
