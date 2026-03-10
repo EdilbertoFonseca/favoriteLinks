@@ -27,7 +27,8 @@ class FromClipboard(wx.Dialog):
 	Allows the user to pick one URL to open in the browser or copy to clipboard.
 
 	Args:
-		wx.Dialog: Modal dialog for choosing among clipboard URLs.
+		parent (wx.Window): The parent window for this dialog.
+		urls (list): List of URL strings extracted from the clipboard.
 	"""
 
 	def __init__(self, parent, urls):

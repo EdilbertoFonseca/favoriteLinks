@@ -79,14 +79,8 @@ class LinkManager:
 			self.save_links()
 		except JSONDecodeError:
 			self.data = {}
-			log.error("JSON file is corrupt, resetting to empty: %s", self.json_file_path)
-			try:
-				backup = self.json_file_path + ".corrupt"
-				os.replace(self.json_file_path, backup)
-				log.info("Corrupt JSON backed up to: %s", backup)
-			except OSError as backup_err:
-				log.warning("Could not back up corrupt JSON: %s", backup_err)
-			self.save_links()
+			log.warning("JSON file is corrupt, loading empty data: %s", self.json_file_path)
+			raise JSONDecodeError(_("Error decoding the JSON. Check the file content."), doc='', pos=0)
 
 	def save_links(self):
 		"""
@@ -281,7 +275,7 @@ class LinkManager:
 	# Inspired by the URL pattern used in Link Manager by Abdallah Hader:
 	# https://github.com/abdallah-hader/linkManager
 	_URL_RE = re.compile(r"(?:(?:https?|ftp)://\S+|www\.\S+)")
-	_URL_STRIP_CHARS = '\'\\.,[](){}:;"'
+	_URL_STRIP_CHARS = '\'.,[](){}:;"'
 
 	@staticmethod
 	def extract_urls_from_text(text):

@@ -211,7 +211,6 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 		wx.CallAfter(open_dialog)
 
 	@script(
-		gesture="kb:NVDA+Z",
 		# Translators: Description shown in NVDA input gestures for opening a URL from the clipboard.
 		description=_("Open a URL from the clipboard."),
 		category=ADDON_SUMMARY

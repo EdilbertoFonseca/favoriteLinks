@@ -44,6 +44,7 @@ class SearchLinks(wx.Dialog):
 
 	def __init__(self, parent, link_manager):
 		self.link_manager = link_manager
+		self.results = []
 
 		# Translators: Title of the search links dialog.
 		wx.Dialog.__init__(self, parent, title=_("Search links"))
@@ -83,7 +84,6 @@ class SearchLinks(wx.Dialog):
 		choice_url = _("URL")
 		# Translators: Label for the radio group that selects what field to search.
 		search_by_label = _("Search by")
-		# Translators: Label for the radio group that selects what field to search.
 		self.searchBy = wx.RadioBox(
 			panel,
 			label=search_by_label,
@@ -231,7 +231,6 @@ class SearchLinks(wx.Dialog):
 			log.error("Error opening search result URL: %s", e)
 			# Translators: Shown when a link cannot be opened in the browser.
 			open_error_message = _("Unable to open the selected link. Please check your browser or the URL and try again.")
-			# Translators: Shown when a link cannot be opened in the browser.
 			# Translators: Caption for error messages in the search dialog.
 			error_caption = _("Error")
 			self.show_message(
