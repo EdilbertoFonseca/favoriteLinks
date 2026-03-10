@@ -54,6 +54,7 @@ def initConfiguration():
 			"path": "string(default='')",
 			"altPath": "string(default='')",
 			"xx": "string(default='')",
+			"readUrlAfterName": "boolean(default=False)",
 		}
 		config.conf.spec[ourAddon.name] = confspec
 	except Exception as e:

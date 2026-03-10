@@ -87,11 +87,33 @@ class AddLinks(wx.Dialog):
 	def _create_url_field(self, sizerHelper):
 		"""
 		Creates and initializes the URL text field.
+
+		The field is pre-populated using the following strategy, inspired by
+		the Link Manager add-on by Abdallah Hader
+		(https://github.com/abdallah-hader/linkManager):
+
+		1. If the clipboard holds a plain, valid URL it is used as-is.
+		2. Otherwise the clipboard text is scanned with a regular expression
+		   so that URLs embedded inside sentences (e.g. copied article text)
+		   are still detected and the first match is used.
+		3. If nothing is found the field is left empty.
 		"""
 		url_field = sizerHelper.addLabeledControl(
 			_("Enter link URL:"), wx.TextCtrl
 		)
-		url_field.SetValue(self.link_manager.get_url_from_clipboard())
+		# First try a clean, validated URL from the clipboard.
+		url = self.link_manager.get_url_from_clipboard()
+		if not url:
+			# Fall back to regex extraction so URLs embedded in text are found.
+			try:
+				from api import getClipData
+				clipboard_text = getClipData()
+				extracted = self.link_manager.extract_urls_from_text(clipboard_text)
+				if extracted:
+					url = extracted[0]
+			except Exception as e:
+				log.error("Error extracting URL from clipboard text: %s", e)
+		url_field.SetValue(url)
 		return url_field
 
 	def _create_buttons(self, panel, buttonSizer):
