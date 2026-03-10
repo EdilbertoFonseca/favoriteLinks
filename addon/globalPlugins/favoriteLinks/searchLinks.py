@@ -15,6 +15,7 @@ Created on: 08/03/2025
 """
 
 import webbrowser
+
 import addonHandler
 import api
 import ui
@@ -83,7 +84,6 @@ class SearchLinks(wx.Dialog):
 		choice_url = _("URL")
 		# Translators: Label for the radio group that selects what field to search.
 		search_by_label = _("Search by")
-		# Translators: Label for the radio group that selects what field to search.
 		self.searchBy = wx.RadioBox(
 			panel,
 			label=search_by_label,
