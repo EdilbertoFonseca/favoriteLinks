@@ -43,6 +43,7 @@ class SearchLinks(wx.Dialog):
 
 	def __init__(self, parent, link_manager):
 		self.link_manager = link_manager
+		self.results = []
 
 		# Translators: Title of the search links dialog.
 		wx.Dialog.__init__(self, parent, title=_("Search links"))
@@ -227,7 +228,10 @@ class SearchLinks(wx.Dialog):
 		if result is None:
 			# Translators: Spoken when the user tries to open a result without selecting one.
 			self.show_message(_("No result selected to open!"))
-			self.txtSearch.SetFocus()
+			if self.listResults.IsShown():
+				self.listResults.SetFocus()
+			else:
+				self.txtSearch.SetFocus()
 			return
 		title, url = result
 		if not self.link_manager.is_internet_connected():
@@ -238,7 +242,7 @@ class SearchLinks(wx.Dialog):
 				_("Error"),
 				wx.OK | wx.ICON_ERROR
 			)
-			self.txtSearch.SetFocus()
+			self.listResults.SetFocus()
 			return
 		try:
 			if not webbrowser.open(url):
@@ -270,7 +274,10 @@ class SearchLinks(wx.Dialog):
 		if result is None:
 			# Translators: Spoken when the user tries to copy a URL without selecting a result.
 			self.show_message(_("No result selected to copy!"))
-			self.txtSearch.SetFocus()
+			if self.listResults.IsShown():
+				self.listResults.SetFocus()
+			else:
+				self.txtSearch.SetFocus()
 			return
 		_title, url = result
 		try:
