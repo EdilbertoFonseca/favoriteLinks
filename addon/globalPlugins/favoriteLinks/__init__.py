@@ -11,6 +11,8 @@ https://www.gnu.org/licenses/gpl-2.0.html
 Created on: 11/04/2024.
 """
 
+import webbrowser
+
 import addonHandler
 import api
 import globalPluginHandler
@@ -18,7 +20,6 @@ import globalVars
 import gui
 import scriptHandler
 import ui
-import webbrowser
 import wx
 from gui import mainFrame
 from logHandler import log
