@@ -247,28 +247,6 @@ class LinkManager:
 		except Exception as e:
 			raise Exception(_("Unexpected error importing the links: {}".format(e)))
 
-	# Regular expression that matches http/https/ftp URLs and bare www. addresses.
-	# Inspired by the URL pattern used in Link Manager by Abdallah Hader:
-	# https://github.com/abdallah-hader/linkManager
-	_URL_RE = re.compile(r"(?:\w+://|www\.)[^ ,.?!#%=+][^ ][^ \r]*")
-	_URL_STRIP_CHARS = '\'\\.,[](){}:;"'
-
-	def extract_urls_from_text(self, text: str) -> list:
-		"""
-		Extracts all URLs found in an arbitrary text string using a regular
-		expression. Useful for parsing clipboard content that may contain
-		URLs embedded inside sentences.
-
-		Inspired by the URL extraction pattern used in Link Manager by
-		Abdallah Hader: https://github.com/abdallah-hader/linkManager
-
-		Args:
-			text (str): The text to search for URLs.
-
-		Returns:
-			list: A list of URL strings found in the text. May be empty.
-		"""
-		return [s.strip(self._URL_STRIP_CHARS) for s in self._URL_RE.findall(text)]
 
 	def is_internet_connected(self, host='8.8.8.8', port=53, timeout=3) -> bool:
 		"""

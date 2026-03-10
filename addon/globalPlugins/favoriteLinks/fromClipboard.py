@@ -124,7 +124,7 @@ class FromClipboard(wx.Dialog):
 			event.Skip()
 
 	def onListKeyPress(self, event):
-		if event.GetKeyCode() == wx.WXK_RETURN:
+		if event.GetKeyCode() in (wx.WXK_RETURN, wx.WXK_NUMPAD_ENTER):
 			self.onOpen(event)
 		else:
 			event.Skip()
