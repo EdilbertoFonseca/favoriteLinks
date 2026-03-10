@@ -214,8 +214,8 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 				dlg.CentreOnScreen()
 				dlg.ShowModal()
 			finally:
-				gui.mainFrame.postPopup()
 				dlg.Destroy()
+				gui.mainFrame.postPopup()
 		wx.CallAfter(open_dialog)
 
 	def terminate(self):

@@ -178,9 +178,12 @@ class SearchLinks(wx.Dialog):
 
 		self.results = []
 		for title, url in links:
-			haystack = url if search_by_url else title
+			# Coerce to str to guard against non-string values in hand-edited JSON.
+			title_str = str(title) if title is not None else ""
+			url_str = str(url) if url is not None else ""
+			haystack = url_str if search_by_url else title_str
 			if search_word.lower() in haystack.lower():
-				self.results.append((title, url))
+				self.results.append((title_str, url_str))
 
 		self.listResults.Clear()
 
