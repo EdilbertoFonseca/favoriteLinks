@@ -202,7 +202,6 @@ class SearchLinks(wx.Dialog):
 		count = len(self.results)
 		# Translators: Label shown above the results list; {count} is the number of matches.
 		results_count_label = _("Results: {count} found.").format(count=count)
-		# Translators: Label shown above the results list; {count} is the number of matches.
 		self.resultsLabel.SetLabel(
 			results_count_label
 		)
