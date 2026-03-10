@@ -53,8 +53,10 @@ class SearchLinks(wx.Dialog):
 		sizerHelper = guiHelper.BoxSizerHelper(panel, wx.VERTICAL)
 		buttonSizer = guiHelper.BoxSizerHelper(panel, wx.HORIZONTAL)
 
-		# Category selector
-		categories = list(self.link_manager.data.keys())
+		# Category selector — first item is a catch-all for global search
+		# Translators: First option in the category dropdown; searches across all categories.
+		all_categories_label = _("(All categories)")
+		categories = [all_categories_label] + list(self.link_manager.data.keys())
 		self.categoryChoice = sizerHelper.addLabeledControl(
 			_("Select a category:"), wx.Choice, choices=categories
 		)
@@ -141,8 +143,15 @@ class SearchLinks(wx.Dialog):
 			self.txtSearch.SetFocus()
 			return
 
-		category = self.categoryChoice.GetStringSelection()
-		links = self.link_manager.data.get(category, [])
+		category_idx = self.categoryChoice.GetSelection()
+		if category_idx == 0:
+			# "All categories" selected — gather links from every category
+			links = []
+			for cat_links in self.link_manager.data.values():
+				links.extend(cat_links)
+		else:
+			category = self.categoryChoice.GetStringSelection()
+			links = self.link_manager.data.get(category, [])
 		search_by_url = self.searchBy.GetSelection() == 1
 
 		self.results = []
