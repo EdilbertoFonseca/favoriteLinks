@@ -10,7 +10,6 @@ https://www.gnu.org/licenses/gpl-2.0.html
 """
 
 import webbrowser
-
 import addonHandler
 import api
 import ui
@@ -22,6 +21,14 @@ addonHandler.initTranslation()
 
 
 class FromClipboard(wx.Dialog):
+	"""
+	Dialog for selecting and opening a URL from the clipboard.
+	Displayed when multiple URLs are found in the clipboard content.
+	Allows the user to pick one URL to open in the browser or copy to clipboard.
+
+	Args:
+		wx.Dialog: Modal dialog for choosing among clipboard URLs.
+	"""
 
 	def __init__(self, parent, urls):
 		# Translators: Title of the dialog shown when multiple URLs are found in the clipboard.
@@ -38,17 +45,22 @@ class FromClipboard(wx.Dialog):
 		sizerHelper.addItem(wx.StaticText(panel, label=count_label))
 
 		# Translators: Label for the list of URLs extracted from the clipboard.
+		select_link_label = _("Select a link:")
+		# Translators: Label for the list of URLs extracted from the clipboard.
 		self.listUrls = sizerHelper.addLabeledControl(
-			_("Select a link:"), wx.ListBox, choices=urls
+			select_link_label, wx.ListBox, choices=urls
 		)
 		self.listUrls.SetSelection(0)
 		self.listUrls.Bind(wx.EVT_LISTBOX_DCLICK, self.onOpen)
 		self.listUrls.Bind(wx.EVT_KEY_DOWN, self.onListKeyPress)
 
 		# Buttons
+		# Translators: Label for the button that opens the selected URL.
 		open_button = wx.Button(panel, label=_("&Open"))
 		open_button.SetDefault()
+		# Translators: Label for the button that copies the selected URL to the clipboard.
 		copy_button = wx.Button(panel, label=_("&Copy to clipboard"))
+		# Translators: Label for the cancel button in the clipboard URL picker dialog.
 		cancel_button = wx.Button(panel, wx.ID_CANCEL, _("&Cancel"))
 
 		buttonSizer.addItem(open_button)

@@ -54,14 +54,24 @@ class SearchLinks(wx.Dialog):
 		buttonSizer = guiHelper.BoxSizerHelper(panel, wx.HORIZONTAL)
 
 		# Category selector
-		categories = list(self.link_manager.data.keys())
+		# Translators: First option in the category dropdown; searches across all categories.
+		all_categories_label = _("(All categories)")
+		original_categories = list(self.link_manager.data.keys())
+		display_all_label = all_categories_label
+		suffix = 1
+		while display_all_label in original_categories:
+			display_all_label = "{} ({})".format(all_categories_label, suffix)
+			suffix += 1
+		categories = [display_all_label] + original_categories
 		self.categoryChoice = sizerHelper.addLabeledControl(
+			# Translators: Label for the dropdown used to choose the category to search.
 			_("Select a category:"), wx.Choice, choices=categories
 		)
 		self.categoryChoice.SetSelection(0)
 
 		# Search term field
 		self.txtSearch = sizerHelper.addLabeledControl(
+			# Translators: Label for the input where users type the search text.
 			_("Search word:"), wx.TextCtrl, style=wx.TE_PROCESS_ENTER
 		)
 		self.txtSearch.Bind(wx.EVT_TEXT_ENTER, self.onSearch)
@@ -72,9 +82,11 @@ class SearchLinks(wx.Dialog):
 		# Translators: Radio option to search links by their URL.
 		choice_url = _("URL")
 		# Translators: Label for the radio group that selects what field to search.
+		search_by_label = _("Search by")
+		# Translators: Label for the radio group that selects what field to search.
 		self.searchBy = wx.RadioBox(
 			panel,
-			label=_("Search by"),
+			label=search_by_label,
 			choices=[choice_name, choice_url]
 		)
 		sizerHelper.addItem(self.searchBy)
@@ -93,10 +105,14 @@ class SearchLinks(wx.Dialog):
 		self.listResults.Hide()
 
 		# Buttons
+		# Translators: Label for the button that starts searching links.
 		search_button = wx.Button(panel, label=_("&Search"))
 		search_button.SetDefault()
+		# Translators: Label for the button that opens the selected result.
 		open_button = wx.Button(panel, label=_("&Open"))
+		# Translators: Label for the button that copies the selected result URL.
 		copy_button = wx.Button(panel, label=_("&Copy URL"))
+		# Translators: Label for the button that closes the search dialog.
 		cancel_button = wx.Button(panel, wx.ID_CANCEL, _("&Cancel"))
 
 		buttonSizer.addItem(search_button)
@@ -141,8 +157,14 @@ class SearchLinks(wx.Dialog):
 			self.txtSearch.SetFocus()
 			return
 
-		category = self.categoryChoice.GetStringSelection()
-		links = self.link_manager.data.get(category, [])
+		category_idx = self.categoryChoice.GetSelection()
+		if category_idx == 0:
+			links = []
+			for cat_links in self.link_manager.data.values():
+				links.extend(cat_links)
+		else:
+			category = self.categoryChoice.GetStringSelection()
+			links = self.link_manager.data.get(category, [])
 		search_by_url = self.searchBy.GetSelection() == 1
 
 		self.results = []
@@ -159,7 +181,10 @@ class SearchLinks(wx.Dialog):
 			self.Layout()
 			self.Fit()
 			# Translators: Shown when the search produces no matches.
-			self.show_message(_("No results found."), _("Search"))
+			no_results_message = _("No results found.")
+			# Translators: Caption for informational messages in the search dialog.
+			search_caption = _("Search")
+			self.show_message(no_results_message, search_caption)
 			return
 
 		for title, url in self.results:
@@ -167,8 +192,10 @@ class SearchLinks(wx.Dialog):
 
 		count = len(self.results)
 		# Translators: Label shown above the results list; {count} is the number of matches.
+		results_count_label = _("Results: {count} found.").format(count=count)
+		# Translators: Label shown above the results list; {count} is the number of matches.
 		self.resultsLabel.SetLabel(
-			_("Results: {count} found.").format(count=count)
+			results_count_label
 		)
 		self.resultsLabel.Show()
 		self.listResults.Show()
@@ -203,9 +230,13 @@ class SearchLinks(wx.Dialog):
 		except Exception as e:
 			log.error("Error opening search result URL: %s", e)
 			# Translators: Shown when a link cannot be opened in the browser.
+			open_error_message = _("Unable to open the selected link. Please check your browser or the URL and try again.")
+			# Translators: Shown when a link cannot be opened in the browser.
+			# Translators: Caption for error messages in the search dialog.
+			error_caption = _("Error")
 			self.show_message(
-				_("Unable to open the selected link. Please check your browser or the URL and try again."),
-				caption=_("Error"),
+				open_error_message,
+				caption=error_caption,
 				style=wx.OK | wx.ICON_ERROR,
 			)
 			self.listResults.SetFocus()
@@ -267,6 +298,7 @@ class SearchLinks(wx.Dialog):
 			return
 		event.Skip()
 
+	# Translators: Default caption for generic attention messages in the search dialog.
 	def show_message(self, message, caption=_("Attention"), style=wx.OK | wx.ICON_INFORMATION):
 		"""
 		Displays a message to the user.
