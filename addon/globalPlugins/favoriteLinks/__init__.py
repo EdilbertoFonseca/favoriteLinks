@@ -193,7 +193,6 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 			except Exception as e:
 				log.error("Error loading link manager for search: %s", e)
 				load_failed = True
-				lm = _LM.empty()
 			if load_failed:
 				# Translators: Spoken when the link data file cannot be loaded for search.
 				ui.message(_("Failed to load links. Please check the file."))
