@@ -219,9 +219,7 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 		"""
 		Reads URLs from the clipboard and either opens the single URL directly
 		or shows a picker dialog when multiple URLs are found.
-
-		Args:
-			gesture (kb): Triggered by NVDA+Z.
+		No default gesture is assigned; use NVDA Input Gestures to bind a key.
 		"""
 		def _open():
 			from .linkManager import LinkManager
