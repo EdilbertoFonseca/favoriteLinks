@@ -193,7 +193,6 @@ class SearchLinks(wx.Dialog):
 		count = len(self.results)
 		# Translators: Label shown above the results list; {count} is the number of matches.
 		results_count_label = _("Results: {count} found.").format(count=count)
-		# Translators: Label shown above the results list; {count} is the number of matches.
 		self.resultsLabel.SetLabel(
 			results_count_label
 		)
@@ -218,7 +217,7 @@ class SearchLinks(wx.Dialog):
 		if result is None:
 			# Translators: Spoken when the user tries to open a result without selecting one.
 			self.show_message(_("No result selected to open!"))
-			self.listResults.SetFocus()
+			self.txtSearch.SetFocus()
 			return
 		title, url = result
 		try:

@@ -47,7 +47,6 @@ class FromClipboard(wx.Dialog):
 
 		# Translators: Label for the list of URLs extracted from the clipboard.
 		select_link_label = _("Select a link:")
-		# Translators: Label for the list of URLs extracted from the clipboard.
 		self.listUrls = sizerHelper.addLabeledControl(
 			select_link_label, wx.ListBox, choices=urls
 		)
