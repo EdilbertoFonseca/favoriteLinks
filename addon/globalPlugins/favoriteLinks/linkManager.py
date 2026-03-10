@@ -97,7 +97,7 @@ class LinkManager:
 			log.error("JSON file is corrupt, resetting to empty: %s", self.json_file_path)
 			try:
 				backup = self.json_file_path + ".corrupt"
-				os.rename(self.json_file_path, backup)
+				os.replace(self.json_file_path, backup)
 				log.info("Corrupt JSON backed up to: %s", backup)
 			except OSError as backup_err:
 				log.warning("Could not back up corrupt JSON: %s", backup_err)
