@@ -309,7 +309,7 @@ class SearchLinks(wx.Dialog):
 		Args:
 			event (wx.Event): The key-down event on the results list.
 		"""
-		if event.GetKeyCode() == wx.WXK_RETURN:
+		if event.GetKeyCode() in (wx.WXK_RETURN, wx.WXK_NUMPAD_ENTER):
 			self.onOpenResult(event)
 			return
 		event.Skip()
