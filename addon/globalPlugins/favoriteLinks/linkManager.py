@@ -76,17 +76,10 @@ class LinkManager:
 		except FileNotFoundError:
 			self.data = {}
 			self.save_links()
-		except JSONDecodeError as e:
+		except JSONDecodeError:
 			self.data = {}
-			log.error("JSON file is corrupt, resetting to empty: %s", self.json_file_path)
-			try:
-				backup = self.json_file_path + ".corrupt"
-				os.replace(self.json_file_path, backup)
-				log.info("Corrupt JSON backed up to: %s", backup)
-			except OSError as backup_err:
-				log.warning("Could not back up corrupt JSON: %s", backup_err)
-			self.save_links()
-			raise RuntimeError(_("Error decoding the JSON. Check the file content.")) from e
+			log.warning("JSON file is corrupt, loading empty data: %s", self.json_file_path)
+			raise JSONDecodeError(_("Error decoding the JSON. Check the file content."), doc='', pos=0)
 
 	def save_links(self):
 		"""

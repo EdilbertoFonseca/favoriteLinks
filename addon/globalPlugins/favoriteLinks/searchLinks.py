@@ -231,19 +231,17 @@ class SearchLinks(wx.Dialog):
 			self.txtSearch.SetFocus()
 			return
 		title, url = result
+		if not self.link_manager.is_internet_connected():
+			# Translators: Shown when the user tries to open a link with no internet connection.
+			self.show_message(
+				_("No active internet connection!"),
+				# Translators: Caption for the no-internet error dialog in search.
+				_("Error"),
+				wx.OK | wx.ICON_ERROR
+			)
+			self.txtSearch.SetFocus()
+			return
 		try:
-			if not self.link_manager.is_internet_connected():
-				# Translators: Shown when user tries to open a link but there is no internet connection.
-				no_connection_message = _("No active internet connection!")
-				# Translators: Caption for no-connection error messages.
-				no_connection_caption = _("Error")
-				self.show_message(
-					no_connection_message,
-					no_connection_caption,
-					wx.OK | wx.ICON_ERROR
-				)
-				self.listResults.SetFocus()
-				return
 			if not webbrowser.open(url):
 				raise RuntimeError("webbrowser.open returned False")
 			# Translators: Announced when a found link is being opened.
