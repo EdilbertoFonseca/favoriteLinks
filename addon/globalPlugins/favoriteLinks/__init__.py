@@ -171,7 +171,7 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 			ui.message(_("No browser window found."))
 
 	@script(
-		gesture="kb:NVDA+shift+g",
+		gesture="kb:NVDA+Shift+G",
 		# Translators: Description shown in NVDA input gestures for opening the search links dialog.
 		description=_("Search saved links by name or URL."),
 		category=ADDON_SUMMARY
@@ -211,7 +211,7 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 		wx.CallAfter(open_dialog)
 
 	@script(
-		gesture="kb:nvda+z",
+		gesture="kb:NVDA+Z",
 		# Translators: Description shown in NVDA input gestures for opening a URL from the clipboard.
 		description=_("Open a URL from the clipboard."),
 		category=ADDON_SUMMARY
