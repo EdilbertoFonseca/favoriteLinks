@@ -109,20 +109,22 @@ class SearchLinks(wx.Dialog):
 		search_button = wx.Button(panel, label=_("&Search"))
 		search_button.SetDefault()
 		# Translators: Label for the button that opens the selected result.
-		open_button = wx.Button(panel, label=_("&Open"))
+		self._openButton = wx.Button(panel, label=_("&Open"))
 		# Translators: Label for the button that copies the selected result URL.
-		copy_button = wx.Button(panel, label=_("&Copy URL"))
+		self._copyButton = wx.Button(panel, label=_("&Copy URL"))
 		# Translators: Label for the button that closes the search dialog.
 		cancel_button = wx.Button(panel, wx.ID_CANCEL, _("&Cancel"))
+		self._openButton.Disable()
+		self._copyButton.Disable()
 
 		buttonSizer.addItem(search_button)
-		buttonSizer.addItem(open_button)
-		buttonSizer.addItem(copy_button)
+		buttonSizer.addItem(self._openButton)
+		buttonSizer.addItem(self._copyButton)
 		buttonSizer.addItem(cancel_button)
 
 		self.Bind(wx.EVT_BUTTON, self.onSearch, search_button)
-		self.Bind(wx.EVT_BUTTON, self.onOpenResult, open_button)
-		self.Bind(wx.EVT_BUTTON, self.onCopyUrl, copy_button)
+		self.Bind(wx.EVT_BUTTON, self.onOpenResult, self._openButton)
+		self.Bind(wx.EVT_BUTTON, self.onCopyUrl, self._copyButton)
 		self.Bind(wx.EVT_BUTTON, self.onCancel, cancel_button)
 		self.Bind(wx.EVT_CHAR_HOOK, self.onKeyPress)
 
@@ -141,6 +143,12 @@ class SearchLinks(wx.Dialog):
 		if index == wx.NOT_FOUND:
 			return None
 		return self.results[index]
+
+	def _update_action_buttons(self):
+		"""Enable or disable Open/Copy based on whether results are visible."""
+		has_results = self.listResults.IsShown() and self.listResults.GetCount() > 0
+		self._openButton.Enable(has_results)
+		self._copyButton.Enable(has_results)
 
 	def onSearch(self, event):
 		"""
@@ -185,6 +193,7 @@ class SearchLinks(wx.Dialog):
 			# Translators: Caption for informational messages in the search dialog.
 			search_caption = _("Search")
 			self.show_message(no_results_message, search_caption)
+			self._update_action_buttons()
 			return
 
 		for title, url in self.results:
@@ -202,6 +211,7 @@ class SearchLinks(wx.Dialog):
 		self.Fit()
 		self.listResults.SetSelection(0)
 		self.listResults.SetFocus()
+		self._update_action_buttons()
 		# Translators: Announced when results appear; {count} is the number of matches.
 		ui.message(_("{count} results found.").format(count=count))
 
@@ -302,9 +312,11 @@ class SearchLinks(wx.Dialog):
 			return
 		event.Skip()
 
-	# Translators: Default caption for generic attention messages in the search dialog.
-	def show_message(self, message, caption=_("Attention"), style=wx.OK | wx.ICON_INFORMATION):
+	def show_message(self, message, caption=None, style=wx.OK | wx.ICON_INFORMATION):
 		"""
 		Displays a message to the user.
 		"""
+		if caption is None:
+			# Translators: Default caption for attention messages in the search dialog.
+			caption = _("Attention")
 		messageBox(message, caption, style)
