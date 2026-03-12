@@ -199,7 +199,7 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 				ui.message(_("Failed to load links. Please check the file."))
 				return
 			if not lm.data:
-				ui.message(_("No saved links found. Please add links."))
+				ui.message(_("No saved links found. If you had links before, the links file may have been corrupt and was reset. Please add links to begin."))
 				return
 			try:
 				dlg = SearchLinks(mainFrame, lm)
