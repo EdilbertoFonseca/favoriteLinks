@@ -46,6 +46,12 @@ except ImportError as e:
 
 class LinkManager:
 
+	# Regular expression that matches http/https/ftp URLs and bare www. addresses.
+	# Inspired by the URL pattern used in Link Manager by Abdallah Hader:
+	# https://github.com/abdallah-hader/linkManager
+	_URL_RE = re.compile(r"(?:(?:https?|ftp)://\S+|www\.\S+)")
+	_URL_STRIP_CHARS = '\'.,[]{}:;"'
+
 	def __init__(self):
 		self.json_file_path = json_config.get_current_json_path()
 		self.data = {}
@@ -97,7 +103,7 @@ class LinkManager:
 		except JSONDecodeError:
 			self.data = {}
 			log.warning("JSON file is corrupt, loading empty data: %s", self.json_file_path)
-			raise JSONDecodeError(_("Error decoding the JSON. Check the file content."), doc='', pos=0)
+			self.save_links()
 
 	def save_links(self):
 		"""
@@ -264,13 +270,8 @@ class LinkManager:
 		except Exception as e:
 			raise Exception(_("Unexpected error importing the links: {}".format(e)))
 
-	# Regular expression that matches http/https/ftp URLs and bare www. addresses.
-	# Inspired by the URL pattern used in Link Manager by Abdallah Hader:
-	# https://github.com/abdallah-hader/linkManager
-	_URL_RE = re.compile(r"(?:(?:https?|ftp)://\S+|www\.\S+)")
-	_URL_STRIP_CHARS = '\'\\.,[](){}:;"'
-
-	def extract_urls_from_text(self, text: str) -> list:
+	@staticmethod
+	def extract_urls_from_text(text):
 		"""
 		Extracts all URLs found in an arbitrary text string using a regular
 		expression. Useful for parsing clipboard content that may contain
@@ -285,7 +286,7 @@ class LinkManager:
 		Returns:
 			list: A list of URL strings found in the text. May be empty.
 		"""
-		return [s.strip(self._URL_STRIP_CHARS) for s in self._URL_RE.findall(text)]
+		return [s.strip(LinkManager._URL_STRIP_CHARS) for s in LinkManager._URL_RE.findall(text)]
 
 	def is_internet_connected(self, host='8.8.8.8', port=53, timeout=3) -> bool:
 		"""

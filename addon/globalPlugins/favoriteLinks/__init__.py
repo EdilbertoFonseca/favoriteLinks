@@ -12,7 +12,6 @@ Created on: 11/04/2024.
 """
 
 import webbrowser
-
 import addonHandler
 import api
 import config
@@ -26,53 +25,38 @@ from gui import mainFrame
 from logHandler import log
 from scriptHandler import script
 from tones import beep
+from gettext import ngettext
 
 from .configPanel import FavoriteLinksSettingsPanel
+from .fromClipboard import FromClipboard
 from .linkManager import LinkManager
 from .main import FavoriteLinks
+from .searchLinks import SearchLinks
 from .varsConfig import ADDON_SUMMARY, initConfiguration, ourAddon
 
 # Initialize translation support
 addonHandler.initTranslation()
-
 # Initialize configuration settings
 initConfiguration()
 
-# Function copied from: robEnhancements (NVDA add-on)
-# Original source: start.py
-# License: GNU GPL v2.0 – https://www.gnu.org/licenses/gpl-2.0.html
-# Repository: https://github.com/rainerbrell/robenhancements/
-def isBrowser():
-	"""
-	 Verifies that NVDA is in a browser.
-	"""
-	obj = api.getFocusObject()
-	if obj.treeInterceptor:
-		return True
-	else:
-		return False
 
-# Function copied from: robEnhancements (NVDA add-on)
-# Original source: start.py
-# License: GNU GPL v2.0 – https://www.gnu.org/licenses/gpl-2.0.html
-# Repository: https://github.com/rainerbrell/robenhancements/
+def isBrowser():
+	"""Verifies if NVDA is currently in a browser."""
+	obj = api.getFocusObject()
+	return bool(obj.treeInterceptor)
+
+
 def getCurrentDocumentURL():
-	""" 
-			Get current masked document URL 
-	"""
-	URL = None
+	"""Gets the current masked document URL if in a browser."""
 	obj = api.getFocusObject()
 	try:
-		URL = obj.treeInterceptor.documentConstantIdentifier
+		return obj.treeInterceptor.documentConstantIdentifier
 	except AttributeError:
 		return None
-	return URL
 
 
 def disableInSecureMode(decoratedCls):
-	"""
-	Decorator to disable the plugin in secure mode.
-	"""
+	"""Decorator to disable the plugin in secure mode."""
 	if globalVars.appArgs.secure:
 		return globalPluginHandler.GlobalPlugin
 	return decoratedCls
@@ -80,23 +64,26 @@ def disableInSecureMode(decoratedCls):
 
 @disableInSecureMode
 class GlobalPlugin(globalPluginHandler.GlobalPlugin):
-	"""Global Plugin class for the Favorite Links addon."""
+	"""Global Plugin class for the Favorite Links NVDA addon."""
 
 	def __init__(self):
-		# Initialize the Global Plugin.
 		super(GlobalPlugin, self).__init__()
+
+		# Add settings panel to NVDA configuration dialog
 		gui.settingsDialogs.NVDASettingsDialog.categoryClasses.append(
-			FavoriteLinksSettingsPanel)
+			FavoriteLinksSettingsPanel
+		)
 
+		# Tools menu setup
 		self.toolsMenu = gui.mainFrame.sysTrayIcon.toolsMenu
-
-		# Translators: Add-on title in the tools menu.
 		self.favoriteLinks = self.toolsMenu.Append(
-			wx.ID_ANY, _("&Favorite links..."))
+			wx.ID_ANY, _("&Favorite links...")
+		)
 		gui.mainFrame.sysTrayIcon.Bind(
-			wx.EVT_MENU, self.script_activateFavoriteLinks, self.favoriteLinks)
+			wx.EVT_MENU, self.script_activateFavoriteLinks, self.favoriteLinks
+		)
 
-		# Navigation state for keyboard browsing without opening the dialog.
+		# Navigation state
 		self._nav_category_index = 0
 		self._nav_link_index = 0
 		self._nav_link_manager = LinkManager.empty()
@@ -105,25 +92,18 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 		except Exception as e:
 			log.error("Error loading navigation data at startup: %s", e)
 
+	# -------------------------------
+	# Navigation helpers
+	# -------------------------------
 	def _reload_nav_data(self):
-		"""
-		Reloads link data from the JSON file into the navigation link manager.
-		Called after the main dialog closes so navigation reflects any changes.
-		"""
+		"""Reloads link data from JSON into the navigation link manager."""
 		try:
 			self._nav_link_manager.load_json()
 			categories = list(self._nav_link_manager.data.keys())
-			# Clamp indices to valid range after reload.
 			if categories:
-				self._nav_category_index = min(
-					self._nav_category_index, len(categories) - 1
-				)
-				links = self._nav_link_manager.data.get(
-					categories[self._nav_category_index], []
-				)
-				self._nav_link_index = min(
-					self._nav_link_index, max(0, len(links) - 1)
-				)
+				self._nav_category_index = min(self._nav_category_index, len(categories) - 1)
+				links = self._nav_link_manager.data.get(categories[self._nav_category_index], [])
+				self._nav_link_index = min(self._nav_link_index, max(0, len(links) - 1))
 			else:
 				self._nav_category_index = 0
 				self._nav_link_index = 0
@@ -131,109 +111,67 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 			log.error("Error reloading navigation data: %s", e)
 
 	def _get_nav_categories(self):
-		"""
-		Returns the list of category names from navigation link manager data.
-
-		Returns:
-			list: Sorted list of category name strings.
-		"""
+		"""Returns a sorted list of category names from navigation data."""
 		return list(self._nav_link_manager.data.keys())
 
 	def _announce_current_link(self):
-		"""
-		Announces the name of the currently selected link via NVDA speech.
-		If the 'readUrlAfterName' option is enabled, the URL is also spoken.
-		"""
+		"""Announces the currently selected link via NVDA speech."""
 		categories = self._get_nav_categories()
 		if not categories:
-			# Translators: Spoken when no categories or links have been saved yet.
 			ui.message(_("No links saved."))
 			return
 		category = categories[self._nav_category_index]
 		links = self._nav_link_manager.data.get(category, [])
 		if not links:
-			# Translators: Spoken when the current category contains no links.
 			ui.message(_("No links in this category."))
 			return
 		title, url = links[self._nav_link_index]
 		msg = title
 		if config.conf[ourAddon.name]["readUrlAfterName"]:
-			msg = msg + "  " + url
+			msg += "  " + url
 		ui.message(msg)
 
+	# -------------------------------
+	# Dialog management
+	# -------------------------------
 	def onFavoriteLinks(self, event):
-		"""
-		Handler for displaying the Favorite Links dialog.
-
-		Args:
-				evt (wx.Event): The event triggered by the favoriteLinks button.
-		"""
-
+		"""Opens the Favorite Links dialog."""
 		try:
-			# Translators: Dialog title Favorite Links
 			self.dlg = FavoriteLinks(mainFrame, _("Favorite links."))
 			gui.mainFrame.prePopup()
 			self.dlg.CentreOnScreen()
 			self.dlg.Show()
 			gui.mainFrame.postPopup()
-			# Reload navigation data so keyboard shortcuts reflect any changes
-			# made in the dialog.
 			self.dlg.Bind(wx.EVT_WINDOW_DESTROY, self._onDialogClosed)
 		except Exception as e:
 			log.error("Error displaying Favorite Links dialog: %s", e)
 
 	def _onDialogClosed(self, event):
-		"""
-		Called when the Favorite Links dialog is destroyed.
-		Reloads the navigation data so keyboard navigation stays in sync.
-
-		Args:
-			event (wx.Event): The window destroy event.
-		"""
+		"""Reloads navigation data when the dialog is destroyed."""
 		event.Skip()
 		self._reload_nav_data()
 
 	def onAddLinks(self):
-		"""
-		Calls the dialog for adding a new link.
-
-		Args:
-			event (wx.Event): The event triggered by the add link button.
-		"""
-
-		add_links = FavoriteLinks
-
+		"""Calls the dialog for adding a new link."""
 		try:
 			gui.mainFrame.prePopup()
-			add_links.onAddLink
+			FavoriteLinks.onAddLink
 			gui.mainFrame.postPopup()
 		except Exception as e:
 			log.error("Error displaying Favorite Links dialog: %s", e)
 
-	# defining a script with decorator:
-	@script(
-		gesture="kb:Windows+alt+K",
-		# Translators: Text displayed in NVDA help
-		description=_(
-				"This addon allows you to save links to a specific page."),
-		category=ADDON_SUMMARY
-	)
+	# -------------------------------
+	# NVDA scripts
+	# -------------------------------
+	@script(gesture="kb:Windows+alt+K",
+			description=_("This addon allows you to save links to a specific page."),
+			category=ADDON_SUMMARY)
 	def script_activateFavoriteLinks(self, gesture):
-		"""
-		Script to activate the Favorite Links dialog.
-
-		Args:
-				gesture (kb): Triggered by the shortcut "windows+alt+K".
-		"""
 		wx.CallAfter(self.onFavoriteLinks, None)
 
-	# defining a script with decorator:
-	@script(
-		gesture="kb:Windows+Control+P",
-		# Translators: Shows the current URL of the document, press twice = copies to the clipboard.
-		description=_("Show document URL, press twice copies to clipboard."),
-		category=ADDON_SUMMARY
-	)
+	@script(gesture="kb:Windows+Control+P",
+			description=_("Show document URL, press twice copies to clipboard."),
+			category=ADDON_SUMMARY)
 	def script_ShowDocumentURL(self, gesture):
 		if isBrowser():
 			URL = getCurrentDocumentURL()
@@ -242,40 +180,90 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 					ui.message(URL)
 				elif scriptHandler.getLastScriptRepeatCount() == 1:
 					api.copyToClip(URL)
-					# Translators: URL copied to clipboard
 					ui.message(_("Copied to clipboard {URL}.").format(URL=URL))
 			else:
-				# Translators: No URL found in browser document
 				ui.message(_("Document URL not found."))
 		else:
-			# Translators: The user is not in a browser.
 			ui.message(_("No browser window found."))
 
-	# Keyboard navigation scripts (no dialog required)
-	# Inspired by the Link Manager add-on by Abdallah Hader:
-	# https://github.com/abdallah-hader/linkManager
+	@script(gesture="kb:NVDA+Shift+G",
+			description=_("Search saved links by name or URL."),
+			category=ADDON_SUMMARY)
+	def script_searchLinks(self, gesture):
+		"""Opens the Search Links dialog."""
+		def open_dialog():
+			try:
+				lm = LinkManager()
+			except Exception as e:
+				log.error("Error loading link manager for search: %s", e)
+				ui.message(_("Failed to load links. Please check the file."))
+				return
+			if not lm.data:
+				ui.message(_("No saved links found. Please add links."))
+				return
+			try:
+				dlg = SearchLinks(mainFrame, lm)
+			except Exception as e:
+				log.error("Error creating search dialog: %s", e)
+				ui.message(_("Unable to open the search dialog."))
+				return
+			gui.mainFrame.prePopup()
+			try:
+				dlg.CentreOnScreen()
+				dlg.ShowModal()
+			finally:
+				dlg.Destroy()
+				gui.mainFrame.postPopup()
+		wx.CallAfter(open_dialog)
 
-	@script(
-		gesture="kb:control+shift+f12",
-		# Translators: Description shown in NVDA input gestures for moving to the next link.
-		description=_("Move to the next saved link in the current category."),
-		category=ADDON_SUMMARY
-	)
+	@script(description=_("Open a URL from the clipboard."),
+			category=ADDON_SUMMARY)
+	def script_openFromClipboard(self, gesture):
+		"""Opens URLs from the clipboard or shows picker dialog if multiple found."""
+		def _open():
+			try:
+				clipboard_text = api.getClipData() or ""
+			except OSError as e:
+				log.error("Error reading clipboard: %s", e)
+				ui.message(_("Unable to read the clipboard."))
+				return
+			urls = LinkManager.extract_urls_from_text(clipboard_text)
+			urls = [("https://" + u if u.lower().startswith("www.") else u) for u in urls]
+			if not urls:
+				ui.message(_("The clipboard does not contain any links."))
+				return
+			if len(urls) == 1:
+				try:
+					opened = webbrowser.open(urls[0])
+					if not opened:
+						raise OSError("Browser failed to open URL")
+					ui.message(_("Opening {url}.").format(url=urls[0]))
+				except Exception as e:
+					log.error("Error opening clipboard URL: %s", e)
+					ui.message(_("Unable to open the link. Please check your browser settings."))
+				return
+			dlg = FromClipboard(mainFrame, urls)
+			gui.mainFrame.prePopup()
+			try:
+				dlg.CentreOnScreen()
+				dlg.ShowModal()
+			finally:
+				dlg.Destroy()
+				gui.mainFrame.postPopup()
+		wx.CallAfter(_open)
+
+	# -------------------------------
+	# Keyboard navigation scripts
+	# -------------------------------
+	@script(gesture="kb:control+shift+f12",
+			description=_("Move to the next saved link in the current category."),
+			category=ADDON_SUMMARY)
 	def script_nextLink(self, gesture):
-		"""
-		Moves the navigation cursor to the next link in the current category
-		and announces its name. Plays a boundary tone at the last link.
-
-		Args:
-			gesture (kb): Triggered by Control+Shift+F12.
-		"""
 		categories = self._get_nav_categories()
 		if not categories:
 			beep(200, 100)
 			return
-		links = self._nav_link_manager.data.get(
-			categories[self._nav_category_index], []
-		)
+		links = self._nav_link_manager.data.get(categories[self._nav_category_index], [])
 		if not links:
 			beep(200, 100)
 			return
@@ -285,27 +273,15 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 			beep(250, 50)
 		self._announce_current_link()
 
-	@script(
-		gesture="kb:control+shift+f11",
-		# Translators: Description shown in NVDA input gestures for moving to the previous link.
-		description=_("Move to the previous saved link in the current category."),
-		category=ADDON_SUMMARY
-	)
+	@script(gesture="kb:control+shift+f11",
+			description=_("Move to the previous saved link in the current category."),
+			category=ADDON_SUMMARY)
 	def script_previousLink(self, gesture):
-		"""
-		Moves the navigation cursor to the previous link in the current category
-		and announces its name. Plays a boundary tone at the first link.
-
-		Args:
-			gesture (kb): Triggered by Control+Shift+F11.
-		"""
 		categories = self._get_nav_categories()
 		if not categories:
 			beep(200, 100)
 			return
-		links = self._nav_link_manager.data.get(
-			categories[self._nav_category_index], []
-		)
+		links = self._nav_link_manager.data.get(categories[self._nav_category_index], [])
 		if not links:
 			beep(200, 100)
 			return
@@ -315,21 +291,10 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 			beep(200, 50)
 		self._announce_current_link()
 
-	@script(
-		gesture="kb:control+shift+f10",
-		# Translators: Description shown in NVDA input gestures for moving to the next category.
-		description=_("Move to the next category of saved links."),
-		category=ADDON_SUMMARY
-	)
+	@script(gesture="kb:control+shift+f10",
+			description=_("Move to the next category of saved links."),
+			category=ADDON_SUMMARY)
 	def script_nextCategory(self, gesture):
-		"""
-		Moves the navigation cursor to the next category and announces its name
-		along with the number of links it contains. Plays a boundary tone at
-		the last category.
-
-		Args:
-			gesture (kb): Triggered by Control+Shift+F10.
-		"""
 		categories = self._get_nav_categories()
 		if not categories:
 			beep(200, 100)
@@ -338,35 +303,20 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 			self._nav_category_index += 1
 		else:
 			beep(250, 50)
-		# Reset link index to the first link of the new category.
 		self._nav_link_index = 0
 		category = categories[self._nav_category_index]
 		links = self._nav_link_manager.data.get(category, [])
 		count = len(links)
-		# Translators: Announced when navigating categories; {category} is the category name, {count} is the number of links.
-		ui.message(
-			ngettext(
-				"{category}: Contains {count} link",
-				"{category}: Contains {count} links",
-				count,
-			).format(category=category, count=count)
-		)
+		ui.message(ngettext(
+			"{category}: Contains {count} link",
+			"{category}: Contains {count} links",
+			count,
+		).format(category=category, count=count))
 
-	@script(
-		gesture="kb:control+shift+f9",
-		# Translators: Description shown in NVDA input gestures for moving to the previous category.
-		description=_("Move to the previous category of saved links."),
-		category=ADDON_SUMMARY
-	)
+	@script(gesture="kb:control+shift+f9",
+			description=_("Move to the previous category of saved links."),
+			category=ADDON_SUMMARY)
 	def script_previousCategory(self, gesture):
-		"""
-		Moves the navigation cursor to the previous category and announces its
-		name along with the number of links it contains. Plays a boundary tone
-		at the first category.
-
-		Args:
-			gesture (kb): Triggered by Control+Shift+F9.
-		"""
 		categories = self._get_nav_categories()
 		if not categories:
 			beep(200, 100)
@@ -375,141 +325,88 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 			self._nav_category_index -= 1
 		else:
 			beep(200, 50)
-		# Reset link index to the first link of the new category.
 		self._nav_link_index = 0
 		category = categories[self._nav_category_index]
 		links = self._nav_link_manager.data.get(category, [])
 		count = len(links)
-		# Translators: Announced when navigating categories; {category} is the category name, {count} is the number of links.
-		ui.message(
-			ngettext(
-				"{category}: Contains {count} link",
-				"{category}: Contains {count} links",
-				count,
-			).format(category=category, count=count)
-		)
+		ui.message(ngettext(
+			"{category}: Contains {count} link",
+			"{category}: Contains {count} links",
+			count,
+		).format(category=category, count=count))
 
-	@script(
-		gesture="kb:nvda+shift+control+f11",
-		# Translators: Description shown in NVDA input gestures for jumping to the first link.
-		description=_("Move to the first saved link in the current category."),
-		category=ADDON_SUMMARY
-	)
+	@script(gesture="kb:nvda+shift+control+f11",
+			description=_("Move to the first saved link in the current category."),
+			category=ADDON_SUMMARY)
 	def script_firstLink(self, gesture):
-		"""
-		Moves the navigation cursor to the first link in the current category
-		and announces its name.
-
-		Args:
-			gesture (kb): Triggered by NVDA+Shift+Control+F11.
-		"""
 		categories = self._get_nav_categories()
 		if not categories:
 			beep(200, 100)
 			return
-		links = self._nav_link_manager.data.get(
-			categories[self._nav_category_index], []
-		)
+		links = self._nav_link_manager.data.get(categories[self._nav_category_index], [])
 		if not links:
 			beep(200, 100)
 			return
 		self._nav_link_index = 0
 		self._announce_current_link()
 
-	@script(
-		gesture="kb:nvda+shift+control+f12",
-		# Translators: Description shown in NVDA input gestures for jumping to the last link.
-		description=_("Move to the last saved link in the current category."),
-		category=ADDON_SUMMARY
-	)
+	@script(gesture="kb:nvda+shift+control+f12",
+			description=_("Move to the last saved link in the current category."),
+			category=ADDON_SUMMARY)
 	def script_lastLink(self, gesture):
-		"""
-		Moves the navigation cursor to the last link in the current category
-		and announces its name.
-
-		Args:
-			gesture (kb): Triggered by NVDA+Shift+Control+F12.
-		"""
 		categories = self._get_nav_categories()
 		if not categories:
 			beep(200, 100)
 			return
-		links = self._nav_link_manager.data.get(
-			categories[self._nav_category_index], []
-		)
+		links = self._nav_link_manager.data.get(categories[self._nav_category_index], [])
 		if not links:
 			beep(200, 100)
 			return
 		self._nav_link_index = len(links) - 1
 		self._announce_current_link()
 
-	@script(
-		gesture="kb:control+shift+enter",
-		# Translators: Description shown in NVDA input gestures for opening the current link.
-		description=_("Open the currently selected link in the default browser."),
-		category=ADDON_SUMMARY
-	)
+	@script(gesture="kb:control+shift+enter",
+			description=_("Open the currently selected link in the default browser."),
+			category=ADDON_SUMMARY)
 	def script_openCurrentLink(self, gesture):
-		"""
-		Opens the currently selected link in the user's default web browser
-		and announces which URL is being opened.
-
-		Args:
-			gesture (kb): Triggered by Control+Shift+Enter.
-		"""
 		categories = self._get_nav_categories()
 		if not categories:
 			beep(200, 100)
 			return
-		links = self._nav_link_manager.data.get(
-			categories[self._nav_category_index], []
-		)
+		links = self._nav_link_manager.data.get(categories[self._nav_category_index], [])
 		if not links:
 			beep(200, 100)
 			return
 		title, url = links[self._nav_link_index]
 		try:
 			webbrowser.open(url)
-			# Translators: Announced when a link is opened via keyboard navigation; {title} is the link name.
 			msg = _("Opening {title}.").format(title=title)
 			if config.conf[ourAddon.name]["readUrlAfterName"]:
-				msg = msg + "  " + url
+				msg += "  " + url
 			ui.message(msg)
 		except Exception as e:
 			log.error("Error opening URL via keyboard navigation: %s", e)
-			# Translators: Announced when opening a link via keyboard navigation fails.
 			ui.message(_("Unable to open {title}.").format(title=title))
 
-	@script(
-		gesture="kb:control+shift+l",
-		# Translators: Description shown in NVDA input gestures for toggling URL announcement.
-		description=_("Toggle reading the URL after the link name during keyboard navigation."),
-		category=ADDON_SUMMARY
-	)
+	@script(gesture="kb:control+shift+l",
+			description=_("Toggle reading the URL after the link name during keyboard navigation."),
+			category=ADDON_SUMMARY)
 	def script_toggleReadUrl(self, gesture):
-		"""
-		Toggles whether the URL is announced alongside the link name during
-		keyboard navigation. The new state is confirmed by a spoken message.
-
-		Args:
-			gesture (kb): Triggered by Control+Shift+L.
-		"""
 		current = config.conf[ourAddon.name]["readUrlAfterName"]
 		config.conf[ourAddon.name]["readUrlAfterName"] = not current
 		if config.conf[ourAddon.name]["readUrlAfterName"]:
-			# Translators: Announced when the user enables reading the URL after the link name.
 			ui.message(_("Read URL after name turned on."))
 		else:
-			# Translators: Announced when the user disables reading the URL after the link name.
 			ui.message(_("Read URL after name turned off."))
 
+	# -------------------------------
+	# Plugin termination
+	# -------------------------------
 	def terminate(self):
-		"""
-		Clean up when the plugin is terminated.
-		"""
+		"""Clean up when the plugin is terminated."""
 		super(GlobalPlugin, self).terminate()
-		gui.settingsDialogs.NVDASettingsDialog.categoryClasses.remove(
-			FavoriteLinksSettingsPanel)
+		if FavoriteLinksSettingsPanel in gui.settingsDialogs.NVDASettingsDialog.categoryClasses:
+			gui.settingsDialogs.NVDASettingsDialog.categoryClasses.remove(FavoriteLinksSettingsPanel)
 		if hasattr(self, 'favoriteLinks'):
 			try:
 				self.toolsMenu.Remove(self.favoriteLinks)
