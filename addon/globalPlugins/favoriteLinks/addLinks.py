@@ -35,7 +35,7 @@ class AddLinks(wx.Dialog):
 		self.title=title
 
 		wx.Dialog.__init__(self, parent, title=title)
-		
+
 		# Receive the linkmanager instance
 		self.link_manager = link_manager_instance
 		self.selectedCategory = selectedCategory
@@ -47,7 +47,7 @@ class AddLinks(wx.Dialog):
 			self.show_message(_("No categories available. Please add some categories first."), _("Error"))
 			self.Destroy()
 			return
-			
+
 		panel = wx.Panel(self)
 		boxSizer = wx.BoxSizer(wx.VERTICAL)
 		sizerHelper = guiHelper.BoxSizerHelper(panel, wx.VERTICAL)
@@ -110,7 +110,11 @@ class AddLinks(wx.Dialog):
 				clipboard_text = getClipData()
 				extracted = self.link_manager.extract_urls_from_text(clipboard_text)
 				if extracted:
-					url = extracted[0]
+					candidate = extracted[0]
+					# Normalize bare "www." URLs to https so they become valid.
+					if candidate.lower().startswith("www."):
+						candidate = "https://" + candidate
+					url = candidate
 			except Exception as e:
 				log.error("Error extracting URL from clipboard text: %s", e)
 		url_field.SetValue(url)
@@ -122,10 +126,10 @@ class AddLinks(wx.Dialog):
 		"""
 		ok_button = wx.Button(panel, wx.ID_OK, _("&Ok"))
 		cancel_button = wx.Button(panel, wx.ID_CANCEL, _("&Cancel"))
-		
+
 		buttonSizer.addItem(ok_button)
 		buttonSizer.addItem(cancel_button)
-		
+
 		self.Bind(wx.EVT_BUTTON, self.onOk, ok_button)
 		self.Bind(wx.EVT_BUTTON, self.onCancel, cancel_button)
 
@@ -144,7 +148,7 @@ class AddLinks(wx.Dialog):
 			self.show_message(_("URL is required!"), _("Attention"))
 			self.txtUrl.SetFocus()
 			return
-		
+
 		# Attributes the results to a dictionary for easy access
 		self.result = {'category': category, 'url': url}
 		self.EndModal(wx.ID_OK)

@@ -99,7 +99,11 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 		# Navigation state for keyboard browsing without opening the dialog.
 		self._nav_category_index = 0
 		self._nav_link_index = 0
-		self._nav_link_manager = LinkManager()
+		self._nav_link_manager = LinkManager.empty()
+		try:
+			self._nav_link_manager.load_json()
+		except Exception as e:
+			log.error("Error loading navigation data at startup: %s", e)
 
 	def _reload_nav_data(self):
 		"""
@@ -247,11 +251,9 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 			# Translators: The user is not in a browser.
 			ui.message(_("No browser window found."))
 
-	# -----------------------------------------------------------------------
 	# Keyboard navigation scripts (no dialog required)
 	# Inspired by the Link Manager add-on by Abdallah Hader:
 	# https://github.com/abdallah-hader/linkManager
-	# -----------------------------------------------------------------------
 
 	@script(
 		gesture="kb:control+shift+f12",
@@ -341,12 +343,13 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 		category = categories[self._nav_category_index]
 		links = self._nav_link_manager.data.get(category, [])
 		count = len(links)
-		# Translators: Announced when switching to a category; shows its name and link count.
-		lnk_word = _("link") if count == 1 else _("links")
+		# Translators: Announced when navigating categories; {category} is the category name, {count} is the number of links.
 		ui.message(
-			_("{category}: Contains {count} {lnk_word}").format(
-				category=category, count=count, lnk_word=lnk_word
-			)
+			ngettext(
+				"{category}: Contains {count} link",
+				"{category}: Contains {count} links",
+				count,
+			).format(category=category, count=count)
 		)
 
 	@script(
@@ -377,12 +380,13 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 		category = categories[self._nav_category_index]
 		links = self._nav_link_manager.data.get(category, [])
 		count = len(links)
-		# Translators: Announced when switching to a category; shows its name and link count.
-		lnk_word = _("link") if count == 1 else _("links")
+		# Translators: Announced when navigating categories; {category} is the category name, {count} is the number of links.
 		ui.message(
-			_("{category}: Contains {count} {lnk_word}").format(
-				category=category, count=count, lnk_word=lnk_word
-			)
+			ngettext(
+				"{category}: Contains {count} link",
+				"{category}: Contains {count} links",
+				count,
+			).format(category=category, count=count)
 		)
 
 	@script(
@@ -466,10 +470,15 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 		title, url = links[self._nav_link_index]
 		try:
 			webbrowser.open(url)
-			# Translators: Announced when a link is opened via keyboard navigation.
-			ui.message(_("Opening {title}.").format(title=title))
+			# Translators: Announced when a link is opened via keyboard navigation; {title} is the link name.
+			msg = _("Opening {title}.").format(title=title)
+			if config.conf[ourAddon.name]["readUrlAfterName"]:
+				msg = msg + "  " + url
+			ui.message(msg)
 		except Exception as e:
 			log.error("Error opening URL via keyboard navigation: %s", e)
+			# Translators: Announced when opening a link via keyboard navigation fails.
+			ui.message(_("Unable to open {title}.").format(title=title))
 
 	@script(
 		gesture="kb:control+shift+l",
