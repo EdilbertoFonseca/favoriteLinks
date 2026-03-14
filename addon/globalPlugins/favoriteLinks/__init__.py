@@ -30,6 +30,7 @@ from tones import beep
 from .configPanel import FavoriteLinksSettingsPanel
 from .linkManager import LinkManager
 from .main import FavoriteLinks
+from .searchLinks import SearchLinks
 from .varsConfig import ADDON_SUMMARY, initConfiguration, ourAddon
 
 # Initialize translation support
@@ -246,6 +247,52 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 		else:
 			# Translators: The user is not in a browser.
 			ui.message(_("No browser window found."))
+
+	@script(
+		gesture="kb:NVDA+Shift+G",
+		# Translators: Description shown in NVDA input gestures for opening the search links dialog.
+		description=_("Search saved links by name or URL."),
+		category=ADDON_SUMMARY
+	)
+	def script_searchLinks(self, gesture):
+		"""
+		Opens the Search Links dialog, which lets the user search for saved
+		links by their display name or URL within a selected category.
+
+		Inspired by the Link Manager add-on by Abdallah Hader:
+		https://github.com/abdallah-hader/linkManager
+
+		Args:
+			gesture (kb): Triggered by NVDA+Shift+G.
+		"""
+		def open_dialog():
+			try:
+				lm = LinkManager()
+			except Exception as e:
+				log.error("Error loading link manager for search: %s", e)
+				# Translators: Spoken when the link data file cannot be loaded.
+				ui.message(_("Failed to load links. Please check the file."))
+				return
+			if not lm.data:
+				# Translators: Spoken when there are no saved links to search, or when
+				# the links file was corrupt and was automatically reset.
+				ui.message(_("No saved links found. If you had links before, the links file may have been corrupt and was reset. Please add links to begin."))
+				return
+			try:
+				dlg = SearchLinks(mainFrame, lm)
+			except Exception as e:
+				log.error("Error creating search dialog: %s", e)
+				# Translators: Spoken when the search dialog cannot be opened.
+				ui.message(_("Unable to open the search dialog."))
+				return
+			gui.mainFrame.prePopup()
+			try:
+				dlg.CentreOnScreen()
+				dlg.ShowModal()
+			finally:
+				dlg.Destroy()
+				gui.mainFrame.postPopup()
+		wx.CallAfter(open_dialog)
 
 	# -----------------------------------------------------------------------
 	# Keyboard navigation scripts (no dialog required)

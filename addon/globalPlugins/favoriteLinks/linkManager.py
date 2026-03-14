@@ -23,6 +23,7 @@ from urllib.request import urlopen
 import addonHandler
 from api import getClipData
 from logHandler import log
+import NVDAState
 
 from .jsonConfig import json_config
 from .varsConfig import ourAddon, addonPath
@@ -76,16 +77,20 @@ class LinkManager:
 
 		except FileNotFoundError:
 			self.data = {}
-			self.save_links()
+			if NVDAState.shouldWriteToDisk():
+				self.save_links()
 		except JSONDecodeError:
 			self.data = {}
-			self.save_links()
-			raise JSONDecodeError(_("Error decoding the JSON. Check the file content."), doc='', pos=0)
+			log.warning("JSON file is corrupt, loading empty data: %s", self.json_file_path)
+			if NVDAState.shouldWriteToDisk():
+				self.save_links()
 
 	def save_links(self):
 		"""
 		Saves memory data to the JSON file.
 		"""
+		if not NVDAState.shouldWriteToDisk():
+			return
 		try:
 			with open(self.json_file_path, 'w', encoding='utf-8') as file:
 				json.dump(self.data, file, indent=4, ensure_ascii=False)
