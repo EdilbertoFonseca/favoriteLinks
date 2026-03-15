@@ -23,7 +23,6 @@ from urllib.request import urlopen
 import addonHandler
 from api import getClipData
 from logHandler import log
-import NVDAState
 
 from .jsonConfig import json_config
 from .varsConfig import ourAddon, addonPath
@@ -77,20 +76,16 @@ class LinkManager:
 
 		except FileNotFoundError:
 			self.data = {}
-			if NVDAState.shouldWriteToDisk():
-				self.save_links()
+			self.save_links()
 		except JSONDecodeError:
 			self.data = {}
-			log.warning("JSON file is corrupt, loading empty data: %s", self.json_file_path)
-			if NVDAState.shouldWriteToDisk():
-				self.save_links()
+			self.save_links()
+			raise JSONDecodeError(_("Error decoding the JSON. Check the file content."), doc='', pos=0)
 
 	def save_links(self):
 		"""
 		Saves memory data to the JSON file.
 		"""
-		if not NVDAState.shouldWriteToDisk():
-			return
 		try:
 			with open(self.json_file_path, 'w', encoding='utf-8') as file:
 				json.dump(self.data, file, indent=4, ensure_ascii=False)
@@ -252,6 +247,28 @@ class LinkManager:
 		except Exception as e:
 			raise Exception(_("Unexpected error importing the links: {}".format(e)))
 
+	# Regular expression that matches http/https/ftp URLs and bare www. addresses.
+	# Inspired by the URL pattern used in Link Manager by Abdallah Hader:
+	# https://github.com/abdallah-hader/linkManager
+	_URL_RE = re.compile(r"(?:\w+://|www\.)[^ ,.?!#%=+][^ ][^ \r]*")
+	_URL_STRIP_CHARS = '\'\\.,[](){}:;"'
+
+	def extract_urls_from_text(self, text: str) -> list:
+		"""
+		Extracts all URLs found in an arbitrary text string using a regular
+		expression. Useful for parsing clipboard content that may contain
+		URLs embedded inside sentences.
+
+		Inspired by the URL extraction pattern used in Link Manager by
+		Abdallah Hader: https://github.com/abdallah-hader/linkManager
+
+		Args:
+			text (str): The text to search for URLs.
+
+		Returns:
+			list: A list of URL strings found in the text. May be empty.
+		"""
+		return [s.strip(self._URL_STRIP_CHARS) for s in self._URL_RE.findall(text)]
 
 	def is_internet_connected(self, host='8.8.8.8', port=53, timeout=3) -> bool:
 		"""
@@ -276,27 +293,3 @@ class LinkManager:
 		Order the categories in alphabetical order.
 		"""
 		self.data = {key: self.data[key] for key in sorted(self.data.keys(), key=str.lower)}
-
-	# Regular expression that matches http/https/ftp URLs and bare www. addresses.
-	# Inspired by the URL pattern used in Link Manager by Abdallah Hader:
-	# https://github.com/abdallah-hader/linkManager
-	_URL_RE = re.compile(r"(?:(?:https?|ftp)://\S+|www\.\S+)")
-	_URL_STRIP_CHARS = '\'.,[]{}:;"'
-
-	@staticmethod
-	def extract_urls_from_text(text):
-		"""
-		Extracts all URLs found in an arbitrary text string using a regular
-		expression. Useful for parsing clipboard content that may contain
-		URLs embedded inside sentences.
-
-		Inspired by the URL extraction pattern used in Link Manager by
-		Abdallah Hader: https://github.com/abdallah-hader/linkManager
-
-		Args:
-			text (str): The text to search for URLs.
-
-		Returns:
-			list: A list of URL strings found in the text. May be empty.
-		"""
-		return [s.strip(LinkManager._URL_STRIP_CHARS) for s in LinkManager._URL_RE.findall(text)]
