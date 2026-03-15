@@ -47,7 +47,7 @@ class SearchLinks(wx.Dialog):
 		self.results = []
 
 		# Translators: Title of the search links dialog.
-		wx.dialog.__init__(self, parent, title=_("Search links"))
+		wx.Dialog.__init__(self, parent, title=_("Search links"))
 
 		panel = wx.Panel(self)
 		boxSizer = wx.BoxSizer(wx.VERTICAL)

@@ -18,6 +18,7 @@ import wx
 from gui import guiHelper
 from logHandler import log
 
+# Initialize translation support
 addonHandler.initTranslation()
 
 
