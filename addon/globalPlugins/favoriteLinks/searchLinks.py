@@ -47,14 +47,14 @@ class SearchLinks(wx.Dialog):
 		self.results = []
 
 		# Translators: Title of the search links dialog.
-		wx.Dialog.__init__(self, parent, title=_("Search links"))
+		wx.dialog.__init__(self, parent, title=_("Search links"))
 
 		panel = wx.Panel(self)
 		boxSizer = wx.BoxSizer(wx.VERTICAL)
 		sizerHelper = guiHelper.BoxSizerHelper(panel, wx.VERTICAL)
 		buttonSizer = guiHelper.BoxSizerHelper(panel, wx.HORIZONTAL)
 
-		# Category selector — first item is a catch-all for global search
+		# Category selector - first item is a catch-all for global search
 		# Translators: First option in the category dropdown; searches across all categories.
 		all_categories_label = _("(All categories)")
 		original_categories = list(self.link_manager.data.keys())
@@ -197,7 +197,7 @@ class SearchLinks(wx.Dialog):
 			return
 
 		for title, url in self.results:
-			self.listResults.Append(f"{title}  —  {url}")
+			self.listResults.Append(f"{title}  -  {url}")
 
 		count = len(self.results)
 

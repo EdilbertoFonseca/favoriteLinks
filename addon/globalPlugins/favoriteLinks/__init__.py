@@ -12,6 +12,8 @@ Created on: 11/04/2024.
 """
 
 import webbrowser
+from gettext import ngettext
+
 import addonHandler
 import api
 import config
@@ -25,7 +27,6 @@ from gui import mainFrame
 from logHandler import log
 from scriptHandler import script
 from tones import beep
-from gettext import ngettext
 
 from .configPanel import FavoriteLinksSettingsPanel
 from .fromClipboard import FromClipboard
@@ -169,9 +170,14 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 	def script_activateFavoriteLinks(self, gesture):
 		wx.CallAfter(self.onFavoriteLinks, None)
 
-	@script(gesture="kb:Windows+Control+P",
-			description=_("Show document URL, press twice copies to clipboard."),
-			category=ADDON_SUMMARY)
+
+	# Defining a script with a decorator:
+	@script(
+		gesture="kb:Windows+Control+P",
+		# Translators: Text displayed in NVDA help.
+		description=_("Show document URL, press twice copies to clipboard."),
+		category=ADDON_SUMMARY
+	)
 	def script_ShowDocumentURL(self, gesture):
 		if isBrowser():
 			URL = getCurrentDocumentURL()
@@ -186,9 +192,13 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 		else:
 			ui.message(_("No browser window found."))
 
-	@script(gesture="kb:NVDA+Shift+G",
-			description=_("Search saved links by name or URL."),
-			category=ADDON_SUMMARY)
+	# Defining a script with a decorator:
+	@script(
+		gesture="kb:NVDA+Shift+G",
+		# Translators: Text displayed in NVDA help.
+		description=_("Search saved links by name or URL."),
+		category=ADDON_SUMMARY
+	)
 	def script_searchLinks(self, gesture):
 		"""Opens the Search Links dialog."""
 		def open_dialog():
@@ -216,8 +226,12 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 				gui.mainFrame.postPopup()
 		wx.CallAfter(open_dialog)
 
-	@script(description=_("Open a URL from the clipboard."),
-			category=ADDON_SUMMARY)
+	# Defining a script with a decorator:
+	@script(
+		# Translators: Text displayed in NVDA help.
+		description=_("Open a URL from the clipboard."),
+		category=ADDON_SUMMARY
+	)
 	def script_openFromClipboard(self, gesture):
 		"""Opens URLs from the clipboard or shows picker dialog if multiple found."""
 		def _open():
@@ -252,12 +266,15 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 				gui.mainFrame.postPopup()
 		wx.CallAfter(_open)
 
-	# -------------------------------
 	# Keyboard navigation scripts
-	# -------------------------------
-	@script(gesture="kb:control+shift+f12",
-			description=_("Move to the next saved link in the current category."),
-			category=ADDON_SUMMARY)
+
+	# Defining a script with a decorator:
+	@script(
+		gesture="kb:control+shift+f12",
+		# Translators: Text displayed in NVDA help.
+		description=_("Move to the next saved link in the current category."),
+		category=ADDON_SUMMARY
+	)
 	def script_nextLink(self, gesture):
 		categories = self._get_nav_categories()
 		if not categories:
@@ -273,9 +290,13 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 			beep(250, 50)
 		self._announce_current_link()
 
-	@script(gesture="kb:control+shift+f11",
-			description=_("Move to the previous saved link in the current category."),
-			category=ADDON_SUMMARY)
+	# Defining a script with a decorator:
+	@script(
+		gesture="kb:control+shift+f11",
+		# Translators: Text displayed in NVDA help.
+		description=_("Move to the previous saved link in the current category."),
+		category=ADDON_SUMMARY
+	)
 	def script_previousLink(self, gesture):
 		categories = self._get_nav_categories()
 		if not categories:
@@ -291,9 +312,13 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 			beep(200, 50)
 		self._announce_current_link()
 
-	@script(gesture="kb:control+shift+f10",
-			description=_("Move to the next category of saved links."),
-			category=ADDON_SUMMARY)
+	# Defining a script with a decorator:
+	@script(
+		gesture="kb:control+shift+f10",
+		# Translators: Text displayed in NVDA help.
+		description=_("Move to the next category of saved links."),
+		category=ADDON_SUMMARY
+	)
 	def script_nextCategory(self, gesture):
 		categories = self._get_nav_categories()
 		if not categories:
@@ -313,9 +338,13 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 			count,
 		).format(category=category, count=count))
 
-	@script(gesture="kb:control+shift+f9",
-			description=_("Move to the previous category of saved links."),
-			category=ADDON_SUMMARY)
+	# Defining a script with a decorator:
+	@script(
+		gesture="kb:control+shift+f9",
+		# Translators: Text displayed in NVDA help.
+		description=_("Move to the previous category of saved links."),
+		category=ADDON_SUMMARY
+	)
 	def script_previousCategory(self, gesture):
 		categories = self._get_nav_categories()
 		if not categories:
@@ -335,9 +364,13 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 			count,
 		).format(category=category, count=count))
 
-	@script(gesture="kb:nvda+shift+control+f11",
-			description=_("Move to the first saved link in the current category."),
-			category=ADDON_SUMMARY)
+	# Defining a script with a decorator:
+	@script(
+		gesture="kb:nvda+shift+control+f11",
+		# Translators: Text displayed in NVDA help.
+		description=_("Move to the first saved link in the current category."),
+		category=ADDON_SUMMARY
+	)
 	def script_firstLink(self, gesture):
 		categories = self._get_nav_categories()
 		if not categories:
@@ -350,9 +383,13 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 		self._nav_link_index = 0
 		self._announce_current_link()
 
-	@script(gesture="kb:nvda+shift+control+f12",
-			description=_("Move to the last saved link in the current category."),
-			category=ADDON_SUMMARY)
+	# Defining a script with a decorator:
+	@script(
+		gesture="kb:nvda+shift+control+f12",
+		# Translators: Text displayed in NVDA help.
+		description=_("Move to the last saved link in the current category."),
+		category=ADDON_SUMMARY
+	)
 	def script_lastLink(self, gesture):
 		categories = self._get_nav_categories()
 		if not categories:
@@ -365,9 +402,13 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 		self._nav_link_index = len(links) - 1
 		self._announce_current_link()
 
-	@script(gesture="kb:control+shift+enter",
-			description=_("Open the currently selected link in the default browser."),
-			category=ADDON_SUMMARY)
+	# Defining a script with a decorator:
+	@script(
+		gesture="kb:control+shift+enter",
+		# Translators: Text displayed in NVDA help.
+		description=_("Open the currently selected link in the default browser."),
+		category=ADDON_SUMMARY
+	)
 	def script_openCurrentLink(self, gesture):
 		categories = self._get_nav_categories()
 		if not categories:
@@ -388,9 +429,13 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 			log.error("Error opening URL via keyboard navigation: %s", e)
 			ui.message(_("Unable to open {title}.").format(title=title))
 
-	@script(gesture="kb:control+shift+l",
-			description=_("Toggle reading the URL after the link name during keyboard navigation."),
-			category=ADDON_SUMMARY)
+	# Defining a script with a decorator:
+	@script(
+		gesture="kb:control+shift+l",
+		# Translators: Text displayed in NVDA help.
+		description=_("Toggle reading the URL after the link name during keyboard navigation."),
+		category=ADDON_SUMMARY
+	)
 	def script_toggleReadUrl(self, gesture):
 		current = config.conf[ourAddon.name]["readUrlAfterName"]
 		config.conf[ourAddon.name]["readUrlAfterName"] = not current
@@ -399,9 +444,7 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 		else:
 			ui.message(_("Read URL after name turned off."))
 
-	# -------------------------------
 	# Plugin termination
-	# -------------------------------
 	def terminate(self):
 		"""Clean up when the plugin is terminated."""
 		super(GlobalPlugin, self).terminate()

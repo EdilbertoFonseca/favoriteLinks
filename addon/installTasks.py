@@ -14,7 +14,6 @@ Created on: 03/03/2023.
 import os
 
 import addonHandler
-import config
 import globalVars
 from gui import messageBox
 
@@ -42,14 +41,3 @@ def onInstall():
 			os.rename(absoluteJsonPath, os.path.abspath(newJsonPath))
 		except OSError as e:
 			messageBox(_(f"Error when renaming file: {e}"), _("Attention"))
-
-def onUninstall():
-	# Go through the configuration profiles and try to remove the 'contactBook' key
-	for key, value in list(config.conf._profileCache.items()):
-		try:
-			del config.conf._profileCache[key][ADDON_name]
-		except KeyError:
-			pass  # Ignore if key does not exist
-
-	# Save configuration changes
-	config.conf.save()
