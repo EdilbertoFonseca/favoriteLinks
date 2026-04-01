@@ -2,11 +2,17 @@
 
 """
 Author: Edilberto Fonseca <edilberto.fonseca@outlook.com>
-Copyright: (C) 2025 Edilberto Fonseca
+Copyright: (C) 2025 - 2026 Edilberto Fonseca
 
 This file is covered by the GNU General Public License.
 See the file COPYING for more details or visit:
 https://www.gnu.org/licenses/gpl-2.0.html
+
+-------------------------------------------------------------------------
+AI DISCLOSURE / NOTA DE IA:
+This project utilizes AI for code refactoring and logic suggestions.
+All AI-generated code was manually reviewed and tested by the author.
+-------------------------------------------------------------------------
 
 Feature inspired by the Link Manager add-on by Abdallah Hader:
 https://github.com/abdallah-hader/linkManager
@@ -42,8 +48,8 @@ class SearchLinks(wx.Dialog):
 			containing all saved categories and links.
 	"""
 
-	def __init__(self, parent, link_manager):
-		self.link_manager = link_manager
+	def __init__(self, parent, linkManager):
+		self.linkManager = linkManager
 		self.results = []
 
 		# Translators: Title of the search links dialog.
@@ -54,18 +60,17 @@ class SearchLinks(wx.Dialog):
 		sizerHelper = guiHelper.BoxSizerHelper(panel, wx.VERTICAL)
 		buttonSizer = guiHelper.BoxSizerHelper(panel, wx.HORIZONTAL)
 
-		# Category selector - first item is a catch-all for global search
 		# Translators: First option in the category dropdown; searches across all categories.
-		all_categories_label = _("(All categories)")
-		original_categories = list(self.link_manager.data.keys())
+		allCategoriesLabel = _("(All categories)")
+		originalCategories = list(self.linkManager.data.keys())
 
-		display_all_label = all_categories_label
+		displayAllLabel = allCategoriesLabel
 		suffix = 1
-		while display_all_label in original_categories:
-			display_all_label = "{} ({})".format(all_categories_label, suffix)
+		while displayAllLabel in originalCategories:
+			displayAllLabel = "{} ({})".format(allCategoriesLabel, suffix)
 			suffix += 1
 
-		categories = [display_all_label] + original_categories
+		categories = [displayAllLabel] + originalCategories
 
 		self.categoryChoice = sizerHelper.addLabeledControl(
 			# Translators: Label for the category dropdown in the search dialog.
@@ -74,20 +79,20 @@ class SearchLinks(wx.Dialog):
 		self.categoryChoice.SetSelection(0)
 
 		# Search field
-		self.txtSearch = sizerHelper.addLabeledControl(
+		self.textSearch = sizerHelper.addLabeledControl(
 			# Translators: Label for the search text input field.
 			_("Search word:"), wx.TextCtrl, style=wx.TE_PROCESS_ENTER
 		)
-		self.txtSearch.Bind(wx.EVT_TEXT_ENTER, self.onSearch)
+		self.textSearch.Bind(wx.EVT_TEXT_ENTER, self.onSearch)
 
 		# Search type radio
-		choice_name = _("Name")
-		choice_url = _("URL")
+		choiceName = _("Name")
+		choiceURL = _("URL")
 
 		self.searchBy = wx.RadioBox(
 			panel,
 			label=_("Search by"),
-			choices=[choice_name, choice_url]
+			choices=[choiceName, choiceURL]
 		)
 
 		sizerHelper.addItem(self.searchBy)
@@ -106,26 +111,26 @@ class SearchLinks(wx.Dialog):
 		self.listResults.Hide()
 
 		# Buttons
-		search_button = wx.Button(panel, label=_("&Search"))
-		search_button.SetDefault()
+		searchButton = wx.Button(panel, label=_("&Search"))
+		searchButton.SetDefault()
 
 		self._openButton = wx.Button(panel, label=_("&Open"))
 		self._copyButton = wx.Button(panel, label=_("&Copy URL"))
 
-		cancel_button = wx.Button(panel, wx.ID_CANCEL, _("&Cancel"))
+		cancelButton = wx.Button(panel, wx.ID_CANCEL, _("&Cancel"))
 
 		self._openButton.Disable()
 		self._copyButton.Disable()
 
-		buttonSizer.addItem(search_button)
+		buttonSizer.addItem(searchButton)
 		buttonSizer.addItem(self._openButton)
 		buttonSizer.addItem(self._copyButton)
-		buttonSizer.addItem(cancel_button)
+		buttonSizer.addItem(cancelButton)
 
-		self.Bind(wx.EVT_BUTTON, self.onSearch, search_button)
+		self.Bind(wx.EVT_BUTTON, self.onSearch, searchButton)
 		self.Bind(wx.EVT_BUTTON, self.onOpenResult, self._openButton)
-		self.Bind(wx.EVT_BUTTON, self.onCopyUrl, self._copyButton)
-		self.Bind(wx.EVT_BUTTON, self.onCancel, cancel_button)
+		self.Bind(wx.EVT_BUTTON, self.onCopyURL, self._copyButton)
+		self.Bind(wx.EVT_BUTTON, self.onCancel, cancelButton)
 
 		self.Bind(wx.EVT_CHAR_HOOK, self.onKeyPress)
 
@@ -135,24 +140,24 @@ class SearchLinks(wx.Dialog):
 		panel.SetSizerAndFit(boxSizer)
 		self.Fit()
 
-	def _get_selected_result(self):
+	def _getSelectedResult(self):
 		index = self.listResults.GetSelection()
 		if index == wx.NOT_FOUND:
 			return None
 		return self.results[index]
 
-	def _update_action_buttons(self):
+	def _updateActionButtons(self):
 		has_results = self.listResults.IsShown() and self.listResults.GetCount() > 0
 		self._openButton.Enable(has_results)
 		self._copyButton.Enable(has_results)
 
 	def onSearch(self, event):
 
-		search_word = self.txtSearch.GetValue().strip()
+		searchWord = self.textSearch.GetValue().strip()
 
-		if not search_word:
-			self.show_message(_("Please enter a search word."))
-			self.txtSearch.SetFocus()
+		if not searchWord:
+			self.showMessage(_("Please enter a search word."))
+			self.textSearch.SetFocus()
 			return
 
 		category_idx = self.categoryChoice.GetSelection()
@@ -160,11 +165,11 @@ class SearchLinks(wx.Dialog):
 		if category_idx == 0:
 			# All categories
 			links = []
-			for cat_links in self.link_manager.data.values():
+			for cat_links in self.linkManager.data.values():
 				links.extend(cat_links)
 		else:
 			category = self.categoryChoice.GetStringSelection()
-			links = self.link_manager.data.get(category, [])
+			links = self.linkManager.data.get(category, [])
 
 		search_by_url = self.searchBy.GetSelection() == 1
 
@@ -177,7 +182,7 @@ class SearchLinks(wx.Dialog):
 
 			haystack = url_str if search_by_url else title_str
 
-			if search_word.lower() in haystack.lower():
+			if searchWord.lower() in haystack.lower():
 				self.results.append((title_str, url_str))
 
 		self.listResults.Clear()
@@ -190,9 +195,9 @@ class SearchLinks(wx.Dialog):
 			self.Layout()
 			self.Fit()
 
-			self.show_message(_("No results found."), _("Search"))
+			self.showMessage(_("No results found."), _("Search"))
 
-			self._update_action_buttons()
+			self._updateActionButtons()
 
 			return
 
@@ -212,23 +217,23 @@ class SearchLinks(wx.Dialog):
 		self.listResults.SetSelection(0)
 		self.listResults.SetFocus()
 
-		self._update_action_buttons()
+		self._updateActionButtons()
 
 		ui.message(_("{count} results found.").format(count=count))
 
 	def onOpenResult(self, event):
 
-		result = self._get_selected_result()
+		result = self._getSelectedResult()
 
 		if result is None:
-			self.show_message(_("No result selected to open!"))
+			self.showMessage(_("No result selected to open!"))
 			return
 
 		title, url = result
 
-		if not self.link_manager.is_internet_connected():
+		if not self.linkManager.is_internet_connected():
 
-			self.show_message(
+			self.showMessage(
 				_("No active internet connection!"),
 				_("Error"),
 				wx.OK | wx.ICON_ERROR
@@ -249,21 +254,21 @@ class SearchLinks(wx.Dialog):
 
 			log.error("Error opening search result URL: %s", e)
 
-			self.show_message(
+			self.showMessage(
 				_("Unable to open the selected link. Please check your browser."),
 				_("Error"),
 				wx.OK | wx.ICON_ERROR,
 			)
 
-	def onCopyUrl(self, event):
+	def onCopyURL(self, event):
 
-		result = self._get_selected_result()
+		result = self._getSelectedResult()
 
 		if result is None:
-			self.show_message(_("No result selected to copy!"))
+			self.showMessage(_("No result selected to copy!"))
 			return
 
-		_, url = result
+		url = result[1]
 
 		try:
 			api.copyToClip(url)
@@ -291,9 +296,18 @@ class SearchLinks(wx.Dialog):
 
 		event.Skip()
 
-	def show_message(self, message, caption=None, style=wx.OK | wx.ICON_INFORMATION):
+	def showMessage(self, message, caption=None, style=wx.OK | wx.ICON_INFORMATION):
+		"""Shows a message box to the user.
+
+		Args:
+			message: The message to display in the message box.
+			caption: The caption for the message box. If None, defaults to "Search Links".
+			style: The style flags for the message box (e.g., wx.OK, wx.ICONINFORMATION).
+			   	Defaults to wx.OK | wx.ICONINFORMATION.
+		"""
 
 		if caption is None:
-			caption = _("Search Links")
+			# translators: Default caption for message boxes in the search links dialog.
+			caption = _("Attention")
 
 		messageBox(message, caption, style)

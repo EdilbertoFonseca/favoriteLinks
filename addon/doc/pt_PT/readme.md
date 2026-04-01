@@ -1,14 +1,16 @@
 # Ligações Favoritas
 
-* **Autor**: Edilberto Fonseca ([edilberto.fonseca@outlook.com](mailto:edilberto.fonseca@outlook.com))
-* **Data de Criação**: 11/04/2024
-* **Licença**: [GPL 2.0](https://www.gnu.org/licenses/gpl-2.0.html)
+- **Autor**: Edilberto Fonseca ([edilberto.fonseca@outlook.com](mailto:edilberto.fonseca@outlook.com))
+- **Data de Criação**: 11/04/2024
+- **Licença**: [GPL 2.0](https://www.gnu.org/licenses/gpl-2.0.html)
 
 ## Introdução
 
 O add-on **FavoriteLinks** é uma ferramenta para gerir os seus links favoritos de forma organizada e eficiente. Permite guardar, editar e remover links numa lista categorizada, oferecendo uma interface intuitiva com funcionalidades como adicionar novos links, renomear títulos, remover entradas indesejadas e gerir categorias. Além disso, o add-on permite importar favoritos directamente de ficheiros HTML exportados pelos navegadores.
 
-Ao abrir o add-on, tem acesso rápido aos seus links e pode abri-los directamente no navegador predefinido. Existe agora também suporte para abrir links num navegador secundário, caso necessite de maior flexibilidade.
+Ao abrir o add-on, tem acesso rápido aos seus links e pode abri-los diretamente no navegador padrão. Também há suporte para abrir links num navegador secundário, oferecendo maior flexibilidade ao utilizador.
+
+Graças às novas funcionalidades adicionadas, agora também é possível navegar pelas categorias e pelos links diretamente pelo teclado, sem precisar abrir a interface principal do add-on. Isto torna o acesso aos links guardados mais rápido e prático durante o uso do NVDA.
 
 ## Instalação
 
@@ -23,7 +25,7 @@ Siga os passos abaixo para instalar o add-on **FavoriteLinks** no NVDA:
 
 Tem controlo total sobre o local onde os seus links são guardados e sobre o navegador que os abre.
 
-1. Aceda ao menu do NVDA: `NVDA+N` > *Preferências* > *Configurações*.
+1. Aceda ao menu do NVDA: `NVDA+N` > _Preferências_ > _Configurações_.
 2. Na lista de categorias, seleccione **Links Favoritos**.
 
 Pode escolher um local personalizado para guardar o ficheiro de links utilizando o botão **"Seleccionar ou adicionar um directório"** (`Alt+S`).
@@ -37,8 +39,8 @@ Para definir um navegador secundário, que pode ser tanto instalado como portát
 
 ### Aceder ao Add-on
 
-* Prima `Alt+Windows+K`.
-* Ou aceda através de `NVDA+N` > *Ferramentas* > *Links Favoritos*.
+- Prima `Alt+Windows+K`.
+- Ou aceda através de `NVDA+N` > _Ferramentas_ > _Links Favoritos_.
 
 ### Interface Principal
 
@@ -53,22 +55,22 @@ Utilize o **menu de contexto** (tecla de aplicações) em qualquer um destes cam
 
 #### Na Caixa de Categorias
 
-* **Adicionar Categoria**: Cria uma nova categoria.
-* **Editar Categoria**: Renomeia a categoria seleccionada.
-* **Remover Categoria**: Elimina a categoria e todos os seus links.
-* **Exportar Links**: Guarda todos os links e categorias num ficheiro `.json`.
-* **Importar Links**: Carrega links e categorias a partir de um ficheiro `.json`.
+- **Adicionar Categoria**: Cria uma nova categoria.
+- **Editar Categoria**: Renomeia a categoria seleccionada.
+- **Remover Categoria**: Elimina a categoria e todos os seus links.
+- **Exportar Links**: Guarda todos os links e categorias num ficheiro `.json`.
+- **Importar Links**: Carrega links e categorias a partir de um ficheiro `.json`.
 
 #### Na Lista de Links
 
-* **Abrir Link**: Abre o link no navegador que configurou.
-    > **Nota**: É necessário configurar previamente o navegador secundário nas configurações.
-* **Adicionar Link**: Permite inserir um novo URL. O título será obtido automaticamente, mas pode introduzi-lo manualmente caso a obtenção falhe.
-* **Editar Link**: Modifica o título e o URL de um link existente.
-* **Remover Link**: Elimina o link seleccionado.
-* **Exportar Links** / **Importar Links**: Iguais às opções da categoria.
-* **Importar Favoritos de HTML**: Importa links a partir de um ficheiro `.html` exportado por navegadores.
-* **Ordenar Links**: Organiza os links da categoria actual por ordem alfabética.
+- **Abrir Link**: Abre o link no navegador que configurou.
+  > **Nota**: É necessário configurar previamente o navegador secundário nas configurações.
+- **Adicionar Link**: Permite inserir um novo URL. O título será obtido automaticamente, mas pode introduzi-lo manualmente caso a obtenção falhe.
+- **Editar Link**: Modifica o título e o URL de um link existente.
+- **Remover Link**: Elimina o link seleccionado.
+- **Exportar Links** / **Importar Links**: Iguais às opções da categoria.
+- **Importar Favoritos de HTML**: Importa links a partir de um ficheiro `.html` exportado por navegadores.
+- **Ordenar Links**: Organiza os links da categoria actual por ordem alfabética.
 
 ### Importar Favoritos de HTML
 
@@ -86,38 +88,45 @@ Esta funcionalidade é útil para migrar os seus favoritos existentes para o add
 
 Durante a importação:
 
-* O progresso é apresentado numa barra de progresso.
-* Pode **cancelar a operação a qualquer momento**.
-* O NVDA permanece responsivo durante todo o processo.
+- O progresso é apresentado numa barra de progresso.
+- Pode **cancelar a operação a qualquer momento**.
+- O NVDA permanece responsivo durante todo o processo.
 
 #### Organização dos links importados
 
-* Os links importados são adicionados automaticamente ao ficheiro JSON configurado nas preferências do add-on.
-* Por defeito, os favoritos são inseridos na categoria **“Imported Bookmarks”**.
-* Links duplicados (com o mesmo URL) não são adicionados novamente.
+- Os links importados são adicionados automaticamente ao ficheiro JSON configurado nas preferências do add-on.
+- Por defeito, os favoritos são inseridos na categoria **“Imported Bookmarks”**.
+- Links duplicados (com o mesmo URL) não são adicionados novamente.
 
 No final da importação, é apresentada uma mensagem de confirmação e a interface do add-on é actualizada automaticamente.
 
 ### Atalhos
 
-| Função | Atalho |
-| :--- | :--- |
-| Abrir Link | `Alt+B` ou `Enter` (na lista de links) |
-| Adicionar Link | `Alt+A` |
-| Adicionar Categoria | `Alt+D` |
-| Editar Link | `Alt+E` ou `F2` |
-| Eliminar Link | `Alt+L` ou `Del` |
-| Guardar URL da página actual | `Shift+Control+D` |
-| Mostrar URL da página actual | `Windows+Control+P` Ao pressionar duas vezes, o URL é copiado para a área de transferência. |
-| Sair | `Alt+S`, `Esc` ou `Alt+F4` |
+| Função                                                                            | Atalho                                                                                       |
+| :-------------------------------------------------------------------------------- | :------------------------------------------------------------------------------------------- |
+| Abrir ligação                                                                     | `Alt+B` ou `Enter` (na lista de ligações)                                                    |
+| Adicionar ligação                                                                 | `Alt+A`                                                                                      |
+| Adicionar categoria                                                               | `Alt+D`                                                                                      |
+| Editar ligação                                                                    | `Alt+E` ou `F2`                                                                              |
+| Eliminar ligação                                                                  | `Alt+L` ou `Del`                                                                             |
+| Mostrar o URL da página atual                                                     | `Windows+Control+P` (ao pressionar duas vezes, o URL é copiado para a área de transferência) |
+| Pesquisar ligações guardadas pelo nome ou pelo URL                                | `Shift+NVDA+G`                                                                               |
+| Alternar a leitura do URL após o nome da ligação durante a navegação pelo teclado | `Control+Shift+L`                                                                            |
+| Mover para a categoria anterior de ligações guardadas                             | `Control+Shift+F9`                                                                           |
+| Mover para a próxima categoria de ligações guardadas                              | `Control+Shift+F10`                                                                          |
+| Mover para a ligação anterior guardada na categoria atual                         | `Control+Shift+F11`                                                                          |
+| Mover para a próxima ligação guardada na categoria atual                          | `Control+Shift+F12`                                                                          |
+| Mover para a primeira ligação guardada na categoria atual                         | `NVDA+Control+Shift+F11`                                                                     |
+| Mover para a última ligação guardada na categoria atual                           | `NVDA+Control+Shift+F12`                                                                     |
+| Sair                                                                              | `Alt+S`, `Esc` ou `Alt+F4`                                                                   |
 
 ## Diálogo "Adicionar Novo Link"
 
 1. **Categoria**: Seleccione a categoria pretendida.
 2. **URL**: Cole ou escreva o endereço do link.
-    > Se já tiver copiado um URL, este será colado automaticamente.
+   > Se já tiver copiado um URL, este será colado automaticamente.
 3. **OK (`Alt+O`)**: Adiciona o link.
-    > O título será obtido automaticamente. Caso a obtenção falhe, poderá introduzi-lo manualmente.
+   > O título será obtido automaticamente. Caso a obtenção falhe, poderá introduzi-lo manualmente.
 4. **Cancelar (`Alt+C`)**: Fecha o diálogo. `Esc` ou `Alt+F4` também funcionam.
 
 ## Diálogo "Editar Link"
@@ -138,9 +147,9 @@ O add-on FavoriteLinks foi desenvolvido com o auxílio do **ChatGPT** e do **Goo
 
 ## 🌍 Tradutores
 
-* 🇸🇦 **Árabe** — Ahmed Bakr
-* 🇧🇷 **Português (Brasil)** — Edilberto Fonseca
-* 🇵🇹 **Português (Portugal)** — Edilberto Fonseca
-* 🇷🇺 **Russo (Rússia)** — Valentin Kupriyanov
-* 🇹🇷 **Turco (Turquia)** — Umut KORKMAZ
-* 🇺🇦 **Ucraniano (Ucrânia)** — Heorhii Halas
+- 🇸🇦 **Árabe** — Ahmed Bakr
+- 🇧🇷 **Português (Brasil)** — Edilberto Fonseca
+- 🇵🇹 **Português (Portugal)** — Edilberto Fonseca
+- 🇷🇺 **Russo (Rússia)** — Valentin Kupriyanov
+- 🇹🇷 **Turco (Turquia)** — Umut KORKMAZ
+- 🇺🇦 **Ucraniano (Ucrânia)** — Heorhii Halas

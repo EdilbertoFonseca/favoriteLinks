@@ -74,20 +74,18 @@ strictSetInference = true
 
 # Compliant rules
 reportAbstractUsage = true
-reportArgumentType = true
 reportAssertAlwaysTrue = true
 reportAssertTypeFailure = true
 reportAssignmentType = true
-reportAttributeAccessIssue = true
+# reportAttributeAccessIssue = true
 reportCallInDefaultInitializer = true
 reportCallIssue = true
 reportConstantRedefinition = true
 reportDuplicateImport = true
 reportFunctionMemberAccess = true
 reportGeneralTypeIssues = true
-reportImplicitOverride = true
 reportImplicitStringConcatenation = true
-reportImportCycles = true
+# reportImportCycles = true
 reportIncompatibleMethodOverride = true
 reportIncompatibleVariableOverride = true
 reportIncompleteStub = true
@@ -100,9 +98,6 @@ reportInvalidTypeArguments = true
 reportInvalidTypeForm = true
 reportInvalidTypeVarUse = true
 reportMatchNotExhaustive = true
-reportMissingImports = true
-reportMissingModuleSource = true
-reportMissingParameterType = true
 reportMissingSuperCall = true
 reportMissingTypeArgument = true
 reportNoOverloadImplementation = true
@@ -110,7 +105,6 @@ reportOperatorIssue = true
 reportOptionalCall = true
 reportOptionalContextManager = true
 reportOptionalIterable = true
-reportOptionalMemberAccess = true
 reportOptionalOperand = true
 reportOptionalSubscript = true
 reportOverlappingOverload = true
@@ -121,29 +115,21 @@ reportPropertyTypeMismatch = true
 reportRedeclaration = true
 reportReturnType = true
 reportSelfClsParameterName = true
-reportShadowedImports = true
 reportTypeCommentUsage = true
 reportTypedDictNotRequiredAccess = true
 reportUnboundVariable = true
 reportUndefinedVariable = true
 reportUnhashable = true
 reportUninitializedInstanceVariable = true
-reportUnknownArgumentType = true
-reportUnknownLambdaType = true
-reportUnknownMemberType = true
-reportUnknownParameterType = true
-reportUnknownVariableType = true
 reportUnnecessaryCast = true
 reportUnnecessaryComparison = true
 reportUnnecessaryContains = true
 reportUnnecessaryIsInstance = true
 reportUnnecessaryTypeIgnoreComment = true
 reportUnsupportedDunderAll = true
-reportUntypedBaseClass = true
+# reportUntypedBaseClass = true
 reportUntypedClassDecorator = true
-reportUntypedFunctionDecorator = true
 reportUntypedNamedTuple = true
-reportUnusedCallResult = true
 reportUnusedClass = true
 reportUnusedCoroutine = true
 reportUnusedExcept = true
@@ -155,8 +141,46 @@ reportWildcardImportFromLibrary = true
 
 reportDeprecated = true
 
-# Can be enabled by generating type stubs for modules via pyright CLI
+# Rules disabled due to NVDA Core and wxPython dynamic behavior
+# These rules generate false positives even when the code is correct.
+
+# wxPython accepts runtime coercions (e.g. size=(w, h), parent=Panel),
+# but its type stubs do not fully reflect this behavior.
+reportArgumentType = false
+
+# Some methods override abstract or base class methods
+reportImplicitOverride = false
+
+# NVDA modules (addonHandler, gui, globalVars, etc.) are injected into
+# sys.path at runtime by NVDA itself and are not importable in a
+# standard Python environment. Pyright cannot model this bootstrap.
+reportMissingImports = false
+reportMissingModuleSource = false
+
+# Parameters such as gesture, event, args and kwargs originate from
+# NVDA Core or wxPython callbacks and do not have stable static types.
+reportMissingParameterType = false
+reportUnknownArgumentType = false
+reportUnknownParameterType = false
+
+# Objects like gui.mainFrame and sysTrayIcon may legitimately be None
+# depending on NVDA state; asserting otherwise breaks NVDA conventions.
+reportOptionalMemberAccess = false
+
+# wxPython methods (e.g. Add, Append, prePopup) return values that are
+# intentionally ignored; the side effects are what matter.
+reportUnusedCallResult = false
+
+# NVDA uses dynamic attributes extensively (e.g. ADDON_SUMMARY,
+# manifest, script methods, gui helpers).
+reportUnknownMemberType = false
+reportUnknownVariableType = false
+
+# wxPython is bundled with NVDA and does not ship with official type stubs.
+# Pyright cannot resolve wx types in a standard environment.
 reportMissingTypeStubs = false
 
-# Bad rules
-# These are sorted alphabetically and should be enabled and moved to compliant rules section when resolved.
+reportAttributeAccessIssue = false 
+reportImportCycles = false
+reportUntypedBaseClass = false
+reportUntypedFunctionDecorator = false

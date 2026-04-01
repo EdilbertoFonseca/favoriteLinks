@@ -2,11 +2,17 @@
 
 """
 Author: Edilberto Fonseca <edilberto.fonseca@outlook.com>
-Copyright: (C) 2025 Edilberto Fonseca
+Copyright: (C) 2025 - 2026 Edilberto Fonseca
 
 This file is covered by the GNU General Public License.
 See the file COPYING for more details or visit:
 https://www.gnu.org/licenses/gpl-2.0.html
+
+-------------------------------------------------------------------------
+AI DISCLOSURE / NOTA DE IA:
+This project utilizes AI for code refactoring and logic suggestions.
+All AI-generated code was manually reviewed and tested by the author.
+-------------------------------------------------------------------------
 
 Created on: 28/05/2024
 """
@@ -30,21 +36,21 @@ class AddLinks(wx.Dialog):
 		wx.Dialog: Displays a dialog for selecting the category and adding the URL.
 	"""
 
-	def __init__(self, parent, link_manager_instance, title, selectedCategory=""):
+	def __init__(self, parent, linkManagerInstance, title, selectedCategory=""):
 		# Dialog window title.
 		self.title=title
 
 		wx.Dialog.__init__(self, parent, title=title)
 
 		# Receive the linkmanager instance
-		self.link_manager = link_manager_instance
+		self.linkManager = linkManagerInstance
 		self.selectedCategory = selectedCategory
 		self.result = {}
 
 		# Load the data from LinkManager
-		if not self.link_manager.data:
+		if not self.linkManager.data:
 			log.error("No categories available in LinkManager.")
-			self.show_message(_("No categories available. Please add some categories first."), _("Error"))
+			self.showMessage(_("No categories available. Please add some categories first."), _("Error"))
 			self.Destroy()
 			return
 
@@ -54,13 +60,13 @@ class AddLinks(wx.Dialog):
 		buttonSizer = guiHelper.BoxSizerHelper(panel, wx.HORIZONTAL)
 
 		# Create and set up the category field
-		self.categoryChoice = self._create_category_field(sizerHelper)
+		self.categoryChoice = self._createCategoryField(sizerHelper)
 
 		# Create and set up the URL field
-		self.txtUrl = self._create_url_field(sizerHelper)
+		self.textUrl = self._createURLField(sizerHelper)
 
 		# Create buttons (OK and Cancel)
-		self._create_buttons(panel, buttonSizer)
+		self._createButtons(panel, buttonSizer)
 
 		# Add components to sizers
 		boxSizer.Add(sizerHelper.sizer, border=10, flag=wx.ALL)
@@ -72,11 +78,11 @@ class AddLinks(wx.Dialog):
 		# Bind escape key to cancel event
 		self.Bind(wx.EVT_CHAR_HOOK, self.onKeyPress)
 
-	def _create_category_field(self, sizerHelper):
+	def _createCategoryField(self, sizerHelper):
 		"""
 		Creates and initializes the category field.
 		"""
-		categories = list(self.link_manager.data.keys())
+		categories = list(self.linkManager.data.keys())
 		category_field = sizerHelper.addLabeledControl(
 			_("Select a Category"), wx.Choice, choices=categories
 		)
@@ -84,7 +90,7 @@ class AddLinks(wx.Dialog):
 			category_field.SetStringSelection(self.selectedCategory)
 		return category_field
 
-	def _create_url_field(self, sizerHelper):
+	def _createURLField(self, sizerHelper):
 		"""
 		Creates and initializes the URL text field.
 
@@ -102,13 +108,13 @@ class AddLinks(wx.Dialog):
 			_("Enter link URL:"), wx.TextCtrl
 		)
 		# First try a clean, validated URL from the clipboard.
-		url = self.link_manager.get_url_from_clipboard()
+		url = self.linkManager.getURLFromClipboard()
 		if not url:
 			# Fall back to regex extraction so URLs embedded in text are found.
 			try:
 				from api import getClipData
 				clipboard_text = getClipData()
-				extracted = self.link_manager.extract_urls_from_text(clipboard_text)
+				extracted = self.linkManager.extract_urls_from_text(clipboard_text)
 				if extracted:
 					candidate = extracted[0]
 					# Normalize bare "www." URLs to https so they become valid.
@@ -120,7 +126,7 @@ class AddLinks(wx.Dialog):
 		url_field.SetValue(url)
 		return url_field
 
-	def _create_buttons(self, panel, buttonSizer):
+	def _createButtons(self, panel, buttonSizer):
 		"""
 		Creates the OK and Cancel buttons and binds events to them.
 		"""
@@ -138,15 +144,17 @@ class AddLinks(wx.Dialog):
 		Handles the OK button click event, validates the data, and returns it.
 		"""
 		category = self.categoryChoice.GetStringSelection()
-		url = self.txtUrl.GetValue()
+		url = self.textUrl.GetValue()
 
 		if not category:
-			self.show_message(_("No category selected. Please select or add one!"), _("Attention"))
+			# translators: Error message shown when no category is selected.
+			self.showMessage(_("No category selected. Please select or add one!"), _("Attention"))
 			return
 
 		if not url:
-			self.show_message(_("URL is required!"), _("Attention"))
-			self.txtUrl.SetFocus()
+			# translators: Error message shown when the URL field is empty.
+			self.showMessage(_("URL is required!"), _("Attention"))
+			self.textUrl.SetFocus()
 			return
 
 		# Attributes the results to a dictionary for easy access
@@ -167,8 +175,18 @@ class AddLinks(wx.Dialog):
 			self.onCancel(event)
 		event.Skip()
 
-	def show_message(self, message, caption=_("Attention"), style=wx.OK | wx.ICON_INFORMATION):
+	def showMessage(self, message, caption=None, style=wx.OK | wx.ICON_INFORMATION):
+		"""Shows a message box to the user.
+
+		Args:
+			message: The message to display in the message box.
+			caption: The caption for the message box. If None, defaults to "Search Links".
+			style: The style flags for the message box (e.g., wx.OK, wx.ICONINFORMATION).
+			   	Defaults to wx.OK | wx.ICONINFORMATION.
 		"""
-		Displays a message to the user.
-		"""
+
+		if caption is None:
+			# translators: Default caption for message boxes in the search links dialog.
+			caption = _("Attention")
+
 		messageBox(message, caption, style)

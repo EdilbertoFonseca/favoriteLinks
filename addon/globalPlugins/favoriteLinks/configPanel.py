@@ -2,11 +2,17 @@
 
 """
 Author: Edilberto Fonseca <edilberto.fonseca@outlook.com>
-Copyright: (C) 2025 Edilberto Fonseca
+Copyright: (C) 2025 - 2026 Edilberto Fonseca
 
 This file is covered by the GNU General Public License.
 See the file COPYING for more details or visit:
 https://www.gnu.org/licenses/gpl-2.0.html
+
+-------------------------------------------------------------------------
+AI DISCLOSURE / NOTA DE IA:
+This project utilizes AI for code refactoring and logic suggestions.
+All AI-generated code was manually reviewed and tested by the author.
+-------------------------------------------------------------------------
 
 Created on: 24/01/2023.
 """
@@ -20,7 +26,7 @@ import wx
 from gui import guiHelper
 from gui.settingsDialogs import SettingsPanel
 
-from .jsonConfig import json_config  # Import the new json_config instance
+from .jsonConfig import jsonConfig  # Import the new json_config instance
 from .varsConfig import ADDON_SUMMARY 
 
 # Initialize translation support
@@ -41,17 +47,17 @@ class FavoriteLinksSettingsPanel(SettingsPanel):
 		settingsSizerHelper.addItem(pathGroup)
 
 		# Populate pathList from json_config
-		self.pathList = [json_config.first_json_file]
-		if json_config.alt_json_file:
-			self.pathList.append(json_config.alt_json_file)
+		self.pathList = [jsonConfig.firstJsonFile]
+		if jsonConfig.altJsonFile:
+			self.pathList.append(jsonConfig.altJsonFile)
 
 		# Ensure pathList is not empty if both paths are empty (shouldn't happen with json_config)
 		if not self.pathList:
-			self.pathList.append(json_config.default_path)
+			self.pathList.append(jsonConfig.defaultPath)
 
 		self.pathNameCB = pathGroup.addLabeledControl("", wx.Choice, choices=self.pathList)
 		# Set selection, ensuring it's within bounds of current pathList
-		self.pathNameCB.SetSelection(min(json_config.index_json, len(self.pathList) - 1))
+		self.pathNameCB.SetSelection(min(jsonConfig.indexJson, len(self.pathList) - 1))
 
 		changePathBtn = wx.Button(pathBox, label=_("&Select or add a directory"))
 		pathGroup.sizer.Add(changePathBtn, 0, wx.ALL, 5) # Add button to sizer
@@ -66,7 +72,7 @@ class FavoriteLinksSettingsPanel(SettingsPanel):
 		settingsSizerHelper.addItem(browserPathGroup)
 
 		# Assume we store the browser path in json_config
-		self.browserPath = json_config.browser_path or ''  # Fallback to empty string if not set
+		self.browserPath = jsonConfig.browserPath or ''  # Fallback to empty string if not set
 		self.browserPathCB = browserPathGroup.addLabeledControl("", wx.TextCtrl, value=self.browserPath)
 
 		# Button to select the browser path
@@ -85,7 +91,7 @@ class FavoriteLinksSettingsPanel(SettingsPanel):
 			frame = gui.mainFrame
 			
 			# Get initial directory and filename for the dialog
-			current_path = json_config.get_current_json_path()
+			current_path = jsonConfig.getCurrentJsonPath()
 			initial_dir = os.path.dirname(current_path) if current_path else os.path.dirname(__file__)
 			initial_file = os.path.basename(current_path) if current_path else "favorite_links.json"
 
@@ -103,17 +109,17 @@ class FavoriteLinksSettingsPanel(SettingsPanel):
 				current_selection_index = self.pathNameCB.GetSelection()
 
 				# Update json_config internal state
-				json_config.index_json = current_selection_index
-				json_config.update_json_file_path(fname) # Let json_config handle file renaming/path updates
+				jsonConfig.indexJson = current_selection_index
+				jsonConfig.updateJsonFilePath(fname) # Let json_config handle file renaming/path updates
 
 				# Refresh the wx.Choice control with updated paths from json_config
-				self.pathList = [json_config.first_json_file]
-				if json_config.alt_json_file:
-					self.pathList.append(json_config.alt_json_file)
+				self.pathList = [jsonConfig.firstJsonFile]
+				if jsonConfig.altJsonFile:
+					self.pathList.append(jsonConfig.altJsonFile)
 				
 				# Ensure pathList is not empty
 				if not self.pathList:
-					self.pathList.append(json_config.default_path)
+					self.pathList.append(jsonConfig.defaultPath)
 
 				self.pathNameCB.Set(self.pathList)
 				self.pathNameCB.SetSelection(current_selection_index) # Keep current selection
@@ -153,7 +159,7 @@ Select the browser path.
 				self.browserPathCB.SetValue(selectedPath)
 
 				# Update the configuration
-				json_config.browser_path = selectedPath  # Assume json_config has browser_path
+				jsonConfig.browserPath = selectedPath  # Assume json_config has browser_path
 
 		finally:
 			dlg.Destroy()  # Destroy the dialog
@@ -165,12 +171,12 @@ Select the browser path.
 		Saves the options to the NVDA configuration file.
 		"""
 		# Update selected index and save paths using json_config
-		json_config.index_json = self.pathNameCB.GetSelection()
-		json_config.save_config() # This call saves the path and altPath to config.conf
+		jsonConfig.indexJson = self.pathNameCB.GetSelection()
+		jsonConfig.saveConfig() # This call saves the path and altPath to config.conf
 
 		# Save browser path
-		json_config.browser_path = self.browserPath  # Save browser path
-		json_config.save_config()  # Save again to update browser_path
+		jsonConfig.browserPath = self.browserPath  # Save browser path
+		jsonConfig.saveConfig()  # Save again to update browser_path
 
 		# Reactivate profiles triggers (important for NVDA config system)
 		config.conf.enableProfileTriggers()

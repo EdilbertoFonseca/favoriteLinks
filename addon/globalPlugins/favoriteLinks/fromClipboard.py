@@ -2,11 +2,19 @@
 
 """
 Author: Edilberto Fonseca <edilberto.fonseca@outlook.com>
-Copyright: (C) 2025 Edilberto Fonseca
+Copyright: (C) 2025 - 2026 Edilberto Fonseca
 
 This file is covered by the GNU General Public License.
 See the file COPYING for more details or visit:
 https://www.gnu.org/licenses/gpl-2.0.html
+
+-------------------------------------------------------------------------
+AI DISCLOSURE / NOTA DE IA:
+This project utilizes AI for code refactoring and logic suggestions.
+All AI-generated code was manually reviewed and tested by the author.
+-------------------------------------------------------------------------
+
+Created on: 23/03/2026
 """
 
 import webbrowser
@@ -44,34 +52,34 @@ class FromClipboard(wx.Dialog):
 		buttonSizer = guiHelper.BoxSizerHelper(panel, wx.HORIZONTAL)
 
 		# Translators: Label showing how many links were extracted from the clipboard.
-		count_label = _("{count} links found in the clipboard.").format(count=len(urls))
-		sizerHelper.addItem(wx.StaticText(panel, label=count_label))
+		countLabel = _("{count} links found in the clipboard.").format(count=len(urls))
+		sizerHelper.addItem(wx.StaticText(panel, label=countLabel))
 
 		# Translators: Label for the list of URLs extracted from the clipboard.
-		select_link_label = _("Select a link:")
+		selectLinkLabel = _("Select a link:")
 		self.listUrls = sizerHelper.addLabeledControl(
-			select_link_label, wx.ListBox, choices=urls
+			selectLinkLabel, wx.ListBox, choices=urls
 		)
 		self.listUrls.SetSelection(0)
 		self.listUrls.Bind(wx.EVT_LISTBOX_DCLICK, self.onOpen)
 		self.listUrls.Bind(wx.EVT_KEY_DOWN, self.onListKeyPress)
 
-		# Buttons
 		# Translators: Label for the button that opens the selected URL.
-		open_button = wx.Button(panel, label=_("&Open"))
-		open_button.SetDefault()
+		openButton = wx.Button(panel, label=_("&Open"))
+		openButton.SetDefault()
+
 		# Translators: Label for the button that copies the selected URL to the clipboard.
-		copy_button = wx.Button(panel, label=_("&Copy to clipboard"))
+		copyButton = wx.Button(panel, label=_("&Copy to clipboard"))
 		# Translators: Label for the cancel button in the clipboard URL picker dialog.
-		cancel_button = wx.Button(panel, wx.ID_CANCEL, _("&Cancel"))
+		cancelButton = wx.Button(panel, wx.ID_CANCEL, _("&Cancel"))
 
-		buttonSizer.addItem(open_button)
-		buttonSizer.addItem(copy_button)
-		buttonSizer.addItem(cancel_button)
+		buttonSizer.addItem(openButton)
+		buttonSizer.addItem(copyButton)
+		buttonSizer.addItem(cancelButton)
 
-		self.Bind(wx.EVT_BUTTON, self.onOpen, open_button)
-		self.Bind(wx.EVT_BUTTON, self.onCopyToClipboard, copy_button)
-		self.Bind(wx.EVT_BUTTON, self.onCancel, cancel_button)
+		self.Bind(wx.EVT_BUTTON, self.onOpen, openButton)
+		self.Bind(wx.EVT_BUTTON, self.onCopyToClipboard, copyButton)
+		self.Bind(wx.EVT_BUTTON, self.onCancel, cancelButton)
 		self.Bind(wx.EVT_CHAR_HOOK, self.onKeyPress)
 
 		boxSizer.Add(sizerHelper.sizer, border=10, flag=wx.ALL | wx.EXPAND)
@@ -79,39 +87,43 @@ class FromClipboard(wx.Dialog):
 		panel.SetSizerAndFit(boxSizer)
 		self.Fit()
 
-	def _get_selected_url(self):
+	def _getSelectedUrl(self):
 		index = self.listUrls.GetSelection()
 		if index == wx.NOT_FOUND:
 			return None
 		return self.urls[index]
 
 	def onOpen(self, event):
-		url = self._get_selected_url()
+		url = self._getSelectedUrl()
 		if not url:
 			return
 		try:
 			opened = webbrowser.open(url)
 			if not opened:
 				raise OSError("Browser failed to open URL")
+
 			# Translators: Spoken when a link is opened from the picker dialog.
 			ui.message(_("Opening {url}.").format(url=url))
 			self.EndModal(wx.ID_OK)
 		except Exception as e:
 			log.error("Error opening URL from clipboard dialog: %s", e)
+
 			# Translators: Spoken when a link cannot be opened from the picker dialog.
 			ui.message(_("Unable to open the link. Please check your browser settings."))
 			self.listUrls.SetFocus()
 
 	def onCopyToClipboard(self, event):
-		url = self._get_selected_url()
+		url = self._getSelectedUrl()
 		if not url:
 			return
 		try:
 			api.copyToClip(url)
+
 			# Translators: Spoken when a URL is copied to the clipboard from the picker dialog.
 			ui.message(_("Copied to clipboard: {url}").format(url=url))
 		except Exception as e:
 			log.error("Error copying URL to clipboard: %s", e)
+
 			# Translators: Spoken when copying a URL to the clipboard fails.
 			ui.message(_("Failed to copy URL to clipboard."))
 

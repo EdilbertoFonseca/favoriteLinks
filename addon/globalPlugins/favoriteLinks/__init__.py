@@ -2,11 +2,17 @@
 
 """
 Author: Edilberto Fonseca <edilberto.fonseca@outlook.com>
-Copyright: (C) 2025 Edilberto Fonseca
+Copyright: (C) 2025 - 2026 Edilberto Fonseca
 
 This file is covered by the GNU General Public License.
 See the file COPYING for more details or visit:
 https://www.gnu.org/licenses/gpl-2.0.html
+
+-------------------------------------------------------------------------
+AI DISCLOSURE / NOTA DE IA:
+This project utilizes AI for code refactoring and logic suggestions.
+All AI-generated code was manually reviewed and tested by the author.
+-------------------------------------------------------------------------
 
 Created on: 11/04/2024.
 """
@@ -37,15 +43,14 @@ from .varsConfig import ADDON_SUMMARY, initConfiguration, ourAddon
 
 # Initialize translation support
 addonHandler.initTranslation()
+
 # Initialize configuration settings
 initConfiguration()
-
 
 def isBrowser():
 	"""Verifies if NVDA is currently in a browser."""
 	obj = api.getFocusObject()
 	return bool(obj.treeInterceptor)
-
 
 def getCurrentDocumentURL():
 	"""Gets the current masked document URL if in a browser."""
@@ -54,7 +59,6 @@ def getCurrentDocumentURL():
 		return obj.treeInterceptor.documentConstantIdentifier
 	except AttributeError:
 		return None
-
 
 def disableInSecureMode(decoratedCls):
 	"""Decorator to disable the plugin in secure mode."""
@@ -85,56 +89,55 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 		)
 
 		# Navigation state
-		self._nav_category_index = 0
-		self._nav_link_index = 0
-		self._nav_link_manager = LinkManager.empty()
+
+		self._navCategoryIndex = 0
+		self._navLinkIndex = 0
+		self._navLinkManager = LinkManager.empty()
 		try:
-			self._nav_link_manager.load_json()
+			self._navLinkManager.loadJson()
 		except Exception as e:
 			log.error("Error loading navigation data at startup: %s", e)
 
-	# -------------------------------
 	# Navigation helpers
-	# -------------------------------
-	def _reload_nav_data(self):
+
+	def _reloadNavData(self):
 		"""Reloads link data from JSON into the navigation link manager."""
 		try:
-			self._nav_link_manager.load_json()
-			categories = list(self._nav_link_manager.data.keys())
+			self._navLinkManager.loadJson()
+			categories = list(self._navLinkManager.data.keys())
 			if categories:
-				self._nav_category_index = min(self._nav_category_index, len(categories) - 1)
-				links = self._nav_link_manager.data.get(categories[self._nav_category_index], [])
-				self._nav_link_index = min(self._nav_link_index, max(0, len(links) - 1))
+				self._navCategoryIndex = min(self._navCategoryIndex, len(categories) - 1)
+				links = self._navLinkManager.data.get(categories[self._navCategoryIndex], [])
+				self._navLinkIndex = min(self._navLinkIndex, max(0, len(links) - 1))
 			else:
-				self._nav_category_index = 0
-				self._nav_link_index = 0
+				self._navCategoryIndex = 0
+				self._navLinkIndex = 0
 		except Exception as e:
 			log.error("Error reloading navigation data: %s", e)
 
-	def _get_nav_categories(self):
+	def _getNavCategories(self):
 		"""Returns a sorted list of category names from navigation data."""
-		return list(self._nav_link_manager.data.keys())
+		return list(self._navLinkManager.data.keys())
 
-	def _announce_current_link(self):
+	def _announceCurrentLink(self):
 		"""Announces the currently selected link via NVDA speech."""
-		categories = self._get_nav_categories()
+		categories = self._getNavCategories()
 		if not categories:
 			ui.message(_("No links saved."))
 			return
-		category = categories[self._nav_category_index]
-		links = self._nav_link_manager.data.get(category, [])
+		category = categories[self._navCategoryIndex]
+		links = self._navLinkManager.data.get(category, [])
 		if not links:
 			ui.message(_("No links in this category."))
 			return
-		title, url = links[self._nav_link_index]
+		title, url = links[self._navLinkIndex]
 		msg = title
 		if config.conf[ourAddon.name]["readUrlAfterName"]:
 			msg += "  " + url
 		ui.message(msg)
 
-	# -------------------------------
 	# Dialog management
-	# -------------------------------
+
 	def onFavoriteLinks(self, event):
 		"""Opens the Favorite Links dialog."""
 		try:
@@ -150,7 +153,7 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 	def _onDialogClosed(self, event):
 		"""Reloads navigation data when the dialog is destroyed."""
 		event.Skip()
-		self._reload_nav_data()
+		self._reloadNavData()
 
 	def onAddLinks(self):
 		"""Calls the dialog for adding a new link."""
@@ -161,15 +164,18 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 		except Exception as e:
 			log.error("Error displaying Favorite Links dialog: %s", e)
 
-	# -------------------------------
 	# NVDA scripts
-	# -------------------------------
-	@script(gesture="kb:Windows+alt+K",
-			description=_("This addon allows you to save links to a specific page."),
-			category=ADDON_SUMMARY)
+
+
+	# Defining a script with a decorator:
+	@script(
+		gesture="kb:Windows+alt+K",
+		# Translators: Text displayed in NVDA help.
+		description=_("This addon allows you to save links to a specific page."),
+		category=ADDON_SUMMARY
+	)
 	def script_activateFavoriteLinks(self, gesture):
 		wx.CallAfter(self.onFavoriteLinks, None)
-
 
 	# Defining a script with a decorator:
 	@script(
@@ -276,19 +282,19 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 		category=ADDON_SUMMARY
 	)
 	def script_nextLink(self, gesture):
-		categories = self._get_nav_categories()
+		categories = self._getNavCategories()
 		if not categories:
 			beep(200, 100)
 			return
-		links = self._nav_link_manager.data.get(categories[self._nav_category_index], [])
+		links = self._navLinkManager.data.get(categories[self._navCategoryIndex], [])
 		if not links:
 			beep(200, 100)
 			return
-		if self._nav_link_index < len(links) - 1:
-			self._nav_link_index += 1
+		if self._navLinkIndex < len(links) - 1:
+			self._navLinkIndex += 1
 		else:
 			beep(250, 50)
-		self._announce_current_link()
+		self._announceCurrentLink()
 
 	# Defining a script with a decorator:
 	@script(
@@ -298,19 +304,19 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 		category=ADDON_SUMMARY
 	)
 	def script_previousLink(self, gesture):
-		categories = self._get_nav_categories()
+		categories = self._getNavCategories()
 		if not categories:
 			beep(200, 100)
 			return
-		links = self._nav_link_manager.data.get(categories[self._nav_category_index], [])
+		links = self._navLinkManager.data.get(categories[self._navCategoryIndex], [])
 		if not links:
 			beep(200, 100)
 			return
-		if self._nav_link_index > 0:
-			self._nav_link_index -= 1
+		if self._navLinkIndex > 0:
+			self._navLinkIndex -= 1
 		else:
 			beep(200, 50)
-		self._announce_current_link()
+		self._announceCurrentLink()
 
 	# Defining a script with a decorator:
 	@script(
@@ -320,17 +326,17 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 		category=ADDON_SUMMARY
 	)
 	def script_nextCategory(self, gesture):
-		categories = self._get_nav_categories()
+		categories = self._getNavCategories()
 		if not categories:
 			beep(200, 100)
 			return
-		if self._nav_category_index < len(categories) - 1:
-			self._nav_category_index += 1
+		if self._navCategoryIndex < len(categories) - 1:
+			self._navCategoryIndex += 1
 		else:
 			beep(250, 50)
-		self._nav_link_index = 0
-		category = categories[self._nav_category_index]
-		links = self._nav_link_manager.data.get(category, [])
+		self._navLinkIndex = 0
+		category = categories[self._navCategoryIndex]
+		links = self._navLinkManager.data.get(category, [])
 		count = len(links)
 		ui.message(ngettext(
 			"{category}: Contains {count} link",
@@ -346,17 +352,17 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 		category=ADDON_SUMMARY
 	)
 	def script_previousCategory(self, gesture):
-		categories = self._get_nav_categories()
+		categories = self._getNavCategories()
 		if not categories:
 			beep(200, 100)
 			return
-		if self._nav_category_index > 0:
-			self._nav_category_index -= 1
+		if self._navCategoryIndex > 0:
+			self._navCategoryIndex -= 1
 		else:
 			beep(200, 50)
-		self._nav_link_index = 0
-		category = categories[self._nav_category_index]
-		links = self._nav_link_manager.data.get(category, [])
+		self._navLinkIndex = 0
+		category = categories[self._navCategoryIndex]
+		links = self._navLinkManager.data.get(category, [])
 		count = len(links)
 		ui.message(ngettext(
 			"{category}: Contains {count} link",
@@ -372,16 +378,16 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 		category=ADDON_SUMMARY
 	)
 	def script_firstLink(self, gesture):
-		categories = self._get_nav_categories()
+		categories = self._getNavCategories()
 		if not categories:
 			beep(200, 100)
 			return
-		links = self._nav_link_manager.data.get(categories[self._nav_category_index], [])
+		links = self._navLinkManager.data.get(categories[self._navCategoryIndex], [])
 		if not links:
 			beep(200, 100)
 			return
-		self._nav_link_index = 0
-		self._announce_current_link()
+		self._navLinkIndex = 0
+		self._announceCurrentLink()
 
 	# Defining a script with a decorator:
 	@script(
@@ -391,16 +397,16 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 		category=ADDON_SUMMARY
 	)
 	def script_lastLink(self, gesture):
-		categories = self._get_nav_categories()
+		categories = self._getNavCategories()
 		if not categories:
 			beep(200, 100)
 			return
-		links = self._nav_link_manager.data.get(categories[self._nav_category_index], [])
+		links = self._navLinkManager.data.get(categories[self._navCategoryIndex], [])
 		if not links:
 			beep(200, 100)
 			return
-		self._nav_link_index = len(links) - 1
-		self._announce_current_link()
+		self._navLinkIndex = len(links) - 1
+		self._announceCurrentLink()
 
 	# Defining a script with a decorator:
 	@script(
@@ -410,15 +416,15 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 		category=ADDON_SUMMARY
 	)
 	def script_openCurrentLink(self, gesture):
-		categories = self._get_nav_categories()
+		categories = self._getNavCategories()
 		if not categories:
 			beep(200, 100)
 			return
-		links = self._nav_link_manager.data.get(categories[self._nav_category_index], [])
+		links = self._navLinkManager.data.get(categories[self._navCategoryIndex], [])
 		if not links:
 			beep(200, 100)
 			return
-		title, url = links[self._nav_link_index]
+		title, url = links[self._navLinkIndex]
 		try:
 			webbrowser.open(url)
 			msg = _("Opening {title}.").format(title=title)
