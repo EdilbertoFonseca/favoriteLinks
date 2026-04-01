@@ -71,14 +71,14 @@ class ProgressDialog(wx.Dialog):
 
 		self.lblStatus = wx.StaticText(self, label=_("Starting…"))
 		self.gauge = wx.Gauge(self, range=100)
-		self.buttonCancel = wx.Button(self, label=_("Cancel"))
+		self.btnCancel = wx.Button(self, label=_("Cancel"))
 
-		self.buttonCancel.Bind(wx.EVT_BUTTON, self.onCancel)
+		self.btnCancel.Bind(wx.EVT_BUTTON, self.onCancel)
 
 		sizer = wx.BoxSizer(wx.VERTICAL)
 		sizer.Add(self.lblStatus, 0, wx.ALL | wx.EXPAND, 10)
 		sizer.Add(self.gauge, 0, wx.ALL | wx.EXPAND, 10)
-		sizer.Add(self.buttonCancel, 0, wx.ALL | wx.ALIGN_CENTER, 10)
+		sizer.Add(self.btnCancel, 0, wx.ALL | wx.ALIGN_CENTER, 10)
 
 		self.SetSizer(sizer)
 		self.CentreOnParent()
@@ -157,15 +157,15 @@ class ImportBookmarksDialog(wx.Dialog):
 			_("HTML file:"), wx.TextCtrl
 		)
 
-		self.buttonBrowse = sizerHelper.addItem(
+		self.btnBrowse = sizerHelper.addItem(
 			wx.Button(panel, label=_("&Select HTML..."))
 		)
-		self.buttonBrowse.Bind(wx.EVT_BUTTON, self.onBrowse)
+		self.btnBrowse.Bind(wx.EVT_BUTTON, self.onBrowse)
 
-		self.buttonImport = sizerHelper.addItem(
+		self.btnImport = sizerHelper.addItem(
 			wx.Button(panel, label=_("&Import"))
 		)
-		self.buttonImport.Bind(wx.EVT_BUTTON, self.onImport)
+		self.btnImport.Bind(wx.EVT_BUTTON, self.onImport)
 
 		boxSizer.Add(sizerHelper.sizer, 1, wx.ALL | wx.EXPAND, 10)
 		panel.SetSizerAndFit(boxSizer)
@@ -185,11 +185,10 @@ class ImportBookmarksDialog(wx.Dialog):
 
 	def onImport(self, evt):
 		if not os.path.isfile(self.htmlPath):
-			# translators: Message shown when an invalid HTML file is selected.
 			ui.message(_("Select a valid HTML file."))
 			return
 
-		self.buttonImport.Disable()
+		self.btnImport.Disable()
 
 		self.progressDlg = ProgressDialog(self)
 		self.progressDlg.Show()
@@ -241,20 +240,18 @@ class ImportBookmarksDialog(wx.Dialog):
 		if callable(self.onFinish):
 			wx.CallAfter(self.onFinish)
 
-		self.buttonImport.Enable()
+		self.btnImport.Enable()
 		self.Destroy()
 
 	def onCancelled(self):
 		self._closeProgress()
-		# translators: Message shown when bookmark import is cancelled.
 		ui.message(_("Import cancelled."))
-		self.buttonImport.Enable()
+		self.btnImport.Enable()
 
 	def onError(self, msg):
 		self._closeProgress()
-		# translators: Message shown when an error occurs during bookmark import.
 		ui.message(msg)
-		self.buttonImport.Enable()
+		self.btnImport.Enable()
 
 	def _closeProgress(self):
 		if self.progressDlg:

@@ -370,6 +370,7 @@ class FavoriteLinks(wx.Dialog):
 				self.showMessage(_("Category added successfully!"), _("Attention"))
 
 			except ValueError as e:
+				# Treat the error if the category already exists or the name is invalid
 				# translators: Message displayed when a category cannot be added
 				self.showMessage(str(e))
 
