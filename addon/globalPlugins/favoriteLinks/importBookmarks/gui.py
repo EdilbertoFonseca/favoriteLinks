@@ -8,6 +8,12 @@ This file is covered by the GNU General Public License.
 See the file COPYING for more details or visit:
 https://www.gnu.org/licenses/gpl-2.0.html
 
+-------------------------------------------------------------------------
+AI DISCLOSURE / NOTA DE IA:
+This project utilizes AI for code refactoring and logic suggestions.
+All AI-generated code was manually reviewed and tested by the author.
+-------------------------------------------------------------------------
+
 Created on: 20/12/2025
 """
 
@@ -23,25 +29,25 @@ import ui
 import wx
 from gui import guiHelper, messageBox
 
-from ..jsonConfig import json_config
+from ..jsonConfig import jsonConfig
 
 # Initialize translation support
 addonHandler.initTranslation()
 
 
-def extract_urls_from_html(html_text: str):
+def extractUrlsFromHtml(htmlText: str):
 	pattern = re.compile(
 		r'<a\s+[^>]*href\s*=\s*["\']([^"\']+)["\']',
 		re.IGNORECASE
 	)
 	return [
 		html_lib.unescape(m.group(1).strip())
-		for m in pattern.finditer(html_text)
+		for m in pattern.finditer(htmlText)
 		if m.group(1).strip()
 	]
 
 
-def fetch_page_title(url: str, timeout=8) -> str:
+def fetchPageTitle(url: str, timeout=8) -> str:
 	try:
 		req = Request(url, headers={"User-Agent": "NVDA-FavoriteLinks"})
 		with urlopen(req, timeout=timeout) as r:
@@ -67,7 +73,7 @@ class ProgressDialog(wx.Dialog):
 		self.gauge = wx.Gauge(self, range=100)
 		self.btnCancel = wx.Button(self, label=_("Cancel"))
 
-		self.btnCancel.Bind(wx.EVT_BUTTON, self.on_cancel)
+		self.btnCancel.Bind(wx.EVT_BUTTON, self.onCancel)
 
 		sizer = wx.BoxSizer(wx.VERTICAL)
 		sizer.Add(self.lblStatus, 0, wx.ALL | wx.EXPAND, 10)
@@ -77,7 +83,7 @@ class ProgressDialog(wx.Dialog):
 		self.SetSizer(sizer)
 		self.CentreOnParent()
 
-	def on_cancel(self, evt):
+	def onCancel(self, evt):
 		self.cancelled = True
 
 
@@ -87,10 +93,10 @@ class ImportWorker(threading.Thread):
 	Worker thread for importing bookmarks.
 	"""
 
-	def __init__(self, parent, html_path):
+	def __init__(self, parent, htmlPath):
 		super().__init__(daemon=True)
 		self.parent = parent
-		self.html_path = html_path
+		self.htmlPath = htmlPath
 		self.cancelled = False
 
 	def stop(self):
@@ -98,10 +104,10 @@ class ImportWorker(threading.Thread):
 
 	def run(self):
 		try:
-			with open(self.html_path, "r", encoding="utf-8", errors="replace") as f:
+			with open(self.htmlPath, "r", encoding="utf-8", errors="replace") as f:
 				html = f.read()
 
-			urls = list(dict.fromkeys(extract_urls_from_html(html)))
+			urls = list(dict.fromkeys(extractUrlsFromHtml(html)))
 			if not urls:
 				wx.CallAfter(self.parent.on_error, _("No links found."))
 				return
@@ -116,7 +122,7 @@ class ImportWorker(threading.Thread):
 					wx.CallAfter(self.parent.on_cancelled)
 					return
 
-				title = fetch_page_title(url)
+				title = fetchPageTitle(url)
 				items.append((title, url))
 
 				wx.CallAfter(self.parent.on_progress, i, total, title)
@@ -137,36 +143,36 @@ class ImportBookmarksDialog(wx.Dialog):
 
 		super().__init__(parent, title=title)
 		self.onFinish = onFinish
-		self.Bind(wx.EVT_CHAR_HOOK, self.on_key_press)
+		self.Bind(wx.EVT_CHAR_HOOK, self.onKeyPress)
 
 		panel = wx.Panel(self)
 		self.worker = None
 		self.progressDlg = None
-		self.html_path = ""
+		self.htmlPath = ""
 
 		boxSizer = wx.BoxSizer(wx.VERTICAL)
 		sizerHelper = guiHelper.BoxSizerHelper(panel, wx.VERTICAL)
 
-		self.txtHtml = sizerHelper.addLabeledControl(
+		self.textHtml = sizerHelper.addLabeledControl(
 			_("HTML file:"), wx.TextCtrl
 		)
 
 		self.btnBrowse = sizerHelper.addItem(
 			wx.Button(panel, label=_("&Select HTML..."))
 		)
-		self.btnBrowse.Bind(wx.EVT_BUTTON, self.on_browse)
+		self.btnBrowse.Bind(wx.EVT_BUTTON, self.onBrowse)
 
 		self.btnImport = sizerHelper.addItem(
 			wx.Button(panel, label=_("&Import"))
 		)
-		self.btnImport.Bind(wx.EVT_BUTTON, self.on_import)
+		self.btnImport.Bind(wx.EVT_BUTTON, self.onImport)
 
 		boxSizer.Add(sizerHelper.sizer, 1, wx.ALL | wx.EXPAND, 10)
 		panel.SetSizerAndFit(boxSizer)
 		self.Fit()
 
 
-	def on_browse(self, evt):
+	def onBrowse(self, evt):
 		with wx.FileDialog(
 			self,
 			_("Select HTML file"),
@@ -174,11 +180,11 @@ class ImportBookmarksDialog(wx.Dialog):
 			style=wx.FD_OPEN | wx.FD_FILE_MUST_EXIST
 		) as dlg:
 			if dlg.ShowModal() == wx.ID_OK:
-				self.html_path = dlg.GetPath()
-				self.txtHtml.SetValue(self.html_path)
+				self.htmlPath = dlg.GetPath()
+				self.textHtml.SetValue(self.htmlPath)
 
-	def on_import(self, evt):
-		if not os.path.isfile(self.html_path):
+	def onImport(self, evt):
+		if not os.path.isfile(self.htmlPath):
 			ui.message(_("Select a valid HTML file."))
 			return
 
@@ -187,15 +193,15 @@ class ImportBookmarksDialog(wx.Dialog):
 		self.progressDlg = ProgressDialog(self)
 		self.progressDlg.Show()
 
-		self.worker = ImportWorker(self, self.html_path)
+		self.worker = ImportWorker(self, self.htmlPath)
 		self.worker.start()
 
 	# Worker callbacks
-	def on_start(self, total):
+	def onStart(self, total):
 		self.total = total
 		self.progressDlg.lblStatus.SetLabel(_("Importing links…"))
 
-	def on_progress(self, current, total, title):
+	def onProgress(self, current, total, title):
 		if self.progressDlg.cancelled:
 			self.worker.stop()
 			return
@@ -204,10 +210,10 @@ class ImportBookmarksDialog(wx.Dialog):
 		self.progressDlg.gauge.SetValue(percent)
 		self.progressDlg.lblStatus.SetLabel(f"{current}/{total} – {title}")
 
-	def on_done(self, items):
-		self._close_progress()
+	def onDone(self, items):
+		self._closeProgress()
 
-		json_path = json_config.get_current_json_path()
+		json_path = jsonConfig.getCurrentJsonPath()
 		data = {}
 
 		if os.path.isfile(json_path):
@@ -228,6 +234,7 @@ class ImportBookmarksDialog(wx.Dialog):
 		with open(json_path, "w", encoding="utf-8") as f:
 			json.dump(data, f, indent=2, ensure_ascii=False)
 
+		# translators: Message shown when bookmark import is completed successfully.
 		messageBox(_("Import completed successfully."))
 
 		if callable(self.onFinish):
@@ -236,22 +243,22 @@ class ImportBookmarksDialog(wx.Dialog):
 		self.btnImport.Enable()
 		self.Destroy()
 
-	def on_cancelled(self):
-		self._close_progress()
+	def onCancelled(self):
+		self._closeProgress()
 		ui.message(_("Import cancelled."))
 		self.btnImport.Enable()
 
-	def on_error(self, msg):
-		self._close_progress()
+	def onError(self, msg):
+		self._closeProgress()
 		ui.message(msg)
 		self.btnImport.Enable()
 
-	def _close_progress(self):
+	def _closeProgress(self):
 		if self.progressDlg:
 			self.progressDlg.Destroy()
 			self.progressDlg = None
 
-	def on_key_press(self, evt):
+	def onKeyPress(self, evt):
 		if evt.GetKeyCode() == wx.WXK_ESCAPE:
 			if self.worker and self.worker.is_alive():
 				self.worker.stop()
