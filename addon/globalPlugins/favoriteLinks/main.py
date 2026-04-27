@@ -434,6 +434,8 @@ class FavoriteLinks(wx.Dialog):
 				self.linkManager.addLinkToCategory(category, title, url)
 				# translators: Message displayed when a link is added
 				self.showMessage(_("Link added successfully!"), _("Attention"))
+
+				# Updates the selected category to be the one where the link was added, so that it is restored after updating the interface.
 				self.selectedCategory = category
 
 				# Always updates the UI
@@ -495,7 +497,12 @@ class FavoriteLinks(wx.Dialog):
 					self.linkManager.editLinkInCategory(oldCategory, oldTitle, new_title, new_url)
 				# translators: Message displayed when a link is edited successfully
 				self.showMessage(_("Link edited successfully!"), _("Attention"))
+
+				# Updates the selected category
 				self.selectedCategory = new_category  # Sets the category to be restored
+
+				# Updates the interface
+				self.updateAllUI()
 
 			except (ValueError, KeyError) as e:
 				# translators: Message displayed when a link cannot be edited

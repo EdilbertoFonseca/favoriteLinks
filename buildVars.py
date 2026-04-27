@@ -25,10 +25,10 @@ addon_info = AddonInfo(
 
 Shortcut Windows+Alt+K."""),
 	# version
-	addon_version="2025.10.0",
+	addon_version="2025.10.1",
 	# Brief changelog for this version
 	# Translators: what's new content for the add-on version to be shown in the add-on store
-	addon_changelog=_("""Adds new functionality to import saved links in HTML from your browsers."""),
+	addon_changelog=_("""Fixed issue preventing editing of saved links."""),
 	# Author(s)
 	addon_author="Edilberto Fonseca <edilberto.fonseca@outlook.com>",
 	# URL for the add-on documentation support

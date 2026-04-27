@@ -6,16 +6,17 @@
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: 'favoriteLinks' '2025.9.6'\n"
+"Project-Id-Version: 'favoriteLinks' '2025.10.1'\n"
 "Report-Msgid-Bugs-To: 'nvda-translations@groups.io'\n"
-"POT-Creation-Date: 2026-02-02 12:25-0300\n"
-"PO-Revision-Date: 2026-02-02 12:27-0300\n"
+"POT-Creation-Date: 2026-04-27 13:41-0300\n"
+"PO-Revision-Date: 2026-04-27 14:32-0300\n"
 "Last-Translator: Edilberto Fonseca <edilberto.fonseca@outlook.com>\n"
 "Language-Team: Edilberto Fonseca <edilberto.fonseca@outlook.com>\n"
 "Language: pt_PT\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Poedit 3.8\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-Basepath: ../../../..\n"
@@ -23,573 +24,857 @@ msgstr ""
 "X-Poedit-SearchPath-1: buildVars.py\n"
 "X-Poedit-SearchPathExcluded-0: addon/globalPlugins/favoriteLinks/lib\n"
 
-#: addon\installTasks.py:44
-#, python-brace-format
+#: addon\installTasks.py:43
 msgid "Error when renaming file: {e}"
 msgstr "Erro ao renomear ficheiro: {e}"
 
-#: addon\installTasks.py:44 addon\globalPlugins\favoriteLinks\addLinks.py:118
-#: addon\globalPlugins\favoriteLinks\addLinks.py:122
-#: addon\globalPlugins\favoriteLinks\addLinks.py:144
-#: addon\globalPlugins\favoriteLinks\editLinks.py:115
-#: addon\globalPlugins\favoriteLinks\main.py:604
+#. translators: Default caption for message boxes in the search links dialog.
+#: addon\installTasks.py:43 addon\globalPlugins\favoriteLinks\addLinks.py:151
+#: addon\globalPlugins\favoriteLinks\addLinks.py:156
+#: addon\globalPlugins\favoriteLinks\addLinks.py:190
+#: addon\globalPlugins\favoriteLinks\editLinks.py:135
+#: addon\globalPlugins\favoriteLinks\searchLinks.py:311
+#: addon\globalPlugins\favoriteLinks\main.py:294
+#: addon\globalPlugins\favoriteLinks\main.py:313
+#: addon\globalPlugins\favoriteLinks\main.py:329
+#: addon\globalPlugins\favoriteLinks\main.py:370
+#: addon\globalPlugins\favoriteLinks\main.py:391
+#: addon\globalPlugins\favoriteLinks\main.py:436
+#: addon\globalPlugins\favoriteLinks\main.py:449
+#: addon\globalPlugins\favoriteLinks\main.py:467
+#: addon\globalPlugins\favoriteLinks\main.py:499
+#: addon\globalPlugins\favoriteLinks\main.py:577
+#: addon\globalPlugins\favoriteLinks\main.py:675
 msgid "Attention"
 msgstr "Atenção"
 
-#: addon\globalPlugins\favoriteLinks\addLinks.py:47
-msgid "No categories available. Please add some categories first."
-msgstr ""
-"Não existem categorias disponíveis. Por favor, adicione algumas categorias "
-"primeiro."
-
-#. Treat errors as an existing category name
-#: addon\globalPlugins\favoriteLinks\addLinks.py:47
-#: addon\globalPlugins\favoriteLinks\editLinks.py:91
-#: addon\globalPlugins\favoriteLinks\editLinks.py:95
-#: addon\globalPlugins\favoriteLinks\main.py:257
-#: addon\globalPlugins\favoriteLinks\main.py:286
-#: addon\globalPlugins\favoriteLinks\main.py:309
-#: addon\globalPlugins\favoriteLinks\main.py:418
-#: addon\globalPlugins\favoriteLinks\main.py:473
-#: addon\globalPlugins\favoriteLinks\main.py:548
-#: addon\globalPlugins\favoriteLinks\main.py:584
-#: addon\globalPlugins\favoriteLinks\main.py:661
-msgid "Error"
-msgstr "Erro"
-
-#: addon\globalPlugins\favoriteLinks\addLinks.py:81
-#: addon\globalPlugins\favoriteLinks\editLinks.py:49
-msgid "Select a Category"
-msgstr "Seleccione uma categoria"
-
-#: addon\globalPlugins\favoriteLinks\addLinks.py:92
-#: addon\globalPlugins\favoriteLinks\editLinks.py:62
-msgid "Enter link URL:"
-msgstr "Insira o URL da ligação:"
-
-#. Botões
-#: addon\globalPlugins\favoriteLinks\addLinks.py:101
-#: addon\globalPlugins\favoriteLinks\editLinks.py:67
-msgid "&Ok"
-msgstr "&OK"
-
-#: addon\globalPlugins\favoriteLinks\addLinks.py:102
-#: addon\globalPlugins\favoriteLinks\editLinks.py:68
-msgid "&Cancel"
-msgstr "&Cancelar"
-
-#: addon\globalPlugins\favoriteLinks\addLinks.py:118
-msgid "No category selected. Please select or add one!"
-msgstr "Nenhuma categoria seleccionada. Seleccione ou adicione uma!"
-
-#: addon\globalPlugins\favoriteLinks\addLinks.py:122
-msgid "URL is required!"
-msgstr "O URL é obrigatório!"
-
-#: addon\globalPlugins\favoriteLinks\configPanel.py:37
-msgid "Path of file json:"
-msgstr "Caminho para os ficheiros JSON:"
-
-#: addon\globalPlugins\favoriteLinks\configPanel.py:56
-msgid "&Select or add a directory"
-msgstr "&Seleccione ou adicione um diretório"
-
-#: addon\globalPlugins\favoriteLinks\configPanel.py:62
-msgid "Secondary browser path:"
-msgstr "Caminho do navegador secundário:"
-
-#. Button to select the browser path
-#: addon\globalPlugins\favoriteLinks\configPanel.py:73
-msgid "Select &browser path"
-msgstr "Selecionar &caminho do navegador"
-
-#: addon\globalPlugins\favoriteLinks\configPanel.py:94
-msgid "Choose where to save the file json"
-msgstr "Escolha onde guardar o ficheiro JSON"
-
-#: addon\globalPlugins\favoriteLinks\configPanel.py:97
-msgid "JSON files (*.json)|*.json"
-msgstr "Ficheiros JSON (*.json)"
-
-#: addon\globalPlugins\favoriteLinks\configPanel.py:143
-msgid "Choose browser path"
-msgstr "Escolher o caminho do browser"
-
-#: addon\globalPlugins\favoriteLinks\configPanel.py:145
-msgid "Executable files (*.exe)|*.exe"
-msgstr "Ficheiros executáveis (*.exe)|*.exe"
-
-#: addon\globalPlugins\favoriteLinks\editLinks.py:56
-msgid "Enter a title for the URL:"
-msgstr "Insira um título para a ligação:"
-
-#: addon\globalPlugins\favoriteLinks\editLinks.py:91
-msgid "All fields are required"
-msgstr "O URL é obrigatório"
-
-#: addon\globalPlugins\favoriteLinks\editLinks.py:95
-msgid "Invalid URL"
-msgstr "URL inválido"
-
-#: addon\globalPlugins\favoriteLinks\linkManager.py:43
-msgid "Missing required libraries: validators, BeautifulSoup e UnicodeDammit"
-msgstr ""
-"Bibliotecas necessárias em falta: validators, BeautifulSoup e UnicodeDammit"
-
-#: addon\globalPlugins\favoriteLinks\linkManager.py:82
-msgid "Error decoding the JSON. Check the file content."
-msgstr "Erro ao decodificar JSON. Verifique o conteúdo do ficheiro."
-
-#: addon\globalPlugins\favoriteLinks\linkManager.py:92
-msgid "Error saving the links: {}"
-msgstr "Erro ao guardar ligações: {}"
-
-#: addon\globalPlugins\favoriteLinks\linkManager.py:99
-#: addon\globalPlugins\favoriteLinks\linkManager.py:169
-msgid "The category name cannot be empty!"
-msgstr "O nome da categoria não pode estar vazio!"
-
-#: addon\globalPlugins\favoriteLinks\linkManager.py:101
-msgid "The category already exists!"
-msgstr "A categoria já existe!"
-
-#: addon\globalPlugins\favoriteLinks\linkManager.py:117
-msgid "Unknown title"
-msgstr "Título desconhecido"
-
-#: addon\globalPlugins\favoriteLinks\linkManager.py:120
-msgid "Failed to get title. Please enter one manually."
-msgstr "Não foi possível obter o título. Introduza um manualmente."
-
-#: addon\globalPlugins\favoriteLinks\linkManager.py:130
-msgid "The link already exists in the category!"
-msgstr "A ligação já existe na categoria!"
-
-#: addon\globalPlugins\favoriteLinks\linkManager.py:141
-msgid "Category does not exist."
-msgstr "A categoria não existe."
-
-#: addon\globalPlugins\favoriteLinks\linkManager.py:149
-msgid "Link not found to edit."
-msgstr "Ligação não encontrada para editar."
-
-#: addon\globalPlugins\favoriteLinks\linkManager.py:171
-msgid "A category with this name already exists!"
-msgstr "Já existe uma categoria com este nome!"
-
-#: addon\globalPlugins\favoriteLinks\linkManager.py:173
-msgid "Old category name not found."
-msgstr "Nome da categoria antiga não encontrado."
-
-#: addon\globalPlugins\favoriteLinks\linkManager.py:207
-msgid "The imported data must be a dictionary with categories as keys."
-msgstr ""
-"Os dados importados devem ser um dicionário com categorias como chaves."
-
-#: addon\globalPlugins\favoriteLinks\linkManager.py:211
-msgid "The links in the category '{}' must be lists containing [title, url]."
-msgstr ""
-"As ligações na categoria '{}' devem ser listas que contenham [título, url]."
-
-#: addon\globalPlugins\favoriteLinks\linkManager.py:232
-msgid "Error exporting the links: {}"
-msgstr "Erro ao exportar ligações: {}"
-
-#: addon\globalPlugins\favoriteLinks\linkManager.py:243
-msgid "File not found: {}"
-msgstr "Ficheiro não encontrado: {}"
-
-#: addon\globalPlugins\favoriteLinks\linkManager.py:245
-msgid "Error decoding JSON from file: {}"
-msgstr "Erro a descodificar JSON do ficheiro: {}"
-
-#: addon\globalPlugins\favoriteLinks\linkManager.py:247
-msgid "Unexpected error importing the links: {}"
-msgstr "Erro ao importar ligações: {}"
-
-#: addon\globalPlugins\favoriteLinks\main.py:44
-msgid "An instance of {} is already open."
-msgstr "Uma instância de {} já está aberta."
-
-#: addon\globalPlugins\favoriteLinks\main.py:71
-msgid "&Open link"
-msgstr "A&brir ligação"
-
-#: addon\globalPlugins\favoriteLinks\main.py:72
-msgid "&Add link"
-msgstr "&Adicionar ligação"
-
-#: addon\globalPlugins\favoriteLinks\main.py:73
-msgid "&Edit link"
-msgstr "&Editar ligação"
-
-#: addon\globalPlugins\favoriteLinks\main.py:74
-msgid "De&lete link"
-msgstr "Eliminar &ligação"
-
-#: addon\globalPlugins\favoriteLinks\main.py:75
-msgid "Add Cate&gory"
-msgstr "&Adicionar categoria"
-
-#: addon\globalPlugins\favoriteLinks\main.py:76
-msgid "Edi&t category"
-msgstr "&Editar categoria"
-
-#: addon\globalPlugins\favoriteLinks\main.py:77
-msgid "&Delete category"
-msgstr "Eliminar &categoria"
-
-#: addon\globalPlugins\favoriteLinks\main.py:78
-msgid "E&xport links"
-msgstr "E&xportar ligações"
-
-#: addon\globalPlugins\favoriteLinks\main.py:79
-msgid "&Import links"
-msgstr "&Importar ligações"
-
-#: addon\globalPlugins\favoriteLinks\main.py:80
-msgid "Import &favorites from your browsers"
-msgstr "Importar &favoritos dos seus navegadores"
-
-#: addon\globalPlugins\favoriteLinks\main.py:81
-msgid "&Sort links"
-msgstr "&Ordenar ligações"
-
-#: addon\globalPlugins\favoriteLinks\main.py:83
-msgid "C&opy URL"
-msgstr "C&opiar URL"
-
-#: addon\globalPlugins\favoriteLinks\main.py:84
-msgid "E&xit"
-msgstr "&Sair"
-
-#: addon\globalPlugins\favoriteLinks\main.py:87
-msgid "Select a category"
-msgstr "Seleccione uma categoria"
-
-#: addon\globalPlugins\favoriteLinks\main.py:93
-msgid "List of links..."
-msgstr "Lista de ligações..."
-
-#: addon\globalPlugins\favoriteLinks\main.py:141
-msgid "Add a new category to the list."
-msgstr "Adicione uma nova categoria à lista."
-
-#: addon\globalPlugins\favoriteLinks\main.py:143
-msgid "Edit a category in the list."
-msgstr "Edite uma categoria na lista."
-
-#: addon\globalPlugins\favoriteLinks\main.py:145
-msgid "Delete a category from the list."
-msgstr "Eliminar uma categoria da lista."
-
-#: addon\globalPlugins\favoriteLinks\main.py:147
-#: addon\globalPlugins\favoriteLinks\main.py:173
-msgid "Export links"
-msgstr "Exportar ligações"
-
-#: addon\globalPlugins\favoriteLinks\main.py:149
-#: addon\globalPlugins\favoriteLinks\main.py:176
-msgid "Import links"
-msgstr "Importar ligações"
-
-#: addon\globalPlugins\favoriteLinks\main.py:164
-msgid "Add a new link to the list."
-msgstr "Adicione uma nova ligação à lista."
-
-#: addon\globalPlugins\favoriteLinks\main.py:167
-msgid "Edit link."
-msgstr "Editar ligação."
-
-#: addon\globalPlugins\favoriteLinks\main.py:170
-msgid "Delete link"
-msgstr "Eliminar ligação"
-
-#: addon\globalPlugins\favoriteLinks\main.py:175
-msgid "Copy URL to clipboard."
-msgstr "Copiar URL para a área de transferência."
-
-#: addon\globalPlugins\favoriteLinks\main.py:179
-msgid "Import Worker"
-msgstr "Processo de Importação"
-
-#: addon\globalPlugins\favoriteLinks\main.py:182
-msgid "Sort the links alphabetically."
-msgstr "Ordene as ligações por ordem alfabética."
-
-#: addon\globalPlugins\favoriteLinks\main.py:185
-msgid "Open links in secondary browser."
-msgstr "Abrir ligação num navegador secundário."
-
-#: addon\globalPlugins\favoriteLinks\main.py:209
-msgid "Title"
-msgstr "Título"
-
-#: addon\globalPlugins\favoriteLinks\main.py:210
-msgid "URL"
-msgstr "URL"
-
-#: addon\globalPlugins\favoriteLinks\main.py:242
-msgid "Save export file"
-msgstr "Guardar arquivo de exportação"
-
-#. Translators: Message displayed when completing a link export
-#: addon\globalPlugins\favoriteLinks\main.py:252
-msgid "Links exported successfully!"
-msgstr "Ligações exportadas com sucesso!"
-
-#. Translators: Message displayed when the export fails
-#: addon\globalPlugins\favoriteLinks\main.py:257
-msgid "Error exporting links: {}"
-msgstr "Erro ao exportar ligações: {}"
-
-#: addon\globalPlugins\favoriteLinks\main.py:268
-msgid "Open import file"
-msgstr "Abrir ficheiro de importação"
-
-#. Translators: Message displayed when completing a link import
-#: addon\globalPlugins\favoriteLinks\main.py:279
-msgid "Links imported successfully!"
-msgstr "Ligações importadas com sucesso!"
-
-#. Translators: Message displayed when the import fails
-#: addon\globalPlugins\favoriteLinks\main.py:286
-msgid "Error importing links: {}"
-msgstr "Erro ao importar ligações: {}"
-
-#: addon\globalPlugins\favoriteLinks\main.py:297
-#: addon\globalPlugins\favoriteLinks\main.py:716
-msgid "No active internet connection!"
-msgstr "Sem ligação ativa à Internet!"
-
-#: addon\globalPlugins\favoriteLinks\main.py:309
-msgid "Failed to open link: {}"
-msgstr "Falha ao abrir a ligação: {}"
-
-#: addon\globalPlugins\favoriteLinks\main.py:311
-#: addon\globalPlugins\favoriteLinks\main.py:726
-msgid "No link selected to open!"
-msgstr "Nenhuma ligação seleccionada para abrir!"
-
-#. Get the name of the new category of the user
-#: addon\globalPlugins\favoriteLinks\main.py:337
-msgid "Enter new category name:"
-msgstr "Insira o novo nome da categoria:"
-
-#: addon\globalPlugins\favoriteLinks\main.py:337
-msgid "Add Category"
-msgstr "Adicionar categoria"
-
-#. Displays a success message
-#. Translators: Message displayed when a category is added
-#: addon\globalPlugins\favoriteLinks\main.py:352
-#: addon\globalPlugins\favoriteLinks\main.py:372
-msgid "Category added successfully!"
-msgstr "Categoria adicionada com sucesso!"
-
-#: addon\globalPlugins\favoriteLinks\main.py:382
-msgid "Add New Link"
-msgstr "Adicionar nova ligação"
-
-#: addon\globalPlugins\favoriteLinks\main.py:407
-msgid "Enter the name of the link:"
-msgstr "Introduza o nome da ligação:"
-
-#: addon\globalPlugins\favoriteLinks\main.py:408
-msgid "Link name"
-msgstr "Nome da ligação"
-
-#: addon\globalPlugins\favoriteLinks\main.py:415
-msgid "Link added successfully!"
-msgstr "Ligação adicionada com sucesso!"
-
-#: addon\globalPlugins\favoriteLinks\main.py:420
-msgid "Link addition cancelled."
-msgstr "Adição do link cancelada."
-
-#: addon\globalPlugins\favoriteLinks\main.py:437
-msgid "No link selected to edit!"
-msgstr "Nenhuma ligação seleccionada para edição!"
-
-#: addon\globalPlugins\favoriteLinks\main.py:450
-msgid "Edit Link"
-msgstr "Editar ligação"
-
-#: addon\globalPlugins\favoriteLinks\main.py:469
-msgid "Link edited successfully!"
-msgstr "Ligação editada com sucesso!"
-
-#. Translators: Message displayed when removing a link from the list
-#: addon\globalPlugins\favoriteLinks\main.py:500
-msgid "Link deleted successfully!"
-msgstr "Ligação excluída com sucesso!"
-
-#. Translators: Message displayed when no item has been selected from the list
-#: addon\globalPlugins\favoriteLinks\main.py:508
-msgid "No link selected to delete!"
-msgstr "Nenhuma ligação seleccionada para eliminação!"
-
-#. Translators: Message displayed when the URL is copied to the clipboard
-#: addon\globalPlugins\favoriteLinks\main.py:533
-msgid "URL copied to clipboard."
-msgstr "URL copiado para a área de transferência."
-
-#. Translators: Message displayed when no link is selected to copy
-#: addon\globalPlugins\favoriteLinks\main.py:536
-msgid "No link selected to copy!"
-msgstr "Nenhuma ligação seleccionada para copiar!"
-
-#: addon\globalPlugins\favoriteLinks\main.py:520
-msgid "No category selected to edit!"
-msgstr "Nenhuma categoria seleccionada para edição!"
-
-#: addon\globalPlugins\favoriteLinks\main.py:526
-msgid "Edit category name:"
-msgstr "Editar nome da categoria:"
-
-#: addon\globalPlugins\favoriteLinks\main.py:527
-msgid "Edit Category"
-msgstr "Editar categoria"
-
-#. Displays a success message
-#: addon\globalPlugins\favoriteLinks\main.py:544
-msgid "Category name edited successfully!"
-msgstr "Nome da categoria editado com sucesso!"
-
-#: addon\globalPlugins\favoriteLinks\main.py:561
-msgid "No category selected to delete!"
-msgstr "Nenhuma categoria seleccionada para eliminação!"
-
-#. Confirm with the user if they really want to delete
-#: addon\globalPlugins\favoriteLinks\main.py:566
-msgid "Are you sure you want to delete the category '{}' and all its links?"
-msgstr ""
-"Tem a certeza de que deseja eliminar a categoria '{}' e todas as suas "
-"ligações?"
-
-#: addon\globalPlugins\favoriteLinks\main.py:567
-msgid "Confirm Delete"
-msgstr "Confirmar eliminação"
-
-#. Displays a success message
-#: addon\globalPlugins\favoriteLinks\main.py:579
-msgid "Category deleted successfully!"
-msgstr "Categoria excluída com sucesso!"
-
-#: addon\globalPlugins\favoriteLinks\main.py:584
-msgid "Error deleting category: {}"
-msgstr "Erro ao eliminar categoria: {}"
-
-#: addon\globalPlugins\favoriteLinks\main.py:654
-msgid "Successfully ordered!"
-msgstr "Ordenado com sucesso!"
-
-#: addon\globalPlugins\favoriteLinks\main.py:661
-#, python-brace-format
-msgid "Error when ordering! Details: {e}"
-msgstr "Erro ao ordenar! Detalhes: {e}"
-
-#: addon\globalPlugins\favoriteLinks\main.py:696
-msgid "No browser path configured."
-msgstr "Nenhum caminho do navegador configurado."
-
-#: addon\globalPlugins\favoriteLinks\main.py:701
-msgid "Browser not found at path: {}"
-msgstr "Navegador não encontrado no caminho: {}"
-
-#: addon\globalPlugins\favoriteLinks\main.py:712
-msgid "Error opening the link with the browser: {}"
-msgstr "Erro ao abrir a ligação com o navegador: {}"
-
-#: addon\globalPlugins\favoriteLinks\main.py:732
-msgid "Import bookmarks from HTML"
-msgstr "Importar marcadores de HTML"
-
-#: addon\globalPlugins\favoriteLinks\__init__.py:90
+#: addon\globalPlugins\favoriteLinks\__init__.py:85
 msgid "&Favorite links..."
 msgstr "&Ligações favoritas..."
 
-#. Translators: Dialog title Favorite Links
-#: addon\globalPlugins\favoriteLinks\__init__.py:104
+#: addon\globalPlugins\favoriteLinks\__init__.py:126
+#| msgid "No links found."
+msgid "No links saved."
+msgstr "Não há ligações guardadas."
+
+#: addon\globalPlugins\favoriteLinks\__init__.py:131
+#| msgid "The link already exists in the category!"
+msgid "No links in this category."
+msgstr "Não existem ligações nesta categoria."
+
+#: addon\globalPlugins\favoriteLinks\__init__.py:144
 msgid "Favorite links."
 msgstr "Ligações favoritas."
 
-#: addon\globalPlugins\favoriteLinks\__init__.py:134
+#. Translators: Text displayed in NVDA help.
+#: addon\globalPlugins\favoriteLinks\__init__.py:174
 msgid "This addon allows you to save links to a specific page."
 msgstr "Este complemento permite guardar ligações para uma página específica."
 
-#. Translators: Shows the current URL of the document, press twice = copies to the clipboard.
-#: addon\globalPlugins\favoriteLinks\__init__.py:150
+#. Translators: Text displayed in NVDA help.
+#: addon\globalPlugins\favoriteLinks\__init__.py:184
 msgid "Show document URL, press twice copies to clipboard."
 msgstr ""
 "Mostrar URL do documento, pressionar duas vezes para copiar para a área de "
 "transferência."
 
-#. Translators: URL copied to clipboard
-#: addon\globalPlugins\favoriteLinks\__init__.py:162
-#, python-brace-format
+#: addon\globalPlugins\favoriteLinks\__init__.py:195
 msgid "Copied to clipboard {URL}."
 msgstr "Copiado para a área de transferência: {URL}."
 
-#. Translators: No URL found in browser document
-#: addon\globalPlugins\favoriteLinks\__init__.py:165
+#: addon\globalPlugins\favoriteLinks\__init__.py:197
 msgid "Document URL not found."
 msgstr "URL do documento não encontrado."
 
-#. Translators: The user is not in a browser.
-#: addon\globalPlugins\favoriteLinks\__init__.py:168
+#: addon\globalPlugins\favoriteLinks\__init__.py:199
 msgid "No browser window found."
 msgstr "Não foi encontrada nenhuma janela do navegador."
 
-#: addon\globalPlugins\favoriteLinks\importBookmarks\gui.py:63
+#. Translators: Text displayed in NVDA help.
+#: addon\globalPlugins\favoriteLinks\__init__.py:205
+msgid "Search saved links by name or URL."
+msgstr "Pesquisar ligações guardadas por nome ou URL."
+
+#: addon\globalPlugins\favoriteLinks\__init__.py:215
+msgid "Failed to load links. Please check the file."
+msgstr "Falha ao carregar as ligações. Verifique o ficheiro."
+
+#: addon\globalPlugins\favoriteLinks\__init__.py:218
+msgid ""
+"No saved links found. If you had links before, the links file may have been "
+"corrupt and was reset. Please add links to begin."
+msgstr ""
+"Não foram encontradas ligações guardadas. Se tinha ligações anteriormente, "
+"o ficheiro de ligações pode ter sido corrompido e foi reposto. Adicione "
+"ligações para começar."
+
+#: addon\globalPlugins\favoriteLinks\__init__.py:224
+msgid "Unable to open the search dialog."
+msgstr "Não foi possível abrir o diálogo de pesquisa."
+
+#. Translators: Text displayed in NVDA help.
+#: addon\globalPlugins\favoriteLinks\__init__.py:238
+#| msgid "Copy URL to clipboard."
+msgid "Open a URL from the clipboard."
+msgstr "Abrir um URL a partir da área de transferência."
+
+#: addon\globalPlugins\favoriteLinks\__init__.py:248
+#| msgid "URL copied to clipboard."
+msgid "Unable to read the clipboard."
+msgstr "Não foi possível ler a área de transferência."
+
+#: addon\globalPlugins\favoriteLinks\__init__.py:253
+msgid "The clipboard does not contain any links."
+msgstr "A área de transferência não contém ligações."
+
+#. Translators: Spoken when a link is opened from the picker dialog.
+#: addon\globalPlugins\favoriteLinks\__init__.py:260
+#: addon\globalPlugins\favoriteLinks\fromClipboard.py:106
+msgid "Opening {url}."
+msgstr "Abrir {url}."
+
+#. Translators: Spoken when a link cannot be opened from the picker dialog.
+#: addon\globalPlugins\favoriteLinks\__init__.py:263
+#: addon\globalPlugins\favoriteLinks\fromClipboard.py:112
+msgid "Unable to open the link. Please check your browser settings."
+msgstr ""
+"Não foi possível abrir a ligação. Verifique as definições do seu navegador."
+
+#. Translators: Text displayed in NVDA help.
+#: addon\globalPlugins\favoriteLinks\__init__.py:281
+msgid "Move to the next saved link in the current category."
+msgstr "Mover para a próxima ligação guardada na categoria atual."
+
+#. Translators: Text displayed in NVDA help.
+#: addon\globalPlugins\favoriteLinks\__init__.py:303
+msgid "Move to the previous saved link in the current category."
+msgstr "Mover para a ligação guardada anterior na categoria atual."
+
+#. Translators: Text displayed in NVDA help.
+#: addon\globalPlugins\favoriteLinks\__init__.py:325
+#| msgid "Add a new category to the list."
+msgid "Move to the next category of saved links."
+msgstr "Mover para a próxima categoria de ligações guardadas."
+
+#: addon\globalPlugins\favoriteLinks\__init__.py:342
+#: addon\globalPlugins\favoriteLinks\__init__.py:368
+msgid "{category}: Contains {count} link"
+msgid_plural "{category}: Contains {count} links"
+msgstr[0] "{category}: Contém {count} ligação"
+msgstr[1] "{category}: Contém {count} ligações"
+
+#. Translators: Text displayed in NVDA help.
+#: addon\globalPlugins\favoriteLinks\__init__.py:351
+msgid "Move to the previous category of saved links."
+msgstr "Mover para a categoria anterior de ligações guardadas."
+
+#. Translators: Text displayed in NVDA help.
+#: addon\globalPlugins\favoriteLinks\__init__.py:377
+msgid "Move to the first saved link in the current category."
+msgstr "Mover para a primeira ligação guardada na categoria atual."
+
+#. Translators: Text displayed in NVDA help.
+#: addon\globalPlugins\favoriteLinks\__init__.py:396
+msgid "Move to the last saved link in the current category."
+msgstr "Mover para a última ligação guardada na categoria atual."
+
+#. Translators: Text displayed in NVDA help.
+#: addon\globalPlugins\favoriteLinks\__init__.py:415
+msgid "Open the currently selected link in the default browser."
+msgstr "Abrir a ligação atualmente selecionada no navegador predefinido."
+
+#: addon\globalPlugins\favoriteLinks\__init__.py:430
+#: addon\globalPlugins\favoriteLinks\searchLinks.py:249
+msgid "Opening {title}."
+msgstr "Abrindo {title}."
+
+#: addon\globalPlugins\favoriteLinks\__init__.py:436
+msgid "Unable to open {title}."
+msgstr "Não foi possível abrir {title}."
+
+#. Translators: Text displayed in NVDA help.
+#: addon\globalPlugins\favoriteLinks\__init__.py:442
+msgid "Toggle reading the URL after the link name during keyboard navigation."
+msgstr ""
+"Alternar a leitura do URL após o nome da ligação durante a navegação por "
+"teclado."
+
+#: addon\globalPlugins\favoriteLinks\__init__.py:449
+msgid "Read URL after name turned on."
+msgstr "Leitura do URL após o nome ativada."
+
+#: addon\globalPlugins\favoriteLinks\__init__.py:451
+msgid "Read URL after name turned off."
+msgstr "Leitura do URL após o nome desativada."
+
+#: addon\globalPlugins\favoriteLinks\addLinks.py:53
+msgid "No categories available. Please add some categories first."
+msgstr ""
+"Não existem categorias disponíveis. Por favor, adicione algumas categorias "
+"primeiro."
+
+#. Translators: Message displayed when a category cannot be added
+#. translators: Message displayed when a link cannot be added
+#. translators: Message displayed when a link cannot be edited
+#. translators: Message displayed when a category name cannot be edited
+#: addon\globalPlugins\favoriteLinks\addLinks.py:53
+#: addon\globalPlugins\favoriteLinks\editLinks.py:98
+#: addon\globalPlugins\favoriteLinks\editLinks.py:103
+#: addon\globalPlugins\favoriteLinks\searchLinks.py:238
+#: addon\globalPlugins\favoriteLinks\searchLinks.py:259
+#: addon\globalPlugins\favoriteLinks\main.py:272
+#: addon\globalPlugins\favoriteLinks\main.py:301
+#: addon\globalPlugins\favoriteLinks\main.py:326
+#: addon\globalPlugins\favoriteLinks\main.py:394
+#: addon\globalPlugins\favoriteLinks\main.py:446
+#: addon\globalPlugins\favoriteLinks\main.py:509
+#: addon\globalPlugins\favoriteLinks\main.py:605
+#: addon\globalPlugins\favoriteLinks\main.py:643
+#: addon\globalPlugins\favoriteLinks\main.py:723
+msgid "Error"
+msgstr "Erro"
+
+#: addon\globalPlugins\favoriteLinks\addLinks.py:87
+#: addon\globalPlugins\favoriteLinks\editLinks.py:55
+msgid "Select a Category"
+msgstr "Seleccione uma categoria"
+
+#: addon\globalPlugins\favoriteLinks\addLinks.py:108
+#: addon\globalPlugins\favoriteLinks\editLinks.py:68
+msgid "Enter link URL:"
+msgstr "Insira o URL da ligação:"
+
+#. Buttons
+#: addon\globalPlugins\favoriteLinks\addLinks.py:133
+#: addon\globalPlugins\favoriteLinks\editLinks.py:73
+msgid "&Ok"
+msgstr "&OK"
+
+#. Translators: Label for the cancel button in the clipboard URL picker dialog.
+#: addon\globalPlugins\favoriteLinks\addLinks.py:134
+#: addon\globalPlugins\favoriteLinks\editLinks.py:74
+#: addon\globalPlugins\favoriteLinks\fromClipboard.py:74
+#: addon\globalPlugins\favoriteLinks\searchLinks.py:120
+msgid "&Cancel"
+msgstr "&Cancelar"
+
+#. translators: Error message shown when no category is selected.
+#: addon\globalPlugins\favoriteLinks\addLinks.py:151
+msgid "No category selected. Please select or add one!"
+msgstr "Nenhuma categoria seleccionada. Seleccione ou adicione uma!"
+
+#. translators: Error message shown when the URL field is empty.
+#: addon\globalPlugins\favoriteLinks\addLinks.py:156
+msgid "URL is required!"
+msgstr "O URL é obrigatório!"
+
+#: addon\globalPlugins\favoriteLinks\configPanel.py:43
+msgid "Path of file json:"
+msgstr "Caminho para os ficheiros JSON:"
+
+#: addon\globalPlugins\favoriteLinks\configPanel.py:62
+msgid "&Select or add a directory"
+msgstr "&Seleccione ou adicione um diretório"
+
+#: addon\globalPlugins\favoriteLinks\configPanel.py:68
+msgid "Secondary browser path:"
+msgstr "Caminho do navegador secundário:"
+
+#. Button to select the browser path
+#: addon\globalPlugins\favoriteLinks\configPanel.py:79
+msgid "Select &browser path"
+msgstr "Selecionar &caminho do navegador"
+
+#: addon\globalPlugins\favoriteLinks\configPanel.py:100
+msgid "Choose where to save the file json"
+msgstr "Escolha onde guardar o ficheiro JSON"
+
+#: addon\globalPlugins\favoriteLinks\configPanel.py:103
+msgid "JSON files (*.json)|*.json"
+msgstr "Ficheiros JSON (*.json)"
+
+#: addon\globalPlugins\favoriteLinks\configPanel.py:149
+msgid "Choose browser path"
+msgstr "Escolher o caminho do browser"
+
+#: addon\globalPlugins\favoriteLinks\configPanel.py:151
+msgid "Executable files (*.exe)|*.exe"
+msgstr "Ficheiros executáveis (*.exe)|*.exe"
+
+#: addon\globalPlugins\favoriteLinks\editLinks.py:62
+msgid "Enter a title for the URL:"
+msgstr "Insira um título para a ligação:"
+
+#. translators: Error message displayed when the user leaves a field empty.
+#: addon\globalPlugins\favoriteLinks\editLinks.py:98
+msgid "All fields are required"
+msgstr "O URL é obrigatório"
+
+#. translators: Error message displayed when the user enters an invalid URL.
+#: addon\globalPlugins\favoriteLinks\editLinks.py:103
+msgid "Invalid URL"
+msgstr "URL inválido"
+
+#. Translators: Title of the dialog shown when multiple URLs are found in the clipboard.
+#: addon\globalPlugins\favoriteLinks\fromClipboard.py:46
+#| msgid "No link selected to open!"
+msgid "Choose a link to open"
+msgstr "Escolha uma ligação para abrir"
+
+#. Translators: Label showing how many links were extracted from the clipboard.
+#: addon\globalPlugins\favoriteLinks\fromClipboard.py:55
+msgid "{count} links found in the clipboard."
+msgstr "{count} ligações encontradas na área de transferência."
+
+#. Translators: Label for the list of URLs extracted from the clipboard.
+#: addon\globalPlugins\favoriteLinks\fromClipboard.py:59
+#| msgid "Delete link"
+msgid "Select a link:"
+msgstr "Selecionar uma ligação:"
+
+#. Translators: Label for the button that opens the selected URL.
+#: addon\globalPlugins\favoriteLinks\fromClipboard.py:68
+#: addon\globalPlugins\favoriteLinks\searchLinks.py:117
+msgid "&Open"
+msgstr "&Abrir"
+
+#. Translators: Label for the button that copies the selected URL to the clipboard.
+#: addon\globalPlugins\favoriteLinks\fromClipboard.py:72
+#| msgid "Copy URL to clipboard."
+msgid "&Copy to clipboard"
+msgstr "&Copiar para a área de transferência"
+
+#. Translators: Spoken when a URL is copied to the clipboard from the picker dialog.
+#: addon\globalPlugins\favoriteLinks\fromClipboard.py:123
+#| msgid "Copied to clipboard {URL}."
+msgid "Copied to clipboard: {url}"
+msgstr "Copiado para a área de transferência: {url}"
+
+#. Translators: Spoken when copying a URL to the clipboard fails.
+#: addon\globalPlugins\favoriteLinks\fromClipboard.py:128
+#: addon\globalPlugins\favoriteLinks\searchLinks.py:278
+#| msgid "Copy URL to clipboard."
+msgid "Failed to copy URL to clipboard."
+msgstr "Falha ao copiar o URL para a área de transferência."
+
+#: addon\globalPlugins\favoriteLinks\linkManager.py:50
+msgid "Missing required libraries: validators, BeautifulSoup e UnicodeDammit"
+msgstr ""
+"Bibliotecas necessárias em falta: validators, BeautifulSoup e UnicodeDammit"
+
+#: addon\globalPlugins\favoriteLinks\linkManager.py:122
+msgid "Error saving the links: {}"
+msgstr "Erro ao guardar ligações: {}"
+
+#: addon\globalPlugins\favoriteLinks\linkManager.py:129
+#: addon\globalPlugins\favoriteLinks\linkManager.py:199
+msgid "The category name cannot be empty!"
+msgstr "O nome da categoria não pode estar vazio!"
+
+#: addon\globalPlugins\favoriteLinks\linkManager.py:131
+msgid "The category already exists!"
+msgstr "A categoria já existe!"
+
+#: addon\globalPlugins\favoriteLinks\linkManager.py:147
+msgid "Unknown title"
+msgstr "Título desconhecido"
+
+#: addon\globalPlugins\favoriteLinks\linkManager.py:150
+msgid "Failed to get title. Please enter one manually."
+msgstr "Não foi possível obter o título. Introduza um manualmente."
+
+#: addon\globalPlugins\favoriteLinks\linkManager.py:160
+msgid "The link already exists in the category!"
+msgstr "A ligação já existe na categoria!"
+
+#: addon\globalPlugins\favoriteLinks\linkManager.py:171
+msgid "Category does not exist."
+msgstr "A categoria não existe."
+
+#: addon\globalPlugins\favoriteLinks\linkManager.py:179
+msgid "Link not found to edit."
+msgstr "Ligação não encontrada para editar."
+
+#: addon\globalPlugins\favoriteLinks\linkManager.py:201
+msgid "A category with this name already exists!"
+msgstr "Já existe uma categoria com este nome!"
+
+#: addon\globalPlugins\favoriteLinks\linkManager.py:203
+msgid "Old category name not found."
+msgstr "Nome da categoria antiga não encontrado."
+
+#: addon\globalPlugins\favoriteLinks\linkManager.py:237
+msgid "The imported data must be a dictionary with categories as keys."
+msgstr ""
+"Os dados importados devem ser um dicionário com categorias como chaves."
+
+#: addon\globalPlugins\favoriteLinks\linkManager.py:241
+msgid "The links in the category '{}' must be lists containing [title, url]."
+msgstr ""
+"As ligações na categoria '{}' devem ser listas que contenham [título, url]."
+
+#: addon\globalPlugins\favoriteLinks\linkManager.py:262
+msgid "Error exporting the links: {}"
+msgstr "Erro ao exportar ligações: {}"
+
+#: addon\globalPlugins\favoriteLinks\linkManager.py:273
+msgid "File not found: {}"
+msgstr "Ficheiro não encontrado: {}"
+
+#: addon\globalPlugins\favoriteLinks\linkManager.py:275
+msgid "Error decoding JSON from file: {}"
+msgstr "Erro a descodificar JSON do ficheiro: {}"
+
+#: addon\globalPlugins\favoriteLinks\linkManager.py:277
+msgid "Unexpected error importing the links: {}"
+msgstr "Erro ao importar ligações: {}"
+
+#. Translators: Title of the search links dialog.
+#: addon\globalPlugins\favoriteLinks\searchLinks.py:56
+#| msgid "&Sort links"
+msgid "Search links"
+msgstr "Pesquisar ligações"
+
+#. Translators: First option in the category dropdown; searches across all categories.
+#: addon\globalPlugins\favoriteLinks\searchLinks.py:64
+msgid "(All categories)"
+msgstr "(Todas as categorias)"
+
+#. Translators: Label for the category dropdown in the search dialog.
+#: addon\globalPlugins\favoriteLinks\searchLinks.py:77
+#| msgid "Select a category"
+msgid "Select a category:"
+msgstr "Selecionar uma categoria:"
+
+#. Translators: Label for the search text input field.
+#: addon\globalPlugins\favoriteLinks\searchLinks.py:84
+msgid "Search word:"
+msgstr "Palavra da pesquisa:"
+
+#. Search type radio
+#: addon\globalPlugins\favoriteLinks\searchLinks.py:89
+msgid "Name"
+msgstr "Nome"
+
+#: addon\globalPlugins\favoriteLinks\searchLinks.py:90
+#: addon\globalPlugins\favoriteLinks\main.py:222
+msgid "URL"
+msgstr "URL"
+
+#: addon\globalPlugins\favoriteLinks\searchLinks.py:94
+msgid "Search by"
+msgstr "Pesquisar por"
+
+#. Buttons
+#: addon\globalPlugins\favoriteLinks\searchLinks.py:114
+msgid "&Search"
+msgstr "&Pesquisar"
+
+#: addon\globalPlugins\favoriteLinks\searchLinks.py:118
+#| msgid "C&opy URL"
+msgid "&Copy URL"
+msgstr "&Copiar URL"
+
+#: addon\globalPlugins\favoriteLinks\searchLinks.py:159
+msgid "Please enter a search word."
+msgstr "Introduza uma palavra de pesquisa."
+
+#: addon\globalPlugins\favoriteLinks\searchLinks.py:198
+msgid "No results found."
+msgstr "Nenhum resultado encontrado."
+
+#: addon\globalPlugins\favoriteLinks\searchLinks.py:198
+msgid "Search"
+msgstr "Pesquisar"
+
+#: addon\globalPlugins\favoriteLinks\searchLinks.py:209
+msgid "Results: {count} found."
+msgstr "Resultados: {count} encontrados."
+
+#: addon\globalPlugins\favoriteLinks\searchLinks.py:222
+msgid "{count} results found."
+msgstr "{count} resultados encontrados."
+
+#: addon\globalPlugins\favoriteLinks\searchLinks.py:229
+#| msgid "No link selected to open!"
+msgid "No result selected to open!"
+msgstr "Nenhum resultado selecionado para abrir!"
+
+#. Translators: Message displayed when there is no internet connection
+#: addon\globalPlugins\favoriteLinks\searchLinks.py:237
+#: addon\globalPlugins\favoriteLinks\main.py:313
+#: addon\globalPlugins\favoriteLinks\main.py:781
+msgid "No active internet connection!"
+msgstr "Sem ligação ativa à Internet!"
+
+#: addon\globalPlugins\favoriteLinks\searchLinks.py:258
+msgid "Unable to open the selected link. Please check your browser."
+msgstr ""
+"Não foi possível abrir a ligação selecionada. Verifique o seu navegador."
+
+#: addon\globalPlugins\favoriteLinks\searchLinks.py:268
+#| msgid "No link selected to copy!"
+msgid "No result selected to copy!"
+msgstr "Nenhum resultado selecionado para copiar!"
+
+#. Translators: Message displayed when the URL is copied to the clipboard
+#: addon\globalPlugins\favoriteLinks\searchLinks.py:275
+#: addon\globalPlugins\favoriteLinks\main.py:561
+msgid "URL copied to clipboard."
+msgstr "URL copiado para a área de transferência."
+
+#: addon\globalPlugins\favoriteLinks\main.py:51
+msgid "An instance of {} is already open."
+msgstr "Uma instância de {} já está aberta."
+
+#: addon\globalPlugins\favoriteLinks\main.py:78
+msgid "&Open link"
+msgstr "A&brir ligação"
+
+#: addon\globalPlugins\favoriteLinks\main.py:79
+msgid "&Add link"
+msgstr "&Adicionar ligação"
+
+#: addon\globalPlugins\favoriteLinks\main.py:80
+msgid "&Edit link"
+msgstr "&Editar ligação"
+
+#: addon\globalPlugins\favoriteLinks\main.py:81
+msgid "De&lete link"
+msgstr "Eliminar &ligação"
+
+#: addon\globalPlugins\favoriteLinks\main.py:82
+msgid "Add Cate&gory"
+msgstr "&Adicionar categoria"
+
+#: addon\globalPlugins\favoriteLinks\main.py:83
+msgid "Edi&t category"
+msgstr "&Editar categoria"
+
+#: addon\globalPlugins\favoriteLinks\main.py:84
+msgid "&Delete category"
+msgstr "Eliminar &categoria"
+
+#: addon\globalPlugins\favoriteLinks\main.py:85
+msgid "E&xport links"
+msgstr "E&xportar ligações"
+
+#: addon\globalPlugins\favoriteLinks\main.py:86
+msgid "&Import links"
+msgstr "&Importar ligações"
+
+#: addon\globalPlugins\favoriteLinks\main.py:87
+msgid "Import &favorites from your browsers"
+msgstr "Importar &favoritos dos seus navegadores"
+
+#: addon\globalPlugins\favoriteLinks\main.py:88
+msgid "&Sort links"
+msgstr "&Ordenar ligações"
+
+#: addon\globalPlugins\favoriteLinks\main.py:89
+msgid "C&opy URL"
+msgstr "C&opiar URL"
+
+#: addon\globalPlugins\favoriteLinks\main.py:90
+msgid "E&xit"
+msgstr "&Sair"
+
+#: addon\globalPlugins\favoriteLinks\main.py:95
+msgid "Select a category"
+msgstr "Seleccione uma categoria"
+
+#: addon\globalPlugins\favoriteLinks\main.py:101
+msgid "List of links..."
+msgstr "Lista de ligações..."
+
+#: addon\globalPlugins\favoriteLinks\main.py:150
+msgid "Add a new category to the list."
+msgstr "Adicione uma nova categoria à lista."
+
+#: addon\globalPlugins\favoriteLinks\main.py:152
+msgid "Edit a category in the list."
+msgstr "Edite uma categoria na lista."
+
+#: addon\globalPlugins\favoriteLinks\main.py:154
+msgid "Delete a category from the list."
+msgstr "Eliminar uma categoria da lista."
+
+#: addon\globalPlugins\favoriteLinks\main.py:156
+#: addon\globalPlugins\favoriteLinks\main.py:185
+msgid "Export links"
+msgstr "Exportar ligações"
+
+#: addon\globalPlugins\favoriteLinks\main.py:158
+#: addon\globalPlugins\favoriteLinks\main.py:188
+msgid "Import links"
+msgstr "Importar ligações"
+
+#: addon\globalPlugins\favoriteLinks\main.py:173
+msgid "Add a new link to the list."
+msgstr "Adicione uma nova ligação à lista."
+
+#: addon\globalPlugins\favoriteLinks\main.py:176
+msgid "Edit link."
+msgstr "Editar ligação."
+
+#: addon\globalPlugins\favoriteLinks\main.py:179
+msgid "Delete link"
+msgstr "Eliminar ligação"
+
+#: addon\globalPlugins\favoriteLinks\main.py:182
+msgid "Copy URL to clipboard."
+msgstr "Copiar URL para a área de transferência."
+
+#: addon\globalPlugins\favoriteLinks\main.py:191
+msgid "Import Worker"
+msgstr "Processo de Importação"
+
+#: addon\globalPlugins\favoriteLinks\main.py:194
+msgid "Sort the links alphabetically."
+msgstr "Ordene as ligações por ordem alfabética."
+
+#: addon\globalPlugins\favoriteLinks\main.py:197
+msgid "Open links in secondary browser."
+msgstr "Abrir ligação num navegador secundário."
+
+#: addon\globalPlugins\favoriteLinks\main.py:221
+msgid "Title"
+msgstr "Título"
+
+#: addon\globalPlugins\favoriteLinks\main.py:257
+msgid "Save export file"
+msgstr "Guardar arquivo de exportação"
+
+#. Translators: Message displayed when completing a link export
+#: addon\globalPlugins\favoriteLinks\main.py:267
+msgid "Links exported successfully!"
+msgstr "Ligações exportadas com sucesso!"
+
+#: addon\globalPlugins\favoriteLinks\main.py:267
+msgid "Success"
+msgstr "Sucesso"
+
+#. Translators: Message displayed when the export fails
+#: addon\globalPlugins\favoriteLinks\main.py:272
+msgid "Error exporting links: {}"
+msgstr "Erro ao exportar ligações: {}"
+
+#: addon\globalPlugins\favoriteLinks\main.py:283
+msgid "Open import file"
+msgstr "Abrir ficheiro de importação"
+
+#. Translators: Message displayed when completing a link import
+#: addon\globalPlugins\favoriteLinks\main.py:294
+msgid "Links imported successfully!"
+msgstr "Ligações importadas com sucesso!"
+
+#. Translators: Message displayed when the import fails
+#: addon\globalPlugins\favoriteLinks\main.py:301
+msgid "Error importing links: {}"
+msgstr "Erro ao importar ligações: {}"
+
+#. Translators: Message displayed when failing to open a link
+#: addon\globalPlugins\favoriteLinks\main.py:326
+msgid "Failed to open link: {}"
+msgstr "Falha ao abrir a ligação: {}"
+
+#. Translators: Message displayed when no link is selected
+#. translators: Message displayed when no link is selected to open
+#: addon\globalPlugins\favoriteLinks\main.py:329
+#: addon\globalPlugins\favoriteLinks\main.py:792
+msgid "No link selected to open!"
+msgstr "Nenhuma ligação seleccionada para abrir!"
+
+#. Get the name of the new category of the user
+#: addon\globalPlugins\favoriteLinks\main.py:355
+msgid "Enter new category name:"
+msgstr "Insira o novo nome da categoria:"
+
+#: addon\globalPlugins\favoriteLinks\main.py:355
+msgid "Add Category"
+msgstr "Adicionar categoria"
+
+#. translators: Message displayed when a category is added
+#. Translators: Message displayed when a category is added
+#: addon\globalPlugins\favoriteLinks\main.py:370
+#: addon\globalPlugins\favoriteLinks\main.py:391
+msgid "Category added successfully!"
+msgstr "Categoria adicionada com sucesso!"
+
+#: addon\globalPlugins\favoriteLinks\main.py:402
+msgid "Add New Link"
+msgstr "Adicionar nova ligação"
+
+#: addon\globalPlugins\favoriteLinks\main.py:427
+msgid "Enter the name of the link:"
+msgstr "Introduza o nome da ligação:"
+
+#: addon\globalPlugins\favoriteLinks\main.py:428
+msgid "Link name"
+msgstr "Nome da ligação"
+
+#. translators: Message displayed when a link is added
+#: addon\globalPlugins\favoriteLinks\main.py:436
+msgid "Link added successfully!"
+msgstr "Ligação adicionada com sucesso!"
+
+#. translators: Message displayed when a link addition is cancelled
+#: addon\globalPlugins\favoriteLinks\main.py:449
+msgid "Link addition cancelled."
+msgstr "Adição do link cancelada."
+
+#. translators: Message displayed when no link is selected to edit
+#: addon\globalPlugins\favoriteLinks\main.py:467
+msgid "No link selected to edit!"
+msgstr "Nenhuma ligação seleccionada para edição!"
+
+#: addon\globalPlugins\favoriteLinks\main.py:480
+msgid "Edit Link"
+msgstr "Editar ligação"
+
+#. translators: Message displayed when a link is edited successfully
+#: addon\globalPlugins\favoriteLinks\main.py:499
+msgid "Link edited successfully!"
+msgstr "Ligação editada com sucesso!"
+
+#. Translators: Message displayed when removing a link from the list
+#: addon\globalPlugins\favoriteLinks\main.py:536
+msgid "Link deleted successfully!"
+msgstr "Ligação excluída com sucesso!"
+
+#. Translators: Message displayed when no item has been selected from the list
+#: addon\globalPlugins\favoriteLinks\main.py:544
+msgid "No link selected to delete!"
+msgstr "Nenhuma ligação seleccionada para eliminação!"
+
+#. Translators: Message displayed when no link is selected to copy
+#: addon\globalPlugins\favoriteLinks\main.py:564
+msgid "No link selected to copy!"
+msgstr "Nenhuma ligação seleccionada para copiar!"
+
+#. translators: Message displayed when no category is selected to edit
+#: addon\globalPlugins\favoriteLinks\main.py:577
+msgid "No category selected to edit!"
+msgstr "Nenhuma categoria seleccionada para edição!"
+
+#: addon\globalPlugins\favoriteLinks\main.py:583
+msgid "Edit category name:"
+msgstr "Editar nome da categoria:"
+
+#: addon\globalPlugins\favoriteLinks\main.py:584
+msgid "Edit Category"
+msgstr "Editar categoria"
+
+#. translators: Message displayed when a category name is edited successfully
+#: addon\globalPlugins\favoriteLinks\main.py:601
+msgid "Category name edited successfully!"
+msgstr "Nome da categoria editado com sucesso!"
+
+#. translators: Message displayed when no category is selected to delete
+#: addon\globalPlugins\favoriteLinks\main.py:619
+msgid "No category selected to delete!"
+msgstr "Nenhuma categoria seleccionada para eliminação!"
+
+#. Confirm with the user if they really want to delete
+#: addon\globalPlugins\favoriteLinks\main.py:624
+msgid "Are you sure you want to delete the category '{}' and all its links?"
+msgstr ""
+"Tem a certeza de que deseja eliminar a categoria '{}' e todas as suas "
+"ligações?"
+
+#: addon\globalPlugins\favoriteLinks\main.py:625
+msgid "Confirm Delete"
+msgstr "Confirmar eliminação"
+
+#. translators: Message displayed when a category is deleted successfully
+#: addon\globalPlugins\favoriteLinks\main.py:637
+msgid "Category deleted successfully!"
+msgstr "Categoria excluída com sucesso!"
+
+#. translators: Message displayed when a category cannot be deleted
+#: addon\globalPlugins\favoriteLinks\main.py:643
+msgid "Error deleting category: {}"
+msgstr "Erro ao eliminar categoria: {}"
+
+#. translators: Message displayed when links are sorted successfully
+#: addon\globalPlugins\favoriteLinks\main.py:715
+msgid "Successfully ordered!"
+msgstr "Ordenado com sucesso!"
+
+#. translators: Message displayed when there is an error ordering the links
+#: addon\globalPlugins\favoriteLinks\main.py:723
+msgid "Error when ordering! Details: {e}"
+msgstr "Erro ao ordenar! Detalhes: {e}"
+
+#. translators: Message displayed when no browser path is configured
+#: addon\globalPlugins\favoriteLinks\main.py:759
+msgid "No browser path configured."
+msgstr "Nenhum caminho do navegador configurado."
+
+#. translators: Message displayed when the browser executable is not found
+#: addon\globalPlugins\favoriteLinks\main.py:765
+msgid "Browser not found at path: {}"
+msgstr "Navegador não encontrado no caminho: {}"
+
+#. translators: Message displayed when there is an error opening the link with the specified browser
+#: addon\globalPlugins\favoriteLinks\main.py:777
+msgid "Error opening the link with the browser: {}"
+msgstr "Erro ao abrir a ligação com o navegador: {}"
+
+#: addon\globalPlugins\favoriteLinks\main.py:798
+msgid "Import bookmarks from HTML"
+msgstr "Importar marcadores de HTML"
+
+#: addon\globalPlugins\favoriteLinks\importBookmarks\gui.py:69
 msgid "Importing"
 msgstr "A importar"
 
-#: addon\globalPlugins\favoriteLinks\importBookmarks\gui.py:66
+#: addon\globalPlugins\favoriteLinks\importBookmarks\gui.py:72
 msgid "Starting…"
 msgstr "Starting…"
 
-#: addon\globalPlugins\favoriteLinks\importBookmarks\gui.py:68
+#: addon\globalPlugins\favoriteLinks\importBookmarks\gui.py:74
 msgid "Cancel"
 msgstr "Cancelar"
 
-#: addon\globalPlugins\favoriteLinks\importBookmarks\gui.py:106
+#: addon\globalPlugins\favoriteLinks\importBookmarks\gui.py:112
 msgid "No links found."
 msgstr "Não foram encontradas ligações."
 
-#: addon\globalPlugins\favoriteLinks\importBookmarks\gui.py:151
+#: addon\globalPlugins\favoriteLinks\importBookmarks\gui.py:157
 msgid "HTML file:"
 msgstr "Ficheiro HTML:"
 
-#: addon\globalPlugins\favoriteLinks\importBookmarks\gui.py:155
+#: addon\globalPlugins\favoriteLinks\importBookmarks\gui.py:161
 msgid "&Select HTML..."
 msgstr "&Selecionar HTML..."
 
-#: addon\globalPlugins\favoriteLinks\importBookmarks\gui.py:160
+#: addon\globalPlugins\favoriteLinks\importBookmarks\gui.py:166
 msgid "&Import"
 msgstr "&Importar"
 
-#: addon\globalPlugins\favoriteLinks\importBookmarks\gui.py:172
+#: addon\globalPlugins\favoriteLinks\importBookmarks\gui.py:178
 msgid "Select HTML file"
 msgstr "Selecionar ficheiro HTML"
 
-#: addon\globalPlugins\favoriteLinks\importBookmarks\gui.py:182
+#: addon\globalPlugins\favoriteLinks\importBookmarks\gui.py:188
 msgid "Select a valid HTML file."
 msgstr "Selecione um ficheiro HTML válido."
 
-#: addon\globalPlugins\favoriteLinks\importBookmarks\gui.py:196
+#: addon\globalPlugins\favoriteLinks\importBookmarks\gui.py:202
 msgid "Importing links…"
 msgstr "A importar ligações…"
 
-#: addon\globalPlugins\favoriteLinks\importBookmarks\gui.py:220
+#: addon\globalPlugins\favoriteLinks\importBookmarks\gui.py:226
 msgid "Imported Bookmarks"
 msgstr "Favoritos importados"
 
-#: addon\globalPlugins\favoriteLinks\importBookmarks\gui.py:231
+#. translators: Message shown when bookmark import is completed successfully.
+#: addon\globalPlugins\favoriteLinks\importBookmarks\gui.py:238
 msgid "Import completed successfully."
 msgstr "Importação concluída com sucesso."
 
-#: addon\globalPlugins\favoriteLinks\importBookmarks\gui.py:241
+#: addon\globalPlugins\favoriteLinks\importBookmarks\gui.py:248
 msgid "Import cancelled."
 msgstr "Importação cancelada."
 
@@ -617,11 +902,17 @@ msgstr ""
 #. Brief changelog for this version
 #. Translators: what's new content for the add-on version to be shown in the add-on store
 #: buildVars.py:31
-msgid ""
-"Adds new functionality to import saved links in HTML from your browsers."
-msgstr ""
-"Adiciona nova funcionalidade para importar ligações guardadas em HTML a "
-"partir dos seus navegadores."
+msgid "Fixed issue preventing editing of saved links."
+msgstr "Corrigido um problema que impedia a edição de ligações guardadas."
+
+#~ msgid "Error decoding the JSON. Check the file content."
+#~ msgstr "Erro ao decodificar JSON. Verifique o conteúdo do ficheiro."
+
+#~ msgid ""
+#~ "Adds new functionality to import saved links in HTML from your browsers."
+#~ msgstr ""
+#~ "Adiciona nova funcionalidade para importar ligações guardadas em HTML a "
+#~ "partir dos seus navegadores."
 
 #~ msgid "An error occurred while initializing the dialog."
 #~ msgstr "Ocorreu um erro ao inicializar o diálogo."
