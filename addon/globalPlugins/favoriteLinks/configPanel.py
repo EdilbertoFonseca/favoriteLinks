@@ -101,7 +101,7 @@ class FavoriteLinksSettingsPanel(SettingsPanel):
 				initial_dir,
 				initial_file,
 				wildcard=_("JSON files (*.json)|*.json"),
-				style=wx.FD_SAVE | wx.FD_OVERWRITE_PROMPT # Add overwrite prompt
+				style=wx.FD_SAVE
 			)
 
 			if dlg.ShowModal() == wx.ID_OK:

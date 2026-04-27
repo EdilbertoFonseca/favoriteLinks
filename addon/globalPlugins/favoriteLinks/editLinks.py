@@ -98,7 +98,7 @@ class EditLinks(wx.Dialog):
 			self.showMessage(_("All fields are required"), _("Error"), wx.OK | wx.ICON_ERROR)
 			return
 
-		if not self.linkManager.is_valid_url(newURL):
+		if not self.linkManager.isValidURL(newURL):
 			# translators: Error message displayed when the user enters an invalid URL.
 			self.showMessage(_("Invalid URL"), _("Error"), wx.OK | wx.ICON_ERROR)
 			return
