@@ -6,10 +6,10 @@
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: 'favoriteLinks' '2025.10.1'\n"
+"Project-Id-Version: 'favoriteLinks' '2026.2.0'\n"
 "Report-Msgid-Bugs-To: 'nvda-translations@groups.io'\n"
-"POT-Creation-Date: 2026-04-27 13:41-0300\n"
-"PO-Revision-Date: 2026-04-27 14:43-0300\n"
+"POT-Creation-Date: 2026-05-05 08:11-0300\n"
+"PO-Revision-Date: 2026-05-05 08:18-0300\n"
 "Last-Translator: Edilberto Fonseca <edilberto.fonseca@outlook.com>\n"
 "Language-Team: Edilberto Fonseca <edilberto.fonseca@outlook.com>\n"
 "Language: pt_BR\n"
@@ -29,7 +29,6 @@ msgstr "Erro ao renomear o arquivo: {e}"
 #: addon\globalPlugins\favoriteLinks\addLinks.py:156
 #: addon\globalPlugins\favoriteLinks\addLinks.py:190
 #: addon\globalPlugins\favoriteLinks\editLinks.py:135
-#: addon\globalPlugins\favoriteLinks\searchLinks.py:311
 #: addon\globalPlugins\favoriteLinks\main.py:294
 #: addon\globalPlugins\favoriteLinks\main.py:313
 #: addon\globalPlugins\favoriteLinks\main.py:329
@@ -41,6 +40,7 @@ msgstr "Erro ao renomear o arquivo: {e}"
 #: addon\globalPlugins\favoriteLinks\main.py:499
 #: addon\globalPlugins\favoriteLinks\main.py:577
 #: addon\globalPlugins\favoriteLinks\main.py:675
+#: addon\globalPlugins\favoriteLinks\searchLinks.py:311
 msgid "Attention"
 msgstr "Atenção"
 
@@ -153,7 +153,7 @@ msgstr "Mover para a próxima categoria de links salvos."
 msgid "{category}: Contains {count} link"
 msgid_plural "{category}: Contains {count} links"
 msgstr[0] "{category}: Contém {count} link"
-msgstr[1] "{category}: Contains {count} links"
+msgstr[1] "{category}: contém {count} links"
 
 #. Translators: Text displayed in NVDA help.
 #: addon\globalPlugins\favoriteLinks\__init__.py:351
@@ -211,8 +211,6 @@ msgstr ""
 #: addon\globalPlugins\favoriteLinks\addLinks.py:53
 #: addon\globalPlugins\favoriteLinks\editLinks.py:98
 #: addon\globalPlugins\favoriteLinks\editLinks.py:103
-#: addon\globalPlugins\favoriteLinks\searchLinks.py:238
-#: addon\globalPlugins\favoriteLinks\searchLinks.py:259
 #: addon\globalPlugins\favoriteLinks\main.py:272
 #: addon\globalPlugins\favoriteLinks\main.py:301
 #: addon\globalPlugins\favoriteLinks\main.py:326
@@ -222,6 +220,8 @@ msgstr ""
 #: addon\globalPlugins\favoriteLinks\main.py:605
 #: addon\globalPlugins\favoriteLinks\main.py:643
 #: addon\globalPlugins\favoriteLinks\main.py:723
+#: addon\globalPlugins\favoriteLinks\searchLinks.py:238
+#: addon\globalPlugins\favoriteLinks\searchLinks.py:259
 msgid "Error"
 msgstr "Erro"
 
@@ -414,96 +414,6 @@ msgstr "Erro ao decodificar JSON do arquivo: {}"
 msgid "Unexpected error importing the links: {}"
 msgstr "Erro inesperado ao importar os links: {}"
 
-#. Translators: Title of the search links dialog.
-#: addon\globalPlugins\favoriteLinks\searchLinks.py:56
-msgid "Search links"
-msgstr "Pesquisar links"
-
-#. Translators: First option in the category dropdown; searches across all categories.
-#: addon\globalPlugins\favoriteLinks\searchLinks.py:64
-msgid "(All categories)"
-msgstr "(Todas as categorias)"
-
-#. Translators: Label for the category dropdown in the search dialog.
-#: addon\globalPlugins\favoriteLinks\searchLinks.py:77
-msgid "Select a category:"
-msgstr "Selecione uma categoria:"
-
-#. Translators: Label for the search text input field.
-#: addon\globalPlugins\favoriteLinks\searchLinks.py:84
-msgid "Search word:"
-msgstr "Palavra-chave:"
-
-#. Search type radio
-#: addon\globalPlugins\favoriteLinks\searchLinks.py:89
-msgid "Name"
-msgstr "Nome"
-
-#: addon\globalPlugins\favoriteLinks\searchLinks.py:90
-#: addon\globalPlugins\favoriteLinks\main.py:222
-msgid "URL"
-msgstr "URL"
-
-#: addon\globalPlugins\favoriteLinks\searchLinks.py:94
-msgid "Search by"
-msgstr "Pesquisar por"
-
-#. Buttons
-#: addon\globalPlugins\favoriteLinks\searchLinks.py:114
-msgid "&Search"
-msgstr "&Procurar"
-
-#: addon\globalPlugins\favoriteLinks\searchLinks.py:118
-msgid "&Copy URL"
-msgstr "Copiar &URL"
-
-#: addon\globalPlugins\favoriteLinks\searchLinks.py:159
-msgid "Please enter a search word."
-msgstr "Digite uma palavra para pesquisar."
-
-#: addon\globalPlugins\favoriteLinks\searchLinks.py:198
-msgid "No results found."
-msgstr "Nenhum resultado encontrado."
-
-#: addon\globalPlugins\favoriteLinks\searchLinks.py:198
-msgid "Search"
-msgstr "Procurar"
-
-#: addon\globalPlugins\favoriteLinks\searchLinks.py:209
-msgid "Results: {count} found."
-msgstr "Resultados: {count} encontrados."
-
-#: addon\globalPlugins\favoriteLinks\searchLinks.py:222
-msgid "{count} results found."
-msgstr "{count} resultados encontrados."
-
-#: addon\globalPlugins\favoriteLinks\searchLinks.py:229
-msgid "No result selected to open!"
-msgstr "Nenhum resultado selecionado para abrir!"
-
-#. Translators: Message displayed when there is no internet connection
-#: addon\globalPlugins\favoriteLinks\searchLinks.py:237
-#: addon\globalPlugins\favoriteLinks\main.py:313
-#: addon\globalPlugins\favoriteLinks\main.py:781
-msgid "No active internet connection!"
-msgstr "Sem conexão ativa com a Internet!"
-
-#: addon\globalPlugins\favoriteLinks\searchLinks.py:258
-msgid "Unable to open the selected link. Please check your browser."
-msgstr ""
-"Não foi possível abrir o link selecionado. Por favor, verifique seu "
-"navegador."
-
-#: addon\globalPlugins\favoriteLinks\searchLinks.py:268
-msgid "No result selected to copy!"
-msgstr "Nenhum resultado selecionado para copiar!"
-
-#. Translators: Message displayed when the URL is copied to the clipboard
-#: addon\globalPlugins\favoriteLinks\searchLinks.py:275
-#: addon\globalPlugins\favoriteLinks\main.py:561
-msgid "URL copied to clipboard."
-msgstr "URL copiada para a área de transferência."
-
 #: addon\globalPlugins\favoriteLinks\main.py:51
 msgid "An instance of {} is already open."
 msgstr "Uma instância de {} já está aberta."
@@ -622,6 +532,11 @@ msgstr "Abrir links no navegador secundário."
 msgid "Title"
 msgstr "Título"
 
+#: addon\globalPlugins\favoriteLinks\main.py:222
+#: addon\globalPlugins\favoriteLinks\searchLinks.py:90
+msgid "URL"
+msgstr "URL"
+
 #: addon\globalPlugins\favoriteLinks\main.py:257
 msgid "Save export file"
 msgstr "Salvar arquivo de exportação"
@@ -653,6 +568,13 @@ msgstr "Links importados com sucesso!"
 #: addon\globalPlugins\favoriteLinks\main.py:301
 msgid "Error importing links: {}"
 msgstr "Erro ao importar links: {}"
+
+#. Translators: Message displayed when there is no internet connection
+#: addon\globalPlugins\favoriteLinks\main.py:313
+#: addon\globalPlugins\favoriteLinks\main.py:781
+#: addon\globalPlugins\favoriteLinks\searchLinks.py:237
+msgid "No active internet connection!"
+msgstr "Sem conexão ativa com a Internet!"
 
 #. Translators: Message displayed when failing to open a link
 #: addon\globalPlugins\favoriteLinks\main.py:326
@@ -727,6 +649,12 @@ msgstr "Link excluído com sucesso!"
 #: addon\globalPlugins\favoriteLinks\main.py:544
 msgid "No link selected to delete!"
 msgstr "Nenhum link selecionado para exclusão!"
+
+#. Translators: Message displayed when the URL is copied to the clipboard
+#: addon\globalPlugins\favoriteLinks\main.py:561
+#: addon\globalPlugins\favoriteLinks\searchLinks.py:275
+msgid "URL copied to clipboard."
+msgstr "URL copiada para a área de transferência."
 
 #. Translators: Message displayed when no link is selected to copy
 #: addon\globalPlugins\favoriteLinks\main.py:564
@@ -805,6 +733,78 @@ msgstr "Erro ao abrir o link com o navegador: {}"
 msgid "Import bookmarks from HTML"
 msgstr "Importar marcadores de HTML"
 
+#. Translators: Title of the search links dialog.
+#: addon\globalPlugins\favoriteLinks\searchLinks.py:56
+msgid "Search links"
+msgstr "Pesquisar links"
+
+#. Translators: First option in the category dropdown; searches across all categories.
+#: addon\globalPlugins\favoriteLinks\searchLinks.py:64
+msgid "(All categories)"
+msgstr "(Todas as categorias)"
+
+#. Translators: Label for the category dropdown in the search dialog.
+#: addon\globalPlugins\favoriteLinks\searchLinks.py:77
+msgid "Select a category:"
+msgstr "Selecione uma categoria:"
+
+#. Translators: Label for the search text input field.
+#: addon\globalPlugins\favoriteLinks\searchLinks.py:84
+msgid "Search word:"
+msgstr "Palavra-chave:"
+
+#. Search type radio
+#: addon\globalPlugins\favoriteLinks\searchLinks.py:89
+msgid "Name"
+msgstr "Nome"
+
+#: addon\globalPlugins\favoriteLinks\searchLinks.py:94
+msgid "Search by"
+msgstr "Pesquisar por"
+
+#. Buttons
+#: addon\globalPlugins\favoriteLinks\searchLinks.py:114
+msgid "&Search"
+msgstr "&Procurar"
+
+#: addon\globalPlugins\favoriteLinks\searchLinks.py:118
+msgid "&Copy URL"
+msgstr "Copiar &URL"
+
+#: addon\globalPlugins\favoriteLinks\searchLinks.py:159
+msgid "Please enter a search word."
+msgstr "Digite uma palavra para pesquisar."
+
+#: addon\globalPlugins\favoriteLinks\searchLinks.py:198
+msgid "No results found."
+msgstr "Nenhum resultado encontrado."
+
+#: addon\globalPlugins\favoriteLinks\searchLinks.py:198
+msgid "Search"
+msgstr "Procurar"
+
+#: addon\globalPlugins\favoriteLinks\searchLinks.py:209
+msgid "Results: {count} found."
+msgstr "Resultados: {count} encontrados."
+
+#: addon\globalPlugins\favoriteLinks\searchLinks.py:222
+msgid "{count} results found."
+msgstr "{count} resultados encontrados."
+
+#: addon\globalPlugins\favoriteLinks\searchLinks.py:229
+msgid "No result selected to open!"
+msgstr "Nenhum resultado selecionado para abrir!"
+
+#: addon\globalPlugins\favoriteLinks\searchLinks.py:258
+msgid "Unable to open the selected link. Please check your browser."
+msgstr ""
+"Não foi possível abrir o link selecionado. Por favor, verifique seu "
+"navegador."
+
+#: addon\globalPlugins\favoriteLinks\searchLinks.py:268
+msgid "No result selected to copy!"
+msgstr "Nenhum resultado selecionado para copiar!"
+
 #: addon\globalPlugins\favoriteLinks\importBookmarks\gui.py:69
 msgid "Importing"
 msgstr "Importando"
@@ -882,9 +882,14 @@ msgstr ""
 #. Brief changelog for this version
 #. Translators: what's new content for the add-on version to be shown in the add-on store
 #: buildVars.py:31
-#| msgid "Move to the previous category of saved links."
-msgid "Fixed issue preventing editing of saved links."
-msgstr "Corrigido problema que impedia a edição de links salvos."
+msgid ""
+"Declares compatibility with NVDA 2026.1.0 and promotes code improvements."
+msgstr ""
+"Declara compatibilidade com o NVDA 2026.1.0 e promove melhorias no código."
+
+#~| msgid "Move to the previous category of saved links."
+#~ msgid "Fixed issue preventing editing of saved links."
+#~ msgstr "Corrigido problema que impedia a edição de links salvos."
 
 #~ msgid ""
 #~ "Adds new functionality to import saved links in HTML from your browsers."
