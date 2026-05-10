@@ -56,7 +56,7 @@ msgstr "No hay enlaces en esta categoría."
 
 #: addon\globalPlugins\favoriteLinks\__init__.py:144
 msgid "Favorite links."
-msgstr "Enlaces favoritos."
+msgstr "Favorite links."
 
 #. Translators: Text displayed in NVDA help.
 #: addon\globalPlugins\favoriteLinks\__init__.py:174
