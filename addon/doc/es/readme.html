@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" type="text/css" href="../style.css" media="screen">
+<title>Favorite links 2026.2.0</title>
+</head>
+<body>
+<h1>Favorite Links</h1>
+<ul>
+<li><strong>Autor</strong>: Edilberto Fonseca (<a href="mailto:edilberto.fonseca@outlook.com">edilberto.fonseca@outlook.com</a>)</li>
+<li><strong>Fecha de creación</strong>: 04/11/2024</li>
+<li><strong>Licencia</strong>: <a href="https://www.gnu.org/licenses/gpl-2.0.html">GPL 2.0</a></li>
+</ul>
+<h2>Introducción</h2>
+<p>El complemento <strong>FavoriteLinks</strong> es una herramienta para gestionar tus enlaces favoritos de forma organizada y eficiente. Te permite guardar, editar y eliminar enlaces en una lista categorizada, ofreciendo una interfaz intuitiva con funciones como añadir nuevos enlaces, renombrar títulos, eliminar entradas no deseadas y gestionar categorías. Además, el complemento permite importar marcadores directamente desde archivos HTML exportados por los navegadores.</p>
+<p>Al abrir el complemento, obtienes acceso rápido a tus enlaces y puedes abrirlos directamente en el navegador predeterminado. Ahora también dispone de soporte para abrir enlaces en un navegador secundario, en caso de que necesites más flexibilidad.</p>
+<h2>Instalación</h2>
+<p>Sigue los pasos a continuación para instalar el complemento <strong>FavoriteLinks</strong> en NVDA:</p>
+<ol>
+<li>En NVDA, abra el menú <strong>Herramientas</strong> y seleccione <strong>Tienda de complementos</strong>.</li>
+<li>En la pestaña <strong>Complementos disponibles</strong>, navega hasta el campo de <strong>Búsqueda</strong>.</li>
+<li>Busca "favoriteLinks". En los resultados, pulsa <strong>Intro</strong> o <strong>Aplicar</strong>, y luego elige <strong>Instalar</strong>.</li>
+<li>Reinicia NVDA para aplicar los cambios.</li>
+</ol>
+<h2>Configuración</h2>
+<p>Tienes control total sobre dónde se guardan tus enlaces y qué navegador los abre.</p>
+<ol>
+<li>Accede al menú de NVDA: <code>NVDA+N</code> &gt; <em>Preferencias</em> &gt; <em>Opciones</em>.</li>
+<li>En la lista de categorías, selecciona <strong>Favorite Links</strong>.</li>
+</ol>
+<p>Puedes elegir una ubicación personalizada para guardar el archivo de enlaces utilizando el botón <strong>"Seleccionar o añadir un directorio"</strong> (<code>Alt+S</code>).</p>
+<p>Para definir un navegador secundario, que puede ser instalado o portátil:</p>
+<ol>
+<li>Navega con el <code>Tabulador</code> hasta el campo <strong>Ruta del navegador</strong>.</li>
+<li>Utiliza el botón <strong>"Seleccionar ruta del navegador"</strong> (<code>Alt+N</code>) para añadir el ejecutable del navegador deseado.</li>
+</ol>
+<h2>Uso</h2>
+<h3>Acceder al complemento</h3>
+<ul>
+<li>Pulsa <code>Alt+Windows+K</code>.</li>
+<li>O accede a través de <code>NVDA+N</code> &gt; <em>Herramientas</em> &gt; <em>Favorite Links</em>.</li>
+</ul>
+<h3>Interfaz Principal</h3>
+<p>La interfaz principal consta de dos campos principales, por los que se puede navegar con la tecla <code>Tab</code>:</p>
+<ol>
+<li><strong>Categoría</strong>: Un cuadro combinado con las categorías existentes.</li>
+<li><strong>Lista de enlaces</strong>: Una lista que muestra los enlaces asociados a la categoría seleccionada.</li>
+</ol>
+<p>Utiliza el <strong>menú contextual</strong> (tecla aplicaciones) en cualquiera de estos campos para acceder a opciones adicionales.</p>
+<h3>Acciones Disponibles</h3>
+<h4>En el Cuadro Combinado de Categorías</h4>
+<ul>
+<li><strong>Añadir categoría</strong>: Crea una nueva categoría.</li>
+<li><strong>Editar categoría</strong>: Renombra la categoría seleccionada.</li>
+<li><strong>Eliminar categoría</strong>: Borra la categoría y todos sus enlaces.</li>
+<li><strong>Exportar enlaces</strong>: Guarda todos los enlaces y categorías en un archivo <code>.json</code>.</li>
+<li><strong>Importar enlaces</strong>: Carga enlaces y categorías desde un archivo <code>.json</code>.</li>
+</ul>
+<h4>En la Lista de Enlaces</h4>
+<ul>
+<li><strong>Abrir enlace</strong>: Abre el enlace en el navegador que hayas configurado.
+    &gt; <strong>Nota</strong>: Es necesario configurar previamente el navegador secundario en los ajustes.</li>
+<li><strong>Añadir enlace</strong>: Permite insertar una nueva URL. El título se obtendrá automáticamente, pero puedes introducirlo manualmente si la obtención falla.</li>
+<li><strong>Editar enlace</strong>: Modifica el título y la URL de un enlace existente.</li>
+<li><strong>Eliminar enlace</strong>: Borra el enlace seleccionado.</li>
+<li><strong>Exportar enlaces</strong> / <strong>Importar enlaces</strong>: Igual que las opciones de categoría.</li>
+<li><strong>Importar marcadores HTML</strong>: Importa enlaces desde un archivo <code>.html</code> exportado por navegadores.</li>
+<li><strong>Ordenar enlaces</strong>: Organiza los enlaces de la categoría actual en orden alfabético.</li>
+</ul>
+<h3>Importar Marcadores HTML</h3>
+<p>FavoriteLinks también permite importar marcadores directamente desde archivos HTML, como los exportados por navegadores (Chrome, Firefox, Edge, entre otros).</p>
+<p>Esta función es útil para migrar tus marcadores existentes al complemento de forma rápida y organizada.</p>
+<h4>Cómo importar marcadores desde un archivo HTML</h4>
+<ol>
+<li>Abre el complemento <strong>Favorite Links</strong>.</li>
+<li>Accede al menú contextual en el <strong>Cuadro combinado de categorías</strong> o utiliza la opción disponible en el menú principal.</li>
+<li>Selecciona <strong>Importar marcadores HTML</strong>.</li>
+<li>Elige el archivo <code>.html</code> exportado desde tu navegador.</li>
+<li>Espera a que se procesen los enlaces.</li>
+</ol>
+<p>Durante la importación:</p>
+<ul>
+<li>El progreso se muestra en una barra de progreso.</li>
+<li>Puedes <strong>cancelar la operación en cualquier momento</strong>.</li>
+<li>NVDA sigue respondiendo durante todo el proceso.</li>
+</ul>
+<h4>Organización de los enlaces importados</h4>
+<ul>
+<li>Los enlaces importados se añaden automáticamente al archivo JSON configurado en las preferencias del complemento.</li>
+<li>Por defecto, los marcadores se insertan en la categoría <strong>“Imported Bookmarks”</strong>.</li>
+<li>Los enlaces duplicados (con la misma URL) no se añaden de nuevo.</li>
+</ul>
+<p>Al finalizar la importación, se muestra un mensaje de confirmación y la interfaz del complemento se actualiza automáticamente.</p>
+<h3>Atajos de teclado</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Función</th>
+<th style="text-align: left;">Atajo</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">Abrir enlace</td>
+<td style="text-align: left;"><code>Alt+B</code> o <code>Intro</code> (en la lista de enlaces)</td>
+</tr>
+<tr>
+<td style="text-align: left;">Añadir enlace</td>
+<td style="text-align: left;"><code>Alt+A</code></td>
+</tr>
+<tr>
+<td style="text-align: left;">Añadir categoría</td>
+<td style="text-align: left;"><code>Alt+D</code></td>
+</tr>
+<tr>
+<td style="text-align: left;">Editar enlace</td>
+<td style="text-align: left;"><code>Alt+E</code> o <code>F2</code></td>
+</tr>
+<tr>
+<td style="text-align: left;">Eliminar enlace</td>
+<td style="text-align: left;"><code>Alt+L</code> o <code>Supr</code></td>
+</tr>
+<tr>
+<td style="text-align: left;">Guardar URL de la página actual</td>
+<td style="text-align: left;"><code>Shift+Control+D</code></td>
+</tr>
+<tr>
+<td style="text-align: left;">Mostrar URL de la página actual</td>
+<td style="text-align: left;"><code>Windows+Control+P</code> (Pulsar dos veces copia la URL al portapapeles)</td>
+</tr>
+<tr>
+<td style="text-align: left;">Salir</td>
+<td style="text-align: left;"><code>Alt+S</code>, <code>Esc</code> o <code>Alt+F4</code></td>
+</tr>
+</tbody>
+</table>
+<h2>Diálogo "Añadir nuevo enlace"</h2>
+<ol>
+<li><strong>Categoría</strong>: Selecciona la categoría deseada.</li>
+<li><strong>URL</strong>: Pega o escribe la dirección del enlace.
+    &gt; Si ya has copiado una URL, se pegará automáticamente.</li>
+<li><strong>Aceptar (<code>Alt+O</code>)</strong>: Añade el enlace.
+    &gt; El título se obtendrá automáticamente. Si falla, podrás introducirlo manualmente.</li>
+<li><strong>Cancelar (<code>Alt+C</code>)</strong>: Cierra el diálogo. <code>Esc</code> o <code>Alt+F4</code> también funcionan.</li>
+</ol>
+<h2>Diálogo "Editar enlace"</h2>
+<ol>
+<li><strong>Categoría</strong>: Al cambiar la categoría aquí, el enlace se moverá a la nueva categoría.</li>
+<li><strong>Título</strong>: Edita el título del enlace.</li>
+<li><strong>URL</strong>: Cambia la dirección del enlace.</li>
+<li><strong>Aceptar (<code>Alt+O</code>)</strong>: Guarda los cambios.</li>
+<li><strong>Cancelar (<code>Alt+C</code>)</strong>: Cierra sin guardar. <code>Esc</code> o <code>Alt+F4</code> también funcionan.</li>
+</ol>
+<h2>Agradecimientos</h2>
+<p>Un agradecimiento especial a <strong>Rue Fontes</strong> y <strong>Ângelo Abrantes</strong> por las pruebas realizadas y por las valiosas sugerencias que contribuyeron significativamente a mejorar este proyecto.</p>
+<p>También agradezco a <strong>Abel Passos</strong> por su contribución con la funcionalidad de importar marcadores desde archivos HTML.</p>
+<p>El complemento FavoriteLinks fue desarrollado con la asistencia de <strong>ChatGPT</strong> y <strong>Google Gemini</strong>, utilizados para la creación de funciones, optimización y refactorización del código, y la mejora de la documentación.</p>
+<h2>🌍 Traductores</h2>
+<ul>
+<li>🇸🇦 <strong>Árabe</strong> — Ahmed Bakr</li>
+<li>🇧🇷 <strong>Portugués (Brasil)</strong> — Edilberto Fonseca</li>
+<li>🇵🇹 <strong>Portugués (Portugal)</strong> — Edilberto Fonseca</li>
+<li>🇷🇺 <strong>Ruso (Rusia)</strong> — Valentin Kupriyanov</li>
+<li>🇹🇷 <strong>Turco (Turquía)</strong> — Umut KORKMAZ</li>
+<li>🇺🇦 <strong>Ucraniano (Ucrania)</strong> — Heorhii Halas</li>
+</ul>
+</body>
+</html>
