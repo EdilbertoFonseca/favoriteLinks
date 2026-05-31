@@ -6,10 +6,10 @@
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: 'favoriteLinks' '2025.10.1'\n"
+"Project-Id-Version: 'favoriteLinks' '2026.2.1'\n"
 "Report-Msgid-Bugs-To: 'nvda-translations@groups.io'\n"
-"POT-Creation-Date: 2026-04-27 13:41-0300\n"
-"PO-Revision-Date: 2026-04-27 14:32-0300\n"
+"POT-Creation-Date: 2026-05-31 02:26-0300\n"
+"PO-Revision-Date: 2026-05-31 02:30-0300\n"
 "Last-Translator: Edilberto Fonseca <edilberto.fonseca@outlook.com>\n"
 "Language-Team: Edilberto Fonseca <edilberto.fonseca@outlook.com>\n"
 "Language: pt_PT\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.8\n"
+"X-Generator: Poedit 3.9\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-Basepath: ../../../..\n"
 "X-Poedit-SearchPath-0: addon/globalPlugins/favoriteLinks\n"
@@ -33,7 +33,6 @@ msgstr "Erro ao renomear ficheiro: {e}"
 #: addon\globalPlugins\favoriteLinks\addLinks.py:156
 #: addon\globalPlugins\favoriteLinks\addLinks.py:190
 #: addon\globalPlugins\favoriteLinks\editLinks.py:135
-#: addon\globalPlugins\favoriteLinks\searchLinks.py:311
 #: addon\globalPlugins\favoriteLinks\main.py:294
 #: addon\globalPlugins\favoriteLinks\main.py:313
 #: addon\globalPlugins\favoriteLinks\main.py:329
@@ -45,167 +44,9 @@ msgstr "Erro ao renomear ficheiro: {e}"
 #: addon\globalPlugins\favoriteLinks\main.py:499
 #: addon\globalPlugins\favoriteLinks\main.py:577
 #: addon\globalPlugins\favoriteLinks\main.py:675
+#: addon\globalPlugins\favoriteLinks\searchLinks.py:311
 msgid "Attention"
 msgstr "Atenção"
-
-#: addon\globalPlugins\favoriteLinks\__init__.py:85
-msgid "&Favorite links..."
-msgstr "&Ligações favoritas..."
-
-#: addon\globalPlugins\favoriteLinks\__init__.py:126
-#| msgid "No links found."
-msgid "No links saved."
-msgstr "Não há ligações guardadas."
-
-#: addon\globalPlugins\favoriteLinks\__init__.py:131
-#| msgid "The link already exists in the category!"
-msgid "No links in this category."
-msgstr "Não existem ligações nesta categoria."
-
-#: addon\globalPlugins\favoriteLinks\__init__.py:144
-msgid "Favorite links."
-msgstr "Ligações favoritas."
-
-#. Translators: Text displayed in NVDA help.
-#: addon\globalPlugins\favoriteLinks\__init__.py:174
-msgid "This addon allows you to save links to a specific page."
-msgstr "Este complemento permite guardar ligações para uma página específica."
-
-#. Translators: Text displayed in NVDA help.
-#: addon\globalPlugins\favoriteLinks\__init__.py:184
-msgid "Show document URL, press twice copies to clipboard."
-msgstr ""
-"Mostrar URL do documento, pressionar duas vezes para copiar para a área de "
-"transferência."
-
-#: addon\globalPlugins\favoriteLinks\__init__.py:195
-msgid "Copied to clipboard {URL}."
-msgstr "Copiado para a área de transferência: {URL}."
-
-#: addon\globalPlugins\favoriteLinks\__init__.py:197
-msgid "Document URL not found."
-msgstr "URL do documento não encontrado."
-
-#: addon\globalPlugins\favoriteLinks\__init__.py:199
-msgid "No browser window found."
-msgstr "Não foi encontrada nenhuma janela do navegador."
-
-#. Translators: Text displayed in NVDA help.
-#: addon\globalPlugins\favoriteLinks\__init__.py:205
-msgid "Search saved links by name or URL."
-msgstr "Pesquisar ligações guardadas por nome ou URL."
-
-#: addon\globalPlugins\favoriteLinks\__init__.py:215
-msgid "Failed to load links. Please check the file."
-msgstr "Falha ao carregar as ligações. Verifique o ficheiro."
-
-#: addon\globalPlugins\favoriteLinks\__init__.py:218
-msgid ""
-"No saved links found. If you had links before, the links file may have been "
-"corrupt and was reset. Please add links to begin."
-msgstr ""
-"Não foram encontradas ligações guardadas. Se tinha ligações anteriormente, "
-"o ficheiro de ligações pode ter sido corrompido e foi reposto. Adicione "
-"ligações para começar."
-
-#: addon\globalPlugins\favoriteLinks\__init__.py:224
-msgid "Unable to open the search dialog."
-msgstr "Não foi possível abrir o diálogo de pesquisa."
-
-#. Translators: Text displayed in NVDA help.
-#: addon\globalPlugins\favoriteLinks\__init__.py:238
-#| msgid "Copy URL to clipboard."
-msgid "Open a URL from the clipboard."
-msgstr "Abrir um URL a partir da área de transferência."
-
-#: addon\globalPlugins\favoriteLinks\__init__.py:248
-#| msgid "URL copied to clipboard."
-msgid "Unable to read the clipboard."
-msgstr "Não foi possível ler a área de transferência."
-
-#: addon\globalPlugins\favoriteLinks\__init__.py:253
-msgid "The clipboard does not contain any links."
-msgstr "A área de transferência não contém ligações."
-
-#. Translators: Spoken when a link is opened from the picker dialog.
-#: addon\globalPlugins\favoriteLinks\__init__.py:260
-#: addon\globalPlugins\favoriteLinks\fromClipboard.py:106
-msgid "Opening {url}."
-msgstr "Abrir {url}."
-
-#. Translators: Spoken when a link cannot be opened from the picker dialog.
-#: addon\globalPlugins\favoriteLinks\__init__.py:263
-#: addon\globalPlugins\favoriteLinks\fromClipboard.py:112
-msgid "Unable to open the link. Please check your browser settings."
-msgstr ""
-"Não foi possível abrir a ligação. Verifique as definições do seu navegador."
-
-#. Translators: Text displayed in NVDA help.
-#: addon\globalPlugins\favoriteLinks\__init__.py:281
-msgid "Move to the next saved link in the current category."
-msgstr "Mover para a próxima ligação guardada na categoria atual."
-
-#. Translators: Text displayed in NVDA help.
-#: addon\globalPlugins\favoriteLinks\__init__.py:303
-msgid "Move to the previous saved link in the current category."
-msgstr "Mover para a ligação guardada anterior na categoria atual."
-
-#. Translators: Text displayed in NVDA help.
-#: addon\globalPlugins\favoriteLinks\__init__.py:325
-#| msgid "Add a new category to the list."
-msgid "Move to the next category of saved links."
-msgstr "Mover para a próxima categoria de ligações guardadas."
-
-#: addon\globalPlugins\favoriteLinks\__init__.py:342
-#: addon\globalPlugins\favoriteLinks\__init__.py:368
-msgid "{category}: Contains {count} link"
-msgid_plural "{category}: Contains {count} links"
-msgstr[0] "{category}: Contém {count} ligação"
-msgstr[1] "{category}: Contém {count} ligações"
-
-#. Translators: Text displayed in NVDA help.
-#: addon\globalPlugins\favoriteLinks\__init__.py:351
-msgid "Move to the previous category of saved links."
-msgstr "Mover para a categoria anterior de ligações guardadas."
-
-#. Translators: Text displayed in NVDA help.
-#: addon\globalPlugins\favoriteLinks\__init__.py:377
-msgid "Move to the first saved link in the current category."
-msgstr "Mover para a primeira ligação guardada na categoria atual."
-
-#. Translators: Text displayed in NVDA help.
-#: addon\globalPlugins\favoriteLinks\__init__.py:396
-msgid "Move to the last saved link in the current category."
-msgstr "Mover para a última ligação guardada na categoria atual."
-
-#. Translators: Text displayed in NVDA help.
-#: addon\globalPlugins\favoriteLinks\__init__.py:415
-msgid "Open the currently selected link in the default browser."
-msgstr "Abrir a ligação atualmente selecionada no navegador predefinido."
-
-#: addon\globalPlugins\favoriteLinks\__init__.py:430
-#: addon\globalPlugins\favoriteLinks\searchLinks.py:249
-msgid "Opening {title}."
-msgstr "Abrindo {title}."
-
-#: addon\globalPlugins\favoriteLinks\__init__.py:436
-msgid "Unable to open {title}."
-msgstr "Não foi possível abrir {title}."
-
-#. Translators: Text displayed in NVDA help.
-#: addon\globalPlugins\favoriteLinks\__init__.py:442
-msgid "Toggle reading the URL after the link name during keyboard navigation."
-msgstr ""
-"Alternar a leitura do URL após o nome da ligação durante a navegação por "
-"teclado."
-
-#: addon\globalPlugins\favoriteLinks\__init__.py:449
-msgid "Read URL after name turned on."
-msgstr "Leitura do URL após o nome ativada."
-
-#: addon\globalPlugins\favoriteLinks\__init__.py:451
-msgid "Read URL after name turned off."
-msgstr "Leitura do URL após o nome desativada."
 
 #: addon\globalPlugins\favoriteLinks\addLinks.py:53
 msgid "No categories available. Please add some categories first."
@@ -220,8 +61,6 @@ msgstr ""
 #: addon\globalPlugins\favoriteLinks\addLinks.py:53
 #: addon\globalPlugins\favoriteLinks\editLinks.py:98
 #: addon\globalPlugins\favoriteLinks\editLinks.py:103
-#: addon\globalPlugins\favoriteLinks\searchLinks.py:238
-#: addon\globalPlugins\favoriteLinks\searchLinks.py:259
 #: addon\globalPlugins\favoriteLinks\main.py:272
 #: addon\globalPlugins\favoriteLinks\main.py:301
 #: addon\globalPlugins\favoriteLinks\main.py:326
@@ -231,6 +70,8 @@ msgstr ""
 #: addon\globalPlugins\favoriteLinks\main.py:605
 #: addon\globalPlugins\favoriteLinks\main.py:643
 #: addon\globalPlugins\favoriteLinks\main.py:723
+#: addon\globalPlugins\favoriteLinks\searchLinks.py:238
+#: addon\globalPlugins\favoriteLinks\searchLinks.py:259
 msgid "Error"
 msgstr "Erro"
 
@@ -317,7 +158,6 @@ msgstr "URL inválido"
 
 #. Translators: Title of the dialog shown when multiple URLs are found in the clipboard.
 #: addon\globalPlugins\favoriteLinks\fromClipboard.py:46
-#| msgid "No link selected to open!"
 msgid "Choose a link to open"
 msgstr "Escolha uma ligação para abrir"
 
@@ -328,7 +168,6 @@ msgstr "{count} ligações encontradas na área de transferência."
 
 #. Translators: Label for the list of URLs extracted from the clipboard.
 #: addon\globalPlugins\favoriteLinks\fromClipboard.py:59
-#| msgid "Delete link"
 msgid "Select a link:"
 msgstr "Selecionar uma ligação:"
 
@@ -340,20 +179,30 @@ msgstr "&Abrir"
 
 #. Translators: Label for the button that copies the selected URL to the clipboard.
 #: addon\globalPlugins\favoriteLinks\fromClipboard.py:72
-#| msgid "Copy URL to clipboard."
 msgid "&Copy to clipboard"
 msgstr "&Copiar para a área de transferência"
 
+#. Translators: Spoken when a link is opened from the picker dialog.
+#: addon\globalPlugins\favoriteLinks\fromClipboard.py:106
+#: addon\globalPlugins\favoriteLinks\__init__.py:260
+msgid "Opening {url}."
+msgstr "Abrir {url}."
+
+#. Translators: Spoken when a link cannot be opened from the picker dialog.
+#: addon\globalPlugins\favoriteLinks\fromClipboard.py:112
+#: addon\globalPlugins\favoriteLinks\__init__.py:263
+msgid "Unable to open the link. Please check your browser settings."
+msgstr ""
+"Não foi possível abrir a ligação. Verifique as definições do seu navegador."
+
 #. Translators: Spoken when a URL is copied to the clipboard from the picker dialog.
 #: addon\globalPlugins\favoriteLinks\fromClipboard.py:123
-#| msgid "Copied to clipboard {URL}."
 msgid "Copied to clipboard: {url}"
 msgstr "Copiado para a área de transferência: {url}"
 
 #. Translators: Spoken when copying a URL to the clipboard fails.
 #: addon\globalPlugins\favoriteLinks\fromClipboard.py:128
 #: addon\globalPlugins\favoriteLinks\searchLinks.py:278
-#| msgid "Copy URL to clipboard."
 msgid "Failed to copy URL to clipboard."
 msgstr "Falha ao copiar o URL para a área de transferência."
 
@@ -428,100 +277,6 @@ msgstr "Erro a descodificar JSON do ficheiro: {}"
 #: addon\globalPlugins\favoriteLinks\linkManager.py:277
 msgid "Unexpected error importing the links: {}"
 msgstr "Erro ao importar ligações: {}"
-
-#. Translators: Title of the search links dialog.
-#: addon\globalPlugins\favoriteLinks\searchLinks.py:56
-#| msgid "&Sort links"
-msgid "Search links"
-msgstr "Pesquisar ligações"
-
-#. Translators: First option in the category dropdown; searches across all categories.
-#: addon\globalPlugins\favoriteLinks\searchLinks.py:64
-msgid "(All categories)"
-msgstr "(Todas as categorias)"
-
-#. Translators: Label for the category dropdown in the search dialog.
-#: addon\globalPlugins\favoriteLinks\searchLinks.py:77
-#| msgid "Select a category"
-msgid "Select a category:"
-msgstr "Selecionar uma categoria:"
-
-#. Translators: Label for the search text input field.
-#: addon\globalPlugins\favoriteLinks\searchLinks.py:84
-msgid "Search word:"
-msgstr "Palavra da pesquisa:"
-
-#. Search type radio
-#: addon\globalPlugins\favoriteLinks\searchLinks.py:89
-msgid "Name"
-msgstr "Nome"
-
-#: addon\globalPlugins\favoriteLinks\searchLinks.py:90
-#: addon\globalPlugins\favoriteLinks\main.py:222
-msgid "URL"
-msgstr "URL"
-
-#: addon\globalPlugins\favoriteLinks\searchLinks.py:94
-msgid "Search by"
-msgstr "Pesquisar por"
-
-#. Buttons
-#: addon\globalPlugins\favoriteLinks\searchLinks.py:114
-msgid "&Search"
-msgstr "&Pesquisar"
-
-#: addon\globalPlugins\favoriteLinks\searchLinks.py:118
-#| msgid "C&opy URL"
-msgid "&Copy URL"
-msgstr "&Copiar URL"
-
-#: addon\globalPlugins\favoriteLinks\searchLinks.py:159
-msgid "Please enter a search word."
-msgstr "Introduza uma palavra de pesquisa."
-
-#: addon\globalPlugins\favoriteLinks\searchLinks.py:198
-msgid "No results found."
-msgstr "Nenhum resultado encontrado."
-
-#: addon\globalPlugins\favoriteLinks\searchLinks.py:198
-msgid "Search"
-msgstr "Pesquisar"
-
-#: addon\globalPlugins\favoriteLinks\searchLinks.py:209
-msgid "Results: {count} found."
-msgstr "Resultados: {count} encontrados."
-
-#: addon\globalPlugins\favoriteLinks\searchLinks.py:222
-msgid "{count} results found."
-msgstr "{count} resultados encontrados."
-
-#: addon\globalPlugins\favoriteLinks\searchLinks.py:229
-#| msgid "No link selected to open!"
-msgid "No result selected to open!"
-msgstr "Nenhum resultado selecionado para abrir!"
-
-#. Translators: Message displayed when there is no internet connection
-#: addon\globalPlugins\favoriteLinks\searchLinks.py:237
-#: addon\globalPlugins\favoriteLinks\main.py:313
-#: addon\globalPlugins\favoriteLinks\main.py:781
-msgid "No active internet connection!"
-msgstr "Sem ligação ativa à Internet!"
-
-#: addon\globalPlugins\favoriteLinks\searchLinks.py:258
-msgid "Unable to open the selected link. Please check your browser."
-msgstr ""
-"Não foi possível abrir a ligação selecionada. Verifique o seu navegador."
-
-#: addon\globalPlugins\favoriteLinks\searchLinks.py:268
-#| msgid "No link selected to copy!"
-msgid "No result selected to copy!"
-msgstr "Nenhum resultado selecionado para copiar!"
-
-#. Translators: Message displayed when the URL is copied to the clipboard
-#: addon\globalPlugins\favoriteLinks\searchLinks.py:275
-#: addon\globalPlugins\favoriteLinks\main.py:561
-msgid "URL copied to clipboard."
-msgstr "URL copiado para a área de transferência."
 
 #: addon\globalPlugins\favoriteLinks\main.py:51
 msgid "An instance of {} is already open."
@@ -641,6 +396,11 @@ msgstr "Abrir ligação num navegador secundário."
 msgid "Title"
 msgstr "Título"
 
+#: addon\globalPlugins\favoriteLinks\main.py:222
+#: addon\globalPlugins\favoriteLinks\searchLinks.py:90
+msgid "URL"
+msgstr "URL"
+
 #: addon\globalPlugins\favoriteLinks\main.py:257
 msgid "Save export file"
 msgstr "Guardar arquivo de exportação"
@@ -672,6 +432,13 @@ msgstr "Ligações importadas com sucesso!"
 #: addon\globalPlugins\favoriteLinks\main.py:301
 msgid "Error importing links: {}"
 msgstr "Erro ao importar ligações: {}"
+
+#. Translators: Message displayed when there is no internet connection
+#: addon\globalPlugins\favoriteLinks\main.py:313
+#: addon\globalPlugins\favoriteLinks\main.py:781
+#: addon\globalPlugins\favoriteLinks\searchLinks.py:237
+msgid "No active internet connection!"
+msgstr "Sem ligação ativa à Internet!"
 
 #. Translators: Message displayed when failing to open a link
 #: addon\globalPlugins\favoriteLinks\main.py:326
@@ -746,6 +513,12 @@ msgstr "Ligação excluída com sucesso!"
 #: addon\globalPlugins\favoriteLinks\main.py:544
 msgid "No link selected to delete!"
 msgstr "Nenhuma ligação seleccionada para eliminação!"
+
+#. Translators: Message displayed when the URL is copied to the clipboard
+#: addon\globalPlugins\favoriteLinks\main.py:561
+#: addon\globalPlugins\favoriteLinks\searchLinks.py:275
+msgid "URL copied to clipboard."
+msgstr "URL copiado para a área de transferência."
 
 #. Translators: Message displayed when no link is selected to copy
 #: addon\globalPlugins\favoriteLinks\main.py:564
@@ -825,6 +598,218 @@ msgstr "Erro ao abrir a ligação com o navegador: {}"
 msgid "Import bookmarks from HTML"
 msgstr "Importar marcadores de HTML"
 
+#. Translators: Title of the search links dialog.
+#: addon\globalPlugins\favoriteLinks\searchLinks.py:56
+msgid "Search links"
+msgstr "Pesquisar ligações"
+
+#. Translators: First option in the category dropdown; searches across all categories.
+#: addon\globalPlugins\favoriteLinks\searchLinks.py:64
+msgid "(All categories)"
+msgstr "(Todas as categorias)"
+
+#. Translators: Label for the category dropdown in the search dialog.
+#: addon\globalPlugins\favoriteLinks\searchLinks.py:77
+msgid "Select a category:"
+msgstr "Selecionar uma categoria:"
+
+#. Translators: Label for the search text input field.
+#: addon\globalPlugins\favoriteLinks\searchLinks.py:84
+msgid "Search word:"
+msgstr "Palavra da pesquisa:"
+
+#. Search type radio
+#: addon\globalPlugins\favoriteLinks\searchLinks.py:89
+msgid "Name"
+msgstr "Nome"
+
+#: addon\globalPlugins\favoriteLinks\searchLinks.py:94
+msgid "Search by"
+msgstr "Pesquisar por"
+
+#. Buttons
+#: addon\globalPlugins\favoriteLinks\searchLinks.py:114
+msgid "&Search"
+msgstr "&Pesquisar"
+
+#: addon\globalPlugins\favoriteLinks\searchLinks.py:118
+msgid "&Copy URL"
+msgstr "&Copiar URL"
+
+#: addon\globalPlugins\favoriteLinks\searchLinks.py:159
+msgid "Please enter a search word."
+msgstr "Introduza uma palavra de pesquisa."
+
+#: addon\globalPlugins\favoriteLinks\searchLinks.py:198
+msgid "No results found."
+msgstr "Nenhum resultado encontrado."
+
+#: addon\globalPlugins\favoriteLinks\searchLinks.py:198
+msgid "Search"
+msgstr "Pesquisar"
+
+#: addon\globalPlugins\favoriteLinks\searchLinks.py:209
+msgid "Results: {count} found."
+msgstr "Resultados: {count} encontrados."
+
+#: addon\globalPlugins\favoriteLinks\searchLinks.py:222
+msgid "{count} results found."
+msgstr "{count} resultados encontrados."
+
+#: addon\globalPlugins\favoriteLinks\searchLinks.py:229
+msgid "No result selected to open!"
+msgstr "Nenhum resultado selecionado para abrir!"
+
+#: addon\globalPlugins\favoriteLinks\searchLinks.py:249
+#: addon\globalPlugins\favoriteLinks\__init__.py:430
+msgid "Opening {title}."
+msgstr "Abrindo {title}."
+
+#: addon\globalPlugins\favoriteLinks\searchLinks.py:258
+msgid "Unable to open the selected link. Please check your browser."
+msgstr ""
+"Não foi possível abrir a ligação selecionada. Verifique o seu navegador."
+
+#: addon\globalPlugins\favoriteLinks\searchLinks.py:268
+msgid "No result selected to copy!"
+msgstr "Nenhum resultado selecionado para copiar!"
+
+#: addon\globalPlugins\favoriteLinks\__init__.py:85
+msgid "&Favorite links..."
+msgstr "&Ligações favoritas..."
+
+#: addon\globalPlugins\favoriteLinks\__init__.py:126
+msgid "No links saved."
+msgstr "Não há ligações guardadas."
+
+#: addon\globalPlugins\favoriteLinks\__init__.py:131
+msgid "No links in this category."
+msgstr "Não existem ligações nesta categoria."
+
+#: addon\globalPlugins\favoriteLinks\__init__.py:144
+msgid "Favorite links."
+msgstr "Ligações favoritas."
+
+#. Translators: Text displayed in NVDA help.
+#: addon\globalPlugins\favoriteLinks\__init__.py:174
+msgid "This addon allows you to save links to a specific page."
+msgstr "Este complemento permite guardar ligações para uma página específica."
+
+#. Translators: Text displayed in NVDA help.
+#: addon\globalPlugins\favoriteLinks\__init__.py:184
+msgid "Show document URL, press twice copies to clipboard."
+msgstr ""
+"Mostrar URL do documento, pressionar duas vezes para copiar para a área de "
+"transferência."
+
+#: addon\globalPlugins\favoriteLinks\__init__.py:195
+msgid "Copied to clipboard {URL}."
+msgstr "Copiado para a área de transferência: {URL}."
+
+#: addon\globalPlugins\favoriteLinks\__init__.py:197
+msgid "Document URL not found."
+msgstr "URL do documento não encontrado."
+
+#: addon\globalPlugins\favoriteLinks\__init__.py:199
+msgid "No browser window found."
+msgstr "Não foi encontrada nenhuma janela do navegador."
+
+#. Translators: Text displayed in NVDA help.
+#: addon\globalPlugins\favoriteLinks\__init__.py:205
+msgid "Search saved links by name or URL."
+msgstr "Pesquisar ligações guardadas por nome ou URL."
+
+#: addon\globalPlugins\favoriteLinks\__init__.py:215
+msgid "Failed to load links. Please check the file."
+msgstr "Falha ao carregar as ligações. Verifique o ficheiro."
+
+#: addon\globalPlugins\favoriteLinks\__init__.py:218
+msgid ""
+"No saved links found. If you had links before, the links file may have been "
+"corrupt and was reset. Please add links to begin."
+msgstr ""
+"Não foram encontradas ligações guardadas. Se tinha ligações anteriormente, o "
+"ficheiro de ligações pode ter sido corrompido e foi reposto. Adicione "
+"ligações para começar."
+
+#: addon\globalPlugins\favoriteLinks\__init__.py:224
+msgid "Unable to open the search dialog."
+msgstr "Não foi possível abrir o diálogo de pesquisa."
+
+#. Translators: Text displayed in NVDA help.
+#: addon\globalPlugins\favoriteLinks\__init__.py:238
+msgid "Open a URL from the clipboard."
+msgstr "Abrir um URL a partir da área de transferência."
+
+#: addon\globalPlugins\favoriteLinks\__init__.py:248
+msgid "Unable to read the clipboard."
+msgstr "Não foi possível ler a área de transferência."
+
+#: addon\globalPlugins\favoriteLinks\__init__.py:253
+msgid "The clipboard does not contain any links."
+msgstr "A área de transferência não contém ligações."
+
+#. Translators: Text displayed in NVDA help.
+#: addon\globalPlugins\favoriteLinks\__init__.py:281
+msgid "Move to the next saved link in the current category."
+msgstr "Mover para a próxima ligação guardada na categoria atual."
+
+#. Translators: Text displayed in NVDA help.
+#: addon\globalPlugins\favoriteLinks\__init__.py:303
+msgid "Move to the previous saved link in the current category."
+msgstr "Mover para a ligação guardada anterior na categoria atual."
+
+#. Translators: Text displayed in NVDA help.
+#: addon\globalPlugins\favoriteLinks\__init__.py:325
+msgid "Move to the next category of saved links."
+msgstr "Mover para a próxima categoria de ligações guardadas."
+
+#: addon\globalPlugins\favoriteLinks\__init__.py:342
+#: addon\globalPlugins\favoriteLinks\__init__.py:368
+msgid "{category}: Contains {count} link"
+msgid_plural "{category}: Contains {count} links"
+msgstr[0] "{category}: Contém {count} ligação"
+msgstr[1] "{category}: Contém {count} ligações"
+
+#. Translators: Text displayed in NVDA help.
+#: addon\globalPlugins\favoriteLinks\__init__.py:351
+msgid "Move to the previous category of saved links."
+msgstr "Mover para a categoria anterior de ligações guardadas."
+
+#. Translators: Text displayed in NVDA help.
+#: addon\globalPlugins\favoriteLinks\__init__.py:377
+msgid "Move to the first saved link in the current category."
+msgstr "Mover para a primeira ligação guardada na categoria atual."
+
+#. Translators: Text displayed in NVDA help.
+#: addon\globalPlugins\favoriteLinks\__init__.py:396
+msgid "Move to the last saved link in the current category."
+msgstr "Mover para a última ligação guardada na categoria atual."
+
+#. Translators: Text displayed in NVDA help.
+#: addon\globalPlugins\favoriteLinks\__init__.py:415
+msgid "Open the currently selected link in the default browser."
+msgstr "Abrir a ligação atualmente selecionada no navegador predefinido."
+
+#: addon\globalPlugins\favoriteLinks\__init__.py:436
+msgid "Unable to open {title}."
+msgstr "Não foi possível abrir {title}."
+
+#. Translators: Text displayed in NVDA help.
+#: addon\globalPlugins\favoriteLinks\__init__.py:442
+msgid "Toggle reading the URL after the link name during keyboard navigation."
+msgstr ""
+"Alternar a leitura do URL após o nome da ligação durante a navegação por "
+"teclado."
+
+#: addon\globalPlugins\favoriteLinks\__init__.py:449
+msgid "Read URL after name turned on."
+msgstr "Leitura do URL após o nome ativada."
+
+#: addon\globalPlugins\favoriteLinks\__init__.py:451
+msgid "Read URL after name turned off."
+msgstr "Leitura do URL após o nome desativada."
+
 #: addon\globalPlugins\favoriteLinks\importBookmarks\gui.py:69
 msgid "Importing"
 msgstr "A importar"
@@ -902,8 +887,11 @@ msgstr ""
 #. Brief changelog for this version
 #. Translators: what's new content for the add-on version to be shown in the add-on store
 #: buildVars.py:31
-msgid "Fixed issue preventing editing of saved links."
-msgstr "Corrigido um problema que impedia a edição de ligações guardadas."
+msgid "Added support for Spanish."
+msgstr "Foi adicionado o suporte para o espanhol."
+
+#~ msgid "Fixed issue preventing editing of saved links."
+#~ msgstr "Corrigido um problema que impedia a edição de ligações guardadas."
 
 #~ msgid "Error decoding the JSON. Check the file content."
 #~ msgstr "Erro ao decodificar JSON. Verifique o conteúdo do ficheiro."
