@@ -2,17 +2,17 @@ msgid ""
 msgstr ""
 "Project-Id-Version: FavoriteLinks\n"
 "POT-Creation-Date: 2025-08-29 17:04+0300\n"
-"PO-Revision-Date: 2025-08-29 17:06+0300\n"
-"Last-Translator: nvda.ru\n"
+"PO-Revision-Date: 2026-05-31 02:34-0300\n"
+"Last-Translator: Edilberto Fonseca <edilberto.fonseca@outlook.com>\n"
 "Language-Team: nvda.ru\n"
 "Language: ru_RU\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.8.6\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
+"n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"X-Generator: Poedit 3.9\n"
 "X-Poedit-Basepath: ../../..\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
-"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-SearchPath-0: globalPlugins\n"
 "X-Poedit-SearchPath-1: installTasks.py\n"
@@ -27,20 +27,8 @@ msgid ""
 "This add-on allows you to save, edit and remove links to frequently visited "
 "pages. Shortcut Windows+Alt+K."
 msgstr ""
-"Дополнение FavoriteLinks — это инструмент для управления вашими избранными "
-"ссылками организованно и эффективно. Оно позволяет сохранять, редактировать "
-"и удалять ссылки в категоризированном списке, предлагая интуитивно понятный "
-"интерфейс с такими функциями, как добавление новых ссылок, переименование "
-"заголовков, удаление ненужных записей и управление категориями.\n"
-"Когда вы открываете дополнение, вы получаете быстрый доступ к вашим "
-"избранным ссылкам и можете открывать их прямо в браузере по умолчанию.\n"
-"Теперь также есть поддержка открытия ссылок в дополнительном браузере, если "
-"вам нужна большая гибкость.\n"
-"Нажмите «Alt+Windows+K» или используйте меню NVDA (NVDA+N), Сервис, "
-"Избранные ссылки, чтобы открыть дополнение.\n"
-"У дополнения также есть сочетания клавиш которые можно изменить в жестах "
-"ввода.\n"
-"Подробнее об особенностях можно прочитать в справке."
+"Это дополнение позволяет сохранять, редактировать и удалять ссылки на часто "
+"посещаемые страницы. Сочетание клавиш: Windows+Alt+K."
 
 #: globalPlugins/favoriteLinks/__init__.py:91
 msgid "&Favorite links..."
@@ -292,7 +280,7 @@ msgstr "&Сортировать ссылки"
 
 #: globalPlugins/favoriteLinks/main.py:83
 msgid "C&opy URL"
-msgstr ""
+msgstr "Скопировать URL"
 
 #: globalPlugins/favoriteLinks/main.py:84
 msgid "E&xit"
@@ -342,7 +330,7 @@ msgstr "Удалить ссылку"
 
 #: globalPlugins/favoriteLinks/main.py:175
 msgid "Copy URL to clipboard."
-msgstr ""
+msgstr "Скопировать URL в буфер обмена."
 
 #: globalPlugins/favoriteLinks/main.py:177
 msgid "Sort the links alphabetically."
@@ -460,12 +448,12 @@ msgstr "Не выбрана ссылка для удаления!"
 #. Translators: Message displayed when the URL is copied to the clipboard
 #: globalPlugins/favoriteLinks/main.py:533
 msgid "URL copied to clipboard."
-msgstr ""
+msgstr "URL скопирован в буфер обмена."
 
 #. Translators: Message displayed when no link is selected to copy
 #: globalPlugins/favoriteLinks/main.py:536
 msgid "No link selected to copy!"
-msgstr ""
+msgstr "Ссылка для копирования не выбрана!"
 
 #: globalPlugins/favoriteLinks/main.py:513
 msgid "No category selected to edit!"

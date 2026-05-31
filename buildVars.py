@@ -25,10 +25,10 @@ addon_info = AddonInfo(
 
 Shortcut Windows+Alt+K."""),
 	# version
-	addon_version="2026.2.0",
+	addon_version="2026.2.1",
 	# Brief changelog for this version
-	# Translators: what's new content for the add-on version to be shown in the add-on store
-	addon_changelog=_("""Declares compatibility with NVDA 2026.1.0 and promotes code improvements."""),
+	# Translators: what's 	new content for the add-on version to be shown in the add-on store
+	addon_changelog=_("""Added support for Spanish."""),
 	# Author(s)
 	addon_author="Edilberto Fonseca <edilberto.fonseca@outlook.com>",
 	# URL for the add-on documentation support
