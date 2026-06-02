@@ -874,8 +874,8 @@ msgid ""
 "Shortcut Windows+Alt+K."
 msgstr ""
 "Este complemento te permite guardar, editar y eliminar enlaces a páginas "
-"visitadas frecuentemente.\n"
-"\v\n"
+    "visitadas frecuentemente.\n"
+"\n"
 "Atajo: Windows+Alt+K."
 
 #. Brief changelog for this version
