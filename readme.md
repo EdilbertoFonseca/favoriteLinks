@@ -144,3 +144,4 @@ The FavoriteLinks add-on was developed with the assistance of **ChatGPT** and **
 * 🇷🇺 **Russian (Russia)** — Valentin Kupriyanov
 * 🇹🇷 **Turkish (Turkey)** — Umut KORKMAZ
 * 🇺🇦 **Ukrainian (Ukraine)** — Heorhii Halas
+* 🇻🇳 **Vietnamese (Tiếng Việt)** - Hoàng Long
