@@ -1,0 +1,893 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the 'favoriteLinks' package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: 'favoriteLinks' '2026.2.1'\n"
+"Report-Msgid-Bugs-To: 'nvda-translations@groups.io'\n"
+"POT-Creation-Date: 2026-07-20 10:37+0700\n"
+"PO-Revision-Date: 2026-07-20 11:44+0700\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: vi\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Poedit 3.8\n"
+
+#. translators: Default caption for message boxes in the search links dialog.
+#: addon\installTasks.py:43 addon\globalPlugins\favoriteLinks\addLinks.py:151
+#: addon\globalPlugins\favoriteLinks\addLinks.py:156
+#: addon\globalPlugins\favoriteLinks\addLinks.py:190
+#: addon\globalPlugins\favoriteLinks\editLinks.py:135
+#: addon\globalPlugins\favoriteLinks\main.py:294
+#: addon\globalPlugins\favoriteLinks\main.py:313
+#: addon\globalPlugins\favoriteLinks\main.py:329
+#: addon\globalPlugins\favoriteLinks\main.py:370
+#: addon\globalPlugins\favoriteLinks\main.py:391
+#: addon\globalPlugins\favoriteLinks\main.py:436
+#: addon\globalPlugins\favoriteLinks\main.py:449
+#: addon\globalPlugins\favoriteLinks\main.py:467
+#: addon\globalPlugins\favoriteLinks\main.py:499
+#: addon\globalPlugins\favoriteLinks\main.py:577
+#: addon\globalPlugins\favoriteLinks\main.py:675
+#: addon\globalPlugins\favoriteLinks\searchLinks.py:311
+msgid "Attention"
+msgstr "Chú ý"
+
+#: addon\globalPlugins\favoriteLinks\addLinks.py:53
+msgid "No categories available. Please add some categories first."
+msgstr ""
+"Không có danh mục nào có sẵn. Vui lòng thêm một số danh mục đầu tiên của "
+"bạn."
+
+#. Translators: Message displayed when a category cannot be added
+#. translators: Message displayed when a link cannot be added
+#. translators: Message displayed when a link cannot be edited
+#. translators: Message displayed when a category name cannot be edited
+#. translators: Message displayed when there is an error ordering the links
+#: addon\globalPlugins\favoriteLinks\addLinks.py:53
+#: addon\globalPlugins\favoriteLinks\editLinks.py:98
+#: addon\globalPlugins\favoriteLinks\editLinks.py:103
+#: addon\globalPlugins\favoriteLinks\main.py:272
+#: addon\globalPlugins\favoriteLinks\main.py:301
+#: addon\globalPlugins\favoriteLinks\main.py:326
+#: addon\globalPlugins\favoriteLinks\main.py:394
+#: addon\globalPlugins\favoriteLinks\main.py:446
+#: addon\globalPlugins\favoriteLinks\main.py:509
+#: addon\globalPlugins\favoriteLinks\main.py:605
+#: addon\globalPlugins\favoriteLinks\main.py:643
+#: addon\globalPlugins\favoriteLinks\main.py:723
+#: addon\globalPlugins\favoriteLinks\searchLinks.py:238
+#: addon\globalPlugins\favoriteLinks\searchLinks.py:259
+msgid "Error"
+msgstr "Lỗi"
+
+#: addon\globalPlugins\favoriteLinks\addLinks.py:87
+#: addon\globalPlugins\favoriteLinks\editLinks.py:55
+msgid "Select a Category"
+msgstr "Chọn một danh mục"
+
+#: addon\globalPlugins\favoriteLinks\addLinks.py:108
+#: addon\globalPlugins\favoriteLinks\editLinks.py:68
+msgid "Enter link URL:"
+msgstr "Nhập URL liên kết:"
+
+#. Buttons
+#: addon\globalPlugins\favoriteLinks\addLinks.py:133
+#: addon\globalPlugins\favoriteLinks\editLinks.py:73
+msgid "&Ok"
+msgstr "&Được rồi"
+
+#. Translators: Label for the cancel button in the clipboard URL picker dialog.
+#: addon\globalPlugins\favoriteLinks\addLinks.py:134
+#: addon\globalPlugins\favoriteLinks\editLinks.py:74
+#: addon\globalPlugins\favoriteLinks\fromClipboard.py:74
+#: addon\globalPlugins\favoriteLinks\searchLinks.py:120
+msgid "&Cancel"
+msgstr "&Hủy bỏ"
+
+#. translators: Error message shown when no category is selected.
+#: addon\globalPlugins\favoriteLinks\addLinks.py:151
+msgid "No category selected. Please select or add one!"
+msgstr ""
+"Không có danh mục nào được chọn. Vui lòng chọn hoặc thêm một danh mục mới!"
+
+#. translators: Error message shown when the URL field is empty.
+#: addon\globalPlugins\favoriteLinks\addLinks.py:156
+msgid "URL is required!"
+msgstr "URL là bắt buộc!"
+
+#: addon\globalPlugins\favoriteLinks\configPanel.py:43
+msgid "Path of file json:"
+msgstr "Đường dẫn của tệp json:"
+
+#: addon\globalPlugins\favoriteLinks\configPanel.py:62
+msgid "&Select or add a directory"
+msgstr "&Chọn hoặc thêm thư mục"
+
+#: addon\globalPlugins\favoriteLinks\configPanel.py:68
+msgid "Secondary browser path:"
+msgstr "Đường dẫn trình duyệt phụ:"
+
+#. Button to select the browser path
+#: addon\globalPlugins\favoriteLinks\configPanel.py:79
+msgid "Select &browser path"
+msgstr "Chọn &đường dẫn trình duyệt"
+
+#: addon\globalPlugins\favoriteLinks\configPanel.py:100
+msgid "Choose where to save the file json"
+msgstr "Chọn nơi lưu file json"
+
+#: addon\globalPlugins\favoriteLinks\configPanel.py:103
+msgid "JSON files (*.json)|*.json"
+msgstr "Các tệp JSON (*.json)|*.json"
+
+#: addon\globalPlugins\favoriteLinks\configPanel.py:149
+msgid "Choose browser path"
+msgstr "Chọn đường dẫn trình duyệt"
+
+#: addon\globalPlugins\favoriteLinks\configPanel.py:151
+msgid "Executable files (*.exe)|*.exe"
+msgstr "Các tệp thực thi (*.exe)|*.exe"
+
+#: addon\globalPlugins\favoriteLinks\editLinks.py:62
+msgid "Enter a title for the URL:"
+msgstr "Nhập tiêu đề cho URL:"
+
+#. translators: Error message displayed when the user leaves a field empty.
+#: addon\globalPlugins\favoriteLinks\editLinks.py:98
+msgid "All fields are required"
+msgstr "Tất cả các trường là bắt buộc"
+
+#. translators: Error message displayed when the user enters an invalid URL.
+#: addon\globalPlugins\favoriteLinks\editLinks.py:103
+msgid "Invalid URL"
+msgstr "URL không hợp lệ"
+
+#. Translators: Title of the dialog shown when multiple URLs are found in the clipboard.
+#: addon\globalPlugins\favoriteLinks\fromClipboard.py:46
+msgid "Choose a link to open"
+msgstr "Chọn một liên kết để mở"
+
+#. Translators: Label showing how many links were extracted from the clipboard.
+#: addon\globalPlugins\favoriteLinks\fromClipboard.py:55
+#, python-brace-format
+msgid "{count} links found in the clipboard."
+msgstr "Đã tìm thấy {count} liên kết trong bảng nhớ tạm của bạn."
+
+#. Translators: Label for the list of URLs extracted from the clipboard.
+#: addon\globalPlugins\favoriteLinks\fromClipboard.py:59
+msgid "Select a link:"
+msgstr "Chọn một liên kết:"
+
+#. Translators: Label for the button that opens the selected URL.
+#: addon\globalPlugins\favoriteLinks\fromClipboard.py:68
+#: addon\globalPlugins\favoriteLinks\searchLinks.py:117
+msgid "&Open"
+msgstr "&Mở"
+
+#. Translators: Label for the button that copies the selected URL to the clipboard.
+#: addon\globalPlugins\favoriteLinks\fromClipboard.py:72
+msgid "&Copy to clipboard"
+msgstr "&Sao chép vào bảng nhớ tạm"
+
+#. Translators: Spoken when a link is opened from the picker dialog.
+#: addon\globalPlugins\favoriteLinks\fromClipboard.py:106
+#: addon\globalPlugins\favoriteLinks\__init__.py:260
+#, python-brace-format
+msgid "Opening {url}."
+msgstr "Đang mở {url}."
+
+#. Translators: Spoken when a link cannot be opened from the picker dialog.
+#: addon\globalPlugins\favoriteLinks\fromClipboard.py:112
+#: addon\globalPlugins\favoriteLinks\__init__.py:263
+msgid "Unable to open the link. Please check your browser settings."
+msgstr "Không thể mở liên kết. Vui lòng kiểm tra cài đặt trình duyệt của bạn."
+
+#. Translators: Spoken when a URL is copied to the clipboard from the picker dialog.
+#: addon\globalPlugins\favoriteLinks\fromClipboard.py:123
+#, python-brace-format
+msgid "Copied to clipboard: {url}"
+msgstr "{url} đã được sao chép vào bảng nhớ tạm."
+
+#. Translators: Spoken when copying a URL to the clipboard fails.
+#: addon\globalPlugins\favoriteLinks\fromClipboard.py:128
+#: addon\globalPlugins\favoriteLinks\searchLinks.py:278
+msgid "Failed to copy URL to clipboard."
+msgstr "Không thể sao chép được URL vào bảng nhớ tạm."
+
+#: addon\globalPlugins\favoriteLinks\linkManager.py:50
+msgid "Missing required libraries: validators, BeautifulSoup e UnicodeDammit"
+msgstr ""
+"Thiếu thư viện bắt buộc: trình xác nhận, BeautifulSoup e UnicodeDammit"
+
+#: addon\globalPlugins\favoriteLinks\linkManager.py:122
+#, python-brace-format
+msgid "Error saving the links: {}"
+msgstr "Lỗi lưu liên kết: {}"
+
+#: addon\globalPlugins\favoriteLinks\linkManager.py:129
+#: addon\globalPlugins\favoriteLinks\linkManager.py:199
+msgid "The category name cannot be empty!"
+msgstr "Tên danh mục không được để trống!"
+
+#: addon\globalPlugins\favoriteLinks\linkManager.py:131
+msgid "The category already exists!"
+msgstr "Danh mục này đã tồn tại!"
+
+#: addon\globalPlugins\favoriteLinks\linkManager.py:147
+msgid "Unknown title"
+msgstr "Tiêu đề không xác định"
+
+#: addon\globalPlugins\favoriteLinks\linkManager.py:150
+msgid "Failed to get title. Please enter one manually."
+msgstr "Không thể lấy được tiêu đề. Vui lòng nhập một cách thủ công."
+
+#: addon\globalPlugins\favoriteLinks\linkManager.py:160
+msgid "The link already exists in the category!"
+msgstr "Liên kết đã tồn tại trong danh mục!"
+
+#: addon\globalPlugins\favoriteLinks\linkManager.py:171
+msgid "Category does not exist."
+msgstr "Danh mục không tồn tại."
+
+#: addon\globalPlugins\favoriteLinks\linkManager.py:179
+msgid "Link not found to edit."
+msgstr "Không tìm thấy liên kết để chỉnh sửa."
+
+#: addon\globalPlugins\favoriteLinks\linkManager.py:201
+msgid "A category with this name already exists!"
+msgstr "Một danh mục có tên này đã tồn tại!"
+
+#: addon\globalPlugins\favoriteLinks\linkManager.py:203
+msgid "Old category name not found."
+msgstr "Tên danh mục cũ không được tìm thấy."
+
+#: addon\globalPlugins\favoriteLinks\linkManager.py:237
+msgid "The imported data must be a dictionary with categories as keys."
+msgstr "Dữ liệu đã nhập phải là từ điển có các danh mục làm khóa."
+
+#: addon\globalPlugins\favoriteLinks\linkManager.py:241
+#, python-brace-format
+msgid "The links in the category '{}' must be lists containing [title, url]."
+msgstr ""
+"Các liên kết trong danh mục '{}' phải là danh sách chứa [tiêu đề, url]."
+
+#: addon\globalPlugins\favoriteLinks\linkManager.py:262
+#, python-brace-format
+msgid "Error exporting the links: {}"
+msgstr "Lỗi xuất liên kết: {}"
+
+#: addon\globalPlugins\favoriteLinks\linkManager.py:273
+#, python-brace-format
+msgid "File not found: {}"
+msgstr "Không tìm thấy tệp: {}"
+
+#: addon\globalPlugins\favoriteLinks\linkManager.py:275
+#, python-brace-format
+msgid "Error decoding JSON from file: {}"
+msgstr "Lỗi giải mã JSON từ tệp: {}"
+
+#: addon\globalPlugins\favoriteLinks\linkManager.py:277
+#, python-brace-format
+msgid "Unexpected error importing the links: {}"
+msgstr "Lỗi không mong muốn khi nhập liên kết: {}"
+
+#: addon\globalPlugins\favoriteLinks\main.py:51
+#, python-brace-format
+msgid "An instance of {} is already open."
+msgstr "Một phiên bản của {} đã được mở."
+
+#: addon\globalPlugins\favoriteLinks\main.py:78
+msgid "&Open link"
+msgstr "&Mở liên kết"
+
+#: addon\globalPlugins\favoriteLinks\main.py:79
+msgid "&Add link"
+msgstr "&Thêm liên kết mới"
+
+#: addon\globalPlugins\favoriteLinks\main.py:80
+msgid "&Edit link"
+msgstr "&Chỉnh sửa liên kết"
+
+#: addon\globalPlugins\favoriteLinks\main.py:81
+msgid "De&lete link"
+msgstr "&Xóa liên kết"
+
+#: addon\globalPlugins\favoriteLinks\main.py:82
+msgid "Add Cate&gory"
+msgstr "&Thêm Danh mục mới"
+
+#: addon\globalPlugins\favoriteLinks\main.py:83
+msgid "Edi&t category"
+msgstr "Chỉnh sửa danh mục"
+
+#: addon\globalPlugins\favoriteLinks\main.py:84
+msgid "&Delete category"
+msgstr "&Xóa danh mục"
+
+#: addon\globalPlugins\favoriteLinks\main.py:85
+msgid "E&xport links"
+msgstr "&xuất liên kết"
+
+#: addon\globalPlugins\favoriteLinks\main.py:86
+msgid "&Import links"
+msgstr "&Nhập liên kết"
+
+#: addon\globalPlugins\favoriteLinks\main.py:87
+msgid "Import &favorites from your browsers"
+msgstr "Nhập &yêu thích từ trình duyệt của bạn"
+
+#: addon\globalPlugins\favoriteLinks\main.py:88
+msgid "&Sort links"
+msgstr "&Sắp xếp liên kết"
+
+#: addon\globalPlugins\favoriteLinks\main.py:89
+msgid "C&opy URL"
+msgstr "&sao chép URL"
+
+#: addon\globalPlugins\favoriteLinks\main.py:90
+msgid "E&xit"
+msgstr "Th&oát"
+
+#: addon\globalPlugins\favoriteLinks\main.py:95
+msgid "Select a category"
+msgstr "Chọn một danh mục"
+
+#: addon\globalPlugins\favoriteLinks\main.py:101
+msgid "List of links..."
+msgstr "Danh sách các liên kết..."
+
+#: addon\globalPlugins\favoriteLinks\main.py:150
+msgid "Add a new category to the list."
+msgstr "Thêm một danh mục mới vào danh sách."
+
+#: addon\globalPlugins\favoriteLinks\main.py:152
+msgid "Edit a category in the list."
+msgstr "Chỉnh sửa một danh mục trong danh sách."
+
+#: addon\globalPlugins\favoriteLinks\main.py:154
+msgid "Delete a category from the list."
+msgstr "Xóa một danh mục khỏi danh sách."
+
+#: addon\globalPlugins\favoriteLinks\main.py:156
+#: addon\globalPlugins\favoriteLinks\main.py:185
+msgid "Export links"
+msgstr "Xuất liên kết"
+
+#: addon\globalPlugins\favoriteLinks\main.py:158
+#: addon\globalPlugins\favoriteLinks\main.py:188
+msgid "Import links"
+msgstr "Nhập liên kết"
+
+#: addon\globalPlugins\favoriteLinks\main.py:173
+msgid "Add a new link to the list."
+msgstr "Thêm một liên kết mới vào danh sách."
+
+#: addon\globalPlugins\favoriteLinks\main.py:176
+msgid "Edit link."
+msgstr "Chỉnh sửa liên kết."
+
+#: addon\globalPlugins\favoriteLinks\main.py:179
+msgid "Delete link"
+msgstr "Xóa liên kết"
+
+#: addon\globalPlugins\favoriteLinks\main.py:182
+msgid "Copy URL to clipboard."
+msgstr "Sao chép URL vào bảng nhớ tạm."
+
+#: addon\globalPlugins\favoriteLinks\main.py:191
+msgid "Import Worker"
+msgstr "Import Worker"
+
+#: addon\globalPlugins\favoriteLinks\main.py:194
+msgid "Sort the links alphabetically."
+msgstr "Sắp xếp các liên kết theo thứ tự bảng chữ cái."
+
+#: addon\globalPlugins\favoriteLinks\main.py:197
+msgid "Open links in secondary browser."
+msgstr "Mở liên kết trong trình duyệt phụ."
+
+#: addon\globalPlugins\favoriteLinks\main.py:221
+msgid "Title"
+msgstr "Tiêu đề"
+
+#: addon\globalPlugins\favoriteLinks\main.py:222
+#: addon\globalPlugins\favoriteLinks\searchLinks.py:90
+msgid "URL"
+msgstr "URL"
+
+#: addon\globalPlugins\favoriteLinks\main.py:257
+msgid "Save export file"
+msgstr "Lưu tập tin xuất"
+
+#. Translators: Message displayed when completing a link export
+#: addon\globalPlugins\favoriteLinks\main.py:267
+msgid "Links exported successfully!"
+msgstr "Liên kết được xuất thành công!"
+
+#: addon\globalPlugins\favoriteLinks\main.py:267
+msgid "Success"
+msgstr "Thành công"
+
+#. Translators: Message displayed when the export fails
+#: addon\globalPlugins\favoriteLinks\main.py:272
+#, python-brace-format
+msgid "Error exporting links: {}"
+msgstr "Lỗi xuất liên kết: {}"
+
+#: addon\globalPlugins\favoriteLinks\main.py:283
+msgid "Open import file"
+msgstr "Mở tệp nhập"
+
+#. Translators: Message displayed when completing a link import
+#: addon\globalPlugins\favoriteLinks\main.py:294
+msgid "Links imported successfully!"
+msgstr "Liên kết được nhập thành công!"
+
+#. Translators: Message displayed when the import fails
+#: addon\globalPlugins\favoriteLinks\main.py:301
+#, python-brace-format
+msgid "Error importing links: {}"
+msgstr "Lỗi khi nhập liên kết: {}"
+
+#. Translators: Message displayed when there is no internet connection
+#: addon\globalPlugins\favoriteLinks\main.py:313
+#: addon\globalPlugins\favoriteLinks\main.py:781
+#: addon\globalPlugins\favoriteLinks\searchLinks.py:237
+msgid "No active internet connection!"
+msgstr "Không có kết nối internet hoạt động!"
+
+#. Translators: Message displayed when failing to open a link
+#: addon\globalPlugins\favoriteLinks\main.py:326
+#, python-brace-format
+msgid "Failed to open link: {}"
+msgstr "Không mở được liên kết: {}"
+
+#. Translators: Message displayed when no link is selected
+#. translators: Message displayed when no link is selected to open
+#: addon\globalPlugins\favoriteLinks\main.py:329
+#: addon\globalPlugins\favoriteLinks\main.py:792
+msgid "No link selected to open!"
+msgstr "Không có liên kết nào được chọn để mở!"
+
+#. Get the name of the new category of the user
+#: addon\globalPlugins\favoriteLinks\main.py:355
+msgid "Enter new category name:"
+msgstr "Nhập tên danh mục mới:"
+
+#: addon\globalPlugins\favoriteLinks\main.py:355
+msgid "Add Category"
+msgstr "Thêm danh mục"
+
+#. translators: Message displayed when a category is added
+#. Translators: Message displayed when a category is added
+#: addon\globalPlugins\favoriteLinks\main.py:370
+#: addon\globalPlugins\favoriteLinks\main.py:391
+msgid "Category added successfully!"
+msgstr "Đã thêm danh mục thành công!"
+
+#: addon\globalPlugins\favoriteLinks\main.py:402
+msgid "Add New Link"
+msgstr "Thêm liên kết mới"
+
+#: addon\globalPlugins\favoriteLinks\main.py:427
+msgid "Enter the name of the link:"
+msgstr "Nhập tên của liên kết:"
+
+#: addon\globalPlugins\favoriteLinks\main.py:428
+msgid "Link name"
+msgstr "Tên liên kết"
+
+#. translators: Message displayed when a link is added
+#: addon\globalPlugins\favoriteLinks\main.py:436
+msgid "Link added successfully!"
+msgstr "Đã thêm liên kết thành công!"
+
+#. translators: Message displayed when a link addition is cancelled
+#: addon\globalPlugins\favoriteLinks\main.py:449
+msgid "Link addition cancelled."
+msgstr "Đã hủy thêm liên kết."
+
+#. translators: Message displayed when no link is selected to edit
+#: addon\globalPlugins\favoriteLinks\main.py:467
+msgid "No link selected to edit!"
+msgstr "Không có liên kết nào được chọn để chỉnh sửa!"
+
+#: addon\globalPlugins\favoriteLinks\main.py:480
+msgid "Edit Link"
+msgstr "Chỉnh sửa liên kết"
+
+#. translators: Message displayed when a link is edited successfully
+#: addon\globalPlugins\favoriteLinks\main.py:499
+msgid "Link edited successfully!"
+msgstr "Đã chỉnh sửa liên kết thành công!"
+
+#. Translators: Message displayed when removing a link from the list
+#: addon\globalPlugins\favoriteLinks\main.py:536
+msgid "Link deleted successfully!"
+msgstr "Đã xóa liên kết thành công!"
+
+#. Translators: Message displayed when no item has been selected from the list
+#: addon\globalPlugins\favoriteLinks\main.py:544
+msgid "No link selected to delete!"
+msgstr "Không có liên kết nào được chọn để xóa!"
+
+#. Translators: Message displayed when the URL is copied to the clipboard
+#: addon\globalPlugins\favoriteLinks\main.py:561
+#: addon\globalPlugins\favoriteLinks\searchLinks.py:275
+msgid "URL copied to clipboard."
+msgstr "Đã sao chép URL vào bảng nhớ tạm."
+
+#. Translators: Message displayed when no link is selected to copy
+#: addon\globalPlugins\favoriteLinks\main.py:564
+msgid "No link selected to copy!"
+msgstr "Không có liên kết nào được chọn để sao chép!"
+
+#. translators: Message displayed when no category is selected to edit
+#: addon\globalPlugins\favoriteLinks\main.py:577
+msgid "No category selected to edit!"
+msgstr "Không có danh mục nào được chọn để chỉnh sửa!"
+
+#: addon\globalPlugins\favoriteLinks\main.py:583
+msgid "Edit category name:"
+msgstr "Chỉnh sửa tên danh mục:"
+
+#: addon\globalPlugins\favoriteLinks\main.py:584
+msgid "Edit Category"
+msgstr "Chỉnh sửa danh mục"
+
+#. translators: Message displayed when a category name is edited successfully
+#: addon\globalPlugins\favoriteLinks\main.py:601
+msgid "Category name edited successfully!"
+msgstr "Tên danh mục đã được chỉnh sửa thành công!"
+
+#. translators: Message displayed when no category is selected to delete
+#: addon\globalPlugins\favoriteLinks\main.py:619
+msgid "No category selected to delete!"
+msgstr "Không có danh mục nào được chọn để xóa!"
+
+#. Confirm with the user if they really want to delete
+#: addon\globalPlugins\favoriteLinks\main.py:624
+#, python-brace-format
+msgid "Are you sure you want to delete the category '{}' and all its links?"
+msgstr ""
+"Bạn có chắc chắn muốn xóa danh mục '{}' và tất cả các liên kết của nó không?"
+
+#: addon\globalPlugins\favoriteLinks\main.py:625
+msgid "Confirm Delete"
+msgstr "Xác nhận Xóa"
+
+#. translators: Message displayed when a category is deleted successfully
+#: addon\globalPlugins\favoriteLinks\main.py:637
+msgid "Category deleted successfully!"
+msgstr "Đã xóa danh mục thành công!"
+
+#. translators: Message displayed when a category cannot be deleted
+#: addon\globalPlugins\favoriteLinks\main.py:643
+#, python-brace-format
+msgid "Error deleting category: {}"
+msgstr "Lỗi xóa danh mục: {}"
+
+#. translators: Message displayed when links are sorted successfully
+#: addon\globalPlugins\favoriteLinks\main.py:715
+msgid "Successfully ordered!"
+msgstr "Successfully ordered!"
+
+#. translators: Message displayed when no browser path is configured
+#: addon\globalPlugins\favoriteLinks\main.py:759
+msgid "No browser path configured."
+msgstr "Không có đường dẫn trình duyệt nào được định cấu hình."
+
+#. translators: Message displayed when the browser executable is not found
+#: addon\globalPlugins\favoriteLinks\main.py:765
+#, python-brace-format
+msgid "Browser not found at path: {}"
+msgstr "Không tìm thấy trình duyệt tại đường dẫn: {}"
+
+#. translators: Message displayed when there is an error opening the link with the specified browser
+#: addon\globalPlugins\favoriteLinks\main.py:777
+#, python-brace-format
+msgid "Error opening the link with the browser: {}"
+msgstr "Lỗi mở liên kết bằng trình duyệt: {}"
+
+#: addon\globalPlugins\favoriteLinks\main.py:798
+msgid "Import bookmarks from HTML"
+msgstr "Nhập dấu trang từ HTML"
+
+#. Translators: Title of the search links dialog.
+#: addon\globalPlugins\favoriteLinks\searchLinks.py:56
+msgid "Search links"
+msgstr "Tìm kiếm liên kết"
+
+#. Translators: First option in the category dropdown; searches across all categories.
+#: addon\globalPlugins\favoriteLinks\searchLinks.py:64
+msgid "(All categories)"
+msgstr "(Tất cả danh mục)"
+
+#. Translators: Label for the category dropdown in the search dialog.
+#: addon\globalPlugins\favoriteLinks\searchLinks.py:77
+msgid "Select a category:"
+msgstr "Chọn một danh mục:"
+
+#. Translators: Label for the search text input field.
+#: addon\globalPlugins\favoriteLinks\searchLinks.py:84
+msgid "Search word:"
+msgstr "Tìm kiếm từ:"
+
+#. Search type radio
+#: addon\globalPlugins\favoriteLinks\searchLinks.py:89
+msgid "Name"
+msgstr "Tên"
+
+#: addon\globalPlugins\favoriteLinks\searchLinks.py:94
+msgid "Search by"
+msgstr "Tìm kiếm theo"
+
+#. Buttons
+#: addon\globalPlugins\favoriteLinks\searchLinks.py:114
+msgid "&Search"
+msgstr "&Tìm kiếm"
+
+#: addon\globalPlugins\favoriteLinks\searchLinks.py:118
+msgid "&Copy URL"
+msgstr "&Sao chép URL"
+
+#: addon\globalPlugins\favoriteLinks\searchLinks.py:159
+msgid "Please enter a search word."
+msgstr "Vui lòng nhập một từ để tìm kiếm."
+
+#: addon\globalPlugins\favoriteLinks\searchLinks.py:198
+msgid "No results found."
+msgstr "Không tìm thấy kết quả nào."
+
+#: addon\globalPlugins\favoriteLinks\searchLinks.py:198
+msgid "Search"
+msgstr "Tìm kiếm"
+
+#: addon\globalPlugins\favoriteLinks\searchLinks.py:209
+#, python-brace-format
+msgid "Results: {count} found."
+msgstr "Kết quả: đã tìm thấy {count}."
+
+#: addon\globalPlugins\favoriteLinks\searchLinks.py:222
+#, python-brace-format
+msgid "{count} results found."
+msgstr "Đã tìm thấy {count} kết quả."
+
+#: addon\globalPlugins\favoriteLinks\searchLinks.py:229
+msgid "No result selected to open!"
+msgstr "Không có kết quả nào được chọn để mở!"
+
+#: addon\globalPlugins\favoriteLinks\searchLinks.py:249
+#: addon\globalPlugins\favoriteLinks\__init__.py:430
+#, python-brace-format
+msgid "Opening {title}."
+msgstr "Đang mở {title}."
+
+#: addon\globalPlugins\favoriteLinks\searchLinks.py:258
+msgid "Unable to open the selected link. Please check your browser."
+msgstr "Không thể mở liên kết đã chọn. Vui lòng kiểm tra trình duyệt của bạn."
+
+#: addon\globalPlugins\favoriteLinks\searchLinks.py:268
+msgid "No result selected to copy!"
+msgstr "Không có kết quả nào được chọn để sao chép!"
+
+#: addon\globalPlugins\favoriteLinks\__init__.py:85
+msgid "&Favorite links..."
+msgstr "&Liên kết yêu thích..."
+
+#: addon\globalPlugins\favoriteLinks\__init__.py:126
+msgid "No links saved."
+msgstr "Không có liên kết nào được lưu."
+
+#: addon\globalPlugins\favoriteLinks\__init__.py:131
+msgid "No links in this category."
+msgstr "Không có liên kết trong danh mục này."
+
+#: addon\globalPlugins\favoriteLinks\__init__.py:144
+msgid "Favorite links."
+msgstr "Liên kết yêu thích."
+
+#. Translators: Text displayed in NVDA help.
+#: addon\globalPlugins\favoriteLinks\__init__.py:174
+msgid "This addon allows you to save links to a specific page."
+msgstr "Tiện ích bổ sung này cho phép bạn lưu liên kết đến một trang cụ thể."
+
+#. Translators: Text displayed in NVDA help.
+#: addon\globalPlugins\favoriteLinks\__init__.py:184
+msgid "Show document URL, press twice copies to clipboard."
+msgstr "Hiển thị URL tài liệu, nhấn hai lần sao chép vào bảng nhớ tạm."
+
+#: addon\globalPlugins\favoriteLinks\__init__.py:195
+#, python-brace-format
+msgid "Copied to clipboard {URL}."
+msgstr "{URL} đã được sao chép vào bảng nhớ tạm."
+
+#: addon\globalPlugins\favoriteLinks\__init__.py:197
+msgid "Document URL not found."
+msgstr "Không tìm thấy URL tài liệu."
+
+#: addon\globalPlugins\favoriteLinks\__init__.py:199
+msgid "No browser window found."
+msgstr "Không tìm thấy cửa sổ trình duyệt."
+
+#. Translators: Text displayed in NVDA help.
+#: addon\globalPlugins\favoriteLinks\__init__.py:205
+msgid "Search saved links by name or URL."
+msgstr "Tìm kiếm các liên kết đã lưu theo tên hoặc URL."
+
+#: addon\globalPlugins\favoriteLinks\__init__.py:215
+msgid "Failed to load links. Please check the file."
+msgstr "Không thể tải liên kết. Vui lòng kiểm tra tệp của bạn."
+
+#: addon\globalPlugins\favoriteLinks\__init__.py:218
+msgid ""
+"No saved links found. If you had links before, the links file may have been "
+"corrupt and was reset. Please add links to begin."
+msgstr ""
+"Không tìm thấy liên kết đã lưu. Nếu trước đây bạn có liên kết thì tệp liên "
+"kết có thể đã bị hỏng và đã được đặt lại. Vui lòng thêm một liên kết mới để "
+"bắt đầu."
+
+#: addon\globalPlugins\favoriteLinks\__init__.py:224
+msgid "Unable to open the search dialog."
+msgstr "Không thể mở hộp thoại tìm kiếm."
+
+#. Translators: Text displayed in NVDA help.
+#: addon\globalPlugins\favoriteLinks\__init__.py:238
+msgid "Open a URL from the clipboard."
+msgstr "Mở một URL từ bảng nhớ tạm."
+
+#: addon\globalPlugins\favoriteLinks\__init__.py:248
+msgid "Unable to read the clipboard."
+msgstr "Không thể đọc bảng nhớ tạm."
+
+#: addon\globalPlugins\favoriteLinks\__init__.py:253
+msgid "The clipboard does not contain any links."
+msgstr "Bảng nhớ tạm không chứa bất kỳ liên kết nào."
+
+#. Translators: Text displayed in NVDA help.
+#: addon\globalPlugins\favoriteLinks\__init__.py:281
+msgid "Move to the next saved link in the current category."
+msgstr "Di chuyển đến liên kết đã lưu tiếp theo trong danh mục hiện tại."
+
+#. Translators: Text displayed in NVDA help.
+#: addon\globalPlugins\favoriteLinks\__init__.py:303
+msgid "Move to the previous saved link in the current category."
+msgstr "Di chuyển đến liên kết đã lưu trước đó trong danh mục hiện tại."
+
+#. Translators: Text displayed in NVDA help.
+#: addon\globalPlugins\favoriteLinks\__init__.py:325
+msgid "Move to the next category of saved links."
+msgstr "Di chuyển đến danh mục tiếp theo của các liên kết đã lưu."
+
+#: addon\globalPlugins\favoriteLinks\__init__.py:342
+#: addon\globalPlugins\favoriteLinks\__init__.py:368
+#, python-brace-format
+msgid "{category}: Contains {count} link"
+msgid_plural "{category}: Contains {count} links"
+msgstr[0] "{category}: Chứa {count} liên kết"
+
+#. Translators: Text displayed in NVDA help.
+#: addon\globalPlugins\favoriteLinks\__init__.py:351
+msgid "Move to the previous category of saved links."
+msgstr "Di chuyển đến danh mục liên kết đã lưu trước đó."
+
+#. Translators: Text displayed in NVDA help.
+#: addon\globalPlugins\favoriteLinks\__init__.py:377
+msgid "Move to the first saved link in the current category."
+msgstr "Di chuyển đến liên kết đã lưu đầu tiên trong danh mục hiện tại."
+
+#. Translators: Text displayed in NVDA help.
+#: addon\globalPlugins\favoriteLinks\__init__.py:396
+msgid "Move to the last saved link in the current category."
+msgstr "Di chuyển đến liên kết đã lưu cuối cùng trong danh mục hiện tại."
+
+#. Translators: Text displayed in NVDA help.
+#: addon\globalPlugins\favoriteLinks\__init__.py:415
+msgid "Open the currently selected link in the default browser."
+msgstr "Mở liên kết hiện được chọn trong trình duyệt mặc định."
+
+#: addon\globalPlugins\favoriteLinks\__init__.py:436
+#, python-brace-format
+msgid "Unable to open {title}."
+msgstr "Không thể mở {title}."
+
+#. Translators: Text displayed in NVDA help.
+#: addon\globalPlugins\favoriteLinks\__init__.py:442
+msgid "Toggle reading the URL after the link name during keyboard navigation."
+msgstr "Đọc URL sau tên liên kết khi điều hướng bằng bàn phím."
+
+#: addon\globalPlugins\favoriteLinks\__init__.py:449
+msgid "Read URL after name turned on."
+msgstr "Đọc tên URL sau khi bật."
+
+#: addon\globalPlugins\favoriteLinks\__init__.py:451
+msgid "Read URL after name turned off."
+msgstr "Đọc tên URL sau khi tắt."
+
+#: addon\globalPlugins\favoriteLinks\importBookmarks\gui.py:69
+msgid "Importing"
+msgstr "Đang nhập"
+
+#: addon\globalPlugins\favoriteLinks\importBookmarks\gui.py:72
+msgid "Starting…"
+msgstr "Đang bắt đầu…"
+
+#: addon\globalPlugins\favoriteLinks\importBookmarks\gui.py:74
+msgid "Cancel"
+msgstr "Hủy bỏ"
+
+#: addon\globalPlugins\favoriteLinks\importBookmarks\gui.py:112
+msgid "No links found."
+msgstr "Không tìm thấy liên kết nào."
+
+#: addon\globalPlugins\favoriteLinks\importBookmarks\gui.py:157
+msgid "HTML file:"
+msgstr "tập tin HTML:"
+
+#: addon\globalPlugins\favoriteLinks\importBookmarks\gui.py:161
+msgid "&Select HTML..."
+msgstr "&Chọn HTML..."
+
+#: addon\globalPlugins\favoriteLinks\importBookmarks\gui.py:166
+msgid "&Import"
+msgstr "&Nhập"
+
+#: addon\globalPlugins\favoriteLinks\importBookmarks\gui.py:178
+msgid "Select HTML file"
+msgstr "Chọn một tệp HTML"
+
+#: addon\globalPlugins\favoriteLinks\importBookmarks\gui.py:188
+msgid "Select a valid HTML file."
+msgstr "Chọn một tệp HTML hợp lệ."
+
+#: addon\globalPlugins\favoriteLinks\importBookmarks\gui.py:202
+msgid "Importing links…"
+msgstr "Đang nhập liên kết…"
+
+#: addon\globalPlugins\favoriteLinks\importBookmarks\gui.py:226
+msgid "Imported Bookmarks"
+msgstr "Dấu trang đã nhập"
+
+#. translators: Message shown when bookmark import is completed successfully.
+#: addon\globalPlugins\favoriteLinks\importBookmarks\gui.py:238
+msgid "Import completed successfully."
+msgstr "Quá trình nhập đã hoàn tất thành công."
+
+#: addon\globalPlugins\favoriteLinks\importBookmarks\gui.py:248
+msgid "Import cancelled."
+msgstr "Đã hủy nhập."
+
+#. Add-on summary/title, usually the user visible name of the add-on
+#. Translators: Summary/title for this add-on
+#. to be shown on installation and add-on information found in add-on store
+#: buildVars.py:21
+msgid "Favorite links"
+msgstr "Liên kết yêu thích"
+
+#. Add-on description
+#. Translators: Long description to be shown for this add-on on add-on information from add-on store
+#: buildVars.py:24
+msgid ""
+"This add-on allows you to save, edit and remove links to frequently visited "
+"pages.\n"
+"\n"
+"Shortcut Windows+Alt+K."
+msgstr ""
+"Tiện ích bổ sung này cho phép bạn lưu, chỉnh sửa và xóa liên kết đến các "
+"trang thường xuyên truy cập.\n"
+"\n"
+"Phím tắt Windows+Alt+K."
+
+#. Brief changelog for this version
+#. Translators: what's 	new content for the add-on version to be shown in the add-on store
+#: buildVars.py:31
+msgid "Added support for Spanish."
+msgstr "Đã thêm hỗ trợ cho tiếng Tây Ban Nha."
