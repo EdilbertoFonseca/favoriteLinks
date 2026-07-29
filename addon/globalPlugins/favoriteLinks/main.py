@@ -69,7 +69,11 @@ class FavoriteLinks(wx.Dialog):
 		HEIGHT = 500
 
 		super(FavoriteLinks, self).__init__(
-			parent, title=title, size=(WIDTH, HEIGHT), style=wx.DEFAULT_DIALOG_STYLE | wx.RESIZE_BORDER)
+			parent,
+			title=title,
+			size=(WIDTH, HEIGHT),
+			style=wx.DEFAULT_DIALOG_STYLE | wx.RESIZE_BORDER,
+		)
 		panel = wx.Panel(self)
 		boxSizer = wx.BoxSizer(wx.VERTICAL)
 		sizerHelper = guiHelper.BoxSizerHelper(panel, wx.VERTICAL)
@@ -92,13 +96,17 @@ class FavoriteLinks(wx.Dialog):
 		self.Bind(wx.EVT_CHAR_HOOK, self.onKeyPress)
 
 		self.category = sizerHelper.addLabeledControl(
-			_("Select a category"), wx.Choice, choices=[]
+			_("Select a category"),
+			wx.Choice,
+			choices=[],
 		)
 		self.category.Bind(wx.EVT_CHOICE, self.onCategorySelected)
 		self.category.Bind(wx.EVT_CONTEXT_MENU, self.onCategoryContextMenu)
 
 		self.listLinks = sizerHelper.addLabeledControl(
-			_("List of links..."), wx.ListCtrl, style=wx.LC_REPORT | wx.SUNKEN_BORDER
+			_("List of links..."),
+			wx.ListCtrl,
+			style=wx.LC_REPORT | wx.SUNKEN_BORDER,
 		)
 		self.listLinks.Bind(wx.EVT_CONTEXT_MENU, self.onListContextMenu)
 		self.listLinks.Bind(wx.EVT_KEY_DOWN, self.onListKeyPress)
@@ -110,7 +118,7 @@ class FavoriteLinks(wx.Dialog):
 			(self.labelEditLink, self.onEditLink),
 			(self.labelDeleteLink, self.onDeleteLink),
 			(self.labelAddCategory, self.onAddCategory),
-			(self.labelExit, self.onExit)
+			(self.labelExit, self.onExit),
 		]
 
 		for label, handler in buttons:
@@ -118,7 +126,7 @@ class FavoriteLinks(wx.Dialog):
 			buttonSizer.addItem(button)
 			self.Bind(wx.EVT_BUTTON, handler, button)
 
-		boxSizer.Add(sizerHelper.sizer, 1, wx.ALL | wx.EXPAND, 10)  #, border=10, flag=wx.ALL | wx.EXPAND)
+		boxSizer.Add(sizerHelper.sizer, 1, wx.ALL | wx.EXPAND, 10)  # , border=10, flag=wx.ALL | wx.EXPAND)
 		boxSizer.Add(buttonSizer.sizer, border=5, flag=wx.CENTER)
 		panel.SetSizerAndFit(boxSizer)
 		self.Fit()
@@ -151,7 +159,11 @@ class FavoriteLinks(wx.Dialog):
 		self.Bind(wx.EVT_MENU, self.onAddCategory, addCategory)
 		editCategory = menu.Append(wx.ID_ANY, self.labelEditCategory, _("Edit a category in the list."))
 		self.Bind(wx.EVT_MENU, self.onEditCategory, editCategory)
-		deleteCategory = menu.Append(wx.ID_ANY, self.labelDeleteCategory, _("Delete a category from the list."))
+		deleteCategory = menu.Append(
+			wx.ID_ANY,
+			self.labelDeleteCategory,
+			_("Delete a category from the list."),
+		)
 		self.Bind(wx.EVT_MENU, self.onDeleteCategory, deleteCategory)
 		exportLinks = menu.Append(wx.ID_ANY, self.labelExportLinks, _("Export links"))
 		self.Bind(wx.EVT_MENU, self.onExportLinks, exportLinks)
@@ -240,7 +252,7 @@ class FavoriteLinks(wx.Dialog):
 		elif keyCode == wx.WXK_F2:
 			self.onEditLink(event)
 			return
-		elif keyCode == ord('C') and event.ControlDown():
+		elif keyCode == ord("C") and event.ControlDown():
 			self.onCopyUrl(event)
 			return
 		event.Skip()
@@ -254,8 +266,10 @@ class FavoriteLinks(wx.Dialog):
 		"""
 
 		with wx.FileDialog(
-			self, message=_("Save export file"), wildcard="JSON files (*.json)|*.json",
-			style=wx.FD_SAVE | wx.FD_OVERWRITE_PROMPT
+			self,
+			message=_("Save export file"),
+			wildcard="JSON files (*.json)|*.json",
+			style=wx.FD_SAVE | wx.FD_OVERWRITE_PROMPT,
 		) as fileDialog:
 			if fileDialog.ShowModal() == wx.ID_CANCEL:
 				return
@@ -280,8 +294,10 @@ class FavoriteLinks(wx.Dialog):
 		"""
 
 		with wx.FileDialog(
-			self, message=_("Open import file"), wildcard="JSON files (*.json)|*.json",
-			style=wx.FD_OPEN | wx.FD_FILE_MUST_EXIST
+			self,
+			message=_("Open import file"),
+			wildcard="JSON files (*.json)|*.json",
+			style=wx.FD_OPEN | wx.FD_FILE_MUST_EXIST,
 		) as fileDialog:
 			if fileDialog.ShowModal() == wx.ID_CANCEL:
 				return
@@ -380,7 +396,7 @@ class FavoriteLinks(wx.Dialog):
 
 		Args:
 			event (wx.Event): The event triggered by the add category button.
-	"""
+		"""
 
 		try:
 			self.linkManager.addCategory(category)
@@ -400,14 +416,14 @@ class FavoriteLinks(wx.Dialog):
 			mainFrame,
 			self.linkManager,
 			title=_("Add New Link"),
-			selectedCategory=selected_category
+			selectedCategory=selected_category,
 		)
 		mainFrame.prePopup()
 
 		if dlg.ShowModal() == wx.ID_OK:
 			result = dlg.result
-			category = result['category']
-			url = result['url']
+			category = result["category"]
+			url = result["url"]
 
 		# Ensure the variable exists
 		title = ""
@@ -426,7 +442,7 @@ class FavoriteLinks(wx.Dialog):
 		title = self.getUserInput(
 			_("Enter the name of the link:"),
 			_("Link name"),
-			default_value=title_temp
+			default_value=title_temp,
 		)
 
 		if title:
@@ -456,11 +472,11 @@ class FavoriteLinks(wx.Dialog):
 
 	def onEditLink(self, event):
 		"""
-			Edit a selected link using the EditLinks dialog.
+		Edit a selected link using the EditLinks dialog.
 		"""
 		# Get selection at the beginning of the method
 		selected_item = self.listLinks.GetFirstSelected()
-    
+
 		# Make sure there is a valid selection
 		if selected_item == -1:
 			# translators: Message displayed when no link is selected to edit
@@ -480,7 +496,7 @@ class FavoriteLinks(wx.Dialog):
 			title=_("Edit Link"),
 			oldCategory=oldCategory,
 			oldTitle=oldTitle,
-			oldURL=oldURL
+			oldURL=oldURL,
 		)
 		mainFrame.prePopup()
 
@@ -582,7 +598,7 @@ class FavoriteLinks(wx.Dialog):
 		newCategory = self.getUserInput(
 			_("Edit category name:"),
 			_("Edit Category"),
-			oldCategory
+			oldCategory,
 		)
 
 		if newCategory and newCategory != oldCategory:
@@ -621,7 +637,9 @@ class FavoriteLinks(wx.Dialog):
 			return
 
 		# Confirm with the user if they really want to delete
-		confirmMessage = _("Are you sure you want to delete the category '{}' and all its links?").format(selected_category)
+		confirmMessage = _("Are you sure you want to delete the category '{}' and all its links?").format(
+			selected_category,
+		)
 		if messageBox(confirmMessage, _("Confirm Delete"), style=wx.ICON_QUESTION | wx.YES_NO) == wx.YES:
 			try:
 				# Call the Linkmanager method to delete the category
@@ -640,7 +658,11 @@ class FavoriteLinks(wx.Dialog):
 				# Treats possible errors that linkmanager may have
 				log.error(f"Error deleting category: {e}")
 				# translators: Message displayed when a category cannot be deleted
-				self.showMessage(_("Error deleting category: {}").format(e), _("Error"), wx.OK | wx.ICON_ERROR)
+				self.showMessage(
+					_("Error deleting category: {}").format(e),
+					_("Error"),
+					wx.OK | wx.ICON_ERROR,
+				)
 
 	def getUserInput(self, message, caption, default_value=""):
 		"""
@@ -667,7 +689,7 @@ class FavoriteLinks(wx.Dialog):
 			message: The message to display in the message box.
 			caption: The caption for the message box. If None, defaults to "Search Links".
 			style: The style flags for the message box (e.g., wx.OK, wx.ICONINFORMATION).
-			   	Defaults to wx.OK | wx.ICONINFORMATION.
+		                Defaults to wx.OK | wx.ICONINFORMATION.
 		"""
 
 		if caption is None:
@@ -796,7 +818,7 @@ class FavoriteLinks(wx.Dialog):
 		dlg = ImportBookmarksDialog(
 			mainFrame,
 			title=_("Import bookmarks from HTML"),
-			onFinish=self.updateAllUI
+			onFinish=self.updateAllUI,
 		)
 		mainFrame.prePopup()
 		dlg.Show()

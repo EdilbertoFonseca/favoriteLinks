@@ -62,8 +62,8 @@ Shortcut Windows+Alt+K."""),
 pythonSources: list[str] = [
 	"addon/*.py",
 	"addon/globalPlugins/favoriteLinks/*.py",
-	"addon/globalPlugins/favoriteLinks/importBookmarks/*.py"
-	]
+	"addon/globalPlugins/favoriteLinks/importBookmarks/*.py",
+]
 
 # Files that contain strings for translation. Usually your python sources
 i18nSources: list[str] = pythonSources + ["buildVars.py"]
@@ -85,7 +85,7 @@ baseLanguage: str = "en"
 # If you need to add support for markup such as tables, fill out the below list.
 # Extensions string must be of the form "markdown.extensions.extensionName"
 # e.g. "markdown.extensions.tables" to add tables.
-markdownExtensions: list[str] = ["markdown.extensions.tables" ]
+markdownExtensions: list[str] = ["markdown.extensions.tables"]
 
 # Custom braille translation tables
 # If your add-on includes custom braille tables (most will not), fill out this dictionary.

@@ -23,6 +23,7 @@ import re
 import socket
 import sys
 from json.decoder import JSONDecodeError
+from typing import Any
 from urllib.error import URLError
 from urllib.request import urlopen
 
@@ -31,7 +32,7 @@ from api import getClipData
 from logHandler import log
 
 from .jsonConfig import jsonConfig
-from .varsConfig import ourAddon, addonPath
+from .varsConfig import addonPath, ourAddon
 
 # Initialize translation support
 addonHandler.initTranslation()
@@ -50,13 +51,17 @@ except ImportError as e:
 	raise ImportError(_("Missing required libraries: validators, BeautifulSoup e UnicodeDammit"))
 
 
-class LinkManager:
+def get_title_key(item: Any) -> str:
+	"""Retorna o título em caixa baixa para ordenação segura."""
+	return str(item[0]).lower()
 
+
+class LinkManager:
 	# Regular expression that matches http/https/ftp URLs and bare www. addresses.
 	# Inspired by the URL pattern used in Link Manager by Abdallah Hader:
 	# https://github.com/abdallah-hader/linkManager
 	_URL_RE = re.compile(r"(?:(?:https?|ftp)://\S+|www\.\S+)")
-	_URL_STRIP_CHARS = '\'.,[]{}:;"'
+	_URL_STRIP_CHARS = "'.,[]{}:;\""
 
 	def __init__(self):
 		self.jsonFilePath = jsonConfig.getCurrentJsonPath()
@@ -86,8 +91,9 @@ class LinkManager:
 		It loads the JSON file data to the memory and ensures that the structure is clean.
 		"""
 		try:
-			with open(self.jsonFilePath, 'r', encoding='utf-8') as file:
-				rawData = json.load(file)
+			if self.jsonFilePath:
+				with open(str(self.jsonFilePath), "r", encoding="utf-8") as file:
+					rawData = json.load(file)
 
 			cleanData = {}
 			for category, links in rawData.items():
@@ -116,8 +122,9 @@ class LinkManager:
 		Saves memory data to the JSON file.
 		"""
 		try:
-			with open(self.jsonFilePath, 'w', encoding='utf-8') as file:
-				json.dump(self.data, file, indent=4, ensure_ascii=False)
+			if self.jsonFilePath:
+				with open(str(self.jsonFilePath), "w", encoding="utf-8") as file:
+					json.dump(self.data, file, indent=4, ensure_ascii=False)
 		except Exception as e:
 			raise Exception(_("Error saving the links: {}").format(e))
 
@@ -139,8 +146,8 @@ class LinkManager:
 		"""
 		try:
 			with urlopen(url, timeout=5) as response:
-				soup = BeautifulSoup(response, 'html.parser')
-				titleTag = soup.find('title')
+				soup = BeautifulSoup(response, "html.parser")
+				titleTag = soup.find("title")
 				if titleTag:
 					title = titleTag.get_text().strip()
 					return UnicodeDammit(title).unicode_markup
@@ -160,7 +167,7 @@ class LinkManager:
 			raise ValueError(_("The link already exists in the category!"))
 
 		self.data[category].append([title, url])
-		self.data[category].sort(key=lambda x: x[0].lower())
+		self.data[category].sort(key=get_title_key)
 		self.saveLinks()
 
 	def editLinkInCategory(self, category: str, oldTitle: str, newTitle: str, newURL: str):
@@ -178,7 +185,7 @@ class LinkManager:
 		else:
 			raise ValueError(_("Link not found to edit."))
 
-		self.data[category].sort(key=lambda x: x[0].lower())
+		self.data[category].sort(key=get_title_key)
 		self.saveLinks()
 
 	def removeLinkFromCategory(self, category: str, title: str):
@@ -237,8 +244,16 @@ class LinkManager:
 			raise ValueError(_("The imported data must be a dictionary with categories as keys."))
 
 		for category, links in importedData.items():
-			if not isinstance(links, list) or not all(isinstance(link, list) and len(link) == 2 for link in links):
-				raise ValueError(_("The links in the category '{}' must be lists containing [title, url].".format(category)))
+			if not isinstance(links, list) or not all(
+				isinstance(link, list) and len(link) == 2 for link in links
+			):
+				raise ValueError(
+					_(
+						"The links in the category '{}' must be lists containing [title, url].".format(
+							category,
+						),
+					),
+				)
 
 			if category in self.data:
 				existingURLS = {link[1] for link in self.data[category]}
@@ -256,7 +271,7 @@ class LinkManager:
 		Export all links to a JSON file.
 		"""
 		try:
-			with open(exportPath, 'w', encoding='utf-8') as file:
+			with open(exportPath, "w", encoding="utf-8") as file:
 				json.dump(self.data, file, indent=4, ensure_ascii=False)
 		except Exception as e:
 			raise Exception(_("Error exporting the links: {}".format(e)))
@@ -266,7 +281,7 @@ class LinkManager:
 		Import links from a JSON file.
 		"""
 		try:
-			with open(importPath, 'r', encoding='utf-8') as file:
+			with open(importPath, "r", encoding="utf-8") as file:
 				importedData = json.load(file)
 			self.mergeLinks(importedData)
 		except FileNotFoundError:
@@ -294,7 +309,7 @@ class LinkManager:
 		"""
 		return [s.strip(LinkManager._URL_STRIP_CHARS) for s in LinkManager._URL_RE.findall(text)]
 
-	def is_internet_connected(self, host='8.8.8.8', port=53, timeout=3) -> bool:
+	def is_internet_connected(self, host="8.8.8.8", port=53, timeout=3) -> bool:
 		"""
 		Check if there is connection to the internet.
 		"""
@@ -308,8 +323,8 @@ class LinkManager:
 		"""
 		Order all links in all categories.
 		"""
-		for category, links in self.data.items():
-			self.data[category] = sorted(links, key=lambda x: x[0].lower())
+		for links in self.data.values():
+			links.sort(key=get_title_key)
 		self.saveLinks()
 
 	def sortCategories(self):

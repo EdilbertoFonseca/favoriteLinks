@@ -2,7 +2,7 @@
 
 """
 Author: Abel Passos <abel.passos.listas@gmail.com>
-Copyright: (C) 2025 Abel Passos 
+Copyright: (C) 2025 Abel Passos
 
 This file is covered by the GNU General Public License.
 See the file COPYING for more details or visit:
@@ -38,13 +38,9 @@ addonHandler.initTranslation()
 def extractUrlsFromHtml(htmlText: str):
 	pattern = re.compile(
 		r'<a\s+[^>]*href\s*=\s*["\']([^"\']+)["\']',
-		re.IGNORECASE
+		re.IGNORECASE,
 	)
-	return [
-		html_lib.unescape(m.group(1).strip())
-		for m in pattern.finditer(htmlText)
-		if m.group(1).strip()
-	]
+	return [html_lib.unescape(m.group(1).strip()) for m in pattern.finditer(htmlText) if m.group(1).strip()]
 
 
 def fetchPageTitle(url: str, timeout=8) -> str:
@@ -85,7 +81,6 @@ class ProgressDialog(wx.Dialog):
 
 	def onCancel(self, evt):
 		self.cancelled = True
-
 
 
 class ImportWorker(threading.Thread):
@@ -133,13 +128,12 @@ class ImportWorker(threading.Thread):
 			wx.CallAfter(self.parent.on_error, str(e))
 
 
-
 class ImportBookmarksDialog(wx.Dialog):
 	"""Main dialog (NVDA-style)"""
 
 	def __init__(self, parent, title, onFinish=None):
 		# Dialog window title.
-		self.title=title
+		self.title = title
 
 		super().__init__(parent, title=title)
 		self.onFinish = onFinish
@@ -154,16 +148,17 @@ class ImportBookmarksDialog(wx.Dialog):
 		sizerHelper = guiHelper.BoxSizerHelper(panel, wx.VERTICAL)
 
 		self.textHtml = sizerHelper.addLabeledControl(
-			_("HTML file:"), wx.TextCtrl
+			_("HTML file:"),
+			wx.TextCtrl,
 		)
 
 		self.btnBrowse = sizerHelper.addItem(
-			wx.Button(panel, label=_("&Select HTML..."))
+			wx.Button(panel, label=_("&Select HTML...")),
 		)
 		self.btnBrowse.Bind(wx.EVT_BUTTON, self.onBrowse)
 
 		self.btnImport = sizerHelper.addItem(
-			wx.Button(panel, label=_("&Import"))
+			wx.Button(panel, label=_("&Import")),
 		)
 		self.btnImport.Bind(wx.EVT_BUTTON, self.onImport)
 
@@ -171,13 +166,12 @@ class ImportBookmarksDialog(wx.Dialog):
 		panel.SetSizerAndFit(boxSizer)
 		self.Fit()
 
-
 	def onBrowse(self, evt):
 		with wx.FileDialog(
 			self,
 			_("Select HTML file"),
 			wildcard="HTML (*.html)|*.html",
-			style=wx.FD_OPEN | wx.FD_FILE_MUST_EXIST
+			style=wx.FD_OPEN | wx.FD_FILE_MUST_EXIST,
 		) as dlg:
 			if dlg.ShowModal() == wx.ID_OK:
 				self.htmlPath = dlg.GetPath()
@@ -218,7 +212,7 @@ class ImportBookmarksDialog(wx.Dialog):
 
 		if os.path.isfile(json_path):
 			try:
-				with open(json_path, "r", encoding="utf-8") as f:
+				with open(str(json_path), "r", encoding="utf-8") as f:
 					data = json.load(f)
 			except Exception:
 				data = {}
@@ -231,7 +225,7 @@ class ImportBookmarksDialog(wx.Dialog):
 			if url not in existing:
 				data[category].append([title, url])
 
-		with open(json_path, "w", encoding="utf-8") as f:
+		with open(str(json_path), "w", encoding="utf-8") as f:
 			json.dump(data, f, indent=2, ensure_ascii=False)
 
 		# translators: Message shown when bookmark import is completed successfully.

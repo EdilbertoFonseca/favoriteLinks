@@ -52,24 +52,28 @@ class EditLinks(wx.Dialog):
 		# Field to select the category
 		categories = list(self.linkManager.data.keys())
 		self.categoryChoice = sizerHelper.addLabeledControl(
-			_("Select a Category"), wx.Choice, choices=categories
+			_("Select a Category"),
+			wx.Choice,
+			choices=categories,
 		)
 		if self.oldCategory in categories:
 			self.categoryChoice.SetStringSelection(self.oldCategory)
 
 		# Field to edit the title
 		self.textTitle = sizerHelper.addLabeledControl(
-			_("Enter a title for the URL:"), wx.TextCtrl
+			_("Enter a title for the URL:"),
+			wx.TextCtrl,
 		)
 		self.textTitle.SetValue(self.oldTitle)
 
 		# Field to edit the URL
 		self.textURL = sizerHelper.addLabeledControl(
-			_("Enter link URL:"), wx.TextCtrl
+			_("Enter link URL:"),
+			wx.TextCtrl,
 		)
 		self.textURL.SetValue(self.oldURL)
 
-		#Buttons
+		# Buttons
 		okButton = wx.Button(panel, wx.ID_OK, _("&Ok"))
 		cancelButton = wx.Button(panel, wx.ID_CANCEL, _("&Cancel"))
 
@@ -80,7 +84,7 @@ class EditLinks(wx.Dialog):
 		boxSizer.Add(buttonSizer.sizer, border=5, flag=wx.CENTER)
 		panel.SetSizerAndFit(boxSizer)
 		self.Fit()
-		
+
 		self.Bind(wx.EVT_BUTTON, self.onOk, okButton)
 		self.Bind(wx.EVT_BUTTON, self.onCancel, cancelButton)
 		self.Bind(wx.EVT_CHAR_HOOK, self.onKeyPress)
@@ -102,7 +106,7 @@ class EditLinks(wx.Dialog):
 			# translators: Error message displayed when the user enters an invalid URL.
 			self.showMessage(_("Invalid URL"), _("Error"), wx.OK | wx.ICON_ERROR)
 			return
-		
+
 		# Returns the values ​​for the main dialog
 		self.EndModal(wx.ID_OK)
 
@@ -127,7 +131,7 @@ class EditLinks(wx.Dialog):
 			message: The message to display in the message box.
 			caption: The caption for the message box. If None, defaults to "Search Links".
 			style: The style flags for the message box (e.g., wx.OK, wx.ICONINFORMATION).
-			   	Defaults to wx.OK | wx.ICONINFORMATION.
+		                Defaults to wx.OK | wx.ICONINFORMATION.
 		"""
 
 		if caption is None:
