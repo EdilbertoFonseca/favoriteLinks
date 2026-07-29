@@ -27,7 +27,7 @@ from gui import guiHelper
 from gui.settingsDialogs import SettingsPanel
 
 from .jsonConfig import jsonConfig  # Import the new json_config instance
-from .varsConfig import ADDON_SUMMARY 
+from .varsConfig import ADDON_SUMMARY
 
 # Initialize translation support
 addonHandler.initTranslation()
@@ -36,11 +36,13 @@ addonHandler.initTranslation()
 class FavoriteLinksSettingsPanel(SettingsPanel):
 	title = ADDON_SUMMARY
 
-	def makeSettings(self, settingsSizer):
-		settingsSizerHelper = guiHelper.BoxSizerHelper(self, sizer=settingsSizer)
-				# JSON File Path Settings (MODIFIED)
+	def makeSettings(self, sizer):
+		settingsSizerHelper = guiHelper.BoxSizerHelper(self, sizer=sizer)
+		# JSON File Path Settings (MODIFIED)
 		pathBoxSizer = wx.StaticBoxSizer(
-			wx.HORIZONTAL, self, label=_("Path of file json:")
+			wx.HORIZONTAL,
+			self,
+			label=_("Path of file json:"),
 		)
 		pathBox = pathBoxSizer.GetStaticBox()
 		pathGroup = guiHelper.BoxSizerHelper(self, sizer=pathBoxSizer)
@@ -60,19 +62,21 @@ class FavoriteLinksSettingsPanel(SettingsPanel):
 		self.pathNameCB.SetSelection(min(jsonConfig.indexJson, len(self.pathList) - 1))
 
 		changePathBtn = wx.Button(pathBox, label=_("&Select or add a directory"))
-		pathGroup.sizer.Add(changePathBtn, 0, wx.ALL, 5) # Add button to sizer
+		pathGroup.sizer.Add(changePathBtn, 0, wx.ALL, 5)  # Add button to sizer
 		changePathBtn.Bind(wx.EVT_BUTTON, self.onDirectory)
 
 		# Browser Path Settings (NEW)
 		browserPathBoxSizer = wx.StaticBoxSizer(
-			wx.HORIZONTAL, self, label=_("Secondary browser path:")
+			wx.HORIZONTAL,
+			self,
+			label=_("Secondary browser path:"),
 		)
 		browserPathBox = browserPathBoxSizer.GetStaticBox()
 		browserPathGroup = guiHelper.BoxSizerHelper(self, sizer=browserPathBoxSizer)
 		settingsSizerHelper.addItem(browserPathGroup)
 
 		# Assume we store the browser path in json_config
-		self.browserPath = jsonConfig.browserPath or ''  # Fallback to empty string if not set
+		self.browserPath = jsonConfig.browserPath or ""  # Fallback to empty string if not set
 		self.browserPathCB = browserPathGroup.addLabeledControl("", wx.TextCtrl, value=self.browserPath)
 
 		# Button to select the browser path
@@ -84,16 +88,21 @@ class FavoriteLinksSettingsPanel(SettingsPanel):
 		"""
 		Selects a directory to save the Favorite Links JSON file.
 		"""
-		self.Freeze() # Freeze UI updates for performance
+		self.Freeze()  # Freeze UI updates for performance
+		dlg = None
 
 		try:
 			# Use gui.mainFrame as the parent for the FileDialog
 			frame = gui.mainFrame
-			
+
 			# Get initial directory and filename for the dialog
 			current_path = jsonConfig.getCurrentJsonPath()
-			initial_dir = os.path.dirname(current_path) if current_path else os.path.dirname(__file__)
-			initial_file = os.path.basename(current_path) if current_path else "favorite_links.json"
+			if current_path and isinstance(current_path, str):
+				initial_dir = os.path.dirname(current_path)
+				initial_file = os.path.basename(current_path)
+			else:
+				initial_dir = os.path.dirname(__file__)
+				initial_file = "favorite_links.json"
 
 			dlg = wx.FileDialog(
 				frame,
@@ -101,7 +110,7 @@ class FavoriteLinksSettingsPanel(SettingsPanel):
 				initial_dir,
 				initial_file,
 				wildcard=_("JSON files (*.json)|*.json"),
-				style=wx.FD_SAVE
+				style=wx.FD_SAVE,
 			)
 
 			if dlg.ShowModal() == wx.ID_OK:
@@ -110,39 +119,40 @@ class FavoriteLinksSettingsPanel(SettingsPanel):
 
 				# Update json_config internal state
 				jsonConfig.indexJson = current_selection_index
-				jsonConfig.updateJsonFilePath(fname) # Let json_config handle file renaming/path updates
+				jsonConfig.updateJsonFilePath(fname)  # Let json_config handle file renaming/path updates
 
 				# Refresh the wx.Choice control with updated paths from json_config
 				self.pathList = [jsonConfig.firstJsonFile]
 				if jsonConfig.altJsonFile:
 					self.pathList.append(jsonConfig.altJsonFile)
-				
+
 				# Ensure pathList is not empty
 				if not self.pathList:
 					self.pathList.append(jsonConfig.defaultPath)
 
 				self.pathNameCB.Set(self.pathList)
-				self.pathNameCB.SetSelection(current_selection_index) # Keep current selection
+				self.pathNameCB.SetSelection(current_selection_index)  # Keep current selection
 
 				# Re-activate panel and update layout (might not be strictly necessary, but good practice)
 				self.onPanelActivated()
 				self._sendLayoutUpdatedEvent()
 
 		finally:
-			dlg.Destroy() # Destroy the dialog
-			self.Thaw() # Unfreeze UI updates
-			event.Skip() # Allow default event processing
+			if dlg:
+				dlg.Destroy()  # Destroy the dialog safely if initialized
+			self.Thaw()  # Unfreeze UI updates
+			event.Skip()  # Allow default event processing
 
 	def onSelectBrowserPath(self, event):
 		"""
-Select the browser path.
+		Select the browser path.
 		"""
 		self.Freeze()  # Freeze UI updates for performance
 
 		try:
 			# Use gui.mainFrame as the parent for the FileDialog
 			frame = gui.mainFrame
-			
+
 			# Use wx.FileDialog to let the user select the browser's executable
 			dlg = wx.FileDialog(
 				frame,
@@ -172,7 +182,7 @@ Select the browser path.
 		"""
 		# Update selected index and save paths using json_config
 		jsonConfig.indexJson = self.pathNameCB.GetSelection()
-		jsonConfig.saveConfig() # This call saves the path and altPath to config.conf
+		jsonConfig.saveConfig()  # This call saves the path and altPath to config.conf
 
 		# Save browser path
 		jsonConfig.browserPath = self.browserPath  # Save browser path

@@ -38,7 +38,7 @@ class AddLinks(wx.Dialog):
 
 	def __init__(self, parent, linkManagerInstance, title, selectedCategory=""):
 		# Dialog window title.
-		self.title=title
+		self.title = title
 
 		wx.Dialog.__init__(self, parent, title=title)
 
@@ -84,7 +84,9 @@ class AddLinks(wx.Dialog):
 		"""
 		categories = list(self.linkManager.data.keys())
 		category_field = sizerHelper.addLabeledControl(
-			_("Select a Category"), wx.Choice, choices=categories
+			_("Select a Category"),
+			wx.Choice,
+			choices=categories,
 		)
 		if self.selectedCategory in categories:
 			category_field.SetStringSelection(self.selectedCategory)
@@ -105,7 +107,8 @@ class AddLinks(wx.Dialog):
 		3. If nothing is found the field is left empty.
 		"""
 		url_field = sizerHelper.addLabeledControl(
-			_("Enter link URL:"), wx.TextCtrl
+			_("Enter link URL:"),
+			wx.TextCtrl,
 		)
 		# First try a clean, validated URL from the clipboard.
 		url = self.linkManager.getURLFromClipboard()
@@ -113,6 +116,7 @@ class AddLinks(wx.Dialog):
 			# Fall back to regex extraction so URLs embedded in text are found.
 			try:
 				from api import getClipData
+
 				clipboard_text = getClipData()
 				extracted = self.linkManager.extract_urls_from_text(clipboard_text)
 				if extracted:
@@ -158,7 +162,7 @@ class AddLinks(wx.Dialog):
 			return
 
 		# Attributes the results to a dictionary for easy access
-		self.result = {'category': category, 'url': url}
+		self.result = {"category": category, "url": url}
 		self.EndModal(wx.ID_OK)
 
 	def onCancel(self, event):
@@ -182,7 +186,7 @@ class AddLinks(wx.Dialog):
 			message: The message to display in the message box.
 			caption: The caption for the message box. If None, defaults to "Search Links".
 			style: The style flags for the message box (e.g., wx.OK, wx.ICONINFORMATION).
-			   	Defaults to wx.OK | wx.ICONINFORMATION.
+		                Defaults to wx.OK | wx.ICONINFORMATION.
 		"""
 
 		if caption is None:

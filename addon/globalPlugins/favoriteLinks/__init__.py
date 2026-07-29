@@ -19,6 +19,7 @@ Created on: 11/04/2024.
 
 import webbrowser
 from gettext import ngettext
+from typing import Any, cast
 
 import addonHandler
 import api
@@ -39,7 +40,7 @@ from .fromClipboard import FromClipboard
 from .linkManager import LinkManager
 from .main import FavoriteLinks
 from .searchLinks import SearchLinks
-from .varsConfig import ADDON_SUMMARY, initConfiguration, ourAddon
+from .varsConfig import ADDON_SUMMARY, ourAddon, initConfiguration
 
 # Initialize translation support
 addonHandler.initTranslation()
@@ -47,10 +48,12 @@ addonHandler.initTranslation()
 # Initialize configuration settings
 initConfiguration()
 
+
 def isBrowser():
 	"""Verifies if NVDA is currently in a browser."""
 	obj = api.getFocusObject()
 	return bool(obj.treeInterceptor)
+
 
 def getCurrentDocumentURL():
 	"""Gets the current masked document URL if in a browser."""
@@ -59,6 +62,7 @@ def getCurrentDocumentURL():
 		return obj.treeInterceptor.documentConstantIdentifier
 	except AttributeError:
 		return None
+
 
 def disableInSecureMode(decoratedCls):
 	"""Decorator to disable the plugin in secure mode."""
@@ -76,16 +80,19 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 
 		# Add settings panel to NVDA configuration dialog
 		gui.settingsDialogs.NVDASettingsDialog.categoryClasses.append(
-			FavoriteLinksSettingsPanel
+			FavoriteLinksSettingsPanel,
 		)
 
 		# Tools menu setup
 		self.toolsMenu = gui.mainFrame.sysTrayIcon.toolsMenu
 		self.favoriteLinks = self.toolsMenu.Append(
-			wx.ID_ANY, _("&Favorite links...")
+			wx.ID_ANY,
+			_("&Favorite links..."),
 		)
 		gui.mainFrame.sysTrayIcon.Bind(
-			wx.EVT_MENU, self.script_activateFavoriteLinks, self.favoriteLinks
+			wx.EVT_MENU,
+			self.script_activateFavoriteLinks,
+			self.favoriteLinks,
 		)
 
 		# Navigation state
@@ -121,6 +128,7 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 
 	def _announceCurrentLink(self):
 		"""Announces the currently selected link via NVDA speech."""
+
 		categories = self._getNavCategories()
 		if not categories:
 			ui.message(_("No links saved."))
@@ -132,7 +140,8 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 			return
 		title, url = links[self._navLinkIndex]
 		msg = title
-		if config.conf[ourAddon.name]["readUrlAfterName"]:
+		confSection = cast(Any, config.conf[ourAddon.name])
+		if confSection["readUrlAfterName"]:
 			msg += "  " + url
 		ui.message(msg)
 
@@ -166,13 +175,12 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 
 	# NVDA scripts
 
-
 	# Defining a script with a decorator:
 	@script(
 		gesture="kb:Windows+alt+K",
 		# Translators: Text displayed in NVDA help.
 		description=_("This addon allows you to save links to a specific page."),
-		category=ADDON_SUMMARY
+		category=ADDON_SUMMARY,
 	)
 	def script_activateFavoriteLinks(self, gesture):
 		wx.CallAfter(self.onFavoriteLinks, None)
@@ -182,7 +190,7 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 		gesture="kb:Windows+Control+P",
 		# Translators: Text displayed in NVDA help.
 		description=_("Show document URL, press twice copies to clipboard."),
-		category=ADDON_SUMMARY
+		category=ADDON_SUMMARY,
 	)
 	def script_ShowDocumentURL(self, gesture):
 		if isBrowser():
@@ -203,10 +211,11 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 		gesture="kb:NVDA+Shift+G",
 		# Translators: Text displayed in NVDA help.
 		description=_("Search saved links by name or URL."),
-		category=ADDON_SUMMARY
+		category=ADDON_SUMMARY,
 	)
 	def script_searchLinks(self, gesture):
 		"""Opens the Search Links dialog."""
+
 		def open_dialog():
 			try:
 				lm = LinkManager()
@@ -215,7 +224,11 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 				ui.message(_("Failed to load links. Please check the file."))
 				return
 			if not lm.data:
-				ui.message(_("No saved links found. If you had links before, the links file may have been corrupt and was reset. Please add links to begin."))
+				ui.message(
+					_(
+						"No saved links found. If you had links before, the links file may have been corrupt and was reset. Please add links to begin.",
+					),
+				)
 				return
 			try:
 				dlg = SearchLinks(mainFrame, lm)
@@ -230,16 +243,18 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 			finally:
 				dlg.Destroy()
 				gui.mainFrame.postPopup()
+
 		wx.CallAfter(open_dialog)
 
 	# Defining a script with a decorator:
 	@script(
 		# Translators: Text displayed in NVDA help.
 		description=_("Open a URL from the clipboard."),
-		category=ADDON_SUMMARY
+		category=ADDON_SUMMARY,
 	)
 	def script_openFromClipboard(self, gesture):
 		"""Opens URLs from the clipboard or shows picker dialog if multiple found."""
+
 		def _open():
 			try:
 				clipboard_text = api.getClipData() or ""
@@ -270,6 +285,7 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 			finally:
 				dlg.Destroy()
 				gui.mainFrame.postPopup()
+
 		wx.CallAfter(_open)
 
 	# Keyboard navigation scripts
@@ -279,7 +295,7 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 		gesture="kb:control+shift+f12",
 		# Translators: Text displayed in NVDA help.
 		description=_("Move to the next saved link in the current category."),
-		category=ADDON_SUMMARY
+		category=ADDON_SUMMARY,
 	)
 	def script_nextLink(self, gesture):
 		categories = self._getNavCategories()
@@ -301,7 +317,7 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 		gesture="kb:control+shift+f11",
 		# Translators: Text displayed in NVDA help.
 		description=_("Move to the previous saved link in the current category."),
-		category=ADDON_SUMMARY
+		category=ADDON_SUMMARY,
 	)
 	def script_previousLink(self, gesture):
 		categories = self._getNavCategories()
@@ -323,7 +339,7 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 		gesture="kb:control+shift+f10",
 		# Translators: Text displayed in NVDA help.
 		description=_("Move to the next category of saved links."),
-		category=ADDON_SUMMARY
+		category=ADDON_SUMMARY,
 	)
 	def script_nextCategory(self, gesture):
 		categories = self._getNavCategories()
@@ -338,18 +354,20 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 		category = categories[self._navCategoryIndex]
 		links = self._navLinkManager.data.get(category, [])
 		count = len(links)
-		ui.message(ngettext(
-			"{category}: Contains {count} link",
-			"{category}: Contains {count} links",
-			count,
-		).format(category=category, count=count))
+		ui.message(
+			ngettext(
+				"{category}: Contains {count} link",
+				"{category}: Contains {count} links",
+				count,
+			).format(category=category, count=count),
+		)
 
 	# Defining a script with a decorator:
 	@script(
 		gesture="kb:control+shift+f9",
 		# Translators: Text displayed in NVDA help.
 		description=_("Move to the previous category of saved links."),
-		category=ADDON_SUMMARY
+		category=ADDON_SUMMARY,
 	)
 	def script_previousCategory(self, gesture):
 		categories = self._getNavCategories()
@@ -364,18 +382,20 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 		category = categories[self._navCategoryIndex]
 		links = self._navLinkManager.data.get(category, [])
 		count = len(links)
-		ui.message(ngettext(
-			"{category}: Contains {count} link",
-			"{category}: Contains {count} links",
-			count,
-		).format(category=category, count=count))
+		ui.message(
+			ngettext(
+				"{category}: Contains {count} link",
+				"{category}: Contains {count} links",
+				count,
+			).format(category=category, count=count),
+		)
 
 	# Defining a script with a decorator:
 	@script(
 		gesture="kb:nvda+shift+control+f11",
 		# Translators: Text displayed in NVDA help.
 		description=_("Move to the first saved link in the current category."),
-		category=ADDON_SUMMARY
+		category=ADDON_SUMMARY,
 	)
 	def script_firstLink(self, gesture):
 		categories = self._getNavCategories()
@@ -394,7 +414,7 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 		gesture="kb:nvda+shift+control+f12",
 		# Translators: Text displayed in NVDA help.
 		description=_("Move to the last saved link in the current category."),
-		category=ADDON_SUMMARY
+		category=ADDON_SUMMARY,
 	)
 	def script_lastLink(self, gesture):
 		categories = self._getNavCategories()
@@ -413,7 +433,7 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 		gesture="kb:control+shift+enter",
 		# Translators: Text displayed in NVDA help.
 		description=_("Open the currently selected link in the default browser."),
-		category=ADDON_SUMMARY
+		category=ADDON_SUMMARY,
 	)
 	def script_openCurrentLink(self, gesture):
 		categories = self._getNavCategories()
@@ -428,7 +448,8 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 		try:
 			webbrowser.open(url)
 			msg = _("Opening {title}.").format(title=title)
-			if config.conf[ourAddon.name]["readUrlAfterName"]:
+			confSection = cast(Any, config.conf[ourAddon.name])
+			if confSection["readUrlAfterName"]:
 				msg += "  " + url
 			ui.message(msg)
 		except Exception as e:
@@ -440,12 +461,13 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 		gesture="kb:control+shift+l",
 		# Translators: Text displayed in NVDA help.
 		description=_("Toggle reading the URL after the link name during keyboard navigation."),
-		category=ADDON_SUMMARY
+		category=ADDON_SUMMARY,
 	)
 	def script_toggleReadUrl(self, gesture):
-		current = config.conf[ourAddon.name]["readUrlAfterName"]
-		config.conf[ourAddon.name]["readUrlAfterName"] = not current
-		if config.conf[ourAddon.name]["readUrlAfterName"]:
+		confSection = cast(Any, config.conf[ourAddon.name])
+		current = bool(confSection["readUrlAfterName"])
+		confSection["readUrlAfterName"] = not current
+		if confSection["readUrlAfterName"]:
 			ui.message(_("Read URL after name turned on."))
 		else:
 			ui.message(_("Read URL after name turned off."))
@@ -456,7 +478,7 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 		super(GlobalPlugin, self).terminate()
 		if FavoriteLinksSettingsPanel in gui.settingsDialogs.NVDASettingsDialog.categoryClasses:
 			gui.settingsDialogs.NVDASettingsDialog.categoryClasses.remove(FavoriteLinksSettingsPanel)
-		if hasattr(self, 'favoriteLinks'):
+		if hasattr(self, "favoriteLinks"):
 			try:
 				self.toolsMenu.Remove(self.favoriteLinks)
 			except Exception as e:
