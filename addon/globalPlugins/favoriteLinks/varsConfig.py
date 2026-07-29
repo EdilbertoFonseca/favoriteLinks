@@ -12,6 +12,7 @@ Created on: 24/05/2024
 """
 
 import os
+from typing import Any, cast
 
 import addonHandler
 import config
@@ -26,6 +27,7 @@ addonPath = os.path.dirname(__file__)
 # Get the title of the addon defined in the summary
 ADDON_SUMMARY = addonHandler.getCodeAddon().manifest["summary"]
 ADDON_DESCRIPTION = addonHandler.getCodeAddon().manifest["description"]
+
 
 def getOurAddon():
 	"""
@@ -44,6 +46,11 @@ def getOurAddon():
 ourAddon = getOurAddon()
 
 
+def getAddonConf() -> dict[str, Any]:
+	"""Retorna a seção de configurações do add-on no NVDA tipada para o Pyright."""
+	return cast(dict[str, Any], config.conf[ourAddon.name])
+
+
 def initConfiguration():
 	"""
 	Initializes the configuration specification for the add-on.
@@ -56,7 +63,7 @@ def initConfiguration():
 			"xx": "string(default='')",
 			"readUrlAfterName": "boolean(default=False)",
 		}
-		config.conf.spec[ourAddon.name] = confspec
+		cast(dict[str, Any], config.conf.spec)[ourAddon.name] = confspec
 	except Exception as e:
 		log.error("Error initializing configuration: {}".format(e))
 		raise RuntimeError("Error initializing configuration: {}".format(e))

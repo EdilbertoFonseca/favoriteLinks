@@ -74,14 +74,18 @@ class SearchLinks(wx.Dialog):
 
 		self.categoryChoice = sizerHelper.addLabeledControl(
 			# Translators: Label for the category dropdown in the search dialog.
-			_("Select a category:"), wx.Choice, choices=categories
+			_("Select a category:"),
+			wx.Choice,
+			choices=categories,
 		)
 		self.categoryChoice.SetSelection(0)
 
 		# Search field
 		self.textSearch = sizerHelper.addLabeledControl(
 			# Translators: Label for the search text input field.
-			_("Search word:"), wx.TextCtrl, style=wx.TE_PROCESS_ENTER
+			_("Search word:"),
+			wx.TextCtrl,
+			style=wx.TE_PROCESS_ENTER,
 		)
 		self.textSearch.Bind(wx.EVT_TEXT_ENTER, self.onSearch)
 
@@ -92,7 +96,7 @@ class SearchLinks(wx.Dialog):
 		self.searchBy = wx.RadioBox(
 			panel,
 			label=_("Search by"),
-			choices=[choiceName, choiceURL]
+			choices=[choiceName, choiceURL],
 		)
 
 		sizerHelper.addItem(self.searchBy)
@@ -152,7 +156,6 @@ class SearchLinks(wx.Dialog):
 		self._copyButton.Enable(has_results)
 
 	def onSearch(self, event):
-
 		searchWord = self.textSearch.GetValue().strip()
 
 		if not searchWord:
@@ -176,7 +179,6 @@ class SearchLinks(wx.Dialog):
 		self.results = []
 
 		for title, url in links:
-
 			title_str = str(title) if title else ""
 			url_str = str(url) if url else ""
 
@@ -188,7 +190,6 @@ class SearchLinks(wx.Dialog):
 		self.listResults.Clear()
 
 		if not self.results:
-
 			self.resultsLabel.Hide()
 			self.listResults.Hide()
 
@@ -222,7 +223,6 @@ class SearchLinks(wx.Dialog):
 		ui.message(_("{count} results found.").format(count=count))
 
 	def onOpenResult(self, event):
-
 		result = self._getSelectedResult()
 
 		if result is None:
@@ -232,17 +232,15 @@ class SearchLinks(wx.Dialog):
 		title, url = result
 
 		if not self.linkManager.is_internet_connected():
-
 			self.showMessage(
 				_("No active internet connection!"),
 				_("Error"),
-				wx.OK | wx.ICON_ERROR
+				wx.OK | wx.ICON_ERROR,
 			)
 
 			return
 
 		try:
-
 			if not webbrowser.open(url):
 				raise RuntimeError
 
@@ -251,7 +249,6 @@ class SearchLinks(wx.Dialog):
 			self.EndModal(wx.ID_OK)
 
 		except Exception as e:
-
 			log.error("Error opening search result URL: %s", e)
 
 			self.showMessage(
@@ -261,7 +258,6 @@ class SearchLinks(wx.Dialog):
 			)
 
 	def onCopyURL(self, event):
-
 		result = self._getSelectedResult()
 
 		if result is None:
@@ -281,7 +277,6 @@ class SearchLinks(wx.Dialog):
 		self.EndModal(wx.ID_CANCEL)
 
 	def onResultsKeyPress(self, event):
-
 		if event.GetKeyCode() in (wx.WXK_RETURN, wx.WXK_NUMPAD_ENTER):
 			self.onOpenResult(event)
 			return
@@ -289,7 +284,6 @@ class SearchLinks(wx.Dialog):
 		event.Skip()
 
 	def onKeyPress(self, event):
-
 		if event.GetKeyCode() == wx.WXK_ESCAPE:
 			self.onCancel(event)
 			return
@@ -303,7 +297,7 @@ class SearchLinks(wx.Dialog):
 			message: The message to display in the message box.
 			caption: The caption for the message box. If None, defaults to "Search Links".
 			style: The style flags for the message box (e.g., wx.OK, wx.ICONINFORMATION).
-			   	Defaults to wx.OK | wx.ICONINFORMATION.
+		                Defaults to wx.OK | wx.ICONINFORMATION.
 		"""
 
 		if caption is None:

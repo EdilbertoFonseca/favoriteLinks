@@ -28,16 +28,30 @@ def onInstall():
 	"""
 	Moves the add-on's json file to a new location during installation.
 	"""
-	relativeJsonPath = os.path.join("addons", "favoriteLinks", "globalPlugins", "favoriteLinks", "favorite_links.json")
-	absoluteJsonPath = os.path.abspath(os.path.join(globalVars.appArgs.configPath, relativeJsonPath))
+
+	configPath = globalVars.appArgs.configPath
+	if not configPath:
+		return
+
+	relativeJsonPath = os.path.join(
+		"addons",
+		"favoriteLinks",
+		"globalPlugins",
+		"favoriteLinks",
+		"favorite_links.json",
+	)
+	absoluteJsonPath = os.path.abspath(os.path.join(configPath, relativeJsonPath))
 
 	if os.path.isfile(absoluteJsonPath):
-		configPath = globalVars.appArgs.configPath
 		addonRelativePath = os.path.join("addons", "favoriteLinks")
 		jsonRelativeSuffix = os.path.join("globalPlugins", "favoriteLinks", "favorite_links.json")
-		newJsonPath = os.path.join(configPath, addonRelativePath + addonHandler.ADDON_PENDINGINSTALL_SUFFIX, jsonRelativeSuffix)
+		newJsonPath = os.path.join(
+			configPath,
+			addonRelativePath + addonHandler.ADDON_PENDINGINSTALL_SUFFIX,
+			jsonRelativeSuffix,
+		)
 
 		try:
 			os.rename(absoluteJsonPath, os.path.abspath(newJsonPath))
 		except OSError as e:
-			messageBox(_(f"Error when renaming file: {e}"), _("Attention"))
+			messageBox(_("Error when renaming file: {}").format(e), _("Attention"))
