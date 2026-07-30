@@ -25,9 +25,10 @@ import threading
 from urllib.request import Request, urlopen
 
 import addonHandler
+import gui
 import ui
 import wx
-from gui import guiHelper, messageBox
+from gui import guiHelper
 
 from ..jsonConfig import jsonConfig
 
@@ -229,7 +230,7 @@ class ImportBookmarksDialog(wx.Dialog):
 			json.dump(data, f, indent=2, ensure_ascii=False)
 
 		# translators: Message shown when bookmark import is completed successfully.
-		messageBox(_("Import completed successfully."))
+		gui.messageBox(_("Import completed successfully."))
 
 		if callable(self.onFinish):
 			wx.CallAfter(self.onFinish)
