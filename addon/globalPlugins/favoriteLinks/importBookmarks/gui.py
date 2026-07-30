@@ -25,9 +25,10 @@ import threading
 from urllib.request import Request, urlopen
 
 import addonHandler
+import gui
 import ui
 import wx
-from gui import guiHelper, messageBox
+from gui import guiHelper
 
 from ..jsonConfig import jsonConfig
 
@@ -104,28 +105,28 @@ class ImportWorker(threading.Thread):
 
 			urls = list(dict.fromkeys(extractUrlsFromHtml(html)))
 			if not urls:
-				wx.CallAfter(self.parent.on_error, _("No links found."))
+				wx.CallAfter(self.parent.onError, _("No links found."))
 				return
 
-			wx.CallAfter(self.parent.on_start, len(urls))
+			wx.CallAfter(self.parent.onStart, len(urls))
 
 			items = []
 			total = len(urls)
 
 			for i, url in enumerate(urls, 1):
 				if self.cancelled:
-					wx.CallAfter(self.parent.on_cancelled)
+					wx.CallAfter(self.parent.onCancelled)
 					return
 
 				title = fetchPageTitle(url)
 				items.append((title, url))
 
-				wx.CallAfter(self.parent.on_progress, i, total, title)
+				wx.CallAfter(self.parent.onProgress, i, total, title)
 
-			wx.CallAfter(self.parent.on_done, items)
+			wx.CallAfter(self.parent.onDone, items)
 
 		except Exception as e:
-			wx.CallAfter(self.parent.on_error, str(e))
+			wx.CallAfter(self.parent.onError, str(e))
 
 
 class ImportBookmarksDialog(wx.Dialog):
@@ -229,7 +230,7 @@ class ImportBookmarksDialog(wx.Dialog):
 			json.dump(data, f, indent=2, ensure_ascii=False)
 
 		# translators: Message shown when bookmark import is completed successfully.
-		messageBox(_("Import completed successfully."))
+		gui.messageBox(_("Import completed successfully."))
 
 		if callable(self.onFinish):
 			wx.CallAfter(self.onFinish)
