@@ -28,6 +28,7 @@ import addonHandler
 import ui
 import wx
 from gui import guiHelper, messageBox
+from wx import CallAfter
 
 from ..jsonConfig import jsonConfig
 
@@ -232,7 +233,7 @@ class ImportBookmarksDialog(wx.Dialog):
 		messageBox(_("Import completed successfully."))
 
 		if callable(self.onFinish):
-			wx.CallAfter(self.onFinish)
+			CallAfter(self.onFinish)
 
 		self.btnImport.Enable()
 		self.Destroy()
