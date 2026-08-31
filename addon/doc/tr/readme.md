@@ -1,92 +1,147 @@
 # Favori Bağlantılar
 
-* **Yazar**: Edilberto Fonseca <edilberto.fonseca@outlook.com>
-* **Oluşturma Tarihi**: 11/04/2024
+* **Yazar**: Edilberto Fonseca ([edilberto.fonseca@outlook.com](mailto:edilberto.fonseca@outlook.com))
+* **Oluşturulma Tarihi**: 04/11/2024
 * **Lisans**: [GPL 2.0](https://www.gnu.org/licenses/gpl-2.0.html)
 
 ## Giriş
 
-**Favori Bağlantılar** eklentisi, favori bağlantılarınızı düzenli ve verimli bir şekilde yönetmenizi sağlayan bir araçtır. Bu araçla, bağlantıları kategorize edilmiş bir listede kaydedebilir, düzenleyebilir ve silebilirsiniz. Kullanıcı dostu arayüzü, yeni bağlantılar ekleme, başlıkları düzenleme, istenmeyen bağlantıları kaldırma ve kategorileri yönetme gibi kapsamlı işlevler sunar. Eklentiyi açtığınızda, favori bağlantılarınıza hızlı erişim sağlarsınız ve seçilen bağlantıyı doğrudan tarayıcıda açabilirsiniz.
+**Favori Bağlantılar** eklentisi, favori bağlantılarınızı düzenli ve verimli bir şekilde yönetmenizi sağlayan bir araçtır. Yeni bağlantılar ekleme, başlıkları yeniden adlandırma, istenmeyen girişleri kaldırma ve kategorileri yönetme gibi özelliklere sahip sezgisel bir arayüz sunarak, kategorize edilmiş bir listedeki bağlantıları kaydetmenize, düzenlemenize ve kaldırmanıza olanak tanır. Ayrıca eklenti, tarayıcılar tarafından dışa aktarılan HTML dosyalarından yer işaretlerinin doğrudan içe aktarılmasına olanak tanır.
 
-Not: Favori Bağlantılar eklentisi, bazı fonksiyonların oluşturulması ve optimizasyonu için ChatGPT'nin yardımıyla geliştirilmiş ve ayrıca kod organizasyonu için kullanılmıştır.
+Eklentiyi açtığınızda bağlantılarınıza hızlı bir şekilde erişebilir ve bunları doğrudan varsayılan tarayıcıda açabilirsiniz. Daha fazla esnekliğe ihtiyacınız olması durumunda, artık bağlantıları ikincil bir tarayıcıda açma desteği de mevcut.
 
 ## Kurulum
 
-Favori Bağlantılar eklentisini NVDA'ya kurmak için aşağıdaki talimatları izleyin:
+**Favori Bağlantılar** eklentisini NVDA'ya yüklemek için aşağıdaki adımları izleyin:
 
-1. **Eklenti kurulum dosyasını indirin**: Dosyayı Eklentiler Mağazası'ndan veya resmi [Favori Bağlantılar](https://github.com/EdilbertoFonseca/favoriteLinks/releases/download/2024.2.1/favoriteLinks-2024.2.1.nvda-addon) sayfasından edinin.
-   **Not**: Eklenti mağazadan indirildiyse kurulum otomatik olarak gerçekleşecektir. Aksi takdirde aşağıdaki talimatları izleyin.
-2. **Eklentiyi yükleyin**: İndirilen eklenti dosyası üzerinde Enter tuşuna basın.
-3. **Ekrandaki talimatları izleyin**: Talimatları tamamlayın.
-4. **NVDA'yı yeniden başlatın**: Eklentiyi etkinleştirmek için NVDA'yı yeniden başlatmanız gerekmektedir.
-5. **Kurulumu doğrulayın**: "NVDA + N" tuşlarına basarak NVDA menüsünü açın, "Araçlar" menüsüne gidin ve Favori Bağlantılar seçeneğinin listelenip listelenmediğini kontrol edin.
+1. NVDA'da **Araçlar** menüsünü açın ve **Eklenti Mağazası**'nı seçin.
+2. **Kullanılabilir Eklentiler** sekmesinde **Arama** alanına gidin.
+3. "Favori Bağlantılar"ı arayın. Sonuçlarda **Enter** veya **Uygula** tuşuna basın ve ardından **Yükle**'yi seçin.
+4. Değişiklikleri uygulamak için NVDA'yı yeniden başlatın.
 
 ## Yapılandırma
 
-Bağlantılar dosyanızı kaydetmek için varsayılan konumdan farklı bir yer seçebilirsiniz. Bunu yapmak için NVDA menüsünde Ayarlar iletişim kutusunda, Favori Bağlantılar kategorisine erişin ve "Dizin seçin veya ekleyin" düğmesini kullanarak farklı bir klasör seçin.
+Bağlantılarınızın nereye kaydedildiği ve bunları hangi tarayıcının açacağı konusunda tam kontrole sahipsiniz.
+
+1. NVDA menüsüne erişin: `NVDA+N` > *Tercihler* > *Ayarlar*.
+2. Kategori listesinde **Favori Bağlantılar**'ı seçin.
+
+**"Dizin seç veya ekle"** düğmesini (`Alt+S`) kullanarak bağlantılar dosyasını kaydetmek için özel bir konum seçebilirsiniz.
+
+Yüklü veya taşınabilir ikincil bir tarayıcı tanımlamak için:
+
+1. "Sekme" tuşunu kullanarak **Tarayıcı yolu** alanına gidin.
+2. İstediğiniz tarayıcının yürütülebilir dosyasını eklemek için **"Tarayıcı yolunu seç"** düğmesini (`Alt+N`) kullanın.
 
 ## Kullanım
 
 ### Eklentiye Erişim
 
-"Alt+Windows+K" tuşlarına basarak veya NVDA menüsünden (NVDA+N) > Araçlar > Favori Bağlantılar seçeneğini kullanarak eklentiyi açabilirsiniz.
+* 'Alt+Windows+K' tuşlarına basın.
+* Veya `NVDA+N` > *Araçlar* > *Favori Bağlantılar* yoluyla erişin.
 
 ### Ana Arayüz
 
-Gösterilen diyalogda iki ana alan bulunur:
+Ana arayüz, 'Sekme' tuşu kullanılarak dolaşılabilen iki ana alandan oluşur:
 
-1. **Kategori**: İstenilen kategoriyi seçebileceğiniz bir açılır kutu.
-2. **Bağlantılar Listesi**: Seçilen kategoriye ait bağlantılar burada görüntülenir.
+1. **Kategori**: Mevcut kategorileri içeren bir açılır kutu.
+2. **Bağlantı Listesi**: Seçilen kategoriyle ilişkili bağlantıları gösteren liste.
 
-### Mevcut İşlemler
+Ek seçeneklere erişmek için bu alanların herhangi birinde **bağlam menüsünü** (uygulama Tuşu) kullanın.
 
-Bağlantılar ve kategorilerle ilgili seçeneklere erişmek için NVDA bağlam menüsünü (uygulama tuşu) kullanabilirsiniz.
+### Mevcut Eylemler
 
-### Kategori
+#### Kategoriler Birleşik Giriş Kutusunda
 
-Kategori açılır kutusunda konumlandığınızda, aşağıdaki seçenekler görüntülenir:
+* **Kategori Ekle**: Yeni bir kategori oluşturur.
+* **Kategoriyi Düzenle**: Seçilen kategoriyi yeniden adlandırır.
+* **Kategoriyi Sil**: Kategoriyi ve içerdiği tüm bağlantıları siler.
+* **Bağlantıları Dışa Aktar**: Tüm bağlantıları ve kategorileri bir ".json" dosyasına kaydeder.
+* **Bağlantıları İçe Aktar**: Bağlantıları ve kategorileri bir `.json` dosyasından yükler.
 
-* **Kategori Ekle**: Listeye bir kategori eklemenizi sağlar.
-* **Kategori Düzenle**: Mevcut bir kategoriyi yeniden adlandırmanızı sağlar.
-* **Kategoriyi Sil**: Bir kategoriyi ve tüm ilişkili bağlantıları silmenizi sağlar.
-* **Bağlantıları Dışa Aktar**: JSON dosyasında kaydedilmiş bağlantıları ve kategorileri dışa aktarmanızı sağlar.
-* **Bağlantıları İçe Aktar**: Önceden kaydedilmiş bağlantıları ve kategorileri JSON dosyasından içe aktarmanızı sağlar.
+#### Bağlantılar Listesinde
 
-### Bağlantı Listesi
+* **Bağlantıyı Aç**: Bağlantıyı yapılandırdığınız tarayıcıda açar.
+> **Not**: İkincil tarayıcıyı önceden ayarlarda yapılandırmak gerekir.
+* **Bağlantı Ekle**: Yeni bir Adres eklenmesine izin verir. Başlık otomatik olarak alınacaktır ancak alma işlemi başarısız olursa manuel olarak girebilirsiniz.
+* **Bağlantıyı Düzenle**: Mevcut bir bağlantının başlığını ve URL'sini değiştirir.
+* **Bağlantıyı Sil**: Seçilen bağlantıyı siler.
+* **Bağlantıları Dışa Aktar** / **Bağlantıları İçe Aktar**: Kategori seçenekleriyle aynıdır.
+* **HTML Yer İşaretlerini İçe Aktar**: Tarayıcılar tarafından dışa aktarılan bir `.html` dosyasındaki bağlantıları içe aktarır.
+* **Bağlantıları Sırala**: Geçerli kategorinin bağlantılarını alfabetik sıraya göre düzenler.
 
-Bağlantı listesinde konumlandığınızda, aşağıdaki seçenekler görüntülenir:
+### HTML Yer İşaretlerini İçe Aktar
 
-* **Bağlantıyı Aç**: Seçilen bağlantıyı sistemin varsayılan tarayıcısında açar. **Not**: Seçilen bağlantı üzerinde Enter tuşuna basmak, bağlantıyı sistemin varsayılan tarayıcısında açacaktır.
-* **Bağlantı Ekle**: Adresini ve kategorisini girerek yeni bir bağlantı eklemenizi sağlar.
-  **Not**: Başlık otomatik olarak alınır. Başlık alınamadığında, başlığı el ile eklemeniz için bir diyalog görünecektir.
-* **Bağlantı Düzenle**: Mevcut bir bağlantının başlığını ve adresini düzenlemenizi sağlar.
-* **Bağlantıyı Sil**: Listeden bir bağlantıyı silmenizi sağlar.
-* **Bağlantıları Dışa Aktar**: JSON dosyasında kaydedilmiş bağlantıları ve kategorileri dışa aktarmanızı sağlar.
-* **Bağlantıları İçe Aktar**: Önceden kaydedilmiş bağlantıları ve kategorileri JSON dosyasından içe aktarmanızı sağlar.
-* **Bağlantıları Sırala**: Bağlantıları alfabetik sıraya göre sıralamanızı sağlar.
+FavoriteLinks ayrıca tarayıcılar (Chrome, Firefox, Edge ve diğerleri) tarafından dışa aktarılanlar gibi yer işaretlerinin doğrudan HTML dosyalarından içe aktarılmasına da olanak tanır.
 
-## Kısayollar
+Bu özellik, mevcut yer işaretlerinizi eklentiye hızlı ve düzenli bir şekilde taşımak için kullanışlıdır.
 
-Bazı seçenekler, arayüzde doğrudan kısayollar aracılığıyla kullanılabilir. Bunlar:
+#### Yer imleri bir HTML dosyasından nasıl içe aktarılır
 
-* **Bağlantıyı aç, Alt+A**: Seçilen bağlantıyı sistemin varsayılan tarayıcısında açar.
-  **Not**: Seçilen bağlantı üzerinde Enter tuşuna basmak, bağlantıyı sistemin varsayılan tarayıcısında açacaktır.
-* **Bağlantı ekle, Alt+B**: Adresini ve kategorisini girerek yeni bir bağlantı eklemenizi sağlar.
-  **Not**: Başlık otomatik olarak alınır. Başlık alınamadığında, başlığı elle eklemeniz için bir diyalog görünecektir.
-* **Bağlantıyı düzenle, Alt+E**: Mevcut bir bağlantının başlığını ve Adresini düzenlemenizi sağlar.
-* **Bağlantıyı Sil, Alt+S**: Listeden bir bağlantıyı kaldırmanızı sağlar.
-* **Kategori ekle, Alt+K**: Listeye bir kategori eklemenizi sağlar.
-* **Çık, (Alt+Ç)**: Diyaloğu kapatır. Ayrıca "Escape" tuşunu veya Alt+F4 tuşlarını kullanabilirsiniz.
+1. **Favori Bağlantılar** eklentisini açın.
+2. **Kategoriler Açılan Kutu**'daki içerik menüsüne erişin veya ana menüdeki seçeneği kullanın.
+3. **HTML yer işaretlerini içe aktar**'ı seçin.
+4. Tarayıcınızdan dışa aktarılan `.html` dosyasını seçin.
+5. Bağlantıların işlenmesini bekleyin.
 
-## Yeni Bağlantı Ekleme Diyaloğu
+İçe aktarma sırasında:
 
-1. **Kategori**: İstenilen kategoriyi seçebileceğiniz bir açılır kutu.
-2. **Bağlantı Adresi ekleme alanı**: Adresi yapıştırabileceğiniz bir metin kutusu.
-   **Not**: Adresi zaten kopyaladıysanız, otomatik olarak düzenleme kutusuna yerleştirilecektir.
-3. **Tamam, Alt+T**: Bağlantıyı listeye ekler.
-   **Not**: Başlık otomatik olarak alınır. Başlık alınamadığında, başlığı el ile eklemeniz için bir diyalog görünecektir.
-4. **İptal, Alt+P**: Diyaloğu kapatır. Ayrıca "Escape" tuşunu veya Alt+F4 tuşlarını kullanabilirsiniz.
+* İlerleme durumu bir ilerleme çubuğunda görüntülenir.
+* **İşlemi istediğiniz zaman iptal edebilirsiniz**.
+* NVDA tüm süreç boyunca duyarlı olmaya devam ediyor.
 
-## Teşekkürler
+#### İçe aktarılan bağlantıların organizasyonu
 
-Bu projeyi geliştirmek için test ve önerileriyle katkıda bulunan Rui Fontes ve Ângelo Abrantes ile projenin verimliliği ve kalitesi için kritik olan iş akışını cömertçe paylaşan Marlon Brandão de Sousa'ya teşekkür ederim.
+* İçe aktarılan bağlantılar, eklenti tercihlerinde yapılandırılan JSON dosyasına otomatik olarak eklenir.
+* Varsayılan olarak yer imleri **“İçe Aktarılan Yer İmleri”** kategorisine eklenir.
+* Yinelenen bağlantılar (aynı Adrese sahip) tekrar eklenmez.
+
+İçe aktarmanın sonunda bir onay mesajı görüntülenir ve eklenti arayüzü otomatik olarak güncellenir.
+
+### Kısayollar
+
+| İşlev | Kısayol |
+| :--- | :--- |
+| Bağlantıyı Aç | 'Alt+A' veya 'Enter' (bağlantılar listesinde) |
+| Bağlantı Ekle | 'Alt+B' |
+| Kategori Ekle | 'Alt+G' |
+| Bağlantıyı Düzenle | 'Alt+E' veya 'F2' |
+| Bağlantıyı Sil | 'Alt+B' veya 'Del' |
+| Geçerli sayfanın Adresini kaydet | 'Üst Karakter+Kontrol+D' |
+| Geçerli sayfanın Adresini göster | `Windows+Control+P` İki kez basıldığında Adres panoya kopyalanır. |
+| Çıkış | `Alt+ı`, `Esc` or `Alt+F4` |
+
+## "Yeni Bağlantı Ekle" İletişim Kutusu
+
+1. **Kategori**: İstediğiniz kategoriyi seçin.
+2. **Adres**: Bağlantı adresini yapıştırın veya yazın.
+> Zaten bir Adresi kopyaladıysanız otomatik olarak yapıştırılacaktır.
+3. **Tamam (`Alt+T`)**: Bağlantıyı ekler.
+> Başlık otomatik olarak getirilecektir. Alma başarısız olursa, manuel olarak girebileceksiniz.
+4. **İptal (`Alt+P`)**: İletişim kutusunu kapatır. 'Esc' veya 'Alt+F4' de çalışır.
+
+## "Bağlantıyı Düzenle" İletişim Kutusu
+
+1. **Kategori**: Burada kategori değiştirildiğinde bağlantı yeni kategoriye taşınacaktır.
+2. **Başlık**: Bağlantı başlığını düzenleyin.
+3. **Adres**: Bağlantı adresini değiştirin.
+4. **Tamam (`Alt+T`)**: Değişiklikleri kaydeder.
+5. **İptal (`Alt+P`)**: Kaydetmeden kapanır. 'Esc' veya 'Alt+F4' de çalışır.
+
+## Teşekkür
+
+**Rue Fontes** ve **Ângelo Abrantes**'e yapılan testler ve bu projenin geliştirilmesine önemli ölçüde katkıda bulunan değerli önerileri için özellikle teşekkür ederiz.
+
+Ayrıca **Abel Passos**'a HTML dosyalarından yer imlerini içe aktarma işlevine yaptığı katkı için teşekkür ederim.
+
+Favori Bağlantılar eklentisi **ChatGPT** ile **Google Gemini**'nin yardımıyla geliştirildi.  İşlevler oluşturmak, kodu optimize etmek, yeniden düzenlemek ve belgeleri geliştirmek için kullanıldı.
+
+## 🌍 Çevirmenler
+
+* 🇸🇦 **Arapça** — Ahmed Bakr
+* 🇧🇷 **Portekizce (Brezilya)** — Edilberto Fonseca
+* 🇵🇹 **Portekizce (Portekiz)** — Edilberto Fonseca
+* 🇷🇺 **Rusça (Rusya)** — Valentin Kupriyanov
+* 🇹🇷 **Türkçe (Türkiye)** — Umut KORKMAZ
+* 🇺🇦 **Ukraynaca (Ukrayna)** — Heorhii Halas
+* 🇻🇳 **Vietnamca (Tiếng Việt)** - Hoàng Long
