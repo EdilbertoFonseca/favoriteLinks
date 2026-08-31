@@ -1,6 +1,6 @@
 # Favorite Links
 
-* **Author**: Edilberto Fonseca ([edilberto.fonseca@outlook.com](mailto:edilberto.fonseca@outlook.com))
+* **Author**: Edilberto Fonseca <edilberto.fonseca@outlook.com>
 * **Creation Date**: 04/11/2024
 * **License**: [GPL 2.0](https://www.gnu.org/licenses/gpl-2.0.html)
 

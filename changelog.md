@@ -1,4 +1,4 @@
 # Changelog
 
-- Fixes an issue that prevented editing previously saved links.
-- Removes overwrite prompt from JSON save file dialog.
+Incremented addonversion to 2026.2.2 and updated addonchangelog in buildVars.py
+Announced the new Crowdin-based translation system and refreshed localization files
