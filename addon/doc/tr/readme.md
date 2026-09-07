@@ -1,6 +1,6 @@
 # Favori Bağlantılar
 
-* **Yazar**: Edilberto Fonseca ([edilberto.fonseca@outlook.com](mailto:edilberto.fonseca@outlook.com))
+* **Author**: Edilberto Fonseca <edilberto.fonseca@outlook.com>
 * **Oluşturulma Tarihi**: 04/11/2024
 * **Lisans**: [GPL 2.0](https://www.gnu.org/licenses/gpl-2.0.html)
 

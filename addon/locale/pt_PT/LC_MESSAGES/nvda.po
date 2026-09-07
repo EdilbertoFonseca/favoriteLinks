@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: nvdaaddons\n"
 "Report-Msgid-Bugs-To: 'nvda-translations@groups.io'\n"
-"POT-Creation-Date: 2026-07-30 19:37+0000\n"
-"PO-Revision-Date: 2026-08-31 05:20\n"
+"POT-Creation-Date: 2026-09-07 05:53+0000\n"
+"PO-Revision-Date: 2026-09-07 05:54\n"
 "Last-Translator: \n"
 "Language-Team: Portuguese\n"
 "Language: pt_PT\n"
@@ -20,7 +20,7 @@ msgstr ""
 #: addon\installTasks.py:57
 #, python-brace-format
 msgid "Error when renaming file: {}"
-msgstr ""
+msgstr "Erro ao \"alterar o nome do ficheiro: {}"
 
 #. translators: Default caption for message boxes in the search links dialog.
 #: addon\installTasks.py:57 addon\globalPlugins\favoriteLinks\addLinks.py:155
@@ -875,6 +875,6 @@ msgstr "Este complemento permite-lhe guardar, editar e remover ligações a pág
 #. Brief changelog for this version
 #. Translators: what's 	new content for the add-on version to be shown in the add-on store
 #: buildVars.py:31
-msgid "Added support for Spanish."
-msgstr "Foi adicionado o suporte para o espanhol."
+msgid "The new translation system via Crowdin has been integrated and the localization files have been updated."
+msgstr ""
 

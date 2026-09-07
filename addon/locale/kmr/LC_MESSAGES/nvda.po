@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: nvdaaddons\n"
 "Report-Msgid-Bugs-To: 'nvda-translations@groups.io'\n"
-"POT-Creation-Date: 2026-07-30 19:37+0000\n"
-"PO-Revision-Date: 2026-08-28 06:29\n"
+"POT-Creation-Date: 2026-09-07 05:53+0000\n"
+"PO-Revision-Date: 2026-09-07 05:54\n"
 "Last-Translator: \n"
 "Language-Team: Kurmanji (Kurdish)\n"
 "Language: kmr_TR\n"
@@ -875,6 +875,6 @@ msgstr "Ev pêvek dihêle hûn girêdanên rûpelên ku pir caran têne ziyaret 
 #. Brief changelog for this version
 #. Translators: what's 	new content for the add-on version to be shown in the add-on store
 #: buildVars.py:31
-msgid "Added support for Spanish."
-msgstr "Piştgiriya ji bo Spanyolî zêde kir."
+msgid "The new translation system via Crowdin has been integrated and the localization files have been updated."
+msgstr ""
 

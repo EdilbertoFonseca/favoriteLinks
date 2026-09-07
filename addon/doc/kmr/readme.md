@@ -1,6 +1,6 @@
 # Girêdanên Bijare
 
-* **Nivîskar**: Edilberto Fonseca ([edilberto.fonseca@outlook.com](mailto:edilberto.fonseca@outlook.com))
+* **Author**: Edilberto Fonseca <edilberto.fonseca@outlook.com>
 * **Dîroka Afirandinê**: 04/11/2024
 * **Lîsans**: [GPL 2.0](https://www.gnu.org/licenses/gpl-2.0.html)
 
