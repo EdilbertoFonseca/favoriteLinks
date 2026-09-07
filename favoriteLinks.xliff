@@ -1,10 +1,10 @@
 <?xml version="1.0"?>
 <xliff xmlns="urn:oasis:names:tc:xliff:document:2.0" version="2.0" srcLang="en">
-<file id="readme.md" original="https://raw.githubusercontent.com/EdilbertoFonseca/favoriteLinks/ae706dbe6369b2b129cc9b9542b5295228374766/readme.md">
+<file id="readme.md" original="https://raw.githubusercontent.com/EdilbertoFonseca/favoriteLinks/93a4154443f0f27f94c35ad51fc4896706bf40ed/readme.md">
 <skeleton>
 # $(ID:c2c7bf6e-2f92-4ace-bf75-7a46eefac575)
 
-* $(ID:725a1a05-c551-4891-b063-65ce3dea6488)
+* $(ID:71432da3-0a27-4c88-a09e-d8eccc20ac41)
 * $(ID:7758872e-183f-4916-9c93-00f2a05d7a3d)
 * $(ID:c500de09-cbed-4c8b-9645-02f6947757fb)
 
@@ -159,13 +159,13 @@ $(ID:7946dfcc-3bf3-4811-b2c1-d2f9bc8a5d20)
 <source>Favorite Links</source>
 </segment>
 </unit>
-<unit id="725a1a05-c551-4891-b063-65ce3dea6488">
+<unit id="71432da3-0a27-4c88-a09e-d8eccc20ac41">
 <notes>
 <note appliesTo="source">line: 4</note>
 <note appliesTo="source">prefix: * </note>
 </notes>
 <segment>
-<source>**Author**: Edilberto Fonseca ([edilberto.fonseca@outlook.com](mailto:edilberto.fonseca@outlook.com))</source>
+<source>**Author**: Edilberto Fonseca &lt;edilberto.fonseca@outlook.com&gt;</source>
 </segment>
 </unit>
 <unit id="7758872e-183f-4916-9c93-00f2a05d7a3d">
