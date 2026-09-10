@@ -1,6 +1,6 @@
 # Ligações Favoritas
 
-* **Author**: Edilberto Fonseca <edilberto.fonseca@outlook.com>
+* **Autor**: Edilberto Fonseca <edilberto.fonseca@outlook.com>
 * **Data de Criação**: 04/11/2024
 * **Licença**: [GPL 2.0](https://www.gnu.org/licenses/gpl-2.0.html)
 
@@ -62,7 +62,7 @@ Utilize o **menu de contexto** (tecla de aplicações) em qualquer um destes cam
 #### Na Lista de Links
 
 * **Abrir Link**: Abre o link no navegador que configurou.
-> **Nota**: É necessário configurar previamente o navegador secundário nas configurações.
+   > **Nota**: É necessário configurar previamente o navegador secundário nas configurações.
 * **Adicionar Link**: Permite inserir um novo URL. O título será obtido automaticamente, mas pode introduzi-lo manualmente caso a obtenção falhe.
 * **Editar Link**: Modifica o título e o URL de um link existente.
 * **Remover Link**: Elimina o link seleccionado.
@@ -100,24 +100,24 @@ No final da importação, é apresentada uma mensagem de confirmação e a inter
 
 ### Atalhos
 
-| Função                                                                          | Atalho |
-| :--- | :--- |
-| Abrir ligação                                                                     | `Alt+B` ou `Enter` (na lista de ligações) |
-| Adicionar ligação                                                                 | `Alt+A` |
-| Adicionar categoria                                                               | `Alt+D` |
-| Editar ligação                                                                    | `Alt+E` ou `F2` |
-| Eliminar ligação                                                                  | `Alt+L` ou `Del` |
-| Guardar URL da página atual | `Shift+Control+D` |
-| Mostrar o URL da página atual                                                     | `Windows+Control+P` (ao pressionar duas vezes, o URL é copiado para a área de transferência) |
-| Sair                                                                              | `Alt+S`, `Esc` ou `Alt+F4` |
+| Função                        | Atalho                                                                                       |
+| :---------------------------- | :------------------------------------------------------------------------------------------- |
+| Abrir ligação                 | `Alt+B` ou `Enter` (na lista de ligações)                                                    |
+| Adicionar ligação             | `Alt+A`                                                                                      |
+| Adicionar categoria           | `Alt+D`                                                                                      |
+| Editar ligação                | `Alt+E` ou `F2`                                                                              |
+| Eliminar ligação              | `Alt+L` ou `Del`                                                                             |
+| Guardar URL da página atual   | `Shift+Control+D`                                                                            |
+| Mostrar o URL da página atual | `Windows+Control+P` (ao pressionar duas vezes, o URL é copiado para a área de transferência) |
+| Sair                          | `Alt+S`, `Esc` ou `Alt+F4`                                                                   |
 
 ## Diálogo "Adicionar Novo Link"
 
 1. **Categoria**: Seleccione a categoria pretendida.
 2. **URL**: Cole ou escreva o endereço do link.
-> Se já tiver copiado um URL, este será colado automaticamente.
+   > Se já tiver copiado um URL, este será colado automaticamente.
 3. **OK (`Alt+O`)**: Adiciona o link.
-> O título será obtido automaticamente. Caso a obtenção falhe, poderá introduzi-lo manualmente.
+    > O título será obtido automaticamente. Caso a obtenção falhe, poderá introduzi-lo manualmente.
 4. **Cancelar (`Alt+C`)**: Fecha o diálogo. `Esc` ou `Alt+F4` também funcionam.
 
 ## Diálogo "Editar Link"
@@ -136,12 +136,12 @@ Agradeço também ao **Abel Passos** pela contribuição com a funcionalidade de
 
 O add-on FavoriteLinks foi desenvolvido com o auxílio do **ChatGPT** e do **Google Gemini**, utilizados para a criação de funções, optimização e refactorização do código, bem como para a melhoria da documentação.
 
-## 🌍 Tradutores
+## Tradução
 
-* 🇸🇦 **Árabe** — Ahmed Bakr
-* 🇧🇷 **Português (Brasil)** — Edilberto Fonseca
-* 🇵🇹 **Português (Portugal)** — Edilberto Fonseca
-* 🇷🇺 **Russo (Rússia)** — Valentin Kupriyanov
-* 🇹🇷 **Turco (Turquia)** — Umut KORKMAZ
-* 🇺🇦 **Ucraniano (Ucrânia)** — Heorhii Halas
-* 🇻🇳 **Vietnamita (Tiếng Việt)** - Hoàng Long
+As traduções deste add-on são geridas através do [projeto NVDA Add-ons no Crowdin](https://crowdin.com/project/nvdaaddons).
+
+Para contribuir com uma tradução, crie uma conta no Crowdin, entre na equipa do idioma pretendido, se necessário, e traduza as strings da interface e da documentação diretamente no Crowdin.
+
+Também é possível utilizar o Poedit para trabalhar localmente com ficheiros `.po` e `.xliff`. As traduções concluídas são sincronizadas com o repositório do add-on através do fluxo de localização.
+
+Para esclarecer dúvidas ou obter ajuda, participe na [lista de discussão NVDA Translations](https://groups.io/g/nvda-translations).

@@ -49,12 +49,20 @@ addonHandler.initTranslation()
 initConfiguration()
 
 
+# Function copied from: robEnhancements(NVDA add-on)
+# Original source: __init__.py
+# License: GNU GPL v2.0 - https://www.gnu.org/licenses/gpl-2.0.html
+# Repository: https://github.com/rainerbrell/robenhancements/
 def isBrowser():
 	"""Verifies if NVDA is currently in a browser."""
 	obj = api.getFocusObject()
 	return bool(obj.treeInterceptor)
 
 
+# Function copied from: robEnhancements(NVDA add-on)
+# Original source: __init__.py
+# License: GNU GPL v2.0 - https://www.gnu.org/licenses/gpl-2.0.html
+# Repository: https://github.com/rainerbrell/robenhancements/
 def getCurrentDocumentURL():
 	"""Gets the current masked document URL if in a browser."""
 	obj = api.getFocusObject()

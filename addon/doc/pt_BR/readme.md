@@ -1,6 +1,6 @@
 # Links Favoritos
 
-* **Author**: Edilberto Fonseca <edilberto.fonseca@outlook.com>
+* **Autor**: Edilberto Fonseca <edilberto.fonseca@outlook.com>
 * **Data de Criação**: 04/11/2024
 * **Licença**: [GPL 2.0](https://www.gnu.org/licenses/gpl-2.0.html)
 
@@ -62,7 +62,7 @@ Use o **menu de contexto** (tecla de aplicação) em qualquer um desses campos p
 #### Na Lista de Links
 
 * **Abrir Link**: Abre o link no navegador que você configurou.
-> **Nota:** É necessário configurar o navegador secundário previamente nas configurações.
+    > **Nota:** É necessário configurar o navegador secundário previamente nas configurações.
 * **Adicionar Link**: Permite inserir uma nova URL. O título será obtido automaticamente, mas você pode informá-lo manualmente caso a busca falhe.
 * **Editar Link**: Modifica o título e a URL de um link existente.
 * **Remover Link**: Exclui o link selecionado.
@@ -100,24 +100,24 @@ Ao final da importação, uma mensagem de confirmação é exibida e a interface
 
 ### Atalhos
 
-| Função | Atalho |
-| :--- | :--- |
-| Abrir Link                                                                      | `Alt+B` ou `Enter` (na lista de links) |
-| Adicionar Link | `Alt+A` |
-| Adicionar Categoria | `Alt+D` |
-| Editar Link | `Alt+E` ou `F2` |
-| Excluir Link | `Alt+L` ou `Del` |
-| Salvar URL da página atual | `Shift+Control+D` |
-| Mostrar URL da página atual                                                     | `Windows+Control+P` Pressionando duas vezes, a URL é copiada para a área de transferência. |
-| Sair | `Alt+S`, `Esc` ou `Alt+F4` |
+| Função                      | Atalho                                                                                     |
+| :-------------------------- | :----------------------------------------------------------------------------------------- |
+| Abrir Link                  | `Alt+B` ou `Enter` (na lista de links)                                                     |
+| Adicionar Link              | `Alt+A`                                                                                    |
+| Adicionar Categoria         | `Alt+D`                                                                                    |
+| Editar Link                 | `Alt+E` ou `F2`                                                                            |
+| Excluir Link                | `Alt+L` ou `Del`                                                                           |
+| Salvar URL da página atual  | `Shift+Control+D`                                                                          |
+| Mostrar URL da página atual | `Windows+Control+P` Pressionando duas vezes, a URL é copiada para a área de transferência. |
+| Sair                        | `Alt+S`, `Esc` ou `Alt+F4`                                                                 |
 
 ## Diálogo "Adicionar Novo Link"
 
 1. **Categoria**: Selecione a categoria desejada.
 2. **URL**: Cole ou digite o endereço do link.
-> Se você já copiou um URL, ele será colado automaticamente.
+    > Se você já copiou um URL, ele será colado automaticamente.
 3. **OK (`Alt+O`)**: Adiciona o link.
-> O título será obtido automaticamente. Caso a busca falhe, você poderá digitá-lo manualmente.
+    > O título será obtido automaticamente. Caso a busca falhe, você poderá digitá-lo manualmente.
 4. **Cancelar (`Alt+C`)**: Fecha o diálogo. `Esc` ou `Alt+F4` também funcionam.
 
 ## Diálogo "Editar Link"
@@ -136,12 +136,12 @@ Agradeço também ao **Abel Passos**, pela contribuição com a funcionalidade d
 
 O add-on FavoriteLinks foi desenvolvido com o auxílio do **ChatGPT** e do **Google Gemini**, usados para a criação de funções, otimização e refatoração do código, e para aprimorar a documentação.
 
-## 🌍 Tradutores
+## Tradução
 
-* 🇸🇦 **Árabe** — Ahmed Bakr
-* 🇧🇷 **Português (Brasil)** — Edilberto Fonseca
-* 🇵🇹 **Português (Portugal)** — Edilberto Fonseca
-* 🇷🇺 **Russo (Rússia)** — Valentin Kupriyanov
-* 🇹🇷 **Turco (Turquia)** — Umut KORKMAZ
-* 🇺🇦 **Ucraniano (Ucrânia)** — Heorhii Halas
-* 🇻🇳 **Vietnamita (Tiếng Việt)** - Hoàng Long
+As traduções deste add-on são gerenciadas através do [projeto NVDA Add-ons no Crowdin](https://crowdin.com/project/nvdaaddons).
+
+Para contribuir com uma tradução, crie uma conta no Crowdin, entre na equipe do idioma desejado, se necessário, e traduza as strings de interface e a documentação diretamente no Crowdin.
+
+Também é possível usar o Poedit para trabalhar localmente com arquivos `.po` e `.xliff`. As traduções concluídas são sincronizadas com o repositório do add-on por meio do fluxo de localização.
+
+Para dúvidas ou obter ajuda, participe da [lista de discussão NVDA Translations](https://groups.io/g/nvda-translations).

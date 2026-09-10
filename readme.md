@@ -136,12 +136,12 @@ I also thank **Abel Passos** for the contribution with the functionality to impo
 
 The FavoriteLinks add-on was developed with the assistance of **ChatGPT** and **Google Gemini**, used for creating functions, optimizing and refactoring the code, and improving the documentation.
 
-## 🌍 Translators
+## Translation
 
-* 🇸🇦 **Arabic** — Ahmed Bakr
-* 🇧🇷 **Portuguese (Brazil)** — Edilberto Fonseca
-* 🇵🇹 **Portuguese (Portugal)** — Edilberto Fonseca
-* 🇷🇺 **Russian (Russia)** — Valentin Kupriyanov
-* 🇹🇷 **Turkish (Turkey)** — Umut KORKMAZ
-* 🇺🇦 **Ukrainian (Ukraine)** — Heorhii Halas
-* 🇻🇳 **Vietnamese (Tiếng Việt)** - Hoàng Long
+Translations for this add-on are managed through the [NVDA Add-ons Crowdin project](https://crowdin.com/project/nvdaaddons).
+
+To contribute a translation, create a Crowdin account, join the appropriate language team if required, and translate the available interface and documentation strings directly in Crowdin.
+
+You can also use Poedit to work with `.po` and `.xliff` files locally. Completed translations are synchronized to the add-on repository through the localization workflow.
+
+For questions or assistance, please join the [NVDA Translations mailing list](https://groups.io/g/nvda-translations).
