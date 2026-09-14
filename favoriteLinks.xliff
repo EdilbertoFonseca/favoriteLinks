@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <xliff xmlns="urn:oasis:names:tc:xliff:document:2.0" version="2.0" srcLang="en">
-<file id="readme.md" original="https://raw.githubusercontent.com/EdilbertoFonseca/favoriteLinks/93a4154443f0f27f94c35ad51fc4896706bf40ed/readme.md">
+<file id="readme.md" original="https://raw.githubusercontent.com/EdilbertoFonseca/favoriteLinks/91cf0eebc439abf41cf89b01689c54a9c7040e58/readme.md">
 <skeleton>
 # $(ID:c2c7bf6e-2f92-4ace-bf75-7a46eefac575)
 
@@ -140,15 +140,16 @@ $(ID:d198d2e2-2b62-4c37-a40e-554ffa942fd5)
 
 $(ID:7946dfcc-3bf3-4811-b2c1-d2f9bc8a5d20)
 
-## $(ID:f39fd85e-76ed-4e2b-ace2-562bc19ad6c8)
+## $(ID:0e674bad-bc89-4436-b48a-be332ecc9f9a)
 
-* $(ID:302e5e63-6fc4-44a0-9c5f-8bddff8eb468)
-* $(ID:386b1c37-b879-4b8a-a173-b8f4876d7e49)
-* $(ID:7424d415-5ee2-4b65-9ec9-4a7b34aba7fa)
-* $(ID:a55b001e-6ab5-42ea-87c0-a44641e1ed80)
-* $(ID:0bf819cc-0e59-4e3a-b806-4b6ddfda5da7)
-* $(ID:f4f5261e-9f28-45ec-8584-eef815dad8f1)
-* $(ID:122629da-cda7-4cfb-b52f-6d0767770b58)
+$(ID:08b1702e-bd2a-4a96-80c3-3535a1373b05)
+
+$(ID:aba3fb2b-94e7-4aee-9efd-50f040d50fa4)
+
+$(ID:894355ed-3774-4788-9cf5-d310a9a4633a)
+
+$(ID:7b685a5f-777b-4e3b-8e2f-02d340f3d215)
+
 </skeleton>
 <unit id="c2c7bf6e-2f92-4ace-bf75-7a46eefac575">
 <notes>
@@ -970,76 +971,45 @@ $(ID:7946dfcc-3bf3-4811-b2c1-d2f9bc8a5d20)
 <source>The FavoriteLinks add-on was developed with the assistance of **ChatGPT** and **Google Gemini**, used for creating functions, optimizing and refactoring the code, and improving the documentation.</source>
 </segment>
 </unit>
-<unit id="f39fd85e-76ed-4e2b-ace2-562bc19ad6c8">
+<unit id="0e674bad-bc89-4436-b48a-be332ecc9f9a">
 <notes>
 <note appliesTo="source">line: 140</note>
 <note appliesTo="source">prefix: ## </note>
 </notes>
 <segment>
-<source>🌍 Translators</source>
+<source>Translation</source>
 </segment>
 </unit>
-<unit id="302e5e63-6fc4-44a0-9c5f-8bddff8eb468">
+<unit id="08b1702e-bd2a-4a96-80c3-3535a1373b05">
 <notes>
 <note appliesTo="source">line: 142</note>
-<note appliesTo="source">prefix: * </note>
 </notes>
 <segment>
-<source>🇸🇦 **Arabic** — Ahmed Bakr</source>
+<source>Translations for this add-on are managed through the [NVDA Add-ons Crowdin project](https://crowdin.com/project/nvdaaddons).</source>
 </segment>
 </unit>
-<unit id="386b1c37-b879-4b8a-a173-b8f4876d7e49">
-<notes>
-<note appliesTo="source">line: 143</note>
-<note appliesTo="source">prefix: * </note>
-</notes>
-<segment>
-<source>🇧🇷 **Portuguese (Brazil)** — Edilberto Fonseca</source>
-</segment>
-</unit>
-<unit id="7424d415-5ee2-4b65-9ec9-4a7b34aba7fa">
+<unit id="aba3fb2b-94e7-4aee-9efd-50f040d50fa4">
 <notes>
 <note appliesTo="source">line: 144</note>
-<note appliesTo="source">prefix: * </note>
 </notes>
 <segment>
-<source>🇵🇹 **Portuguese (Portugal)** — Edilberto Fonseca</source>
+<source>To contribute a translation, create a Crowdin account, join the appropriate language team if required, and translate the available interface and documentation strings directly in Crowdin.</source>
 </segment>
 </unit>
-<unit id="a55b001e-6ab5-42ea-87c0-a44641e1ed80">
-<notes>
-<note appliesTo="source">line: 145</note>
-<note appliesTo="source">prefix: * </note>
-</notes>
-<segment>
-<source>🇷🇺 **Russian (Russia)** — Valentin Kupriyanov</source>
-</segment>
-</unit>
-<unit id="0bf819cc-0e59-4e3a-b806-4b6ddfda5da7">
+<unit id="894355ed-3774-4788-9cf5-d310a9a4633a">
 <notes>
 <note appliesTo="source">line: 146</note>
-<note appliesTo="source">prefix: * </note>
 </notes>
 <segment>
-<source>🇹🇷 **Turkish (Turkey)** — Umut KORKMAZ</source>
+<source>You can also use Poedit to work with `.po` and `.xliff` files locally. Completed translations are synchronized to the add-on repository through the localization workflow.</source>
 </segment>
 </unit>
-<unit id="f4f5261e-9f28-45ec-8584-eef815dad8f1">
-<notes>
-<note appliesTo="source">line: 147</note>
-<note appliesTo="source">prefix: * </note>
-</notes>
-<segment>
-<source>🇺🇦 **Ukrainian (Ukraine)** — Heorhii Halas</source>
-</segment>
-</unit>
-<unit id="122629da-cda7-4cfb-b52f-6d0767770b58">
+<unit id="7b685a5f-777b-4e3b-8e2f-02d340f3d215">
 <notes>
 <note appliesTo="source">line: 148</note>
-<note appliesTo="source">prefix: * </note>
 </notes>
 <segment>
-<source>🇻🇳 **Vietnamese (Tiếng Việt)** - Hoàng Long</source>
+<source>For questions or assistance, please join the [NVDA Translations mailing list](https://groups.io/g/nvda-translations).</source>
 </segment>
 </unit>
 </file>
