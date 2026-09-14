@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: nvdaaddons\n"
 "Report-Msgid-Bugs-To: 'nvda-translations@groups.io'\n"
-"POT-Creation-Date: 2026-09-07 05:53+0000\n"
-"PO-Revision-Date: 2026-09-07 05:54\n"
+"POT-Creation-Date: 2026-09-14 05:58+0000\n"
+"PO-Revision-Date: 2026-09-14 06:01\n"
 "Last-Translator: \n"
 "Language-Team: Kurmanji (Kurdish)\n"
 "Language: kmr_TR\n"
@@ -178,14 +178,14 @@ msgstr "&Kopî bike bo panoyê"
 
 #. Translators: Spoken when a link is opened from the picker dialog.
 #: addon\globalPlugins\favoriteLinks\fromClipboard.py:108
-#: addon\globalPlugins\favoriteLinks\__init__.py:275
+#: addon\globalPlugins\favoriteLinks\__init__.py:283
 #, python-brace-format
 msgid "Opening {url}."
 msgstr "Vekirina {url}."
 
 #. Translators: Spoken when a link cannot be opened from the picker dialog.
 #: addon\globalPlugins\favoriteLinks\fromClipboard.py:114
-#: addon\globalPlugins\favoriteLinks\__init__.py:278
+#: addon\globalPlugins\favoriteLinks\__init__.py:286
 msgid "Unable to open the link. Please check your browser settings."
 msgstr "Girêdan nayê vekirin. Ji kerema xwe mîhengên geroka xwe kontrol bikin."
 
@@ -661,7 +661,7 @@ msgid "No result selected to open!"
 msgstr "Ji bo vekirinê ti encam nehatiye hilbijartin!"
 
 #: addon\globalPlugins\favoriteLinks\searchLinks.py:247
-#: addon\globalPlugins\favoriteLinks\__init__.py:450
+#: addon\globalPlugins\favoriteLinks\__init__.py:458
 #, python-brace-format
 msgid "Opening {title}."
 msgstr "Vekirina {title}."
@@ -674,92 +674,92 @@ msgstr "Girêdana bijartî nayê vekirin. Ji kerema xwe geroka xwe kontrol bikin
 msgid "No result selected to copy!"
 msgstr "Ji bo kopîkirinê ti encam nehat hilbijartin!"
 
-#: addon\globalPlugins\favoriteLinks\__init__.py:90
+#: addon\globalPlugins\favoriteLinks\__init__.py:98
 msgid "&Favorite links..."
 msgstr "&Girêdanên bijare..."
 
-#: addon\globalPlugins\favoriteLinks\__init__.py:134
+#: addon\globalPlugins\favoriteLinks\__init__.py:142
 msgid "No links saved."
 msgstr "Ti girêdan nehatine tomarkirin."
 
-#: addon\globalPlugins\favoriteLinks\__init__.py:139
+#: addon\globalPlugins\favoriteLinks\__init__.py:147
 msgid "No links in this category."
 msgstr "Di vê kategoriyê de lînk tune ne."
 
-#: addon\globalPlugins\favoriteLinks\__init__.py:153
+#: addon\globalPlugins\favoriteLinks\__init__.py:161
 msgid "Favorite links."
 msgstr "Girêdanên bijare."
 
 #. Translators: Text displayed in NVDA help.
-#: addon\globalPlugins\favoriteLinks\__init__.py:182
+#: addon\globalPlugins\favoriteLinks\__init__.py:190
 msgid "This addon allows you to save links to a specific page."
 msgstr "Ev pêvek dihêle hûn girêdanên rûpelek taybetî hilînin."
 
 #. Translators: Text displayed in NVDA help.
-#: addon\globalPlugins\favoriteLinks\__init__.py:192
+#: addon\globalPlugins\favoriteLinks\__init__.py:200
 msgid "Show document URL, press twice copies to clipboard."
 msgstr "URL-ya belgeyê nîşan bide, du caran bikirtîne da ku ew kopî bike ser clipboardê."
 
-#: addon\globalPlugins\favoriteLinks\__init__.py:203
+#: addon\globalPlugins\favoriteLinks\__init__.py:211
 #, python-brace-format
 msgid "Copied to clipboard {URL}."
 msgstr "Li panoyê hat kopîkirin {URL}."
 
-#: addon\globalPlugins\favoriteLinks\__init__.py:205
+#: addon\globalPlugins\favoriteLinks\__init__.py:213
 msgid "Document URL not found."
 msgstr "URL-ya belgeyê nehat dîtin."
 
-#: addon\globalPlugins\favoriteLinks\__init__.py:207
+#: addon\globalPlugins\favoriteLinks\__init__.py:215
 msgid "No browser window found."
 msgstr "Paceya gerokê nehat dîtin."
 
 #. Translators: Text displayed in NVDA help.
-#: addon\globalPlugins\favoriteLinks\__init__.py:213
+#: addon\globalPlugins\favoriteLinks\__init__.py:221
 msgid "Search saved links by name or URL."
 msgstr "Girêdanên tomarkirî bi nav an URL-ê bigere."
 
-#: addon\globalPlugins\favoriteLinks\__init__.py:224
+#: addon\globalPlugins\favoriteLinks\__init__.py:232
 msgid "Failed to load links. Please check the file."
 msgstr "Barkirina lînkan neçû serî. Ji kerema xwe pelê kontrol bikin."
 
-#: addon\globalPlugins\favoriteLinks\__init__.py:229
+#: addon\globalPlugins\favoriteLinks\__init__.py:237
 msgid "No saved links found. If you had links before, the links file may have been corrupt and was reset. Please add links to begin."
 msgstr "Girêdanên tomarkirî nehatin dîtin. Ger berê girêdanên we hebûn, dibe ku pelê girêdanan xera bûbe û ji nû ve hatibe sazkirin. Ji kerema xwe ji bo destpêkirinê girêdanan lê zêde bikin."
 
-#: addon\globalPlugins\favoriteLinks\__init__.py:237
+#: addon\globalPlugins\favoriteLinks\__init__.py:245
 msgid "Unable to open the search dialog."
 msgstr "Nikare pencereya lêgerînê veke."
 
 #. Translators: Text displayed in NVDA help.
-#: addon\globalPlugins\favoriteLinks\__init__.py:252
+#: addon\globalPlugins\favoriteLinks\__init__.py:260
 msgid "Open a URL from the clipboard."
 msgstr "URL-ê ji clipboard-ê veke."
 
-#: addon\globalPlugins\favoriteLinks\__init__.py:263
+#: addon\globalPlugins\favoriteLinks\__init__.py:271
 msgid "Unable to read the clipboard."
 msgstr "Nikare panoya xwendinê were xwendin."
 
-#: addon\globalPlugins\favoriteLinks\__init__.py:268
+#: addon\globalPlugins\favoriteLinks\__init__.py:276
 msgid "The clipboard does not contain any links."
 msgstr "Clipboard ti girêdanan nagire nav xwe."
 
 #. Translators: Text displayed in NVDA help.
-#: addon\globalPlugins\favoriteLinks\__init__.py:297
+#: addon\globalPlugins\favoriteLinks\__init__.py:305
 msgid "Move to the next saved link in the current category."
 msgstr "Biçe ser lînka tomarbûyî ya din a di kategoriya heyî de."
 
 #. Translators: Text displayed in NVDA help.
-#: addon\globalPlugins\favoriteLinks\__init__.py:319
+#: addon\globalPlugins\favoriteLinks\__init__.py:327
 msgid "Move to the previous saved link in the current category."
 msgstr "Biçe ser girêdana berê ya tomarkirî di kategoriya heyî de."
 
 #. Translators: Text displayed in NVDA help.
-#: addon\globalPlugins\favoriteLinks\__init__.py:341
+#: addon\globalPlugins\favoriteLinks\__init__.py:349
 msgid "Move to the next category of saved links."
 msgstr "Biçe kategoriya din a girêdanên tomarkirî."
 
-#: addon\globalPlugins\favoriteLinks\__init__.py:359
-#: addon\globalPlugins\favoriteLinks\__init__.py:387
+#: addon\globalPlugins\favoriteLinks\__init__.py:367
+#: addon\globalPlugins\favoriteLinks\__init__.py:395
 #, python-brace-format
 msgid "{category}: Contains {count} link"
 msgid_plural "{category}: Contains {count} links"
@@ -767,40 +767,40 @@ msgstr[0] "{category}: Girêdana {count} dihewîne"
 msgstr[1] "{category}: Girêdanên {count} dihewîne"
 
 #. Translators: Text displayed in NVDA help.
-#: addon\globalPlugins\favoriteLinks\__init__.py:369
+#: addon\globalPlugins\favoriteLinks\__init__.py:377
 msgid "Move to the previous category of saved links."
 msgstr "Biçe kategoriya berê ya girêdanên tomarkirî."
 
 #. Translators: Text displayed in NVDA help.
-#: addon\globalPlugins\favoriteLinks\__init__.py:397
+#: addon\globalPlugins\favoriteLinks\__init__.py:405
 msgid "Move to the first saved link in the current category."
 msgstr "Biçe ser lînka yekem a tomarbûyî di kategoriya heyî de."
 
 #. Translators: Text displayed in NVDA help.
-#: addon\globalPlugins\favoriteLinks\__init__.py:416
+#: addon\globalPlugins\favoriteLinks\__init__.py:424
 msgid "Move to the last saved link in the current category."
 msgstr "Biçe ser girêdana dawî ya tomarbûyî di kategoriya heyî de."
 
 #. Translators: Text displayed in NVDA help.
-#: addon\globalPlugins\favoriteLinks\__init__.py:435
+#: addon\globalPlugins\favoriteLinks\__init__.py:443
 msgid "Open the currently selected link in the default browser."
 msgstr "Girêdana niha hatî hilbijartin di geroka xwerû de veke."
 
-#: addon\globalPlugins\favoriteLinks\__init__.py:457
+#: addon\globalPlugins\favoriteLinks\__init__.py:465
 #, python-brace-format
 msgid "Unable to open {title}."
 msgstr "Vekirina {title} nayê îspatkirin."
 
 #. Translators: Text displayed in NVDA help.
-#: addon\globalPlugins\favoriteLinks\__init__.py:463
+#: addon\globalPlugins\favoriteLinks\__init__.py:471
 msgid "Toggle reading the URL after the link name during keyboard navigation."
 msgstr "Di dema navîgasyona klavyeyê de xwendina URL-ê piştî navê lînkê vemirîne/biguhezîne."
 
-#: addon\globalPlugins\favoriteLinks\__init__.py:471
+#: addon\globalPlugins\favoriteLinks\__init__.py:479
 msgid "Read URL after name turned on."
 msgstr "URL-ê bixwîne piştî ku nav hate çalakkirin."
 
-#: addon\globalPlugins\favoriteLinks\__init__.py:473
+#: addon\globalPlugins\favoriteLinks\__init__.py:481
 msgid "Read URL after name turned off."
 msgstr "URL-ê bixwîne piştî ku nav hate girtin."
 

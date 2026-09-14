@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: nvdaaddons\n"
 "Report-Msgid-Bugs-To: 'nvda-translations@groups.io'\n"
-"POT-Creation-Date: 2026-09-07 05:53+0000\n"
-"PO-Revision-Date: 2026-09-07 05:55\n"
+"POT-Creation-Date: 2026-09-14 05:58+0000\n"
+"PO-Revision-Date: 2026-09-14 06:02\n"
 "Last-Translator: \n"
 "Language-Team: Vietnamese\n"
 "Language: vi_VN\n"
@@ -178,14 +178,14 @@ msgstr "&Sao chép vào bảng nhớ tạm"
 
 #. Translators: Spoken when a link is opened from the picker dialog.
 #: addon\globalPlugins\favoriteLinks\fromClipboard.py:108
-#: addon\globalPlugins\favoriteLinks\__init__.py:275
+#: addon\globalPlugins\favoriteLinks\__init__.py:283
 #, python-brace-format
 msgid "Opening {url}."
 msgstr "Đang mở {url}."
 
 #. Translators: Spoken when a link cannot be opened from the picker dialog.
 #: addon\globalPlugins\favoriteLinks\fromClipboard.py:114
-#: addon\globalPlugins\favoriteLinks\__init__.py:278
+#: addon\globalPlugins\favoriteLinks\__init__.py:286
 msgid "Unable to open the link. Please check your browser settings."
 msgstr "Không thể mở liên kết. Vui lòng kiểm tra cài đặt trình duyệt của bạn."
 
@@ -661,7 +661,7 @@ msgid "No result selected to open!"
 msgstr "Không có kết quả nào được chọn để mở!"
 
 #: addon\globalPlugins\favoriteLinks\searchLinks.py:247
-#: addon\globalPlugins\favoriteLinks\__init__.py:450
+#: addon\globalPlugins\favoriteLinks\__init__.py:458
 #, python-brace-format
 msgid "Opening {title}."
 msgstr "Đang mở {title}."
@@ -674,132 +674,132 @@ msgstr "Không thể mở liên kết đã chọn. Vui lòng kiểm tra trình d
 msgid "No result selected to copy!"
 msgstr "Không có kết quả nào được chọn để sao chép!"
 
-#: addon\globalPlugins\favoriteLinks\__init__.py:90
+#: addon\globalPlugins\favoriteLinks\__init__.py:98
 msgid "&Favorite links..."
 msgstr "&Liên kết yêu thích..."
 
-#: addon\globalPlugins\favoriteLinks\__init__.py:134
+#: addon\globalPlugins\favoriteLinks\__init__.py:142
 msgid "No links saved."
 msgstr "Không có liên kết nào được lưu."
 
-#: addon\globalPlugins\favoriteLinks\__init__.py:139
+#: addon\globalPlugins\favoriteLinks\__init__.py:147
 msgid "No links in this category."
 msgstr "Không có liên kết trong danh mục này."
 
-#: addon\globalPlugins\favoriteLinks\__init__.py:153
+#: addon\globalPlugins\favoriteLinks\__init__.py:161
 msgid "Favorite links."
 msgstr "Liên kết yêu thích."
 
 #. Translators: Text displayed in NVDA help.
-#: addon\globalPlugins\favoriteLinks\__init__.py:182
+#: addon\globalPlugins\favoriteLinks\__init__.py:190
 msgid "This addon allows you to save links to a specific page."
 msgstr "Tiện ích bổ sung này cho phép bạn lưu liên kết đến một trang cụ thể."
 
 #. Translators: Text displayed in NVDA help.
-#: addon\globalPlugins\favoriteLinks\__init__.py:192
+#: addon\globalPlugins\favoriteLinks\__init__.py:200
 msgid "Show document URL, press twice copies to clipboard."
 msgstr "Hiển thị URL tài liệu, nhấn hai lần sao chép vào bảng nhớ tạm."
 
-#: addon\globalPlugins\favoriteLinks\__init__.py:203
+#: addon\globalPlugins\favoriteLinks\__init__.py:211
 #, python-brace-format
 msgid "Copied to clipboard {URL}."
 msgstr "{URL} đã được sao chép vào bảng nhớ tạm."
 
-#: addon\globalPlugins\favoriteLinks\__init__.py:205
+#: addon\globalPlugins\favoriteLinks\__init__.py:213
 msgid "Document URL not found."
 msgstr "Không tìm thấy URL tài liệu."
 
-#: addon\globalPlugins\favoriteLinks\__init__.py:207
+#: addon\globalPlugins\favoriteLinks\__init__.py:215
 msgid "No browser window found."
 msgstr "Không tìm thấy cửa sổ trình duyệt."
 
 #. Translators: Text displayed in NVDA help.
-#: addon\globalPlugins\favoriteLinks\__init__.py:213
+#: addon\globalPlugins\favoriteLinks\__init__.py:221
 msgid "Search saved links by name or URL."
 msgstr "Tìm kiếm các liên kết đã lưu theo tên hoặc URL."
 
-#: addon\globalPlugins\favoriteLinks\__init__.py:224
+#: addon\globalPlugins\favoriteLinks\__init__.py:232
 msgid "Failed to load links. Please check the file."
 msgstr "Không thể tải liên kết. Vui lòng kiểm tra tệp của bạn."
 
-#: addon\globalPlugins\favoriteLinks\__init__.py:229
+#: addon\globalPlugins\favoriteLinks\__init__.py:237
 msgid "No saved links found. If you had links before, the links file may have been corrupt and was reset. Please add links to begin."
 msgstr "Không tìm thấy liên kết đã lưu. Nếu trước đây bạn có liên kết thì tệp liên kết có thể đã bị hỏng và đã được đặt lại. Vui lòng thêm một liên kết mới để bắt đầu."
 
-#: addon\globalPlugins\favoriteLinks\__init__.py:237
+#: addon\globalPlugins\favoriteLinks\__init__.py:245
 msgid "Unable to open the search dialog."
 msgstr "Không thể mở hộp thoại tìm kiếm."
 
 #. Translators: Text displayed in NVDA help.
-#: addon\globalPlugins\favoriteLinks\__init__.py:252
+#: addon\globalPlugins\favoriteLinks\__init__.py:260
 msgid "Open a URL from the clipboard."
 msgstr "Mở một URL từ bảng nhớ tạm."
 
-#: addon\globalPlugins\favoriteLinks\__init__.py:263
+#: addon\globalPlugins\favoriteLinks\__init__.py:271
 msgid "Unable to read the clipboard."
 msgstr "Không thể đọc bảng nhớ tạm."
 
-#: addon\globalPlugins\favoriteLinks\__init__.py:268
+#: addon\globalPlugins\favoriteLinks\__init__.py:276
 msgid "The clipboard does not contain any links."
 msgstr "Bảng nhớ tạm không chứa bất kỳ liên kết nào."
 
 #. Translators: Text displayed in NVDA help.
-#: addon\globalPlugins\favoriteLinks\__init__.py:297
+#: addon\globalPlugins\favoriteLinks\__init__.py:305
 msgid "Move to the next saved link in the current category."
 msgstr "Di chuyển đến liên kết đã lưu tiếp theo trong danh mục hiện tại."
 
 #. Translators: Text displayed in NVDA help.
-#: addon\globalPlugins\favoriteLinks\__init__.py:319
+#: addon\globalPlugins\favoriteLinks\__init__.py:327
 msgid "Move to the previous saved link in the current category."
 msgstr "Di chuyển đến liên kết đã lưu trước đó trong danh mục hiện tại."
 
 #. Translators: Text displayed in NVDA help.
-#: addon\globalPlugins\favoriteLinks\__init__.py:341
+#: addon\globalPlugins\favoriteLinks\__init__.py:349
 msgid "Move to the next category of saved links."
 msgstr "Di chuyển đến danh mục tiếp theo của các liên kết đã lưu."
 
-#: addon\globalPlugins\favoriteLinks\__init__.py:359
-#: addon\globalPlugins\favoriteLinks\__init__.py:387
+#: addon\globalPlugins\favoriteLinks\__init__.py:367
+#: addon\globalPlugins\favoriteLinks\__init__.py:395
 #, python-brace-format
 msgid "{category}: Contains {count} link"
 msgid_plural "{category}: Contains {count} links"
 msgstr[0] "{category}: Chứa {count} liên kết"
 
 #. Translators: Text displayed in NVDA help.
-#: addon\globalPlugins\favoriteLinks\__init__.py:369
+#: addon\globalPlugins\favoriteLinks\__init__.py:377
 msgid "Move to the previous category of saved links."
 msgstr "Di chuyển đến danh mục liên kết đã lưu trước đó."
 
 #. Translators: Text displayed in NVDA help.
-#: addon\globalPlugins\favoriteLinks\__init__.py:397
+#: addon\globalPlugins\favoriteLinks\__init__.py:405
 msgid "Move to the first saved link in the current category."
 msgstr "Di chuyển đến liên kết đã lưu đầu tiên trong danh mục hiện tại."
 
 #. Translators: Text displayed in NVDA help.
-#: addon\globalPlugins\favoriteLinks\__init__.py:416
+#: addon\globalPlugins\favoriteLinks\__init__.py:424
 msgid "Move to the last saved link in the current category."
 msgstr "Di chuyển đến liên kết đã lưu cuối cùng trong danh mục hiện tại."
 
 #. Translators: Text displayed in NVDA help.
-#: addon\globalPlugins\favoriteLinks\__init__.py:435
+#: addon\globalPlugins\favoriteLinks\__init__.py:443
 msgid "Open the currently selected link in the default browser."
 msgstr "Mở liên kết hiện được chọn trong trình duyệt mặc định."
 
-#: addon\globalPlugins\favoriteLinks\__init__.py:457
+#: addon\globalPlugins\favoriteLinks\__init__.py:465
 #, python-brace-format
 msgid "Unable to open {title}."
 msgstr "Không thể mở {title}."
 
 #. Translators: Text displayed in NVDA help.
-#: addon\globalPlugins\favoriteLinks\__init__.py:463
+#: addon\globalPlugins\favoriteLinks\__init__.py:471
 msgid "Toggle reading the URL after the link name during keyboard navigation."
 msgstr "Đọc URL sau tên liên kết khi điều hướng bằng bàn phím."
 
-#: addon\globalPlugins\favoriteLinks\__init__.py:471
+#: addon\globalPlugins\favoriteLinks\__init__.py:479
 msgid "Read URL after name turned on."
 msgstr "Đọc tên URL sau khi bật."
 
-#: addon\globalPlugins\favoriteLinks\__init__.py:473
+#: addon\globalPlugins\favoriteLinks\__init__.py:481
 msgid "Read URL after name turned off."
 msgstr "Đọc tên URL sau khi tắt."
 

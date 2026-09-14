@@ -1,6 +1,6 @@
 # Favori Bağlantılar
 
-* **Author**: Edilberto Fonseca <edilberto.fonseca@outlook.com>
+* **Yazar**: Edilberto Fonseca <edilberto.fonseca@outlook.com>
 * **Oluşturulma Tarihi**: 04/11/2024
 * **Lisans**: [GPL 2.0](https://www.gnu.org/licenses/gpl-2.0.html)
 
@@ -136,12 +136,12 @@ Ayrıca **Abel Passos**'a HTML dosyalarından yer imlerini içe aktarma işlevin
 
 Favori Bağlantılar eklentisi **ChatGPT** ile **Google Gemini**'nin yardımıyla geliştirildi.  İşlevler oluşturmak, kodu optimize etmek, yeniden düzenlemek ve belgeleri geliştirmek için kullanıldı.
 
-## 🌍 Çevirmenler
+## Translation
 
-* 🇸🇦 **Arapça** — Ahmed Bakr
-* 🇧🇷 **Portekizce (Brezilya)** — Edilberto Fonseca
-* 🇵🇹 **Portekizce (Portekiz)** — Edilberto Fonseca
-* 🇷🇺 **Rusça (Rusya)** — Valentin Kupriyanov
-* 🇹🇷 **Türkçe (Türkiye)** — Umut KORKMAZ
-* 🇺🇦 **Ukraynaca (Ukrayna)** — Heorhii Halas
-* 🇻🇳 **Vietnamca (Tiếng Việt)** - Hoàng Long
+Translations for this add-on are managed through the [NVDA Add-ons Crowdin project](https://crowdin.com/project/nvdaaddons).
+
+To contribute a translation, create a Crowdin account, join the appropriate language team if required, and translate the available interface and documentation strings directly in Crowdin.
+
+You can also use Poedit to work with `.po` and `.xliff` files locally. Completed translations are synchronized to the add-on repository through the localization workflow.
+
+For questions or assistance, please join the [NVDA Translations mailing list](https://groups.io/g/nvda-translations).
