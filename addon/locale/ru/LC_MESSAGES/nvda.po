@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: nvdaaddons\n"
 "Report-Msgid-Bugs-To: 'nvda-translations@groups.io'\n"
 "POT-Creation-Date: 2026-09-14 05:58+0000\n"
-"PO-Revision-Date: 2026-09-14 06:01\n"
+"PO-Revision-Date: 2026-09-20 08:47\n"
 "Last-Translator: \n"
 "Language-Team: Russian\n"
 "Language: ru_RU\n"
@@ -20,7 +20,7 @@ msgstr ""
 #: addon\installTasks.py:57
 #, python-brace-format
 msgid "Error when renaming file: {}"
-msgstr ""
+msgstr "Ошибка при переименовании файла: {}"
 
 #. translators: Default caption for message boxes in the search links dialog.
 #: addon\installTasks.py:57 addon\globalPlugins\favoriteLinks\addLinks.py:155
@@ -90,7 +90,7 @@ msgstr "&ОК"
 #: addon\globalPlugins\favoriteLinks\fromClipboard.py:76
 #: addon\globalPlugins\favoriteLinks\searchLinks.py:124
 msgid "&Cancel"
-msgstr "&Отмена"
+msgstr "О&тмена"
 
 #. translators: Error message shown when no category is selected.
 #: addon\globalPlugins\favoriteLinks\addLinks.py:155
@@ -104,7 +104,7 @@ msgstr "URL обязателен!"
 
 #: addon\globalPlugins\favoriteLinks\configPanel.py:45
 msgid "Path of file json:"
-msgstr "Путь к JSON-файлу:"
+msgstr "Путь к файлу JSON:"
 
 #: addon\globalPlugins\favoriteLinks\configPanel.py:64
 msgid "&Select or add a directory"
@@ -121,11 +121,11 @@ msgstr "Выбрать путь к &браузеру"
 
 #: addon\globalPlugins\favoriteLinks\configPanel.py:109
 msgid "Choose where to save the file json"
-msgstr "Выберите, куда сохранить JSON-файл"
+msgstr "Выберите, куда сохранить файл JSON"
 
 #: addon\globalPlugins\favoriteLinks\configPanel.py:112
 msgid "JSON files (*.json)|*.json"
-msgstr "JSON-файлы (*.json)|*.json"
+msgstr "Файлы JSON (*.json)|*.json"
 
 #: addon\globalPlugins\favoriteLinks\configPanel.py:159
 msgid "Choose browser path"
@@ -152,54 +152,54 @@ msgstr "Неверный URL"
 #. Translators: Title of the dialog shown when multiple URLs are found in the clipboard.
 #: addon\globalPlugins\favoriteLinks\fromClipboard.py:46
 msgid "Choose a link to open"
-msgstr ""
+msgstr "Выберите ссылку для открытия"
 
 #. Translators: Label showing how many links were extracted from the clipboard.
 #: addon\globalPlugins\favoriteLinks\fromClipboard.py:55
 #, python-brace-format
 msgid "{count} links found in the clipboard."
-msgstr ""
+msgstr "в буфере обмена найдено {count} ссылок."
 
 #. Translators: Label for the list of URLs extracted from the clipboard.
 #: addon\globalPlugins\favoriteLinks\fromClipboard.py:59
 msgid "Select a link:"
-msgstr ""
+msgstr "Выберите ссылку:"
 
 #. Translators: Label for the button that opens the selected URL.
 #: addon\globalPlugins\favoriteLinks\fromClipboard.py:70
 #: addon\globalPlugins\favoriteLinks\searchLinks.py:121
 msgid "&Open"
-msgstr ""
+msgstr "&Открыть"
 
 #. Translators: Label for the button that copies the selected URL to the clipboard.
 #: addon\globalPlugins\favoriteLinks\fromClipboard.py:74
 msgid "&Copy to clipboard"
-msgstr ""
+msgstr "&Копировать в буфер обмена"
 
 #. Translators: Spoken when a link is opened from the picker dialog.
 #: addon\globalPlugins\favoriteLinks\fromClipboard.py:108
 #: addon\globalPlugins\favoriteLinks\__init__.py:283
 #, python-brace-format
 msgid "Opening {url}."
-msgstr ""
+msgstr "Открытие {url}."
 
 #. Translators: Spoken when a link cannot be opened from the picker dialog.
 #: addon\globalPlugins\favoriteLinks\fromClipboard.py:114
 #: addon\globalPlugins\favoriteLinks\__init__.py:286
 msgid "Unable to open the link. Please check your browser settings."
-msgstr ""
+msgstr "Не удаётся открыть ссылку. Пожалуйста, проверьте настройки вашего браузера."
 
 #. Translators: Spoken when a URL is copied to the clipboard from the picker dialog.
 #: addon\globalPlugins\favoriteLinks\fromClipboard.py:125
 #, python-brace-format
 msgid "Copied to clipboard: {url}"
-msgstr ""
+msgstr "Скопировано в буфер обмена: {url}"
 
 #. Translators: Spoken when copying a URL to the clipboard fails.
 #: addon\globalPlugins\favoriteLinks\fromClipboard.py:130
 #: addon\globalPlugins\favoriteLinks\searchLinks.py:274
 msgid "Failed to copy URL to clipboard."
-msgstr ""
+msgstr "Не удалось скопировать URL в буфер обмена."
 
 #: addon\globalPlugins\favoriteLinks\linkManager.py:51
 msgid "Missing required libraries: validators, BeautifulSoup e UnicodeDammit"
@@ -295,15 +295,15 @@ msgstr "&Редактировать ссылку"
 
 #: addon\globalPlugins\favoriteLinks\main.py:85
 msgid "De&lete link"
-msgstr "&Удалить ссылку"
+msgstr "Уд&алить ссылку"
 
 #: addon\globalPlugins\favoriteLinks\main.py:86
 msgid "Add Cate&gory"
-msgstr "Добавить &категорию"
+msgstr "Добавить кате&горию"
 
 #: addon\globalPlugins\favoriteLinks\main.py:87
 msgid "Edi&t category"
-msgstr "Редактировать &категорию"
+msgstr "&Редактировать категорию"
 
 #: addon\globalPlugins\favoriteLinks\main.py:88
 msgid "&Delete category"
@@ -319,7 +319,7 @@ msgstr "&Импорт ссылок"
 
 #: addon\globalPlugins\favoriteLinks\main.py:91
 msgid "Import &favorites from your browsers"
-msgstr ""
+msgstr "Импорт из&бранного из ваших браузеров"
 
 #: addon\globalPlugins\favoriteLinks\main.py:92
 msgid "&Sort links"
@@ -327,11 +327,11 @@ msgstr "&Сортировать ссылки"
 
 #: addon\globalPlugins\favoriteLinks\main.py:93
 msgid "C&opy URL"
-msgstr "Скопировать URL"
+msgstr "С&копировать URL"
 
 #: addon\globalPlugins\favoriteLinks\main.py:94
 msgid "E&xit"
-msgstr "&Выход"
+msgstr "В&ыход"
 
 #: addon\globalPlugins\favoriteLinks\main.py:99
 msgid "Select a category"
@@ -381,7 +381,7 @@ msgstr "Скопировать URL в буфер обмена."
 
 #: addon\globalPlugins\favoriteLinks\main.py:203
 msgid "Import Worker"
-msgstr ""
+msgstr "Импортёр"
 
 #: addon\globalPlugins\favoriteLinks\main.py:206
 msgid "Sort the links alphabetically."
@@ -411,7 +411,7 @@ msgstr "Ссылки успешно экспортированы!"
 
 #: addon\globalPlugins\favoriteLinks\main.py:281
 msgid "Success"
-msgstr ""
+msgstr "Успех"
 
 #. Translators: Message displayed when the export fails
 #: addon\globalPlugins\favoriteLinks\main.py:286
@@ -472,15 +472,15 @@ msgstr "Категория успешно добавлена!"
 
 #: addon\globalPlugins\favoriteLinks\main.py:418
 msgid "Add New Link"
-msgstr "Добавить новую ссылку"
+msgstr "Добавить Новую Ссылку"
 
 #: addon\globalPlugins\favoriteLinks\main.py:443
 msgid "Enter the name of the link:"
-msgstr ""
+msgstr "Введите название ссылки:"
 
 #: addon\globalPlugins\favoriteLinks\main.py:444
 msgid "Link name"
-msgstr ""
+msgstr "Название ссылки"
 
 #. translators: Message displayed when a link is added
 #: addon\globalPlugins\favoriteLinks\main.py:452
@@ -490,7 +490,7 @@ msgstr "Ссылка успешно добавлена!"
 #. translators: Message displayed when a link addition is cancelled
 #: addon\globalPlugins\favoriteLinks\main.py:465
 msgid "Link addition cancelled."
-msgstr ""
+msgstr "Добавление ссылки отменено."
 
 #. translators: Message displayed when no link is selected to edit
 #: addon\globalPlugins\favoriteLinks\main.py:483
@@ -499,7 +499,7 @@ msgstr "Не выбрана ссылка для редактирования!"
 
 #: addon\globalPlugins\favoriteLinks\main.py:496
 msgid "Edit Link"
-msgstr "Редактировать ссылку"
+msgstr "Редактировать Ссылку"
 
 #. translators: Message displayed when a link is edited successfully
 #: addon\globalPlugins\favoriteLinks\main.py:515
@@ -554,7 +554,7 @@ msgstr "Не выбрана категория для удаления!"
 #: addon\globalPlugins\favoriteLinks\main.py:640
 #, python-brace-format
 msgid "Are you sure you want to delete the category '{}' and all its links?"
-msgstr "Вы уверены, что хотите удалить категорию '{}' и все её ссылки?"
+msgstr "Вы действительно хотите удалить категорию '{}' и все её ссылки?"
 
 #: addon\globalPlugins\favoriteLinks\main.py:643
 msgid "Confirm Delete"
@@ -594,85 +594,85 @@ msgstr "Ошибка открытия ссылки в браузере: {}"
 
 #: addon\globalPlugins\favoriteLinks\main.py:820
 msgid "Import bookmarks from HTML"
-msgstr ""
+msgstr "Импорт закладок из HTML"
 
 #. Translators: Title of the search links dialog.
 #: addon\globalPlugins\favoriteLinks\searchLinks.py:56
 msgid "Search links"
-msgstr ""
+msgstr "Поиск ссылок"
 
 #. Translators: First option in the category dropdown; searches across all categories.
 #: addon\globalPlugins\favoriteLinks\searchLinks.py:64
 msgid "(All categories)"
-msgstr ""
+msgstr "(Все категории)"
 
 #. Translators: Label for the category dropdown in the search dialog.
 #: addon\globalPlugins\favoriteLinks\searchLinks.py:77
 msgid "Select a category:"
-msgstr ""
+msgstr "Выберите категорию:"
 
 #. Translators: Label for the search text input field.
 #: addon\globalPlugins\favoriteLinks\searchLinks.py:86
 msgid "Search word:"
-msgstr ""
+msgstr "Искомое слово:"
 
 #. Search type radio
 #: addon\globalPlugins\favoriteLinks\searchLinks.py:93
 msgid "Name"
-msgstr ""
+msgstr "Названию"
 
 #: addon\globalPlugins\favoriteLinks\searchLinks.py:98
 msgid "Search by"
-msgstr ""
+msgstr "Поиск по"
 
 #. Buttons
 #: addon\globalPlugins\favoriteLinks\searchLinks.py:118
 msgid "&Search"
-msgstr ""
+msgstr "По&иск"
 
 #: addon\globalPlugins\favoriteLinks\searchLinks.py:122
 msgid "&Copy URL"
-msgstr ""
+msgstr "&Копировать URL"
 
 #: addon\globalPlugins\favoriteLinks\searchLinks.py:162
 msgid "Please enter a search word."
-msgstr ""
+msgstr "Пожалуйста, введите искомое слово."
 
 #: addon\globalPlugins\favoriteLinks\searchLinks.py:199
 msgid "No results found."
-msgstr ""
+msgstr "Результаты не найдены."
 
 #: addon\globalPlugins\favoriteLinks\searchLinks.py:199
 msgid "Search"
-msgstr ""
+msgstr "Поиск"
 
 #: addon\globalPlugins\favoriteLinks\searchLinks.py:210
 #, python-brace-format
 msgid "Results: {count} found."
-msgstr ""
+msgstr "Результаты: найдено {count}."
 
 #: addon\globalPlugins\favoriteLinks\searchLinks.py:223
 #, python-brace-format
 msgid "{count} results found."
-msgstr ""
+msgstr "найдено {count} результатов."
 
 #: addon\globalPlugins\favoriteLinks\searchLinks.py:229
 msgid "No result selected to open!"
-msgstr ""
+msgstr "Результаты для открытия не выбраны!"
 
 #: addon\globalPlugins\favoriteLinks\searchLinks.py:247
 #: addon\globalPlugins\favoriteLinks\__init__.py:458
 #, python-brace-format
 msgid "Opening {title}."
-msgstr ""
+msgstr "Открытие {title}."
 
 #: addon\globalPlugins\favoriteLinks\searchLinks.py:255
 msgid "Unable to open the selected link. Please check your browser."
-msgstr ""
+msgstr "Не удаётся открыть выбранную ссылку. Пожалуйста, проверьте свой браузер."
 
 #: addon\globalPlugins\favoriteLinks\searchLinks.py:264
 msgid "No result selected to copy!"
-msgstr ""
+msgstr "Результаты для копирования не выбраны!"
 
 #: addon\globalPlugins\favoriteLinks\__init__.py:98
 msgid "&Favorite links..."
@@ -680,11 +680,11 @@ msgstr "&Избранные ссылки..."
 
 #: addon\globalPlugins\favoriteLinks\__init__.py:142
 msgid "No links saved."
-msgstr ""
+msgstr "Нет сохранённых ссылок."
 
 #: addon\globalPlugins\favoriteLinks\__init__.py:147
 msgid "No links in this category."
-msgstr ""
+msgstr "В этой категории нет ссылок."
 
 #: addon\globalPlugins\favoriteLinks\__init__.py:161
 msgid "Favorite links."
@@ -716,166 +716,167 @@ msgstr "Окно браузера не найдено."
 #. Translators: Text displayed in NVDA help.
 #: addon\globalPlugins\favoriteLinks\__init__.py:221
 msgid "Search saved links by name or URL."
-msgstr ""
+msgstr "Поиск сохранённых ссылок по названию или URL."
 
 #: addon\globalPlugins\favoriteLinks\__init__.py:232
 msgid "Failed to load links. Please check the file."
-msgstr ""
+msgstr "Не удалось загрузить ссылки. Пожалуйста, проверьте файл."
 
 #: addon\globalPlugins\favoriteLinks\__init__.py:237
 msgid "No saved links found. If you had links before, the links file may have been corrupt and was reset. Please add links to begin."
-msgstr ""
+msgstr "Сохранённые ссылки не найдены. Если у вас ранее были ссылки, возможно, файл ссылок был повреждён и сброшен. Пожалуйста, добавьте ссылки, чтобы начать."
 
 #: addon\globalPlugins\favoriteLinks\__init__.py:245
 msgid "Unable to open the search dialog."
-msgstr ""
+msgstr "Не удаётся открыть диалог поиска."
 
 #. Translators: Text displayed in NVDA help.
 #: addon\globalPlugins\favoriteLinks\__init__.py:260
 msgid "Open a URL from the clipboard."
-msgstr ""
+msgstr "Открыть URL из буфера обмена."
 
 #: addon\globalPlugins\favoriteLinks\__init__.py:271
 msgid "Unable to read the clipboard."
-msgstr ""
+msgstr "Не удаётся прочитать буфер обмена."
 
 #: addon\globalPlugins\favoriteLinks\__init__.py:276
 msgid "The clipboard does not contain any links."
-msgstr ""
+msgstr "Буфер обмена не содержит никаких ссылок."
 
 #. Translators: Text displayed in NVDA help.
 #: addon\globalPlugins\favoriteLinks\__init__.py:305
 msgid "Move to the next saved link in the current category."
-msgstr ""
+msgstr "Перейти к следующей сохранённой ссылке в текущей категории."
 
 #. Translators: Text displayed in NVDA help.
 #: addon\globalPlugins\favoriteLinks\__init__.py:327
 msgid "Move to the previous saved link in the current category."
-msgstr ""
+msgstr "Перейти к предыдущей сохранённой ссылке в текущей категории."
 
 #. Translators: Text displayed in NVDA help.
 #: addon\globalPlugins\favoriteLinks\__init__.py:349
 msgid "Move to the next category of saved links."
-msgstr ""
+msgstr "Перейти к следующей категории сохранённых ссылок."
 
 #: addon\globalPlugins\favoriteLinks\__init__.py:367
 #: addon\globalPlugins\favoriteLinks\__init__.py:395
 #, python-brace-format
 msgid "{category}: Contains {count} link"
 msgid_plural "{category}: Contains {count} links"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "{category}: Содержит {count} ссылку"
+msgstr[1] "{category}: Содержит {count} ссылки"
+msgstr[2] "{category}: Содержит {count} ссылок"
+msgstr[3] "{category}: Содержит {count} ссылок"
 
 #. Translators: Text displayed in NVDA help.
 #: addon\globalPlugins\favoriteLinks\__init__.py:377
 msgid "Move to the previous category of saved links."
-msgstr ""
+msgstr "Перейти к предыдущей категории сохранённых ссылок."
 
 #. Translators: Text displayed in NVDA help.
 #: addon\globalPlugins\favoriteLinks\__init__.py:405
 msgid "Move to the first saved link in the current category."
-msgstr ""
+msgstr "Перейти к первой сохранённой ссылке в текущей категории."
 
 #. Translators: Text displayed in NVDA help.
 #: addon\globalPlugins\favoriteLinks\__init__.py:424
 msgid "Move to the last saved link in the current category."
-msgstr ""
+msgstr "Перейти к последней сохранённой ссылке в текущей категории."
 
 #. Translators: Text displayed in NVDA help.
 #: addon\globalPlugins\favoriteLinks\__init__.py:443
 msgid "Open the currently selected link in the default browser."
-msgstr ""
+msgstr "Открыть выбранную в данный момент ссылку в браузере по умолчанию."
 
 #: addon\globalPlugins\favoriteLinks\__init__.py:465
 #, python-brace-format
 msgid "Unable to open {title}."
-msgstr ""
+msgstr "Не удалось открыть {title}."
 
 #. Translators: Text displayed in NVDA help.
 #: addon\globalPlugins\favoriteLinks\__init__.py:471
 msgid "Toggle reading the URL after the link name during keyboard navigation."
-msgstr ""
+msgstr "Переключить чтение URL после названия ссылки во время навигации с помощью клавиатуры."
 
 #: addon\globalPlugins\favoriteLinks\__init__.py:479
 msgid "Read URL after name turned on."
-msgstr ""
+msgstr "Читать URL после названия включено."
 
 #: addon\globalPlugins\favoriteLinks\__init__.py:481
 msgid "Read URL after name turned off."
-msgstr ""
+msgstr "Читать URL после названия выключено."
 
 #: addon\globalPlugins\favoriteLinks\importBookmarks\gui.py:66
 msgid "Importing"
-msgstr ""
+msgstr "Импорт"
 
 #: addon\globalPlugins\favoriteLinks\importBookmarks\gui.py:69
 msgid "Starting…"
-msgstr ""
+msgstr "Начало…"
 
 #: addon\globalPlugins\favoriteLinks\importBookmarks\gui.py:71
 msgid "Cancel"
-msgstr ""
+msgstr "Отмена"
 
 #: addon\globalPlugins\favoriteLinks\importBookmarks\gui.py:108
 msgid "No links found."
-msgstr ""
+msgstr "Ссылки не найдены."
 
 #: addon\globalPlugins\favoriteLinks\importBookmarks\gui.py:152
 msgid "HTML file:"
-msgstr ""
+msgstr "Файл HTML:"
 
 #: addon\globalPlugins\favoriteLinks\importBookmarks\gui.py:157
 msgid "&Select HTML..."
-msgstr ""
+msgstr "Выбрать &HTML..."
 
 #: addon\globalPlugins\favoriteLinks\importBookmarks\gui.py:162
 msgid "&Import"
-msgstr ""
+msgstr "&Импорт"
 
 #: addon\globalPlugins\favoriteLinks\importBookmarks\gui.py:173
 msgid "Select HTML file"
-msgstr ""
+msgstr "Выберите файл HTML"
 
 #: addon\globalPlugins\favoriteLinks\importBookmarks\gui.py:183
 msgid "Select a valid HTML file."
-msgstr ""
+msgstr "Выберите допустимый файл HTML."
 
 #: addon\globalPlugins\favoriteLinks\importBookmarks\gui.py:197
 msgid "Importing links…"
-msgstr ""
+msgstr "Импорт ссылок…"
 
 #: addon\globalPlugins\favoriteLinks\importBookmarks\gui.py:221
 msgid "Imported Bookmarks"
-msgstr ""
+msgstr "Импортированные Закладки"
 
 #. translators: Message shown when bookmark import is completed successfully.
 #: addon\globalPlugins\favoriteLinks\importBookmarks\gui.py:233
 msgid "Import completed successfully."
-msgstr ""
+msgstr "Импорт успешно завершён."
 
 #: addon\globalPlugins\favoriteLinks\importBookmarks\gui.py:243
 msgid "Import cancelled."
-msgstr ""
+msgstr "Импорт отменён."
 
 #. Add-on summary/title, usually the user visible name of the add-on
 #. Translators: Summary/title for this add-on
 #. to be shown on installation and add-on information found in add-on store
 #: buildVars.py:21
 msgid "Favorite links"
-msgstr "FavoriteLinks (Избранные ссылки)"
+msgstr "Избранные ссылки"
 
 #. Add-on description
 #. Translators: Long description to be shown for this add-on on add-on information from add-on store
 #: buildVars.py:24
 msgid "This add-on allows you to save, edit and remove links to frequently visited pages.\n\n"
 "Shortcut Windows+Alt+K."
-msgstr ""
+msgstr "Это дополнение позволяет сохранять, редактировать и удалять ссылки на часто посещаемые страницы.\n\n"
+"Горячая клавиша Windows+Alt+K."
 
 #. Brief changelog for this version
 #. Translators: what's 	new content for the add-on version to be shown in the add-on store
 #: buildVars.py:31
 msgid "The new translation system via Crowdin has been integrated and the localization files have been updated."
-msgstr ""
+msgstr "Интегрирована новая система перевода через Crowdin, и файлы локализации обновлены."
 
