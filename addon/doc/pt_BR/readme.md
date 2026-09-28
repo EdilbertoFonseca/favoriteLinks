@@ -1,6 +1,6 @@
 # Links Favoritos
 
-* **Author**: Edilberto Fonseca <edilberto.fonseca@outlook.com>
+* **Autor**: Edilberto Fonseca <edilberto.fonseca@outlook.com>
 * **Data de Criação**: 04/11/2024
 * **Licença**: [GPL 2.0](https://www.gnu.org/licenses/gpl-2.0.html)
 
@@ -136,12 +136,12 @@ Agradeço também ao **Abel Passos**, pela contribuição com a funcionalidade d
 
 O add-on FavoriteLinks foi desenvolvido com o auxílio do **ChatGPT** e do **Google Gemini**, usados para a criação de funções, otimização e refatoração do código, e para aprimorar a documentação.
 
-## Translation
+## Tradução
 
-Translations for this add-on are managed through the [NVDA Add-ons Crowdin project](https://crowdin.com/project/nvdaaddons).
+As traduções para este complemento são gerenciadas por meio do [projeto de complementos do NVDA no Crowdin](https://crowdin.com/project/nvdaaddons).
 
-To contribute a translation, create a Crowdin account, join the appropriate language team if required, and translate the available interface and documentation strings directly in Crowdin.
+Para contribuir com uma tradução, crie uma conta no Crowdin, junte-se à equipe do idioma correspondente (se necessário) e traduza as strings de interface e documentação disponíveis diretamente no Crowdin.
 
-You can also use Poedit to work with `.po` and `.xliff` files locally. Completed translations are synchronized to the add-on repository through the localization workflow.
+Você também pode usar o Poedit para trabalhar localmente com arquivos `.po` e `.xliff`. As traduções concluídas são sincronizadas com o repositório do complemento por meio do fluxo de trabalho de localização.
 
-For questions or assistance, please join the [NVDA Translations mailing list](https://groups.io/g/nvda-translations).
+Para dúvidas ou assistência, junte-se à [lista de discussão de traduções do NVDA](https://groups.io/g/nvda-translations).
