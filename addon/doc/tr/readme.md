@@ -62,7 +62,7 @@ Ek seçeneklere erişmek için bu alanların herhangi birinde **bağlam menüsü
 #### Bağlantılar Listesinde
 
 * **Bağlantıyı Aç**: Bağlantıyı yapılandırdığınız tarayıcıda açar.
-> **Not**: İkincil tarayıcıyı önceden ayarlarda yapılandırmak gerekir.
+    > **Not**: İkincil tarayıcıyı önceden ayarlarda yapılandırmak gerekir.
 * **Bağlantı Ekle**: Yeni bir Adres eklenmesine izin verir. Başlık otomatik olarak alınacaktır ancak alma işlemi başarısız olursa manuel olarak girebilirsiniz.
 * **Bağlantıyı Düzenle**: Mevcut bir bağlantının başlığını ve URL'sini değiştirir.
 * **Bağlantıyı Sil**: Seçilen bağlantıyı siler.
@@ -115,9 +115,9 @@ Bu özellik, mevcut yer işaretlerinizi eklentiye hızlı ve düzenli bir şekil
 
 1. **Kategori**: İstediğiniz kategoriyi seçin.
 2. **Adres**: Bağlantı adresini yapıştırın veya yazın.
-> Zaten bir Adresi kopyaladıysanız otomatik olarak yapıştırılacaktır.
+    > Zaten bir Adresi kopyaladıysanız otomatik olarak yapıştırılacaktır.
 3. **Tamam (`Alt+T`)**: Bağlantıyı ekler.
-> Başlık otomatik olarak getirilecektir. Alma başarısız olursa, manuel olarak girebileceksiniz.
+    > Başlık otomatik olarak getirilecektir. Alma başarısız olursa, manuel olarak girebileceksiniz.
 4. **İptal (`Alt+P`)**: İletişim kutusunu kapatır. 'Esc' veya 'Alt+F4' de çalışır.
 
 ## "Bağlantıyı Düzenle" İletişim Kutusu

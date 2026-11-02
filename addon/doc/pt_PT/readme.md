@@ -62,7 +62,7 @@ Utilize o **menu de contexto** (tecla de aplicações) em qualquer um destes cam
 #### Na Lista de Links
 
 * **Abrir Link**: Abre o link no navegador que configurou.
-> **Nota**: É necessário configurar previamente o navegador secundário nas configurações.
+    > **Nota**: É necessário configurar previamente o navegador secundário nas configurações.
 * **Adicionar Link**: Permite inserir um novo URL. O título será obtido automaticamente, mas pode introduzi-lo manualmente caso a obtenção falhe.
 * **Editar Link**: Modifica o título e o URL de um link existente.
 * **Remover Link**: Elimina o link seleccionado.
@@ -115,9 +115,9 @@ No final da importação, é apresentada uma mensagem de confirmação e a inter
 
 1. **Categoria**: Seleccione a categoria pretendida.
 2. **URL**: Cole ou escreva o endereço do link.
-> Se já tiver copiado um URL, este será colado automaticamente.
+    > Se já tiver copiado um URL, este será colado automaticamente.
 3. **OK (`Alt+O`)**: Adiciona o link.
-> O título será obtido automaticamente. Caso a obtenção falhe, poderá introduzi-lo manualmente.
+    > O título será obtido automaticamente. Caso a obtenção falhe, poderá introduzi-lo manualmente.
 4. **Cancelar (`Alt+C`)**: Fecha o diálogo. `Esc` ou `Alt+F4` também funcionam.
 
 ## Diálogo "Editar Link"

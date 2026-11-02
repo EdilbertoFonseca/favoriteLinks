@@ -62,7 +62,7 @@ Ji bo gihîştina vebijarkên zêdetir, di her yek ji van qadan de **menûya kon
 #### Di Lîsteya Girêdanan de
 
 * **Girêdanê Veke**: Girêdanê di geroka ku te mîheng kiriye de vedike.
-> **Nîşe**: Pêdivî ye ku hûn geroka duyemîn berê di mîhengan de mîheng bikin.
+    > **Nîşe**: Pêdivî ye ku hûn geroka duyemîn berê di mîhengan de mîheng bikin.
 * **Girêdanek Zêde Bike**: Destûrê dide danîna URL-yek nû. Sernav dê bixweber were bidestxistin, lê heke wergirtin bi ser nekeve hûn dikarin wê bi destan binivîsin.
 * **Girêdanê Biguherîne**: Sernav û URL-ya lînkek heyî diguherîne.
 * **Girêdanê Rake**: Girêdana bijartî jê dibe.
@@ -115,9 +115,9 @@ Di dawiya importkirinê de, peyamek pejirandinê tê xuyang kirin û navrûya p�
 
 1. **Kategorî**: Kategoriya xwestî hilbijêre.
 2. **URL**: Navnîşana lînkê binivîse an jî pêve bike.
-> Heke we URL-yek kopî kiribe, ew ê bixweber were pêvekirin.
+    > Heke we URL-yek kopî kiribe, ew ê bixweber were pêvekirin.
 3. **Temam (`Alt+O`)**: Girêdanê lê zêde dike.
-> Sernav dê bixweber were wergirtin. Ger wergirtin bi ser nekeve, hûn ê karibin wê bi destan binivîsin.
+    > Sernav dê bixweber were wergirtin. Ger wergirtin bi ser nekeve, hûn ê karibin wê bi destan binivîsin.
 4. **Betalkirin (`Alt+C`)**: Paceya diyalogê digire. `Esc` an `Alt+F4` jî dixebitin.
 
 ## Diyaloga "Girêdanê Biguherîne"

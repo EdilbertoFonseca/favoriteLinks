@@ -62,7 +62,7 @@ Use o **menu de contexto** (tecla de aplicação) em qualquer um desses campos p
 #### Na Lista de Links
 
 * **Abrir Link**: Abre o link no navegador que você configurou.
-> **Nota:** É necessário configurar o navegador secundário previamente nas configurações.
+    > **Nota:** É necessário configurar o navegador secundário previamente nas configurações.
 * **Adicionar Link**: Permite inserir uma nova URL. O título será obtido automaticamente, mas você pode informá-lo manualmente caso a busca falhe.
 * **Editar Link**: Modifica o título e a URL de um link existente.
 * **Remover Link**: Exclui o link selecionado.
@@ -115,9 +115,9 @@ Ao final da importação, uma mensagem de confirmação é exibida e a interface
 
 1. **Categoria**: Selecione a categoria desejada.
 2. **URL**: Cole ou digite o endereço do link.
-> Se você já copiou um URL, ele será colado automaticamente.
+    > Se você já copiou um URL, ele será colado automaticamente.
 3. **OK (`Alt+O`)**: Adiciona o link.
-> O título será obtido automaticamente. Caso a busca falhe, você poderá digitá-lo manualmente.
+    > O título será obtido automaticamente. Caso a busca falhe, você poderá digitá-lo manualmente.
 4. **Cancelar (`Alt+C`)**: Fecha o diálogo. `Esc` ou `Alt+F4` também funcionam.
 
 ## Diálogo "Editar Link"
