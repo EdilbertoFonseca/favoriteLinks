@@ -1,6 +1,6 @@
 # Ligações Favoritas
 
-* **Author**: Edilberto Fonseca <edilberto.fonseca@outlook.com>
+* **Autor**: Edilberto Fonseca <edilberto.fonseca@outlook.com>
 * **Data de Criação**: 04/11/2024
 * **Licença**: [GPL 2.0](https://www.gnu.org/licenses/gpl-2.0.html)
 
@@ -62,7 +62,7 @@ Utilize o **menu de contexto** (tecla de aplicações) em qualquer um destes cam
 #### Na Lista de Links
 
 * **Abrir Link**: Abre o link no navegador que configurou.
-> **Nota**: É necessário configurar previamente o navegador secundário nas configurações.
+    > **Nota**: É necessário configurar previamente o navegador secundário nas configurações.
 * **Adicionar Link**: Permite inserir um novo URL. O título será obtido automaticamente, mas pode introduzi-lo manualmente caso a obtenção falhe.
 * **Editar Link**: Modifica o título e o URL de um link existente.
 * **Remover Link**: Elimina o link seleccionado.
@@ -115,9 +115,9 @@ No final da importação, é apresentada uma mensagem de confirmação e a inter
 
 1. **Categoria**: Seleccione a categoria pretendida.
 2. **URL**: Cole ou escreva o endereço do link.
-> Se já tiver copiado um URL, este será colado automaticamente.
+    > Se já tiver copiado um URL, este será colado automaticamente.
 3. **OK (`Alt+O`)**: Adiciona o link.
-> O título será obtido automaticamente. Caso a obtenção falhe, poderá introduzi-lo manualmente.
+    > O título será obtido automaticamente. Caso a obtenção falhe, poderá introduzi-lo manualmente.
 4. **Cancelar (`Alt+C`)**: Fecha o diálogo. `Esc` ou `Alt+F4` também funcionam.
 
 ## Diálogo "Editar Link"
@@ -136,12 +136,12 @@ Agradeço também ao **Abel Passos** pela contribuição com a funcionalidade de
 
 O add-on FavoriteLinks foi desenvolvido com o auxílio do **ChatGPT** e do **Google Gemini**, utilizados para a criação de funções, optimização e refactorização do código, bem como para a melhoria da documentação.
 
-## Translation
+## Tradução
 
-Translations for this add-on are managed through the [NVDA Add-ons Crowdin project](https://crowdin.com/project/nvdaaddons).
+As traduções para este add-on são geridas através do [projeto NVDA Add-ons no Crowdin](https://crowdin.com/project/nvdaaddons).
 
-To contribute a translation, create a Crowdin account, join the appropriate language team if required, and translate the available interface and documentation strings directly in Crowdin.
+Para contribuir com uma tradução, crie uma conta no Crowdin, junte-se à equipa do idioma adequado, se necessário, e traduza as strings de interface e documentação disponíveis diretamente no Crowdin.
 
-You can also use Poedit to work with `.po` and `.xliff` files locally. Completed translations are synchronized to the add-on repository through the localization workflow.
+Também pode utilizar o Poedit para trabalhar com ficheiros `.po` e `.xliff` localmente. As traduções concluídas são sincronizadas com o repositório do add-on através do fluxo de trabalho de localização.
 
-For questions or assistance, please join the [NVDA Translations mailing list](https://groups.io/g/nvda-translations).
+Para dúvidas ou assistência, junte-se à [lista de discussão NVDA Translations](https://groups.io/g/nvda-translations).

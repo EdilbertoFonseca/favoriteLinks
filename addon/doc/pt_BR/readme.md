@@ -1,6 +1,6 @@
 # Links Favoritos
 
-* **Author**: Edilberto Fonseca <edilberto.fonseca@outlook.com>
+* **Autor**: Edilberto Fonseca <edilberto.fonseca@outlook.com>
 * **Data de Criação**: 04/11/2024
 * **Licença**: [GPL 2.0](https://www.gnu.org/licenses/gpl-2.0.html)
 
@@ -62,7 +62,7 @@ Use o **menu de contexto** (tecla de aplicação) em qualquer um desses campos p
 #### Na Lista de Links
 
 * **Abrir Link**: Abre o link no navegador que você configurou.
-> **Nota:** É necessário configurar o navegador secundário previamente nas configurações.
+    > **Nota:** É necessário configurar o navegador secundário previamente nas configurações.
 * **Adicionar Link**: Permite inserir uma nova URL. O título será obtido automaticamente, mas você pode informá-lo manualmente caso a busca falhe.
 * **Editar Link**: Modifica o título e a URL de um link existente.
 * **Remover Link**: Exclui o link selecionado.
@@ -102,22 +102,22 @@ Ao final da importação, uma mensagem de confirmação é exibida e a interface
 
 | Função | Atalho |
 | :--- | :--- |
-| Abrir Link                                                                      | `Alt+B` ou `Enter` (na lista de links) |
+| Abrir Link | `Alt+B` ou `Enter` (na lista de links) |
 | Adicionar Link | `Alt+A` |
 | Adicionar Categoria | `Alt+D` |
 | Editar Link | `Alt+E` ou `F2` |
 | Excluir Link | `Alt+L` ou `Del` |
 | Salvar URL da página atual | `Shift+Control+D` |
-| Mostrar URL da página atual                                                     | `Windows+Control+P` Pressionando duas vezes, a URL é copiada para a área de transferência. |
+| Mostrar URL da página atual | `Windows+Control+P` Pressionando duas vezes, a URL é copiada para a área de transferência. |
 | Sair | `Alt+S`, `Esc` ou `Alt+F4` |
 
 ## Diálogo "Adicionar Novo Link"
 
 1. **Categoria**: Selecione a categoria desejada.
 2. **URL**: Cole ou digite o endereço do link.
-> Se você já copiou um URL, ele será colado automaticamente.
+    > Se você já copiou um URL, ele será colado automaticamente.
 3. **OK (`Alt+O`)**: Adiciona o link.
-> O título será obtido automaticamente. Caso a busca falhe, você poderá digitá-lo manualmente.
+    > O título será obtido automaticamente. Caso a busca falhe, você poderá digitá-lo manualmente.
 4. **Cancelar (`Alt+C`)**: Fecha o diálogo. `Esc` ou `Alt+F4` também funcionam.
 
 ## Diálogo "Editar Link"
@@ -136,12 +136,12 @@ Agradeço também ao **Abel Passos**, pela contribuição com a funcionalidade d
 
 O add-on FavoriteLinks foi desenvolvido com o auxílio do **ChatGPT** e do **Google Gemini**, usados para a criação de funções, otimização e refatoração do código, e para aprimorar a documentação.
 
-## Translation
+## Tradução
 
-Translations for this add-on are managed through the [NVDA Add-ons Crowdin project](https://crowdin.com/project/nvdaaddons).
+As traduções para este complemento são gerenciadas por meio do [projeto de complementos do NVDA no Crowdin](https://crowdin.com/project/nvdaaddons).
 
-To contribute a translation, create a Crowdin account, join the appropriate language team if required, and translate the available interface and documentation strings directly in Crowdin.
+Para contribuir com uma tradução, crie uma conta no Crowdin, junte-se à equipe do idioma correspondente (se necessário) e traduza as strings de interface e documentação disponíveis diretamente no Crowdin.
 
-You can also use Poedit to work with `.po` and `.xliff` files locally. Completed translations are synchronized to the add-on repository through the localization workflow.
+Você também pode usar o Poedit para trabalhar localmente com arquivos `.po` e `.xliff`. As traduções concluídas são sincronizadas com o repositório do complemento por meio do fluxo de trabalho de localização.
 
-For questions or assistance, please join the [NVDA Translations mailing list](https://groups.io/g/nvda-translations).
+Para dúvidas ou assistência, junte-se à [lista de discussão de traduções do NVDA](https://groups.io/g/nvda-translations).
