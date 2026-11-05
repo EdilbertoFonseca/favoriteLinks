@@ -324,7 +324,7 @@ class FavoriteLinks(wx.Dialog):
 			event (wx.Event): The event triggered by the open link button.
 		"""
 
-		if not self.linkManager.is_internet_connected():
+		if not self.linkManager.isInternetConnected():
 			# Translators: Message displayed when there is no internet connection
 			self.showMessage(_("No active internet connection!"), _("Attention"))
 			return
@@ -410,13 +410,13 @@ class FavoriteLinks(wx.Dialog):
 			self.showMessage(str(e), _("Error"), wx.OK | wx.ICON_ERROR)
 
 	def onAddLink(self, event):
-		selected_category = self.category.GetStringSelection()
+		selectedCategory = self.category.GetStringSelection()
 
 		dlg = AddLinks(
 			mainFrame,
 			self.linkManager,
 			title=_("Add New Link"),
-			selectedCategory=selected_category,
+			selectedCategory=selectedCategory,
 		)
 		mainFrame.prePopup()
 
@@ -436,13 +436,13 @@ class FavoriteLinks(wx.Dialog):
 			log.warning(f"Could not get title from URL: {e}")
 
 		# Preserves captured (or empty) value
-		title_temp = title
+		titleTemp = title
 
 		# Always asks the user, using the title as the default value
 		title = self.getUserInput(
 			_("Enter the name of the link:"),
 			_("Link name"),
-			default_value=title_temp,
+			defaultValue=titleTemp,
 		)
 
 		if title:
@@ -475,10 +475,10 @@ class FavoriteLinks(wx.Dialog):
 		Edit a selected link using the EditLinks dialog.
 		"""
 		# Get selection at the beginning of the method
-		selected_item = self.listLinks.GetFirstSelected()
+		selectedItem = self.listLinks.GetFirstSelected()
 
 		# Make sure there is a valid selection
-		if selected_item == -1:
+		if selectedItem == -1:
 			# translators: Message displayed when no link is selected to edit
 			self.showMessage(_("No link selected to edit!"), _("Attention"))
 			self.listLinks.SetFocus()
@@ -486,8 +486,8 @@ class FavoriteLinks(wx.Dialog):
 
 		# Get the current data from the link
 		oldCategory = self.category.GetStringSelection()
-		oldTitle = self.listLinks.GetItem(selected_item, 0).GetText()
-		oldURL = self.listLinks.GetItem(selected_item, 1).GetText()
+		oldTitle = self.listLinks.GetItem(selectedItem, 0).GetText()
+		oldURL = self.listLinks.GetItem(selectedItem, 1).GetText()
 
 		# Creates the dialogue passing the instance of Link Manager and the old data
 		dlg = EditLinks(
@@ -501,21 +501,21 @@ class FavoriteLinks(wx.Dialog):
 		mainFrame.prePopup()
 
 		if dlg.ShowModal() == wx.ID_OK:
-			new_category = dlg.categoryChoice.GetStringSelection()
-			new_title = dlg.textTitle.GetValue()
-			new_url = dlg.textURL.GetValue()
+			newCategory = dlg.categoryChoice.GetStringSelection()
+			newTitle = dlg.textTitle.GetValue()
+			newURL = dlg.textURL.GetValue()
 
 			try:
-				if new_category != oldCategory:
+				if newCategory != oldCategory:
 					self.linkManager.removeLinkFromCategory(oldCategory, oldTitle)
-					self.linkManager.addLinkToCategory(new_category, new_title, new_url)
+					self.linkManager.addLinkToCategory(newCategory, newTitle, newURL)
 				else:
-					self.linkManager.editLinkInCategory(oldCategory, oldTitle, new_title, new_url)
+					self.linkManager.editLinkInCategory(oldCategory, oldTitle, newTitle, newURL)
 				# translators: Message displayed when a link is edited successfully
 				self.showMessage(_("Link edited successfully!"), _("Attention"))
 
 				# Updates the selected category
-				self.selectedCategory = new_category  # Sets the category to be restored
+				self.selectedCategory = newCategory  # Sets the category to be restored
 
 				# Updates the interface
 				self.updateAllUI()
@@ -540,9 +540,9 @@ class FavoriteLinks(wx.Dialog):
 
 		self.selectedCategory = self.category.GetStringSelection()
 
-		selected_item = self.listLinks.GetFirstSelected()
-		if selected_item != -1:
-			title = self.listLinks.GetItem(selected_item, 0).GetText()
+		selectedItem = self.listLinks.GetFirstSelected()
+		if selectedItem != -1:
+			title = self.listLinks.GetItem(selectedItem, 0).GetText()
 			category = self.category.GetStringSelection()
 			self.linkManager.removeLinkFromCategory(category, title)
 			self.linkManager.saveLinks()
@@ -568,9 +568,9 @@ class FavoriteLinks(wx.Dialog):
 			event (wx.Event): The event triggered by the copy URL option.
 		"""
 
-		selected_item = self.listLinks.GetFirstSelected()
-		if selected_item != -1:
-			url = self.listLinks.GetItem(selected_item, 1).GetText()
+		selectedItem = self.listLinks.GetFirstSelected()
+		if selectedItem != -1:
+			url = self.listLinks.GetItem(selectedItem, 1).GetText()
 			api.copyToClip(url)
 
 			# Translators: Message displayed when the URL is copied to the clipboard
@@ -629,8 +629,8 @@ class FavoriteLinks(wx.Dialog):
 		Args:
 			event (wx.Event): The event triggered by the remove category button.
 		"""
-		selected_category = self.category.GetStringSelection()
-		if not selected_category:
+		selectedCategory = self.category.GetStringSelection()
+		if not selectedCategory:
 			# translators: Message displayed when no category is selected to delete
 			self.showMessage(_("No category selected to delete!"))
 			self.category.SetFocus()
@@ -638,12 +638,12 @@ class FavoriteLinks(wx.Dialog):
 
 		# Confirm with the user if they really want to delete
 		confirmMessage = _("Are you sure you want to delete the category '{}' and all its links?").format(
-			selected_category,
+			selectedCategory,
 		)
 		if messageBox(confirmMessage, _("Confirm Delete"), style=wx.ICON_QUESTION | wx.YES_NO) == wx.YES:
 			try:
 				# Call the Linkmanager method to delete the category
-				self.linkManager.deleteCategory(selected_category)
+				self.linkManager.deleteCategory(selectedCategory)
 
 				# Defines the selected category as NONE so that the UI adjusts
 				self.selectedCategory = None
@@ -664,7 +664,7 @@ class FavoriteLinks(wx.Dialog):
 					wx.OK | wx.ICON_ERROR,
 				)
 
-	def getUserInput(self, message, caption, default_value=""):
+	def getUserInput(self, message, caption, defaultValue=""):
 		"""
 		Displays an input dialog to get text from the user.
 
@@ -677,19 +677,20 @@ class FavoriteLinks(wx.Dialog):
 			str: The value entered by the user, or None if the dialog is cancelled.
 		"""
 
-		dlg = wx.TextEntryDialog(self, message, caption, value=default_value)
+		dlg = wx.TextEntryDialog(self, message, caption, value=defaultValue)
 		if dlg.ShowModal() == wx.ID_OK:
 			return dlg.GetValue()
 		return None
 
 	def showMessage(self, message, caption=None, style=wx.OK | wx.ICON_INFORMATION):
-		"""Shows a message box to the user.
+		"""
+		Shows a message box to the user.
 
 		Args:
 			message: The message to display in the message box.
 			caption: The caption for the message box. If None, defaults to "Search Links".
 			style: The style flags for the message box (e.g., wx.OK, wx.ICONINFORMATION).
-		                Defaults to wx.OK | wx.ICONINFORMATION.
+		Defaults to wx.OK | wx.ICONINFORMATION.
 		"""
 
 		if caption is None:
@@ -774,38 +775,38 @@ class FavoriteLinks(wx.Dialog):
 		self.listLinks.SetFocus()
 
 	def openLinkInSpecificBrowser(self, link):
-		browser_path = config.conf[ourAddon.name].get("browserPath")
+		browserPath = config.conf[ourAddon.name].get("browserPath")
 
-		if not browser_path:
+		if not browserPath:
 			# translators: Message displayed when no browser path is configured
 			self.showMessage(_("No browser path configured."))
 			return
 
 		# Checks if the browser executable exists
-		if not os.path.exists(browser_path):
+		if not os.path.exists(browserPath):
 			# translators: Message displayed when the browser executable is not found
-			self.showMessage(_("Browser not found at path: {}".format(browser_path)))
+			self.showMessage(_("Browser not found at path: {}".format(browserPath)))
 			return
 
 		# Register the custom browser
 		browserName = "customPortable"
-		webbrowser.register(browserName, None, BackgroundBrowser(browser_path))
+		webbrowser.register(browserName, None, BackgroundBrowser(browserPath))
 
 		# Open the link using the specified browser
 		try:
 			webbrowser.get(browserName).open(link)
 		except webbrowser.Error:
 			# translators: Message displayed when there is an error opening the link with the specified browser
-			self.showMessage(_("Error opening the link with the browser: {}".format(browser_path)))
+			self.showMessage(_("Error opening the link with the browser: {}".format(browserPath)))
 
 	def onOpenLinksSecondaryBrowser(self, event):
-		if not self.linkManager.is_internet_connected():
+		if not self.linkManager.isInternetConnected():
 			self.showMessage(_("No active internet connection!"))
 			return
 		self.listLinks.SetFocus()
-		selected_item = self.listLinks.GetFirstSelected()
-		if selected_item != -1:
-			idx = selected_item
+		selectedItem = self.listLinks.GetFirstSelected()
+		if selectedItem != -1:
+			idx = selectedItem
 			url = self.listLinks.GetItem(idx, 1).GetText()
 			self.Close()
 			self.openLinkInSpecificBrowser(url)

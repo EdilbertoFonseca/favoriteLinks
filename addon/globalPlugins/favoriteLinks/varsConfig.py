@@ -22,7 +22,7 @@ from logHandler import log
 addonHandler.initTranslation()
 
 # Get the path to the root of the current add-on
-addonPath = os.path.dirname(__file__)
+ADDON_PATH = os.path.dirname(__file__)
 
 # Get the title of the addon defined in the summary
 ADDON_SUMMARY = addonHandler.getCodeAddon().manifest["summary"]

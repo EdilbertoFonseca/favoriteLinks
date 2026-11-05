@@ -31,16 +31,16 @@ import addonHandler
 from api import getClipData
 from logHandler import log
 
-from .jsonConfig import jsonConfig
-from .varsConfig import addonPath, ourAddon
+from .jsonConfig import JSON_CONFIG
+from .varsConfig import ADDON_PATH, ourAddon
 
 # Initialize translation support
 addonHandler.initTranslation()
 
 # Add the lib/ folder to sys.path (only once)
-libPath = os.path.join(addonPath, "lib")
-if libPath not in sys.path:
-	sys.path.insert(0, libPath)
+LIB_PATH = os.path.join(ADDON_PATH, "lib")
+if LIB_PATH not in sys.path:
+	sys.path.insert(0, LIB_PATH)
 
 try:
 	import validators
@@ -51,8 +51,8 @@ except ImportError as e:
 	raise ImportError(_("Missing required libraries: validators, BeautifulSoup e UnicodeDammit"))
 
 
-def get_title_key(item: Any) -> str:
-	"""Retorna o título em caixa baixa para ordenação segura."""
+def getTitleKey(item: Any) -> str:
+	"""Returns the title in lowercase for safe sorting."""
 	return str(item[0]).lower()
 
 
@@ -64,7 +64,7 @@ class LinkManager:
 	_URL_STRIP_CHARS = "'.,[]{}:;\""
 
 	def __init__(self):
-		self.jsonFilePath = jsonConfig.getCurrentJsonPath()
+		self.jsonFilePath = JSON_CONFIG.getCurrentJsonPath()
 		self.data = {}
 		log.debug(f"[{ourAddon.name}] LinkManager initialized. JSON path: '{self.jsonFilePath}'")
 		self.loadJson()
@@ -82,7 +82,7 @@ class LinkManager:
 				json_file_path.
 		"""
 		instance = cls.__new__(cls)
-		instance.jsonFilePath = jsonConfig.getCurrentJsonPath()
+		instance.jsonFilePath = JSON_CONFIG.getCurrentJsonPath()
 		instance.data = {}
 		return instance
 
@@ -167,7 +167,7 @@ class LinkManager:
 			raise ValueError(_("The link already exists in the category!"))
 
 		self.data[category].append([title, url])
-		self.data[category].sort(key=get_title_key)
+		self.data[category].sort(key=getTitleKey)
 		self.saveLinks()
 
 	def editLinkInCategory(self, category: str, oldTitle: str, newTitle: str, newURL: str):
@@ -185,7 +185,7 @@ class LinkManager:
 		else:
 			raise ValueError(_("Link not found to edit."))
 
-		self.data[category].sort(key=get_title_key)
+		self.data[category].sort(key=getTitleKey)
 		self.saveLinks()
 
 	def removeLinkFromCategory(self, category: str, title: str):
@@ -292,7 +292,7 @@ class LinkManager:
 			raise Exception(_("Unexpected error importing the links: {}".format(e)))
 
 	@staticmethod
-	def extract_urls_from_text(text):
+	def extractURLSFromText(text):
 		"""
 		Extracts all URLs found in an arbitrary text string using a regular
 		expression. Useful for parsing clipboard content that may contain
@@ -309,7 +309,7 @@ class LinkManager:
 		"""
 		return [s.strip(LinkManager._URL_STRIP_CHARS) for s in LinkManager._URL_RE.findall(text)]
 
-	def is_internet_connected(self, host="8.8.8.8", port=53, timeout=3) -> bool:
+	def isInternetConnected(self, host="8.8.8.8", port=53, timeout=3) -> bool:
 		"""
 		Check if there is connection to the internet.
 		"""
@@ -324,7 +324,7 @@ class LinkManager:
 		Order all links in all categories.
 		"""
 		for links in self.data.values():
-			links.sort(key=get_title_key)
+			links.sort(key=getTitleKey)
 		self.saveLinks()
 
 	def sortCategories(self):

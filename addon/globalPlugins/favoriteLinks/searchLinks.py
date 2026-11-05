@@ -151,9 +151,9 @@ class SearchLinks(wx.Dialog):
 		return self.results[index]
 
 	def _updateActionButtons(self):
-		has_results = self.listResults.IsShown() and self.listResults.GetCount() > 0
-		self._openButton.Enable(has_results)
-		self._copyButton.Enable(has_results)
+		hasResults = self.listResults.IsShown() and self.listResults.GetCount() > 0
+		self._openButton.Enable(hasResults)
+		self._copyButton.Enable(hasResults)
 
 	def onSearch(self, event):
 		searchWord = self.textSearch.GetValue().strip()
@@ -163,29 +163,29 @@ class SearchLinks(wx.Dialog):
 			self.textSearch.SetFocus()
 			return
 
-		category_idx = self.categoryChoice.GetSelection()
+		categoryIdx = self.categoryChoice.GetSelection()
 
-		if category_idx == 0:
+		if categoryIdx == 0:
 			# All categories
 			links = []
-			for cat_links in self.linkManager.data.values():
-				links.extend(cat_links)
+			for catLinks in self.linkManager.data.values():
+				links.extend(catLinks)
 		else:
 			category = self.categoryChoice.GetStringSelection()
 			links = self.linkManager.data.get(category, [])
 
-		search_by_url = self.searchBy.GetSelection() == 1
+		searchByURL = self.searchBy.GetSelection() == 1
 
 		self.results = []
 
 		for title, url in links:
-			title_str = str(title) if title else ""
-			url_str = str(url) if url else ""
+			titleStr = str(title) if title else ""
+			urlStr = str(url) if url else ""
 
-			haystack = url_str if search_by_url else title_str
+			haystack = urlStr if searchByURL else titleStr
 
 			if searchWord.lower() in haystack.lower():
-				self.results.append((title_str, url_str))
+				self.results.append((titleStr, urlStr))
 
 		self.listResults.Clear()
 
@@ -297,7 +297,7 @@ class SearchLinks(wx.Dialog):
 			message: The message to display in the message box.
 			caption: The caption for the message box. If None, defaults to "Search Links".
 			style: The style flags for the message box (e.g., wx.OK, wx.ICONINFORMATION).
-		                Defaults to wx.OK | wx.ICONINFORMATION.
+			Defaults to wx.OK | wx.ICONINFORMATION.
 		"""
 
 		if caption is None:

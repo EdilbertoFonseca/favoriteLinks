@@ -83,14 +83,14 @@ class AddLinks(wx.Dialog):
 		Creates and initializes the category field.
 		"""
 		categories = list(self.linkManager.data.keys())
-		category_field = sizerHelper.addLabeledControl(
+		categoryField = sizerHelper.addLabeledControl(
 			_("Select a Category"),
 			wx.Choice,
 			choices=categories,
 		)
 		if self.selectedCategory in categories:
-			category_field.SetStringSelection(self.selectedCategory)
-		return category_field
+			categoryField.SetStringSelection(self.selectedCategory)
+		return categoryField
 
 	def _createURLField(self, sizerHelper):
 		"""
@@ -102,11 +102,11 @@ class AddLinks(wx.Dialog):
 
 		1. If the clipboard holds a plain, valid URL it is used as-is.
 		2. Otherwise the clipboard text is scanned with a regular expression
-		   so that URLs embedded inside sentences (e.g. copied article text)
-		   are still detected and the first match is used.
+		so that URLs embedded inside sentences (e.g. copied article text)
+		are still detected and the first match is used.
 		3. If nothing is found the field is left empty.
 		"""
-		url_field = sizerHelper.addLabeledControl(
+		urlField = sizerHelper.addLabeledControl(
 			_("Enter link URL:"),
 			wx.TextCtrl,
 		)
@@ -117,8 +117,8 @@ class AddLinks(wx.Dialog):
 			try:
 				from api import getClipData
 
-				clipboard_text = getClipData()
-				extracted = self.linkManager.extract_urls_from_text(clipboard_text)
+				clipboardText = getClipData()
+				extracted = self.linkManager.extract_urls_from_text(clipboardText)
 				if extracted:
 					candidate = extracted[0]
 					# Normalize bare "www." URLs to https so they become valid.
@@ -127,21 +127,21 @@ class AddLinks(wx.Dialog):
 					url = candidate
 			except Exception as e:
 				log.error("Error extracting URL from clipboard text: %s", e)
-		url_field.SetValue(url)
-		return url_field
+		urlField.SetValue(url)
+		return urlField
 
 	def _createButtons(self, panel, buttonSizer):
 		"""
 		Creates the OK and Cancel buttons and binds events to them.
 		"""
-		ok_button = wx.Button(panel, wx.ID_OK, _("&Ok"))
-		cancel_button = wx.Button(panel, wx.ID_CANCEL, _("&Cancel"))
+		okButton = wx.Button(panel, wx.ID_OK, _("&Ok"))
+		cancelButton = wx.Button(panel, wx.ID_CANCEL, _("&Cancel"))
 
-		buttonSizer.addItem(ok_button)
-		buttonSizer.addItem(cancel_button)
+		buttonSizer.addItem(okButton)
+		buttonSizer.addItem(cancelButton)
 
-		self.Bind(wx.EVT_BUTTON, self.onOk, ok_button)
-		self.Bind(wx.EVT_BUTTON, self.onCancel, cancel_button)
+		self.Bind(wx.EVT_BUTTON, self.onOk, okButton)
+		self.Bind(wx.EVT_BUTTON, self.onCancel, cancelButton)
 
 	def onOk(self, event):
 		"""
@@ -186,7 +186,7 @@ class AddLinks(wx.Dialog):
 			message: The message to display in the message box.
 			caption: The caption for the message box. If None, defaults to "Search Links".
 			style: The style flags for the message box (e.g., wx.OK, wx.ICONINFORMATION).
-		                Defaults to wx.OK | wx.ICONINFORMATION.
+						Defaults to wx.OK | wx.ICONINFORMATION.
 		"""
 
 		if caption is None:

@@ -2,7 +2,7 @@
 
 """
 Author: Edilberto Fonseca <edilberto.fonseca@outlook.com>
-Copyright: (C) 2025 Edilberto Fonseca
+Copyright: (C) 2025 - 2026 Edilberto Fonseca
 
 This file is covered by the GNU General Public License.
 See the file COPYING for more details or visit:
@@ -12,46 +12,60 @@ Created on: 03/03/2023.
 """
 
 import os
+import shutil
 
 import addonHandler
 import globalVars
-from gui import messageBox
+from logHandler import log
 
 # Initialize translation support
 addonHandler.initTranslation()
 
-# Get the name of the addon defined in the manifest.
-ADDON_name = addonHandler.getCodeAddon().manifest["name"]
+ADDON_NAME = addonHandler.getCodeAddon().manifest["name"]
+JSON_FILENAME = "favorite_links.json"
 
 
-def onInstall():
+def onInstall() -> None:
 	"""
-	Moves the add-on's json file to a new location during installation.
+	Executes installation tasks for the addon.
+	Migrates legacy JSON configuration file from the previous addon directory
+	to the dedicated user configuration folder if present.
 	"""
-
 	configPath = globalVars.appArgs.configPath
 	if not configPath:
 		return
 
-	relativeJsonPath = os.path.join(
+	# Path to the old JSON file in the currently installed addon directory
+	oldJsonPath = os.path.join(
+		configPath,
 		"addons",
-		"favoriteLinks",
+		ADDON_NAME,
 		"globalPlugins",
-		"favoriteLinks",
-		"favorite_links.json",
+		ADDON_NAME,
+		JSON_FILENAME,
 	)
-	absoluteJsonPath = os.path.abspath(os.path.join(configPath, relativeJsonPath))
 
-	if os.path.isfile(absoluteJsonPath):
-		addonRelativePath = os.path.join("addons", "favoriteLinks")
-		jsonRelativeSuffix = os.path.join("globalPlugins", "favoriteLinks", "favorite_links.json")
-		newJsonPath = os.path.join(
-			configPath,
-			addonRelativePath + addonHandler.ADDON_PENDINGINSTALL_SUFFIX,
-			jsonRelativeSuffix,
-		)
+	# Target directory and path inside user configuration (NVDA/favoriteLinks)
+	targetDir = os.path.join(configPath, ADDON_NAME)
+	targetJsonPath = os.path.join(targetDir, JSON_FILENAME)
 
+	# If old file exists and target doesn't exist yet, perform the migration
+	if os.path.isfile(oldJsonPath):
 		try:
-			os.rename(absoluteJsonPath, os.path.abspath(newJsonPath))
-		except OSError as e:
-			messageBox(_("Error when renaming file: {}").format(e), _("Attention"))
+			# Ensure target directory exists before moving
+			if not os.path.exists(targetDir):
+				os.makedirs(targetDir, exist_ok=True)
+
+			if not os.path.exists(targetJsonPath):
+				shutil.move(oldJsonPath, targetJsonPath)
+				log.info(
+					f"[{ADDON_NAME}] Successfully migrated '{JSON_FILENAME}' "
+					f"from '{oldJsonPath}' to '{targetJsonPath}'",
+				)
+			else:
+				log.info(
+					f"[{ADDON_NAME}] Configuration file already exists at '{targetJsonPath}'. "
+					"Skipping migration.",
+				)
+		except Exception as e:
+			log.error(f"[{ADDON_NAME}] Failed to migrate configuration file: {e}")
