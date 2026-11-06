@@ -200,7 +200,7 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 		description=_("Show document URL, press twice copies to clipboard."),
 		category=ADDON_SUMMARY,
 	)
-	def script_ShowDocumentURL(self, gesture):
+	def script_showDocumentURL(self, gesture):
 		if isBrowser():
 			URL = getCurrentDocumentURL()
 			if URL:
@@ -224,7 +224,7 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 	def script_searchLinks(self, gesture):
 		"""Opens the Search Links dialog."""
 
-		def open_dialog():
+		def openDialog():
 			try:
 				lm = LinkManager()
 			except Exception as e:
@@ -252,7 +252,7 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 				dlg.Destroy()
 				gui.mainFrame.postPopup()
 
-		wx.CallAfter(open_dialog)
+		wx.CallAfter(openDialog)
 
 	# Defining a script with a decorator:
 	@script(
@@ -265,12 +265,12 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 
 		def _open():
 			try:
-				clipboard_text = api.getClipData() or ""
+				clipboardText = api.getClipData() or ""
 			except OSError as e:
 				log.error("Error reading clipboard: %s", e)
 				ui.message(_("Unable to read the clipboard."))
 				return
-			urls = LinkManager.extract_urls_from_text(clipboard_text)
+			urls = LinkManager.extractURLSFromText(clipboardText)
 			urls = [("https://" + u if u.lower().startswith("www.") else u) for u in urls]
 			if not urls:
 				ui.message(_("The clipboard does not contain any links."))

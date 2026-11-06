@@ -30,7 +30,7 @@ import ui
 import wx
 from gui import guiHelper
 
-from ..jsonConfig import jsonConfig
+from ..jsonConfig import JSON_CONFIG
 
 # Initialize translation support
 addonHandler.initTranslation()
@@ -208,7 +208,7 @@ class ImportBookmarksDialog(wx.Dialog):
 	def onDone(self, items):
 		self._closeProgress()
 
-		json_path = jsonConfig.getCurrentJsonPath()
+		json_path = JSON_CONFIG.getCurrentJsonPath()
 		data = {}
 
 		if os.path.isfile(json_path):

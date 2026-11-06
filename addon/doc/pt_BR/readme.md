@@ -102,13 +102,13 @@ Ao final da importação, uma mensagem de confirmação é exibida e a interface
 
 | Função | Atalho |
 | :--- | :--- |
-| Abrir Link                                                                      | `Alt+B` ou `Enter` (na lista de links) |
+| Abrir Link | `Alt+B` ou `Enter` (na lista de links) |
 | Adicionar Link | `Alt+A` |
 | Adicionar Categoria | `Alt+D` |
 | Editar Link | `Alt+E` ou `F2` |
 | Excluir Link | `Alt+L` ou `Del` |
 | Salvar URL da página atual | `Shift+Control+D` |
-| Mostrar URL da página atual                                                     | `Windows+Control+P` Pressionando duas vezes, a URL é copiada para a área de transferência. |
+| Mostrar URL da página atual | `Windows+Control+P` Pressionando duas vezes, a URL é copiada para a área de transferência. |
 | Sair | `Alt+S`, `Esc` ou `Alt+F4` |
 
 ## Diálogo "Adicionar Novo Link"

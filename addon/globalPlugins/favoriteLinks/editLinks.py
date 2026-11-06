@@ -131,7 +131,7 @@ class EditLinks(wx.Dialog):
 			message: The message to display in the message box.
 			caption: The caption for the message box. If None, defaults to "Search Links".
 			style: The style flags for the message box (e.g., wx.OK, wx.ICONINFORMATION).
-		                Defaults to wx.OK | wx.ICONINFORMATION.
+			Defaults to wx.OK | wx.ICONINFORMATION.
 		"""
 
 		if caption is None:
