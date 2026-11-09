@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: nvdaaddons\n"
 "Report-Msgid-Bugs-To: 'nvda-translations@groups.io'\n"
-"POT-Creation-Date: 2026-09-14 05:58+0000\n"
-"PO-Revision-Date: 2026-10-24 22:01\n"
+"POT-Creation-Date: 2026-11-09 07:46+0000\n"
+"PO-Revision-Date: 2026-11-09 07:48\n"
 "Last-Translator: \n"
 "Language-Team: Portuguese\n"
 "Language: pt_PT\n"
@@ -16,31 +16,6 @@ msgstr ""
 "X-Crowdin-Language: pt-PT\n"
 "X-Crowdin-File: favoriteLinks.pot\n"
 "X-Crowdin-File-ID: 643\n"
-
-#: addon\installTasks.py:57
-#, python-brace-format
-msgid "Error when renaming file: {}"
-msgstr "Erro ao \"alterar o nome do ficheiro: {}"
-
-#. translators: Default caption for message boxes in the search links dialog.
-#: addon\installTasks.py:57 addon\globalPlugins\favoriteLinks\addLinks.py:155
-#: addon\globalPlugins\favoriteLinks\addLinks.py:160
-#: addon\globalPlugins\favoriteLinks\addLinks.py:194
-#: addon\globalPlugins\favoriteLinks\editLinks.py:139
-#: addon\globalPlugins\favoriteLinks\main.py:310
-#: addon\globalPlugins\favoriteLinks\main.py:329
-#: addon\globalPlugins\favoriteLinks\main.py:345
-#: addon\globalPlugins\favoriteLinks\main.py:386
-#: addon\globalPlugins\favoriteLinks\main.py:407
-#: addon\globalPlugins\favoriteLinks\main.py:452
-#: addon\globalPlugins\favoriteLinks\main.py:465
-#: addon\globalPlugins\favoriteLinks\main.py:483
-#: addon\globalPlugins\favoriteLinks\main.py:515
-#: addon\globalPlugins\favoriteLinks\main.py:593
-#: addon\globalPlugins\favoriteLinks\main.py:697
-#: addon\globalPlugins\favoriteLinks\searchLinks.py:305
-msgid "Attention"
-msgstr "Atenção"
 
 #: addon\globalPlugins\favoriteLinks\addLinks.py:53
 msgid "No categories available. Please add some categories first."
@@ -62,7 +37,7 @@ msgstr "Não existem categorias disponíveis. Por favor, adicione algumas catego
 #: addon\globalPlugins\favoriteLinks\main.py:525
 #: addon\globalPlugins\favoriteLinks\main.py:621
 #: addon\globalPlugins\favoriteLinks\main.py:663
-#: addon\globalPlugins\favoriteLinks\main.py:745
+#: addon\globalPlugins\favoriteLinks\main.py:746
 #: addon\globalPlugins\favoriteLinks\searchLinks.py:237
 #: addon\globalPlugins\favoriteLinks\searchLinks.py:256
 msgid "Error"
@@ -96,6 +71,26 @@ msgstr "&Cancelar"
 #: addon\globalPlugins\favoriteLinks\addLinks.py:155
 msgid "No category selected. Please select or add one!"
 msgstr "Nenhuma categoria seleccionada. Seleccione ou adicione uma!"
+
+#. translators: Default caption for message boxes in the search links dialog.
+#: addon\globalPlugins\favoriteLinks\addLinks.py:155
+#: addon\globalPlugins\favoriteLinks\addLinks.py:160
+#: addon\globalPlugins\favoriteLinks\addLinks.py:194
+#: addon\globalPlugins\favoriteLinks\editLinks.py:139
+#: addon\globalPlugins\favoriteLinks\main.py:310
+#: addon\globalPlugins\favoriteLinks\main.py:329
+#: addon\globalPlugins\favoriteLinks\main.py:345
+#: addon\globalPlugins\favoriteLinks\main.py:386
+#: addon\globalPlugins\favoriteLinks\main.py:407
+#: addon\globalPlugins\favoriteLinks\main.py:452
+#: addon\globalPlugins\favoriteLinks\main.py:465
+#: addon\globalPlugins\favoriteLinks\main.py:483
+#: addon\globalPlugins\favoriteLinks\main.py:515
+#: addon\globalPlugins\favoriteLinks\main.py:593
+#: addon\globalPlugins\favoriteLinks\main.py:698
+#: addon\globalPlugins\favoriteLinks\searchLinks.py:305
+msgid "Attention"
+msgstr "Atenção"
 
 #. translators: Error message shown when the URL field is empty.
 #: addon\globalPlugins\favoriteLinks\addLinks.py:160
@@ -436,7 +431,7 @@ msgstr "Erro ao importar ligações: {}"
 
 #. Translators: Message displayed when there is no internet connection
 #: addon\globalPlugins\favoriteLinks\main.py:329
-#: addon\globalPlugins\favoriteLinks\main.py:803
+#: addon\globalPlugins\favoriteLinks\main.py:804
 #: addon\globalPlugins\favoriteLinks\searchLinks.py:236
 msgid "No active internet connection!"
 msgstr "Sem ligação ativa à Internet!"
@@ -450,7 +445,7 @@ msgstr "Falha ao abrir a ligação: {}"
 #. Translators: Message displayed when no link is selected
 #. translators: Message displayed when no link is selected to open
 #: addon\globalPlugins\favoriteLinks\main.py:345
-#: addon\globalPlugins\favoriteLinks\main.py:814
+#: addon\globalPlugins\favoriteLinks\main.py:815
 msgid "No link selected to open!"
 msgstr "Nenhuma ligação seleccionada para abrir!"
 
@@ -571,28 +566,28 @@ msgid "Error deleting category: {}"
 msgstr "Erro ao eliminar categoria: {}"
 
 #. translators: Message displayed when links are sorted successfully
-#: addon\globalPlugins\favoriteLinks\main.py:737
+#: addon\globalPlugins\favoriteLinks\main.py:738
 msgid "Successfully ordered!"
 msgstr "Ordenado com sucesso!"
 
 #. translators: Message displayed when no browser path is configured
-#: addon\globalPlugins\favoriteLinks\main.py:781
+#: addon\globalPlugins\favoriteLinks\main.py:782
 msgid "No browser path configured."
 msgstr "Nenhum caminho do navegador configurado."
 
 #. translators: Message displayed when the browser executable is not found
-#: addon\globalPlugins\favoriteLinks\main.py:787
+#: addon\globalPlugins\favoriteLinks\main.py:788
 #, python-brace-format
 msgid "Browser not found at path: {}"
 msgstr "Navegador não encontrado no caminho: {}"
 
 #. translators: Message displayed when there is an error opening the link with the specified browser
-#: addon\globalPlugins\favoriteLinks\main.py:799
+#: addon\globalPlugins\favoriteLinks\main.py:800
 #, python-brace-format
 msgid "Error opening the link with the browser: {}"
 msgstr "Erro ao abrir a ligação com o navegador: {}"
 
-#: addon\globalPlugins\favoriteLinks\main.py:820
+#: addon\globalPlugins\favoriteLinks\main.py:821
 msgid "Import bookmarks from HTML"
 msgstr "Importar marcadores de HTML"
 
@@ -875,6 +870,13 @@ msgstr "Este complemento permite-lhe guardar, editar e remover ligações a pág
 #. Brief changelog for this version
 #. Translators: what's 	new content for the add-on version to be shown in the add-on store
 #: buildVars.py:31
-msgid "The new translation system via Crowdin has been integrated and the localization files have been updated."
+msgid "# Changelog\n\n"
+"**New Features:**\n\n"
+"* **Configuration Management:** Favorite links are now stored in a dedicated user configuration directory.\n"
+"* **Data Migration:** Implemented a system to automatically migrate legacy files during the add-on installation.\n"
+"* **Refactoring:** Updated configuration references and naming conventions throughout the add-on to ensure better organization.\n\n"
+"**Documentation and Improvements:**\n\n"
+"* **Internationalization:** Completed the translation of metadata and contribution guidelines into Brazilian Portuguese and European Portuguese.\n"
+"* **Bug Fixes:** Corrected Markdown formatting issues across all documentation files, ensuring a cleaner and more accessible reading experience."
 msgstr ""
 
